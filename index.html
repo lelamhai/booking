@@ -3,8 +3,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Booking</title>
-    <link rel="stylesheet" href="./assets/css/style.css?v=13">
-    <link rel="stylesheet" href="./assets/css/responsive.css?v=11">
+    <link rel="stylesheet" href="./assets/css/style.css?v=14">
+    <link rel="stylesheet" href="./assets/css/responsive.css?v=12">
     <link rel="stylesheet" href="./assets/slick/slick.css">
     <link rel="stylesheet" href="./assets/slick/slick-theme.css">
     <style>
@@ -26,7 +26,7 @@
        }
 
        .box {
-            max-width: 500px;
+            max-width: 700px;
             height: 200px;
             background-color: #fff;
             left: 50%;
@@ -74,11 +74,38 @@
             justify-content: center;
         }
 
+        .box-report {
+            display: none;
+        }
+
         .box-title {
             text-align: center;
             font-size: 32px;
             font-weight: bold;
             padding-bottom: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .box-content {
+            padding: 0 15px;
+        }
+
+        .box-content textarea {
+            width: 100%;
+            border: 1px solid #991113;
+            padding: 5px;
+        }
+
+        .box-submit {
+            text-align: center;
+            padding-top: 5px;
+        }
+
+        .box-submit button {
+            background-color: #991113;
+            color: #fff;
+            padding: 10px;
         }
     </style>
 </head>
@@ -91,13 +118,19 @@
                     <div class="box-title">How did you enjoy our service?</div>
                     <div class="box-list-icon">
                         <div class="box-icon">
-                            <img src="./assets/img/icon/1.png" alt="">
+                            <div class="box-report-icon">
+                                <img src="./assets/img/icon/1.png" alt="">
+                            </div>
                         </div>
                         <div class="box-icon">
-                            <img src="./assets/img/icon/2.png" alt="">
+                            <div class="box-report-icon">
+                                <img src="./assets/img/icon/2.png" alt="">
+                            </div>
                         </div>
                         <div class="box-icon">
-                            <img src="./assets/img/icon/3.png" alt="">
+                            <div class="box-report-icon">
+                                <img src="./assets/img/icon/3.png" alt="">
+                            </div>
                         </div>
                         <div class="box-icon">
                             <a href="google.com">
@@ -110,6 +143,17 @@
                             </a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="box box-report">
+            <div class="box-main">
+                <div class="wrap-box">
+                    <div class="box-title">We're sorry. We'd love your feedback!</div>
+                    <div class="box-content">
+                        <textarea cols="10" rows="3"></textarea>
+                    </div>
+                    <div class="box-submit"><button>Submit</button></div>
                 </div>
             </div>
         </div>
@@ -274,12 +318,14 @@
                 <div class="info-menu-app">
                     <div class="menu-column2">
                         <div class="wrap-menu-column2">
-                            BOOK ONLINE
+                            <a href="#BookOnline">BOOK ONLINE</a>
                         </div>
                     </div>
                     <div class="menu-column3">
                         <div class="wrap-menu-column3">
-                            CONFIRM/ CANCEL APP
+                            <a href="tel:0969999999">
+                                CONFIRM/ CANCEL APP
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -593,8 +639,17 @@
                 $(".popup").toggleClass("show-popup");
             });
 
-            $(".popup").click(function(){
-                $(".popup").toggleClass("show-popup");
+            $(".popup").click(function(e){
+                if(e.target == e.currentTarget)
+                {
+                    $(".popup").toggleClass("show-popup");
+                } else {
+                    return;
+                }
+            });
+
+            $(".box-report-icon").click(function(){
+                $(".box-report").css("display","block");
             });
         });
     </script>
