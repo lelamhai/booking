@@ -1,3 +1,6 @@
+.mobile {
+    display: none;
+}
   /* ==========================================================================
   Responsive CSS Landscape Tablet
   ========================================================================== */
@@ -39,5 +42,129 @@
   Responsive CSS Mobile
   ========================================================================== */
   @media only screen and (min-width: 100px) and (max-width: 767px) {
- 
+    .mobile {
+        display: block;
+    }
+
+    .main {
+        padding-top: 67px;
+    }
+
+    .mobile-container {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        z-index: 2;
+        background-color: #991113;
+        transition: transform 500ms ease-in-out 25ms;
+    }
+    
+    .menu-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        position: fixed;
+        z-index: 1;
+        width: 100%;
+        background-color: #991113;
+    }
+
+    .menu-mobile img {
+        width: 32px;
+        height: auto;
+    }
+
+    .logo a {
+        color: #fff;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    .wrap-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .header-list-menu{
+        display: flex;
+        flex-direction: column;
+    }
+    .header-list-menu li {
+        padding: 15px 0;
+    }
+
+    .header-login {
+        padding: 15px 0;
+    }
+
+    .not-showmenu {
+        transform: translateX(-100%);
+    }
+
+    .menu-close {
+        float: right;
+        padding: 15px;
+    }
+    .menu-close img {
+        width: 32px;
+    }
+
+    .nail-title {
+        font-size: 38px;
+    }
+
+    .video,
+    .menu,
+    .menu-main,
+    .form,
+    .wrap-contact,
+    .welcome {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .wrap-contact {
+        flex-direction: column;
+    }
+
+    .contact-column1 {
+        padding-bottom: 30px;
+    }
+
+    .contact-column2 {
+        padding-bottom: 30px;
+    }
+
+    .contact-column3 {
+        padding-bottom: 30px;
+    }
+
+    .contact-call p {
+        padding-top: 20px;
+    }
+
+    .contact-address p {
+        padding-top: 20px;
+    }
+
+    .address-title, .call-title {
+        padding-bottom: 20px;
+    }
+    
+    .list-time {
+        padding-top: 20px
+    }
+
+    .wrap-menu {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu-column1,
+    .menu-column2,
+    .menu-column3 {
+        margin-bottom: 15px;
+    }
   }

@@ -3,16 +3,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Booking</title>
-    <link rel="stylesheet" href="./assets/css/style.css?v=2">
+    <link rel="stylesheet" href="./assets/css/style.css?v=3">
+    <link rel="stylesheet" href="./assets/css/responsive.css?v=4">
     <link rel="stylesheet" href="./assets/slick/slick.css">
     <link rel="stylesheet" href="./assets/slick/slick-theme.css">
 
     <style>
-        /* ==========================================================================
-        Responsive CSS Portrait Tablet
-        ========================================================================== */
-        @media only screen and (min-width: 768px) and (max-width: 959px) {
-           
+        @media only screen and (min-width: 100px) and (max-width: 767px) {
+            
         }
 
     </style>
@@ -21,7 +19,10 @@
 <body>
     <header>
         <div class="header" style="background-color: #991113;">
-            <div class="container">
+            <div class="container mobile-container not-showmenu">
+                <div class="close-menu mobile">
+                    <button class="menu-close"><img src="./assets/img/icon/icon_close.png" alt=""></button>
+                 </div>
                 <section class="wrap-header">
                     <div class="header-logo">
                         <a href="">Flower Nail</a>
@@ -48,10 +49,19 @@
                     </div>
                 </section>
             </div>
+
+            <div class="menu-mobile mobile">
+                <div class="logo-mobile anim left-right js-anim">
+                   <div class="logo">
+                      <a href="">Flower Nail</a>
+                   </div>
+                </div>
+                <button class="menu-open anim right-left js-anim"><img src="./assets/img/icon/icon_menu.png" alt=""></button>
+             </div>
         </div>
 
     </header>
-    <main>
+    <main class="main">
         <div class="container">
             <section class="banner">
                 
@@ -477,6 +487,15 @@
                 dots: true,
                 arrows: false,
                 slidesToShow: 1
+            });
+
+            // Menu mobile
+            $(".menu-open").click(function(){
+                $(".mobile-container").removeClass( "not-showmenu" );
+            });
+
+            $(".menu-close").click(function(){
+                $(".mobile-container").addClass("not-showmenu");
             });
         });
     </script>
