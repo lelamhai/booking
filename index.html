@@ -3,16 +3,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Booking</title>
-    <link rel="stylesheet" href="./assets/css/style.css?v=11">
-    <link rel="stylesheet" href="./assets/css/responsive.css?v=7">
+    <link rel="stylesheet" href="./assets/css/style.css?v=12">
+    <link rel="stylesheet" href="./assets/css/responsive.css?v=10">
     <link rel="stylesheet" href="./assets/slick/slick.css">
     <link rel="stylesheet" href="./assets/slick/slick-theme.css">
     <style>
-       
+       .wrap-review {
+           cursor: pointer;
+       }
+
+       body {
+           position: relative;
+       }
+
+       .popup {
+            background: #000;
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            z-index: 3;
+            display: none;
+       }
+
+       .box {
+            width: 500px;
+            height: 200px;
+            background-color: #fff;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+        }
+
+        .show-popup {
+            display: block;
+        }
+
+        .box-header {
+            float: right;
+        }
     </style>
 </head>
   
 <body>
+    <div class="popup">
+        <div class="box">
+            <div class="box-header">
+                <button class="close-popup">x</button>
+            </div>
+            <div class="box-main">main</div>
+        </div>
+    </div>
+
+
     <header>
         <div class="header" style="background-color: #991113;">
             <div class="container mobile-container not-showmenu">
@@ -135,7 +178,7 @@
                 <div class="rating-content">We hope you enjoyed our services, please give us a 5-star review. We appreciate your support. Thank you!</div>
                 <div class="rating-review">
                     <div class="wrap-review">
-                        WRITE A REVIEW
+                       WRITE A REVIEW
                     </div>
                 </div>
 
@@ -156,8 +199,8 @@
                 <div class="gift-heart1"><img src="./assets/img/icon/new_heart.png" alt=""></div>
                 <div class="wrap-gift">
                     <div class="gift-title">Buy gift cards for your beloved ones</div>
-                        <div class="gift-buy"><div class="wrap-gift-buy">BUY NOW</div>
-                        
+                    <div class="gift-buy">
+                        <div class="wrap-gift-buy">BUY NOW</div>
                     </div>
                 </div>
                 <div class="gift-heart2"><img src="./assets/img/icon/new_heart.png" alt=""></div>
@@ -462,6 +505,9 @@
        </div>
     </footer>
 
+  
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="./assets/slick/slick.js"></script>
     <script src="./assets/js/main.js"></script>
@@ -481,6 +527,14 @@
 
             $(".menu-close").click(function(){
                 $(".mobile-container").addClass("not-showmenu");
+            });
+
+            $(".wrap-review").click(function(){
+                $(".popup").toggleClass("show-popup");
+            });
+
+            $(".close-popup").click(function(){
+                $(".popup").toggleClass("show-popup");
             });
         });
     </script>

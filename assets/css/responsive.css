@@ -184,5 +184,13 @@
     .menu-column3 .wrap-menu-column3 {
         font-size: 16px;
     }
+
+    .nail-title,
+    .nail-address,
+    .nail-call,
+    .nail-list-social,
+    .info {
+        z-index: 0;
+    }
    
   }
