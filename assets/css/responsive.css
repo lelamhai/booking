@@ -193,5 +193,9 @@
     .info {
         z-index: 0;
     }
+
+    .box {
+        width: 100%;
+    }
    
   }

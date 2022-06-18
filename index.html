@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Booking</title>
     <link rel="stylesheet" href="./assets/css/style.css?v=14">
-    <link rel="stylesheet" href="./assets/css/responsive.css?v=12">
+    <link rel="stylesheet" href="./assets/css/responsive.css?v=13">
     <link rel="stylesheet" href="./assets/slick/slick.css">
     <link rel="stylesheet" href="./assets/slick/slick-theme.css">
     <style>
@@ -80,7 +80,7 @@
 
         .box-title {
             text-align: center;
-            font-size: 32px;
+            font-size: 24px;
             font-weight: bold;
             padding-bottom: 15px;
             padding-left: 15px;
@@ -106,7 +106,25 @@
             background-color: #991113;
             color: #fff;
             padding: 10px;
+            border-radius: 10px;
         }
+
+        .box-good {
+            display: none;
+        }
+
+        .submit-good {
+            text-align: center;
+            padding-top: 5px;
+        }
+
+        .submit-good button {
+            background-color: #39a766;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
     </style>
 </head>
   
@@ -133,14 +151,14 @@
                             </div>
                         </div>
                         <div class="box-icon">
-                            <a href="https://www.google.com.vn/">
+                            <div class="box-good-icon">
                                 <img src="./assets/img/icon/4.png" alt="">
-                            </a>
+                            </div>
                         </div>
                         <div class="box-icon">
-                            <a href="https://www.google.com.vn/">
+                            <div class="box-good-icon">
                                 <img src="./assets/img/icon/5.png" alt="">
-                            </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -154,6 +172,16 @@
                         <textarea cols="10" rows="3"></textarea>
                     </div>
                     <div class="box-submit"><button>Submit</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box box-good">
+            <div class="box-main">
+                <div class="wrap-box">
+                    <div class="box-title">Thank you! Leave us a review on Google</div>
+                    <input type="hidden" id="linkgood" value="https://www.google.com/">
+                    <div class="submit-good"><button>Review now</button></div>
                 </div>
             </div>
         </div>
@@ -196,7 +224,7 @@
             <div class="menu-mobile mobile">
                 <div class="logo-mobile anim left-right js-anim">
                    <div class="logo">
-                      <a href="">Flower Nail</a>
+                      <a href="./">Flower Nail</a>
                    </div>
                 </div>
                 <button class="menu-open anim right-left js-anim"><img src="./assets/img/icon/icon_menu.png" alt=""></button>
@@ -644,6 +672,7 @@
                 {
                     $(".popup").toggleClass("show-popup");
                     $(".box-report").css("display","none");
+                    $(".box-good").css("display","none");
                 } else {
                     return;
                 }
@@ -653,9 +682,20 @@
                 $(".box-report").css("display","block");
             });
 
+            $(".box-good-icon").click(function(){
+                $(".box-good").css("display","block");
+            });
+
             $(".box-submit button").click(function(){
                 $(".popup").toggleClass("show-popup");
                 $(".box-report").css("display","none");
+            });
+
+            $(".submit-good button").click(function(){
+                $(".popup").toggleClass("show-popup");
+                $(".box-good").css("display","none");
+                let url = $("#linkgood").val();
+                window.open(url);
             });
         });
     </script>
