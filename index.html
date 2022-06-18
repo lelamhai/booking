@@ -291,6 +291,7 @@
         .wrap-form {
             width: 960px;
             margin: auto;
+            padding-bottom: 70px;
         }
 
         .form-top-title {
@@ -361,6 +362,99 @@
             border-radius: 5px;
             color: #fff;
         }
+
+        .contact {
+            background-color: #fce4de;
+        }
+
+        .wrap-contact {
+            width: 960px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            padding: 70px 0;
+        }
+
+        .contact-call,
+        .contact-address,
+        .contact-time {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-call a {
+            font-weight: bold;
+            font-size: 18px;
+            background-color: #ff5757;
+            padding: 10px;
+            color: #fff;
+        }
+
+        .contact-address a {
+            font-weight: bold;
+            font-size: 18px;
+            background-color: #ff5757;
+            padding: 10px;
+            color: #fff;
+        }
+
+        .contact-time b:first-child {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .list-time {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .list-time p {
+            padding-bottom: 10px;
+        }
+
+        .contact-call p {
+            padding-top: 30px;
+        }
+
+        .contact-address p {
+            padding-top: 30px;
+        }
+
+        .list-time {
+            padding-top: 30px;
+        }
+
+        .address-title,
+        .call-title {
+            padding-bottom: 30px;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+         /* footer */
+         footer {
+            background-color: #000;
+            color: #fff;
+         }
+
+         .wrap-footer {
+            padding: 30px 0;
+         }
+
+         .footer-row1 {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 30px;
+         }
+
+         .footer-row2 {
+             text-align: center;
+         }
+
+         .footer-service {
+             padding: 0 30px;
+         }
+
     </style>
 </head>
   
@@ -764,16 +858,22 @@
                     <div class="contact-column1">
                         <div class="wrap-contact-call">
                             <div class="contact-call">
-                                <a href="tel:0935 342 435">CALL NOW</a>
-                                <b>0935 342 435</b>
+                                <div class="call-title">Contact</div>
+                                <div class="wrap-tel">
+                                    <a href="tel:0935 342 435">CALL NOW</a>
+                                </div>
+                                <p>0935 342 435</p>
                             </div>
                         </div>
                     </div>
                     <div class="contact-column2">
                         <div class="wrap-contact-address">
                             <div class="contact-address">
-                                <a href="#">GET DIRECTION</a>
-                                <b>999 Federal Blvd, Denver, CO 80219</b>
+                                <div class="address-title">Address</div>
+                                <div class="wrap-direction">
+                                    <a href="#">GET DIRECTION</a>
+                                </div>
+                                <p>999 Federal Blvd, Denver, CO 80219</p>
                             </div>
                         </div>
                     </div>
@@ -781,13 +881,15 @@
                         <div class="wrap-contact-time">
                             <div class="contact-time">
                                 <b>Opening Hours</b>
-                                <b>Mon: 9:30 am - 5:00 pm</b>
-                                <b>Tue: 9:30 am - 5:00 pm</b>
-                                <b>Wed: 9:30 am - 5:00 pm</b>
-                                <b>Thu: 9:30 am - 5:00 pm</b>
-                                <b>Fri: 9:30 am - 5:00 pm</b>
-                                <b>Sat: 9:30 am - 5:00 pm</b>
-                                <b>Sun: 9:30 am - 5:00 pm</b>
+                                <div class="list-time">
+                                    <p>Mon: 9:30 am - 5:00 pm</p>
+                                    <p>Tue: 9:30 am - 5:00 pm</p>
+                                    <p>Wed: 9:30 am - 5:00 pm</p>
+                                    <p>Thu: 9:30 am - 5:00 pm</p>
+                                    <p>Fri: 9:30 am - 5:00 pm</p>
+                                    <p>Sat: 9:30 am - 5:00 pm</p>
+                                    <p>Sun: 9:30 am - 5:00 pm</p>
+                                </div>
                             </div>
                         </div>
                     </div>
