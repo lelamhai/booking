@@ -101,6 +101,7 @@ h6 {
     margin: 0;
     padding: 0;
     font-size: 16px;
+    scroll-behavior: smooth
 }
 
 .container {
@@ -164,17 +165,23 @@ body {
   font-size: 48px;
   font-weight: bold;
   padding-bottom: 15px;
+  position: relative;
+  z-index: 1;
 }
 
 .nail-address {
   text-align: center;
   font-size: 18px;
   padding-bottom: 10px;
+  position: relative;
+    z-index: 1;
 }
 
 .nail-call {
   text-align: center;
   padding-bottom: 10px;
+  position: relative;
+    z-index: 1;
 }
 .nail-call a {
   font-size: 18px;
@@ -184,6 +191,8 @@ body {
   display: flex;
   justify-content: center;
   align-content: center;
+  position: relative;
+    z-index: 1;
 }
 
 .item-social {
@@ -199,6 +208,8 @@ body {
   align-content: center;
   justify-content: center;
   padding-bottom: 30px;
+  position: relative;
+    z-index: 1;
 }
 
 .info .item-info {
@@ -216,6 +227,8 @@ body {
 .nail-open-time {
   text-align: center;
   margin-bottom: 30px;
+  position: relative;
+    z-index: 1;
 }
 
 .nail-open-time a {
@@ -240,6 +253,7 @@ body {
   flex-direction: column;
   justify-content: center;
   font-size: 18px;
+  padding: 0 15px;
 }
 
 .rating-content {
@@ -289,7 +303,7 @@ body {
 }
 
 .wrap-gift {
-  padding: 20px 0;
+  padding: 0 0 20px 0;
 }
 
 .gift-heart1 img {
@@ -322,14 +336,6 @@ body {
   color: #fff;
 }
 
-.gift-heart1 {
-  padding-right: 200px;
-}
-
-.gift-heart2 {
-  padding-left: 200px;
-}
-
 .menu {
   padding-bottom: 45px;
 }
@@ -342,26 +348,28 @@ body {
   max-width: 960px;
   margin: auto;
   padding-bottom: 15px;
-  border-bottom: 5px solid #ff5757;
+  border-bottom: 5px solid #991113;
 }
 
 .menu-column1 {
   color: #991113;
   font-size: 18px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .menu-column2 .wrap-menu-column2 {
-  background-color: #ff5757;
   color: #fff;
-  font-size: 18px;
   padding: 10px;
+  font-size: 24px;
+  background-color: #991113;
 }
 
 .menu-column3 .wrap-menu-column3 {
-  background-color: #ff5757;
   color: #fff;
-  font-size: 18px;
   padding: 10px;
+  font-size: 24px;
+  background-color: #991113;
 }
 
 .wrap-menu-main-parent {
@@ -542,6 +550,34 @@ body {
   padding-bottom: 30px;
   font-weight: bold;
   font-size: 24px;
+}
+
+.nail {
+  position: relative;
+}
+
+.nail-heart {
+  position: absolute;
+  bottom: -60%;
+  left: -5%;
+  z-index: 0;
+}
+
+.info-menu-app {
+  max-width: 960px;
+  margin: auto;
+  display: flex;
+  padding-top: 30px;
+}
+
+.menu-column2 .wrap-menu-column2 {
+  margin-right: 15px;
+  border-radius: 10px;
+}
+
+.menu-column3 .wrap-menu-column3{
+  margin-right: 15px;
+  border-radius: 10px;
 }
 
 /* footer */

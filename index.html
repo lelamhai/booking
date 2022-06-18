@@ -3,10 +3,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Booking</title>
-    <link rel="stylesheet" href="./assets/css/style.css?v=5">
-    <link rel="stylesheet" href="./assets/css/responsive.css?v=5">
+    <link rel="stylesheet" href="./assets/css/style.css?v=11">
+    <link rel="stylesheet" href="./assets/css/responsive.css?v=7">
     <link rel="stylesheet" href="./assets/slick/slick.css">
     <link rel="stylesheet" href="./assets/slick/slick-theme.css">
+    <style>
+       
+    </style>
 </head>
   
 <body>
@@ -18,21 +21,21 @@
                  </div>
                 <section class="wrap-header">
                     <div class="header-logo">
-                        <a href="">Flower Nail</a>
+                        <a href="./">Flower Nail</a>
                     </div>
         
                     <div class="header-menu">
                         <ul class="header-list-menu">
                             <li>
-                                <a href="#">Our menu</a>
+                                <a href="#OurMenu">Our menu</a>
                             </li>
         
                             <li>
-                                <a href="#">Book online</a>
+                                <a href="#BookOnline">Book online</a>
                             </li>
         
                             <li>
-                                <a href="#">Buy gift cards</a>
+                                <a href="#Gift">Buy gift cards</a>
                             </li>
                         </ul>
                     </div>
@@ -55,41 +58,23 @@
 
     </header>
     <main class="main">
-        <div class="container">
-            <section class="banner">
+        <section class="banner">
                 
-                <div class="slider">
-                    <div class="item-slide">
-                        <img src="./assets/img/slide/banner.jpeg" alt="">
-                    </div>
+            <div class="slider">
+                <div class="item-slide">
+                    <img src="./assets/img/slide/banner.jpeg" alt="">
+                </div>
 
-                    <div class="item-slide">
-                        <img src="./assets/img/slide/banner.jpeg" alt="">
-                    </div>
+                <div class="item-slide">
+                    <img src="./assets/img/slide/banner.jpeg" alt="">
+                </div>
 
-                    <div class="item-slide">
-                        <img src="./assets/img/slide/banner.jpeg" alt="">
-                    </div>
-
-                    <div class="item-slide">
-                        <img src="./assets/img/slide/banner.jpeg" alt="">
-                    </div>
-
-                    <div class="item-slide">
-                        <img src="./assets/img/slide/banner.jpeg" alt="">
-                    </div>
-
-                    <div class="item-slide">
-                        <img src="./assets/img/slide/banner.jpeg" alt="">
-                    </div>
-
-                    <div class="item-slide">
-                        <img src="./assets/img/slide/banner.jpeg" alt="">
-                    </div>
-                    
-                 </div>
-            </section>
-
+                <div class="item-slide">
+                    <img src="./assets/img/slide/banner.jpeg" alt="">
+                </div>
+             </div>
+        </section>
+        <div class="container">
             <section class="nail">
                 <div class="nail-title" style="color: #991113;">
                     Flower Nail &amp; Spa
@@ -127,7 +112,11 @@
                 </div>
 
                 <div class="nail-open-time">
-                    <a href="">Our opening hours &gt;&gt;</a>
+                    <a href="#Opening">Our opening hours &gt;&gt;</a>
+                </div>
+
+                <div class="nail-heart pc">
+                    <img src="./assets/img/icon/nail_heart.png" alt="">
                 </div>
             </section>
 
@@ -163,20 +152,23 @@
                 </div>
             </section>
 
-            <section class="gift">
-                <div class="gift-heart1"><img src="./assets/img/icon/heart.png" alt=""></div>
+            <section class="gift" id="Gift">
+                <div class="gift-heart1"><img src="./assets/img/icon/new_heart.png" alt=""></div>
                 <div class="wrap-gift">
                     <div class="gift-title">Buy gift cards for your beloved ones</div>
                         <div class="gift-buy"><div class="wrap-gift-buy">BUY NOW</div>
                         
                     </div>
                 </div>
-                <div class="gift-heart2"><img src="./assets/img/icon/heart.png" alt=""></div>
+                <div class="gift-heart2"><img src="./assets/img/icon/new_heart.png" alt=""></div>
             </section>
 
-            <section class="menu">
+            <section class="menu" id="OurMenu">
                 <div class="wrap-menu">
                     <div class="menu-column1">Our Menu</div>
+                </div>
+
+                <div class="info-menu-app">
                     <div class="menu-column2">
                         <div class="wrap-menu-column2">
                             BOOK ONLINE
@@ -184,7 +176,7 @@
                     </div>
                     <div class="menu-column3">
                         <div class="wrap-menu-column3">
-                            CONFIRM/ CANCEL APPOINTMENT
+                            CONFIRM/ CANCEL APP
                         </div>
                     </div>
                 </div>
@@ -323,7 +315,7 @@
                 
             </section>
 
-            <section class="form">
+            <section class="form" id="BookOnline">
                 <div class="wrap-form">
                     <div class="form-top-title">
                         RESERVATION
@@ -415,50 +407,49 @@
                     </div>
                 </div>
             </section>
-
-            <section class="contact">
-                <div class="wrap-contact">
-                    <div class="contact-column1">
-                        <div class="wrap-contact-call">
-                            <div class="contact-call">
-                                <div class="call-title">Contact</div>
-                                <div class="wrap-tel">
-                                    <a href="tel:0935 342 435">CALL NOW</a>
-                                </div>
-                                <p>0935 342 435</p>
+        </div>
+        <section class="contact" id="Opening">
+            <div class="wrap-contact">
+                <div class="contact-column1">
+                    <div class="wrap-contact-call">
+                        <div class="contact-call">
+                            <div class="call-title">Contact</div>
+                            <div class="wrap-tel">
+                                <a href="tel:0935 342 435">CALL NOW</a>
                             </div>
+                            <p>0935 342 435</p>
                         </div>
                     </div>
-                    <div class="contact-column2">
-                        <div class="wrap-contact-address">
-                            <div class="contact-address">
-                                <div class="address-title">Address</div>
-                                <div class="wrap-direction">
-                                    <a href="#">GET DIRECTION</a>
-                                </div>
-                                <p>999 Federal Blvd, Denver, CO 80219</p>
+                </div>
+                <div class="contact-column2">
+                    <div class="wrap-contact-address">
+                        <div class="contact-address">
+                            <div class="address-title">Address</div>
+                            <div class="wrap-direction">
+                                <a href="#">GET DIRECTION</a>
                             </div>
+                            <p>999 Federal Blvd, Denver, CO 80219</p>
                         </div>
                     </div>
-                    <div class="contact-column3">
-                        <div class="wrap-contact-time">
-                            <div class="contact-time">
-                                <b>Opening Hours</b>
-                                <div class="list-time">
-                                    <p>Mon: 9:30 am - 5:00 pm</p>
-                                    <p>Tue: 9:30 am - 5:00 pm</p>
-                                    <p>Wed: 9:30 am - 5:00 pm</p>
-                                    <p>Thu: 9:30 am - 5:00 pm</p>
-                                    <p>Fri: 9:30 am - 5:00 pm</p>
-                                    <p>Sat: 9:30 am - 5:00 pm</p>
-                                    <p>Sun: 9:30 am - 5:00 pm</p>
-                                </div>
+                </div>
+                <div class="contact-column3">
+                    <div class="wrap-contact-time">
+                        <div class="contact-time">
+                            <b>Opening Hours</b>
+                            <div class="list-time">
+                                <p>Mon:&nbsp; 9:30 am - 5:00 pm</p>
+                                <p>Tue&nbsp;&nbsp;: 9:30 am - 5:00 pm</p>
+                                <p>Wed&nbsp;&nbsp;:9:30 am - 5:00 pm</p>
+                                <p>Thu&nbsp;&nbsp;: 9:30 am - 5:00 pm</p>
+                                <p>Fri&nbsp;&nbsp;&nbsp;&nbsp;: 9:30 am - 5:00 pm</p>
+                                <p>Sat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:9:30 am - 5:00 pm</p>
+                                <p>Sun&nbsp;&nbsp;&nbsp;&nbsp;:9:30 am - 5:00 pm</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
     <footer>
        <div class="wrap-footer">
@@ -479,6 +470,7 @@
             $(".slider").slick({
                 dots: true,
                 arrows: false,
+                autoplay: true,
                 slidesToShow: 1
             });
 

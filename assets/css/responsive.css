@@ -1,6 +1,10 @@
 .mobile {
     display: none;
 }
+
+.pc {
+    display: block;
+}
   /* ==========================================================================
   Responsive CSS Landscape Tablet
   ========================================================================== */
@@ -13,6 +17,7 @@
   ========================================================================== */
   @media only screen and (min-width: 768px) and (max-width: 959px) {
     .video,
+    .info-menu-app,
             .menu,
             .menu-main,
             .form,
@@ -44,6 +49,10 @@
   @media only screen and (min-width: 100px) and (max-width: 767px) {
     .mobile {
         display: block;
+    }
+
+    .pc {
+        display: none;
     }
 
     .main {
@@ -167,4 +176,13 @@
     .menu-column3 {
         margin-bottom: 15px;
     }
+
+    .menu-column2 .wrap-menu-column2 {
+        font-size: 16px;
+    }
+
+    .menu-column3 .wrap-menu-column3 {
+        font-size: 16px;
+    }
+   
   }
