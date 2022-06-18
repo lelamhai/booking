@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="./assets/slick/slick-theme.css">
 
     <style>
+        body {
+            background-color: #f6f1ea;
+        }
         .wrap-header {
             display: flex;
             align-content: center;
@@ -92,23 +95,167 @@
         }
 
         .info .item-info {
-            background-color: #991113;
             padding: 10px 20px;
             margin: 0 10px;
+            border: 3px solid #fc9593;
         }
 
         .info .item-info a {
-            color: #fff;
+            color: #000;
             font-weight: bold;
+
         }
 
         .nail-open-time {
             text-align: center;
+            margin-bottom: 30px;
         }
 
         .nail-open-time a {
-            color: #991113;
+            color: #018137;
             text-decoration: underline;
+        }
+
+        .wrap-welcome {
+            position: relative;
+            width: 960px;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+
+        .content-frame {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .rating-content {
+            text-align: center;
+            padding-bottom: 15px;
+        }
+
+        .rating-review {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .wrap-review {
+            border: 3px solid #ff5757;
+            width: 200px;
+            height: 50px;
+            display: flex;
+            align-content: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .wrap-video {
+            width: 960px;
+            margin: auto;
+            padding-bottom: 30px;
+        }
+
+        .wrap-video video {
+            width: 100%;
+            height: auto;
+        }
+
+        .star {
+            width: 200px;
+            margin: auto;
+            padding-bottom: 45px;
+        }
+        
+        .gift {
+            width: 960px;
+            margin: auto;
+            text-align: center;
+            padding-bottom: 45px;
+        }
+
+        .wrap-gift {
+            padding: 20px 0;
+        }
+
+        .gift-heart1 img {
+            width: 50px;
+        }
+
+        .gift-heart2 img {
+            width: 50px;
+        }
+
+        .gift-title {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 20px 0;
+        }
+
+        .gift-buy {
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrap-gift-buy {
+            width: 200px;
+            height: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 24px;
+            background-color: #ff5757;
+            color: #fff;
+        }
+
+        .gift-heart1 {
+            padding-right: 200px;
+        }
+
+        .gift-heart2 {
+            padding-left: 200px;
+        }
+
+        .wrap-menu {
+            display: flex;
+            align-content: center;
+            justify-content: space-between;
+            align-items: center;
+            width: 960px;
+            margin: auto;
+            padding-bottom: 15px;
+            border-bottom: 5px solid #ff5757;
+        }
+
+        .menu-column1 {
+            color: #991113;
+            font-size: 18px;
+        }
+
+        .menu-column2 .wrap-menu-column2 {
+            background-color: #ff5757;
+            color: #fff;
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        .menu-column3 .wrap-menu-column3 {
+            background-color: #ff5757;
+            color: #fff;
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        .content-menu {
+            width: 960px;
+            margin: auto;
         }
 
     </style>
@@ -191,13 +338,13 @@
                 <div class="info">
                     <div class="item-info">
                         <a href="tel: 0969999999">
-                            Call Us
+                            Call Us >>
                         </a>
                     </div>
 
                     <div class="item-info">
                         <a target="_blank" href="https://www.google.com/maps/place/Cho+Moi+District+Police/@10.5419503,105.3770188,13.87z/data=!4m5!3m4!1s0x310a14cdf09cbb29:0x28ac5fc543db0f52!8m2!3d10.5494448!4d105.4037726">
-                            Get Direction
+                            Get Direction >>
                         </a>
                     </div>
                 </div>
@@ -208,12 +355,68 @@
             </section>
 
             <section class="welcome">
-                <div class="welcome-frame1">
-                    <div class="welcome-frame2">
+                <div class="wrap-welcome">
+                    <div class="welcome-frame">
+                        <img src="./assets/img/frame.png" alt="">
+                    </div>
+                    <div class="content-frame">
                         Your welcome words, promotions & notifications to customers
                     </div>
                 </div>
             </section>
+
+            <section class="rating">
+                <div class="rating-content">We hope you enjoyed our services, please give us a 5-star review. We appreciate your support. Thank you!</div>
+                <div class="rating-review">
+                    <div class="wrap-review">
+                        WRITE A REVIEW
+                    </div>
+                </div>
+
+                <div class="star">
+                    <img src="./assets/img/stars.png" alt="">
+                </div>
+            </section>
+
+            <section class="video">
+                <div class="wrap-video">
+                    <video  controls>
+                        <source src="./assets/video/video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </section>
+
+            <section class="gift">
+                <div class="gift-heart1"><img src="./assets/img/icon/heart.png" alt=""></div>
+                <div class="wrap-gift">
+                    <div class="gift-title">Buy gift cards for your beloved ones</div>
+                        <div class="gift-buy"><div class="wrap-gift-buy">BUY NOW</div>
+                        
+                    </div>
+                </div>
+                <div class="gift-heart2"><img src="./assets/img/icon/heart.png" alt=""></div>
+            </section>
+
+            <section class="menu">
+                <div class="wrap-menu">
+                    <div class="menu-column1">Our Menu</div>
+                    <div class="menu-column2">
+                        <div class="wrap-menu-column2">
+                            BOOK ONLINE
+                        </div>
+                    </div>
+                    <div class="menu-column3">
+                        <div class="wrap-menu-column3">
+                            CONFIRM/ CANCEL APPOINTMENT
+                        </div>
+                    </div>
+                </div>
+                <div class="content-menu">
+                    
+                </div>
+
+            </section>
+
         </div>
     </main>
     <footer>
