@@ -156,7 +156,7 @@ body {
 }
 
 .slick-dots {
-  bottom: 25px;
+  bottom: 25px !important;
 }
 
 .nail-title {
