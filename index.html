@@ -133,12 +133,12 @@
                             </div>
                         </div>
                         <div class="box-icon">
-                            <a href="google.com">
+                            <a href="https://www.google.com.vn/">
                                 <img src="./assets/img/icon/4.png" alt="">
                             </a>
                         </div>
                         <div class="box-icon">
-                            <a href="google.com">
+                            <a href="https://www.google.com.vn/">
                                 <img src="./assets/img/icon/5.png" alt="">
                             </a>
                         </div>
@@ -643,6 +643,7 @@
                 if(e.target == e.currentTarget)
                 {
                     $(".popup").toggleClass("show-popup");
+                    $(".box-report").css("display","none");
                 } else {
                     return;
                 }
@@ -650,6 +651,11 @@
 
             $(".box-report-icon").click(function(){
                 $(".box-report").css("display","block");
+            });
+
+            $(".box-submit button").click(function(){
+                $(".popup").toggleClass("show-popup");
+                $(".box-report").css("display","none");
             });
         });
     </script>
