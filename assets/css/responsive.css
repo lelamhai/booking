@@ -197,5 +197,9 @@
     .box {
         width: 100%;
     }
+
+    .wrap-button-number {
+        flex-wrap: wrap;
+    }
    
   }

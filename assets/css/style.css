@@ -581,6 +581,123 @@ body {
   border-radius: 10px;
 }
 
+.wrap-review {
+  cursor: pointer;
+}
+
+body {
+  position: relative;
+}
+
+.popup {
+   background: #000;
+   width: 100%;
+   height: 100vh;
+   position: fixed;
+   z-index: 3;
+   display: none;
+}
+
+.box {
+   max-width: 700px;
+   height: 200px;
+   background-color: #fff;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   position: absolute;
+   border-radius: 10px;
+}
+
+.show-popup {
+   display: block;
+}
+
+.box-header {
+   float: right;
+}
+
+.box-main {
+   width: 100%;
+   height: 100%;
+}
+
+.box-icon {
+   margin: 0 15px;
+   cursor: pointer;
+}
+
+.box-icon img {
+   width: 50px;
+   height: auto;
+}
+
+.box-list-icon {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+}
+
+.wrap-box {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.box-report {
+   display: none;
+}
+
+.box-title {
+   text-align: center;
+   font-size: 24px;
+   font-weight: bold;
+   padding-bottom: 15px;
+   padding-left: 15px;
+   padding-right: 15px;
+}
+
+.box-content {
+   padding: 0 15px;
+}
+
+.box-content textarea {
+   width: 100%;
+   border: 1px solid #991113;
+   padding: 5px;
+}
+
+.box-submit {
+   text-align: center;
+   padding-top: 5px;
+}
+
+.box-submit button {
+   background-color: #991113;
+   color: #fff;
+   padding: 10px;
+   border-radius: 10px;
+}
+
+.box-good {
+   display: none;
+}
+
+.submit-good {
+   text-align: center;
+   padding-top: 5px;
+}
+
+.submit-good button {
+   background-color: #39a766;
+   color: #fff;
+   padding: 10px;
+   border-radius: 10px;
+}
+
 /* footer */
 footer {
   background-color: #000;

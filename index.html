@@ -3,129 +3,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Booking</title>
-    <link rel="stylesheet" href="./assets/css/style.css?v=14">
-    <link rel="stylesheet" href="./assets/css/responsive.css?v=13">
+    <link rel="stylesheet" href="./assets/css/style.css?v=15">
+    <link rel="stylesheet" href="./assets/css/responsive.css?v=16">
     <link rel="stylesheet" href="./assets/slick/slick.css">
     <link rel="stylesheet" href="./assets/slick/slick-theme.css">
     <style>
-       .wrap-review {
-           cursor: pointer;
-       }
-
-       body {
-           position: relative;
-       }
-
-       .popup {
-            background: #000;
-            width: 100%;
-            height: 100vh;
-            position: fixed;
-            z-index: 3;
-            display: none;
-       }
-
-       .box {
-            max-width: 700px;
-            height: 200px;
-            background-color: #fff;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            position: absolute;
-            border-radius: 10px;
-        }
-
-        .show-popup {
-            display: block;
-        }
-
-        .box-header {
-            float: right;
-        }
-
-        .box-main {
-            width: 100%;
-            height: 100%;
-        }
-
-        .box-icon {
-            margin: 0 15px;
-            cursor: pointer;
-        }
-
-        .box-icon img {
-            width: 50px;
-            height: auto;
-        }
-
-        .box-list-icon {
-            display: flex;
+        /* The container */
+        .number {
+          display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: center;
-            width: 100%;
+            height: 25px;
+          position: relative;
+          padding-left: 35px;
+          margin-right: 30px;
+          margin-bottom: 15px;
+          cursor: pointer;
+          font-size: 18px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
         }
-
-        .wrap-box {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        
+        /* Hide the browser's default checkbox */
+        .number input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
         }
-
-        .box-report {
-            display: none;
+        
+        /* Create a custom checkbox */
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 25px;
+          width: 25px;
+          background-color: #fff;
         }
-
-        .box-title {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            padding-bottom: 15px;
-            padding-left: 15px;
-            padding-right: 15px;
+        
+        /* On mouse-over, add a grey background color */
+        .number:hover input ~ .checkmark {
+          background-color: #ccc;
         }
-
-        .box-content {
-            padding: 0 15px;
+        
+        /* When the checkbox is checked, add a blue background */
+        .number input:checked ~ .checkmark {
+          background-color: #ff5757;
         }
-
-        .box-content textarea {
-            width: 100%;
-            border: 1px solid #991113;
-            padding: 5px;
+        
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
         }
-
-        .box-submit {
-            text-align: center;
-            padding-top: 5px;
+        
+        /* Show the checkmark when checked */
+        .number input:checked ~ .checkmark:after {
+          display: block;
         }
-
-        .box-submit button {
-            background-color: #991113;
-            color: #fff;
-            padding: 10px;
-            border-radius: 10px;
+        
+        /* Style the checkmark/indicator */
+        .number .checkmark:after {
+            left: 7px;
+            top: 4px;
+            width: 10px;
+            height: 14px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
         }
-
-        .box-good {
-            display: none;
-        }
-
-        .submit-good {
-            text-align: center;
-            padding-top: 5px;
-        }
-
-        .submit-good button {
-            background-color: #39a766;
-            color: #fff;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-    </style>
+        </style>
 </head>
   
 <body>
@@ -543,7 +498,7 @@
                                 NUMBER OF GUESTS<span class="red">*</span>
                             </div>
                             <div class="wrap-button-number">
-                                <div class="wrap-radio">
+                                <!-- <div class="wrap-radio">
                                     <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
                                     <label for="vehicle1"> I have a bike</label><br>
                                 </div>
@@ -554,7 +509,9 @@
                                 <div class="wrap-radio">
                                     <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
                                     <label for="vehicle1"> I have a bike</label><br>
-                                </div>
+                                </div> -->
+
+                                
                             </div>
                         </div>
 
@@ -563,18 +520,23 @@
                                 GUESTS 1<span class="red">*</span>
                             </div>
                             <div class="wrap-button-number">
-                                <div class="wrap-radio">
-                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                    <label for="vehicle1"> I have a bike</label><br>
-                                </div>
-                                <div class="wrap-radio">
-                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                    <label for="vehicle1"> I have a bike</label><br>
-                                </div>
-                                <div class="wrap-radio">
-                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                    <label for="vehicle1"> I have a bike</label><br>
-                                </div>
+                               
+                                <label class="number">Mani
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                  </label>
+                                  <label class="number">Pedi
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                                  <label class="number">Hand & Feet Massage
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                                  <label class="number">Nail Art
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
                             </div>
                         </div>
 
@@ -631,8 +593,8 @@
     <footer>
        <div class="wrap-footer">
            <div class="footer-row1">
-               <div class="footer-service">Term of service</div>
-               <div class="footer-service">Privacy policy</div>
+               <div class="footer-service"><a href="#">Term of service</a></div>
+               <div class="footer-service"><a href="#">Privacy policy</a></div>
            </div>
 
            <div class="footer-row2">©All Rights Reserved. Powered by <a href="#" style="color: #fff;">Softkeymarketing.com</a></div>
