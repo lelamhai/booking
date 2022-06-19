@@ -202,4 +202,7 @@
         flex-wrap: wrap;
     }
    
+    .box-icon {
+        margin: 0 10px;
+    }
   }
