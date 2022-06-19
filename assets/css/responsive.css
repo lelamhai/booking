@@ -177,12 +177,12 @@
         margin-bottom: 15px;
     }
 
-    .menu-column2 .wrap-menu-column2 {
-        font-size: 16px;
+    .menu-column2 .wrap-menu-column2 a {
+        font-size: 14px;
     }
 
-    .menu-column3 .wrap-menu-column3 {
-        font-size: 16px;
+    .menu-column3 .wrap-menu-column3 a {
+        font-size: 14px;
     }
 
     .nail-title,
