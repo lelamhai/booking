@@ -734,11 +734,12 @@ body {
   height: 25px;
   width: 25px;
   background-color: #fff;
+  border: 1px solid #ff5757;
 }
 
 /* On mouse-over, add a grey background color */
 .number:hover input ~ .checkmark {
-  background-color: #ccc;
+  background-color: #fff;
 }
 
 /* When the checkbox is checked, add a blue background */
@@ -771,6 +772,87 @@ body {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+.over-hide {
+  overflow: hidden;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.checkbox-budget:checked + label,
+.checkbox-budget:not(:checked) + label {
+  position: relative;
+  display: inline-block;
+  padding: 10px 0;
+  width: 70px;
+  margin: 0 auto;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 10px;
+  color: #ff5757;
+  border: 1px solid #ff5757;
+}
+.checkbox-budget:not(:checked) + label {
+  background-color: #fff;
+}
+.checkbox-budget:checked + label {
+  background-color: transparent;
+}
+
+.checkbox-budget:not(:checked) + label:hover {
+  background-color: #ff5757;
+}
+
+.checkbox-budget:not(:checked) + label:hover span {
+  color: #fff;
+}
+
+.checkbox-budget:checked + label::before,
+.checkbox-budget:not(:checked) + label::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background-color: #ff5757;
+  z-index: -1;
+}
+
+.checkbox-budget:checked + label span,
+.checkbox-budget:not(:checked) + label span {
+  position: relative;
+  display: block;
+}
+.checkbox-budget:checked + label span::before,
+.checkbox-budget:not(:checked) + label span::before {
+  position: absolute;
+  content: attr(data-hover);
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  color: white;
+}
+.checkbox-budget:not(:checked) + label span::before {
+  max-height: 0;
+}
+.checkbox-budget:checked + label span::before {
+  max-height: 100%;
+}
+
 
 /* footer */
 footer {
