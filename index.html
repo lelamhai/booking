@@ -3,10 +3,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Booking</title>
-    <link rel="stylesheet" href="./assets/css/style.css?v=26">
+    <link rel="stylesheet" href="./assets/css/style.css?v=29">
     <link rel="stylesheet" href="./assets/css/responsive.css?v=20">
     <link rel="stylesheet" href="./assets/slick/slick.css">
     <link rel="stylesheet" href="./assets/slick/slick-theme.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <style>
         
     </style>
@@ -17,7 +18,7 @@
         <div class="box">
             <div class="box-main">
                 <div class="wrap-box">
-                    <div class="box-title">How did you enjoy our service?</div>
+                    <div class="box-title">How satisfied were you with the service overall?</div>
                     <div class="box-list-icon">
                         <div class="box-icon">
                             <div class="box-report-icon">
@@ -236,7 +237,7 @@
                     <div class="menu-column3">
                         <div class="wrap-menu-column3">
                             <a href="tel:0969999999">
-                                CONFIRM/ CANCEL APP
+                                CONFIRM/CANCEL APPT
                             </a>
                         </div>
                     </div>
@@ -402,18 +403,27 @@
 
                         <div class="wrap-input-form">
                             <div class="label-card">Phone number<span class="red">*</span></div>
-                            <input type="text">
+                            <input type="tel" >
                         </div>
 
                         <div class="wrap-input-form">
                             <div class="label-card">Your email</div>
-                            <input type="text">
+                            <input type="email">
                         </div>
 
                         <div class="wrap-input-form">
                             <div class="label-card">Pick a day<span class="red">*</span></div>
-                            <input type="text">
+                            <input type="text" id="datepicker">
+                            <img src="./assets/img/icon/calendar.png" alt="" class="calendar">
                         </div>
+
+
+
+                        <style>
+
+
+                        </style>
+
 
                         <div class="wrap-input-form">
                             <div class="label-card">Pick a preferred time<span class="red">*</span></div>
@@ -428,18 +438,18 @@
                             </div>
 
                             <div class="wrap-button-number">
-                                <div class="section over-hide">
-                                    <input class="checkbox-budget" type="radio" name="budget" id="budget-1" checked>
+                                <div class="select-nember over-hide">
+                                    <input class="checkbox-budget" type="radio" name="budget" id="budget-1" value="1" checked>
                                     <label class="for-checkbox-budget" for="budget-1">
                                         <span data-hover="ONE">ONE</span>
                                     </label>
 
-                                    <input class="checkbox-budget" type="radio" name="budget" id="budget-2">
+                                    <input class="checkbox-budget" type="radio" name="budget" id="budget-2" value="2">
                                     <label class="for-checkbox-budget" for="budget-2">              
-                                        <span data-hover="FOUR">FOUR</span>
+                                        <span data-hover="TWO">TWO</span>
                                     </label>
 
-                                    <input class="checkbox-budget" type="radio" name="budget" id="budget-3">
+                                    <!-- <input class="checkbox-budget" type="radio" name="budget" id="budget-3">
                                     <label class="for-checkbox-budget" for="budget-3">              
                                         <span data-hover="FOUR">FOUR</span>
                                     </label>
@@ -447,34 +457,108 @@
                                     <input class="checkbox-budget" type="radio" name="budget" id="budget-4">
                                     <label class="for-checkbox-budget" for="budget-4">              
                                         <span data-hover="FOUR">FOUR</span>
-                                    </label>
+                                    </label> -->
                                    
                                  </div>
                             </div>
                         </div>
 
-                        <div class="choose-person">
+                        <style>
+                            .input-menu input {
+                                width: 100%;
+                                height: 40px;
+                                border: 1px solid #ff5757;
+                                padding: 0 15px;
+                            }
+
+                            .wrap-required {
+                                margin-bottom: 30px;
+                            }
+
+                            .frame-guests {
+                                display: none;
+                            }
+                        </style>
+
+                        <div class="choose-person frame-guests" id="guest-1">
                             <div class="choose-number">
                                 GUESTS 1<span class="red">*</span>
                             </div>
                             <div class="wrap-button-number">
-                               
                                 <label class="number">Mani
-                                    <input type="checkbox" checked="checked">
+                                    <input type="checkbox">
                                     <span class="checkmark"></span>
                                   </label>
                                   <label class="number">Pedi
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
                                   </label>
-                                  <label class="number">Hand & Feet Massage
+                                  <!-- <label class="number">Hand & Feet Massage
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
                                   </label>
                                   <label class="number">Nail Art
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
+                                  </label> -->
+                            </div>
+
+                            <div class="wrap-guests">
+                                <div class="wrap-required-1 wrap-required">
+                                    <div class="title-required1">Manicure Menu</div>
+                                    <div class="input-required1 input-menu">
+                                        <input type="text">
+                                    </div>
+                                </div>
+
+                                <div class="wrap-required-2 wrap-required">
+                                    <div class="title-required2">Pedicure Menu</div>
+                                    <div class="input-required2 input-menu">
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="choose-person frame-guests" id="guest-2">
+                            <div class="choose-number">
+                                GUESTS 2<span class="red">*</span>
+                            </div>
+                            <div class="wrap-button-number">
+                                <label class="number">Mani
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
                                   </label>
+                                  <label class="number">Pedi
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                                  <!-- <label class="number">Hand & Feet Massage
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label>
+                                  <label class="number">Nail Art
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                  </label> -->
+                            </div>
+
+                            <div class="wrap-guests">
+                                <div class="wrap-required-1 wrap-required">
+                                    <div class="title-required1">Manicure Menu</div>
+                                    <div class="input-required1 input-menu">
+                                        <input type="text">
+                                    </div>
+                                </div>
+
+                                <div class="wrap-required-2 wrap-required">
+                                    <div class="title-required2">Pedicure Menu</div>
+                                    <div class="input-required2 input-menu">
+                                        <input type="text">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -545,7 +629,36 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="./assets/slick/slick.js"></script>
     <script src="./assets/js/main.js?v=2"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+
+
+        setRadio(1);
+
+        $(".select-nember input[name='budget']").click(function(){
+            var radioValue = $("input[name='budget']:checked").val();
+            setRadio(radioValue);
+        });
+
+        function setRadio(value)
+        {
+            if(value != 0)
+            {
+                for(var i=1; i <= 2; i++)
+                {
+                    if(i <= value)
+                    {
+                        $("#guest-" + i).css("display", "block");
+                    } else {
+                        $("#guest-" + i).css("display", "none");
+                    }
+                }
+            }
+            
+        }
     </script>
 
   

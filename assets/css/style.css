@@ -461,6 +461,14 @@ body {
   width: 100%;
   height: 40px;
   padding: 0 15px;
+  background-color: transparent;
+}
+
+.wrap-input-form select {
+  width: 100%;
+  height: 40px;
+  background: transparent;
+  padding: 0 15px;
 }
 
 .choose-number {
@@ -851,6 +859,13 @@ body {
 }
 .checkbox-budget:checked + label span::before {
   max-height: 100%;
+}
+
+.calendar {
+  width: 20px;
+  margin-top: -30px;
+  margin-right: 15px;
+  float: right;
 }
 
 
