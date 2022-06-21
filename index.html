@@ -3,11 +3,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Booking</title>
-    <link rel="stylesheet" href="./assets/css/style.css?v=29">
-    <link rel="stylesheet" href="./assets/css/responsive.css?v=20">
+    <link rel="stylesheet" href="./assets/css/style.css?v=34">
+    <link rel="stylesheet" href="./assets/css/responsive.css?v=21">
     <link rel="stylesheet" href="./assets/slick/slick.css">
     <link rel="stylesheet" href="./assets/slick/slick-theme.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <style>
         
     </style>
@@ -417,17 +418,14 @@
                             <img src="./assets/img/icon/calendar.png" alt="" class="calendar">
                         </div>
 
-
-
-                        <style>
-
-
-                        </style>
-
-
                         <div class="wrap-input-form">
                             <div class="label-card">Pick a preferred time<span class="red">*</span></div>
-                            <input type="text">
+                            <select id="single" class="js-states form-control">
+                                <option>9:00 AM</option>
+                                <option>10:00 AM</option>
+                                <option>11:00 AM</option>
+                                <option>12:00 AM</option>
+                              </select>
                         </div>
                         
                         <div class="form-hr"></div>
@@ -463,22 +461,6 @@
                             </div>
                         </div>
 
-                        <style>
-                            .input-menu input {
-                                width: 100%;
-                                height: 40px;
-                                border: 1px solid #ff5757;
-                                padding: 0 15px;
-                            }
-
-                            .wrap-required {
-                                margin-bottom: 30px;
-                            }
-
-                            .frame-guests {
-                                display: none;
-                            }
-                        </style>
 
                         <div class="choose-person frame-guests" id="guest-1">
                             <div class="choose-number">
@@ -627,13 +609,26 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="./assets/slick/slick.js"></script>
     <script src="./assets/js/main.js?v=2"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
     <script>
         $( function() {
             $( "#datepicker" ).datepicker();
         } );
+
+        $("#single").select2({
+          placeholder: "Select a programming language",
+          allowClear: true
+        });
+
+        $("#single").select2({
+            placeholder: "Select a time",
+            allowClear: true
+        });
+
 
 
         setRadio(1);

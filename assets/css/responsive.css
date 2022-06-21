@@ -201,7 +201,11 @@
     .wrap-button-number {
         flex-wrap: wrap;
     }
-   
+    
+    .box { 
+        width: 100%;
+    }
+    
     .box-icon {
         margin: 0 10px;
     }
