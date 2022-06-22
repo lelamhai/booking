@@ -244,16 +244,7 @@ body {
 }
 
 .content-frame {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
   text-align: center;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 18px;
-  padding: 0 15px;
 }
 
 .rating-content {
@@ -284,9 +275,8 @@ body {
   padding-bottom: 30px;
 }
 
-.wrap-video video {
+.wrap-video iframe {
   width: 100%;
-  height: auto;
 }
 
 .star {
@@ -537,6 +527,7 @@ body {
 .list-time {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
 }
 
 .list-time p {

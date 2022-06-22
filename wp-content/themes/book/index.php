@@ -5,13 +5,25 @@
         <section class="banner">
                 
             <div class="slider">
+                <div class="slider">
 
-                <?php if( have_rows('slider_body', 'option') ): ?>
-                    <?php while( have_rows('slider_body', 'option') ): the_row(); ?>
-                        <img src="<?php echo get_sub_field('image')?>" alt="">
-                    <?php endwhile; ?>
-                <?php endif; ?>
-               
+                    <?php if( have_rows('slider_body', 'option') ): ?>
+                        <?php while( have_rows('slider_body', 'option') ): the_row(); ?>
+                            <div class="item-slide">
+                                <img src="<?php echo get_sub_field('image1') ?>" alt="">
+                            </div>
+
+                            <div class="item-slide">
+                                <img src="<?php echo get_sub_field('image2') ?>" alt="">
+                            </div>
+
+                            <div class="item-slide">
+                                <img src="<?php echo get_sub_field('image3') ?>" alt="">
+                            </div>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
+
+                </div>
              </div>
         </section>
         <div class="container">
@@ -27,15 +39,32 @@
                 </div>
                 <div class="nail-social-network">
                     <div class="nail-list-social">
-                        <?php if( have_rows('social_network', 'option') ): ?>
-                            <?php while( have_rows('social_network', 'option') ): the_row(); ?>
-                                <div class="item-social">
-                                    <a href="<?php echo get_sub_field('link')?>">
-                                        <img src="<?php echo get_sub_field('icon')?>" alt="">
-                                    </a>
-                                </div>
-                            <?php endwhile; ?>
-                        <?php endif; ?>
+
+                    <?php if( have_rows('social_network', 'option') ): ?>
+                        <?php while( have_rows('social_network', 'option') ): the_row(); ?>
+
+                            <div class="item-social">
+                                <a href="<?php echo get_sub_field('link_facebook')?>">
+                                    <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/icon_facebook.png" alt="">
+                                </a>
+                            </div>
+
+                            <div class="item-social">
+                                <a href="<?php echo get_sub_field('link_instagram')?>">
+                                    <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/icon_instagram.png" alt="">
+                                </a>
+                            </div>
+
+                            <div class="item-social">
+                                <a href="<?php echo get_sub_field('link_youtube')?>">
+                                    <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/icon_youtube.png" alt="">
+                                </a>
+                            </div>
+
+                        <?php endwhile; ?>
+                    <?php endif; ?>
+
+
                     </div>
                 </div>
 
@@ -45,18 +74,15 @@
                             Call Us &gt;&gt;
                         </a>
                     </div>
-
                     <div class="item-info">
                         <a target="_blank" href="<?php the_field('get_direction_body', 'options'); ?>">
                             Get Direction &gt;&gt;
                         </a>
                     </div>
                 </div>
-
                 <div class="nail-open-time">
                     <a href="#Opening">Our opening hours &gt;&gt;</a>
                 </div>
-
                 <div class="nail-heart pc">
                     <img src="<?php the_field('heart_big_body', 'options'); ?>" alt="">
                 </div>
@@ -64,9 +90,6 @@
 
             <section class="welcome">
                 <div class="wrap-welcome">
-                    <div class="welcome-frame">
-                        <img src="<?php the_field('frame_body', 'options'); ?>" alt="">
-                    </div>
                     <div class="content-frame">
                         <?php the_field('content_frame_body', 'options'); ?>
                     </div>
@@ -88,9 +111,7 @@
 
             <section class="video">
                 <div class="wrap-video">
-                    <video controls="">
-                        <source src="<?php the_field('video_body', 'options'); ?>" type="video/mp4">
-                    </video>
+                    <?php the_field('video_body', 'options'); ?>
                 </div>
             </section>
 
@@ -102,7 +123,6 @@
                         <div class="wrap-gift-buy">BUY NOW</div>
                     </div>
                 </div>
-                <div class="gift-heart2"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/new_heart.png" alt=""></div>
             </section>
 
             <section class="menu" id="OurMenu">
@@ -439,9 +459,9 @@
                         <div class="contact-call">
                             <div class="call-title">Contact</div>
                             <div class="wrap-tel">
-                                <a href="tel:0935 342 435">CALL NOW</a>
+                                <a href="tel:<?php the_field('number_phone_body', 'options'); ?>">CALL NOW</a>
                             </div>
-                            <p>0935 342 435</p>
+                            <p><?php the_field('number_phone_body', 'options'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -450,9 +470,9 @@
                         <div class="contact-address">
                             <div class="address-title">Address</div>
                             <div class="wrap-direction">
-                                <a target="_blank" href="https://www.google.com/maps/place/Cho+Moi+District+Police/@10.5419503,105.3770188,13.87z/data=!4m5!3m4!1s0x310a14cdf09cbb29:0x28ac5fc543db0f52!8m2!3d10.5494448!4d105.4037726">GET DIRECTION</a>
+                                <a target="_blank" href="<?php the_field('get_direction_body', 'options'); ?>">GET DIRECTION</a>
                             </div>
-                            <p>999 Federal Blvd, Denver, CO 80219</p>
+                            <p><?php the_field('address_body', 'options'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -461,13 +481,11 @@
                         <div class="contact-time">
                             <b>Opening Hours</b>
                             <div class="list-time">
-                                <p>Mon: <span style="padding-left: 1px;">9:30 am - 5:00 pm</span></p>
-                                <p>Tue: <span style="padding-left: 7px;">9:30 am - 5:00 pm</span></p>
-                                <p>Wed: <span style="padding-left: 3px;">9:30 am - 5:00 pm</span></p>
-                                <p>Thu: <span style="padding-left: 6px;">9:30 am - 5:00 pm</span></p>
-                                <p>Fri: <span style="padding-left: 13px;">9:30 am - 5:00 pm</span></p>
-                                <p>Sat: <span style="padding-left: 11px;">9:30 am - 5:00 pm</span></p>
-                                <p>Sun: <span style="padding-left: 7px;">9:30 am - 5:00 pm</span></p>
+                                <?php if( have_rows('open_time_body', 'option') ): ?>
+                                    <?php while( have_rows('open_time_body', 'option') ): the_row(); ?>
+                                        <p><?php echo get_sub_field('week-body')?>: <span><?php echo get_sub_field('time-body')?></span></p>
+                                    <?php endwhile; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

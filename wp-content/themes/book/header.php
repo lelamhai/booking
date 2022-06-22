@@ -81,13 +81,17 @@
         
                     <div class="header-menu">
                         <ul class="header-list-menu">
-                            <?php if( have_rows('menu_header', 'option') ): ?>
-                                <?php while( have_rows('menu_header', 'option') ): the_row(); ?>
-                                    <li>
-                                        <a href="#BookOnline"><?php echo get_sub_field('text')?></a>
-                                    </li>
-                                <?php endwhile; ?>
-                            <?php endif; ?>
+                            <li>
+                                <a href="#OurMenu">Our menu</a>
+                            </li>
+        
+                            <li>
+                                <a href="#BookOnline">Book online</a>
+                            </li>
+        
+                            <li>
+                                <a href="#Gift">Buy gift cards</a>
+                            </li>
                         </ul>
                     </div>
         
