@@ -1,8 +1,33 @@
 <footer>
        <div class="wrap-footer">
            <div class="footer-row1">
-               <div class="footer-service"><a href="<?php the_field('term_of_service_footer', 'options'); ?>" style="color: #fff">Term of service</a></div>
-               <div class="footer-service"><a href="<?php the_field('privacy_policy_footer', 'options'); ?>" style="color: #fff">Privacy policy</a></div>
+                <?php if( have_rows('footer', 'option') ): ?>
+                    <?php while( have_rows('footer', 'option') ): the_row(); ?>
+                            <!-- <div class="item-slide">
+                                <img src="<?php echo get_sub_field('image1') ?>" alt="">
+                            </div>
+
+                            <div class="item-slide">
+                                <img src="<?php echo get_sub_field('image2') ?>" alt="">
+                            </div>
+
+                            <div class="item-slide">
+                                <img src="<?php echo get_sub_field('image3') ?>" alt="">
+                            </div> -->
+
+                        <div class="footer-service"><a href="<?php echo get_sub_field('link_term_of_service') ?>" style="color: #fff"><?php echo get_sub_field('text_term_of_service') ?></a></div>
+                        <div class="footer-service"><a href="<?php echo get_sub_field('link_privacy_policy', 'options'); ?>" style="color: #fff"><?php  echo get_sub_field('text_privacy_policy', 'options'); ?></a></div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+
+
+
+
+
+
+
+               <!-- <div class="footer-service"><a href="<?php the_field('term_of_service_footer', 'options'); ?>" style="color: #fff">Term of service</a></div>
+               <div class="footer-service"><a href="<?php the_field('privacy_policy_footer', 'options'); ?>" style="color: #fff">Privacy policy</a></div> -->
            </div>
 
            <div class="footer-row2">©All Rights Reserved. Powered by <a href="http://softkeymarketing.com/" style="color: #fff;">Softkeymarketing.com</a></div>
@@ -53,6 +78,4 @@
             
         }
     </script>
-
-  
 </body></html>
