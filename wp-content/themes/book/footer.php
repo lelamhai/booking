@@ -3,8 +3,8 @@
            <div class="footer-row1">
                 <?php if( have_rows('footer', 'option') ): ?>
                     <?php while( have_rows('footer', 'option') ): the_row(); ?>
-                        <div class="footer-service"><a href="<?php echo get_sub_field('link_term_of_service') ?>" style="color: #fff"><?php echo get_sub_field('text_term_of_service') ?></a></div>
-                        <div class="footer-service"><a href="<?php echo get_sub_field('link_privacy_policy', 'options'); ?>" style="color: #fff"><?php  echo get_sub_field('text_privacy_policy', 'options'); ?></a></div>
+                        <div class="footer-service"><a href="./privacy-policy" style="color: #fff"><?php echo get_sub_field('text_term_of_service') ?></a></div>
+                        <div class="footer-service"><a href="./terms" style="color: #fff"><?php  echo get_sub_field('text_privacy_policy', 'options'); ?></a></div>
                     <?php endwhile; ?>
                 <?php endif; ?>
            </div>
@@ -12,6 +12,7 @@
            <div class="footer-row2">©All Rights Reserved. Powered by <a href="http://softkeymarketing.com/" style="color: #fff;">Softkeymarketing.com</a></div>
        </div>
     </footer>
+    
     <?php
       wp_footer();
     ?>
@@ -56,5 +57,8 @@
             }
             
         }
+
+
+        
     </script>
 </body></html>

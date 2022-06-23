@@ -26,6 +26,11 @@
                 margin-left: 15px;
                 margin-right: 15px;
             }
+
+    .wrap-header a,
+    .header-list-menu li a {
+        font-size: 20px;
+    }
   }
     
   /* ==========================================================================
@@ -208,5 +213,9 @@
     
     .box-icon {
         margin: 0 10px;
+    }
+
+    .wrap-video iframe {
+        height: 250px;
     }
   }

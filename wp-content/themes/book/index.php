@@ -76,7 +76,7 @@
                     </div>
                     <div class="item-info">
                         <a target="_blank" href="<?php the_field('get_direction_body', 'options'); ?>">
-                            Get Direction &gt;&gt;
+                            Get Directions &gt;&gt;
                         </a>
                     </div>
                 </div>
@@ -148,78 +148,103 @@
 
             </section>
 
+
             <section class="menu-main">
                 <div class="menu-main-row">
-                    <div class="wrap-menu-main-parent">
+                    <div class="wrap-menu-title">
                         <div class="menu-label-left">
-                            Manicures
+                            NAME
                         </div>
                         <div class="menu-label-right">
-                            Price
-                        </div>
-                    </div>
-    
-                    <div class="wrap-menu-main">
-                        <div class="menu-label-left">
-                            <div class="menu-main-title">
-                                Basic manicure
-                            </div>
-                            <div class="meun-main-title">
-                                description
-                            </div>
-                        </div>
-                        <div class="menu-label-right">
-                            $20
-                        </div>
-                    </div>
-                    <div class="wrap-menu-main">
-                        <div class="menu-label-left">
-                            <div class="menu-main-title">
-                                Basic manicure
-                            </div>
-                            <div class="meun-main-title">
-                                description
-                            </div>
-                        </div>
-                        <div class="menu-label-right">
-                            $20
-                        </div>
-                    </div>
-                    <div class="wrap-menu-main">
-                        <div class="menu-label-left">
-                            <div class="menu-main-title">
-                                Basic manicure
-                            </div>
-                            <div class="meun-main-title">
-                                description
-                            </div>
-                        </div>
-                        <div class="menu-label-right">
-                            $20
-                        </div>
-                    </div>
-                    <div class="wrap-menu-main">
-                        <div class="menu-label-left">
-                            <div class="menu-main-title">
-                                Basic manicure
-                            </div>
-                            <div class="meun-main-title">
-                                description
-                            </div>
-                        </div>
-                        <div class="menu-label-right">
-                            $20
+                            PRICE
                         </div>
                     </div>
                 </div>
 
-                <div class="menu-main-row">
-                    <div class="wrap-menu-main-parent">
-                        <div class="menu-label-left">
-                            Manicures
-                        </div>
-                        <div class="menu-label-right">
+                <?php if( have_rows('menu', 'option') ): ?>
+                    <?php while( have_rows('menu', 'option') ): the_row(); ?>
+                   
+                    <div class="menu-main-row">
+                        <div class="wrap-menu-parent">
+                            <div class="menu-label-left">
+                                <div class="menu-title-parent">
+                                    <?php echo get_sub_field('title_parent') ?>
+                                </div>
+                                <?php 
+                                    if(get_sub_field('title_parent') != null)
+                                    {
+                                        ?>
+                                             <div class="menu-description-parent">
+                                                <?php echo get_sub_field('description_parent') ?>
+                                            </div>
+                                        <?php
+                                    }
+                                ?>
+                               
+                            </div>
                             
+                            <div class="menu-label-right">
+                                <?php 
+                                    if(get_sub_field('price_parent') != null)
+                                    {
+                                        ?>
+                                            <div class="menu-description-parent">
+                                                <?php echo get_sub_field('price_parent')?>
+                                            </div>
+                                        <?php
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                        
+                        <?php if( have_rows('menu_child') ): ?>
+                            <?php while( have_rows('menu_child') ): the_row(); ?>
+                                <div class="wrap-menu-main">
+                                    <div class="menu-label-left">
+                                        <div class="menu-main-title">
+                                            <?php echo get_sub_field('title')?>
+                                        </div>
+                                        <div class="meun-main-title">
+                                            <?php echo get_sub_field('description')?>
+                                        </div>
+                                    </div>
+                                    <div class="menu-label-right">
+                                        <?php echo get_sub_field('price')?>
+                                    </div>
+                                </div>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                    </div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+
+
+
+                <!-- <div class="menu-main-row">
+                    <div class="wrap-menu-parent">
+                        <div class="menu-label-left">
+                            <div class="menu-title-parent">
+                                Manicures
+                            </div>
+
+                            <div class="menu-description-parent">
+                                description
+                            </div>
+                        </div>
+                        
+                        <div class="menu-label-right">
+                            20$
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="menu-main-row">
+                    <div class="wrap-menu-parent">
+                        <div class="menu-label-left">
+                            <div class="menu-title-parent">
+                                Manicures
+                            </div>
                         </div>
                     </div>
     
@@ -275,7 +300,7 @@
                             $20
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
             </section>
 
@@ -333,7 +358,7 @@
 
                         <div class="choose-person">
                             <div class="choose-number">
-                                NUMBER OF GUESTS<span class="red">*</span>
+                                NUMBER OF GUEST<span class="red">*</span>
                             </div>
 
                             <div class="wrap-button-number">
@@ -365,7 +390,7 @@
 
                         <div class="choose-person frame-guests" id="guest-1">
                             <div class="choose-number">
-                                GUESTS 1<span class="red">*</span>
+                                GUEST 1<span class="red">*</span>
                             </div>
                             <div class="wrap-button-number">
                                 <label class="number">Mani
@@ -407,7 +432,7 @@
 
                         <div class="choose-person frame-guests" id="guest-2">
                             <div class="choose-number">
-                                GUESTS 2<span class="red">*</span>
+                                GUEST 2<span class="red">*</span>
                             </div>
                             <div class="wrap-button-number">
                                 <label class="number">Mani
@@ -452,7 +477,7 @@
                 </div>
             </section>
         </div>
-        <section class="contact" id="Opening">
+        <section class="contact" id="Opening" style="background-color: <?php the_field('background_color_contact', 'options'); ?>">
             <div class="wrap-contact">
                 <div class="contact-column1">
                     <div class="wrap-contact-call">
@@ -470,7 +495,7 @@
                         <div class="contact-address">
                             <div class="address-title">Address</div>
                             <div class="wrap-direction">
-                                <a target="_blank" href="<?php the_field('get_direction_body', 'options'); ?>">GET DIRECTION</a>
+                                <a target="_blank" href="<?php the_field('get_direction_body', 'options'); ?>">GET DIRECTIONS</a>
                             </div>
                             <p><?php the_field('address_body', 'options'); ?></p>
                         </div>
@@ -483,7 +508,7 @@
                             <div class="list-time">
                                 <?php if( have_rows('open_time_body', 'option') ): ?>
                                     <?php while( have_rows('open_time_body', 'option') ): the_row(); ?>
-                                        <p><?php echo get_sub_field('week-body')?>: <span><?php echo get_sub_field('time-body')?></span></p>
+                                        <p><span><?php echo get_sub_field('time-body')?></span></p>
                                     <?php endwhile; ?>
                                 <?php endif; ?>
                             </div>

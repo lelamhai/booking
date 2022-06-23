@@ -60,7 +60,7 @@
             <div class="box-main">
                 <div class="wrap-box">
                     <div class="box-title">Thank you! Leave us a review on Google</div>
-                    <input type="hidden" id="linkgood" value="https://www.google.com/">
+                    <input type="hidden" id="linkgood" value="<?php the_field('popup_body', 'options'); ?>">
                     <div class="submit-good"><button>Review now</button></div>
                 </div>
             </div>
@@ -92,6 +92,14 @@
                             <li>
                                 <a href="#Gift">Buy gift cards</a>
                             </li>
+
+                            <?php if( have_rows('menu_header', 'option') ): ?>
+                                <?php while( have_rows('menu_header', 'option') ): the_row(); ?>
+                                    <li>
+                                        <a href="<?php echo get_sub_field('link') ?>"><?php echo get_sub_field('text') ?></a>
+                                    </li>
+                                <?php endwhile; ?>
+                            <?php endif; ?>
                         </ul>
                     </div>
         
