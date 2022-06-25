@@ -263,12 +263,11 @@
                         <div class="wrap-input-form">
                             <div class="label-card">Pick a preferred time<span class="red">*</span></div>
                             <select id="single-main" class="js-states form-control" style="width: 100%">
-                                <?php if( have_rows('pick_time_body', 'option') ): ?>
-                                    <?php while( have_rows('pick_time_body', 'option') ): the_row(); ?>
-                                        <option> <?php echo get_sub_field('time')?></option>
-                                    <?php endwhile; ?>
-                                <?php endif; ?>
-                            </select>
+                                <option>9:00 AM</option>
+                                <option>10:00 AM</option>
+                                <option>11:00 AM</option>
+                                <option>12:00 AM</option>
+                              </select>
                         </div>
                         
                         <div class="form-hr"></div>
@@ -334,8 +333,8 @@
                                                          {
                                                             ?>
                                                                 <div class="guest<?php echo $i?>-<?php echo $temp?> wrap-required">
-                                                                    <div class="title-required"><?php echo  $title?></div>
-                                                                    <div class="input-required input-menu">
+                                                                    <div class="title-required1"><?php echo  $title?></div>
+                                                                    <div class="input-required1 input-menu">
                                                                         <select class="js-states form-control basic-single" style="width: 100%">
                                                                             <?php if( have_rows('menu_child') ): ?>
                                                                                 <?php while( have_rows('menu_child') ): the_row(); ?>
@@ -350,8 +349,8 @@
                                                          } else {
                                                             ?>
                                                                 <div class="guest<?php echo $i?>-<?php echo $temp?> wrap-required">
-                                                                    <div class="title-required"><?php echo  $title?></div>
-                                                                    <div class="input-required input-menu">
+                                                                    <div class="title-required1"><?php echo  $title?></div>
+                                                                    <div class="input-required1 input-menu">
                                                                         <input type="text">
                                                                     </div>
                                                                 </div>
@@ -361,8 +360,8 @@
                                                     <?php $temp++ ?>
                                                 <?php endwhile; ?>
                                             <?php endif;?>
-                                        </div>
 
+                                        </div>
                                     </div>
                                 <?php
                                 

@@ -18,47 +18,59 @@
     ?>
 
     <script>
-        $( function() {
-            $( "#datepicker" ).datepicker();
-        } );
-
-        $("#single").select2({
-          placeholder: "Select a programming language",
-          allowClear: true
-        });
-
-        $("#single").select2({
-            placeholder: "Select a time",
-            allowClear: true
-        });
+        $(document).ready(function() {
+            $( function() {
+                $( "#datepicker" ).datepicker();
+            } );
 
 
+            $("#single-main").select2({
+                placeholder: "Select a time",
+                allowClear: true
+            });
 
-        setRadio(1);
+            $(".basic-single").select2({
+                placeholder: "Select ...",
+                allowClear: true
+            });
 
-        $(".select-nember input[name='budget']").click(function(){
-            var radioValue = $("input[name='budget']:checked").val();
-            setRadio(radioValue);
-        });
+            
+            let list = 4;
+            setRadio(1);
 
-        function setRadio(value)
-        {
-            if(value != 0)
-            {
-                for(var i=1; i <= 2; i++)
+            $(".select-nember input[name='budget']").click(function(){
+                var radioValue = $("input[name='budget']:checked").val();
+                setRadio(radioValue);
+            });
+
+
+            function setRadio(value) {
+                if(value != 0)
                 {
-                    if(i <= value)
+                    for(var i=1; i <= list; i++)
                     {
-                        $("#guest-" + i).css("display", "block");
-                    } else {
-                        $("#guest-" + i).css("display", "none");
+                        if(i <= value)
+                        {
+                            $("#guest-" + i).css("display", "block");
+                        } else {
+                            $("#guest-" + i).css("display", "none");
+                        }
                     }
                 }
+                
             }
+
+
+            $(".checkbox-menu").change(function() {
+                let className = $(this).val();
+                if(this.checked) {
+                    $("."+className).css("display","block");
+                } else {
+                    $("."+className).css("display","none");
+                }
+            });
             
-        }
 
-
-        
+        });
     </script>
 </body></html>
