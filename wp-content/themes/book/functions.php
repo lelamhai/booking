@@ -1,7 +1,7 @@
 <?php
 function regsiter_styles()
 {
-    $version = "18";
+    $version = "19";
     
     wp_enqueue_style('book-style',   get_template_directory_uri() ."/assets/css/style.css", array(), $version);
     wp_enqueue_style('book-responsive',   get_template_directory_uri() ."/assets/css/responsive.css", array(), $version);

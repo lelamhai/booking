@@ -280,31 +280,51 @@
 
                             <div class="wrap-button-number">
                                 <div class="select-nember over-hide">
-                                    <input class="checkbox-budget" type="radio" name="budget" id="budget-1" value="1" checked>
-                                    <label class="for-checkbox-budget" for="budget-1">
-                                        <span data-hover="ONE">ONE</span>
-                                    </label>
-
-                                    <input class="checkbox-budget" type="radio" name="budget" id="budget-2" value="2">
-                                    <label class="for-checkbox-budget" for="budget-2">              
-                                        <span data-hover="TWO">TWO</span>
-                                    </label>
-
-                                    <input class="checkbox-budget" type="radio" name="budget" id="budget-3" value="3">
-                                    <label class="for-checkbox-budget" for="budget-3">              
-                                        <span data-hover="THREE">THREE</span>
-                                    </label>
                                     
-                                    <input class="checkbox-budget" type="radio" name="budget" id="budget-4" value="4">
-                                    <label class="for-checkbox-budget" for="budget-4">              
-                                        <span data-hover="FOUR">FOUR</span>
-                                    </label>
+                                    <?php
+                                        $index = 1;
+                                        $list = 0;
+                                        $first = true;
+                                    ?>
+                                    <?php if( have_rows('pick_time_body', 'option') ): ?>
+                                        <?php while( have_rows('pick_time_body', 'option') ): the_row(); ?>
+                                            <?php
+                                                if($index == get_row_index())
+                                                {
+                                                    $list = get_sub_field('slot');
+                                                    ?>
+                                                        <input type="hidden" value="<?php echo $list?>" id="slots">
+                                                    <?php
+                                                    for($i=1; $i<=$list; $i++)
+                                                    {
+                                                        if($first)
+                                                        {
+                                                            ?>
+                                                                <input class="checkbox-budget" type="radio" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>" checked>
+                                                                <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
+                                                                    <span data-hover="<?php echo $i?>"><?php echo $i?></span>
+                                                                </label>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                                <input class="checkbox-budget" type="radio" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>">
+                                                                <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
+                                                                    <span data-hover="<?php echo $i?>"><?php echo $i?></span>
+                                                                </label>
+                                                            <?php
+                                                        }
+                                                        $first = false;
+                                                    }
+                                                }
+                                            ?>
+                                        <?php endwhile; ?>
+                                    <?php endif; ?>
                                  </div>
                             </div>
                         </div>
 
                        <?php 
-                            for($i=1; $i <= 4; $i ++)
+                            for($i=1; $i <= $list; $i ++)
                             {
                                 ?>
                                     <div class="choose-person frame-guests" id="guest-<?php echo $i?>">
@@ -365,7 +385,6 @@
 
                                     </div>
                                 <?php
-                                
                             }
                        ?>
 

@@ -35,7 +35,9 @@
             });
 
             
-            let list = 4;
+            
+            let list = $("#slots").val();
+            console.log(list);
             setRadio(1);
 
             $(".select-nember input[name='budget']").click(function(){
