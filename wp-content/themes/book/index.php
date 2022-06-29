@@ -236,37 +236,46 @@
                         Please cancel your appointment if your schedule changes. We appreciate you. Thank you!
                     </div>
 
+                    <style>
+                       
+                    </style>
+
                     <div class="wrap-form-card">
-                        <div class="wrap-input-form">
+                        <div class="wrap-input-form wrap-input-full">
                             <div class="label-card">Your name<span class="red">*</span></div>
-                            <input type="text">
+                            <input type="text" class="full-name">
+                            <div class="error red">Error</div>
                         </div>
 
-                        <div class="wrap-input-form">
+                        <div class="wrap-input-form wrap-input-phone-number">
                             <div class="label-card">Phone number<span class="red">*</span></div>
-                            <input type="tel" >
+                            <input type="tel" class="phone-number">
+                            <div class="error red">Error</div>
                         </div>
 
-                        <div class="wrap-input-form">
+                        <div class="wrap-input-form wrap-input-email">
                             <div class="label-card">Your email</div>
-                            <input type="email">
+                            <input type="email" class="email">
+                            <div class="error red">Error</div>
                         </div>
 
-                        <div class="wrap-input-form">
+                        <div class="wrap-input-form wrap-input-datepicker">
                             <div class="label-card">Pick a day<span class="red">*</span></div>
-                            <input type="text" id="datepicker">
+                            <input type="text" id="datepicker" class="datepicker">
                             <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/calendar.png" alt="" class="calendar">
+                            <div class="error red">Error</div>
                         </div>
 
-                        <div class="wrap-input-form">
+                        <div class="wrap-input-form wrap-input-single-main">
                             <div class="label-card">Pick a preferred time<span class="red">*</span></div>
-                            <select id="single-main" class="js-states form-control" style="width: 100%">
+                            <select id="single-main" class="single-main" style="width: 100%">
                                 <?php if( have_rows('pick_time_body', 'option') ): ?>
                                     <?php while( have_rows('pick_time_body', 'option') ): the_row(); ?>
-                                        <option value="<?php echo get_row_index()?>" data-index="<?php echo get_row_index()?>" data-slot="<?php echo get_sub_field('slot')?>"><?php echo get_sub_field('time')?></option>
+                                        <option value="<?php echo get_sub_field('time')?>" data-index="<?php echo get_row_index()?>" data-slot="<?php echo get_sub_field('slot')?>"><?php echo get_sub_field('time')?></option>
                                     <?php endwhile; ?>
                                 <?php endif; ?>
                             </select>
+                            <div class="error red">Error</div>
                         </div>
                         
                         <div class="form-hr"></div>
@@ -395,7 +404,7 @@
 
                       
 
-                        <div class="wrap-button">
+                        <div class="wrap-button submit">
                             <button>Submit</button>
                         </div>
                     </div>
