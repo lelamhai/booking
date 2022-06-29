@@ -952,6 +952,11 @@ body {
   background-color: #ff5757 !important;
 }
 
+.select-nember {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 
 /* footer */
 footer {

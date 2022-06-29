@@ -34,45 +34,73 @@
                 allowClear: true
             });
 
-            
-            
-            let list = $("#slots").val();
-            console.log(list);
-            setRadio(1);
 
-            $(".select-nember input[name='budget']").click(function(){
-                var radioValue = $("input[name='budget']:checked").val();
-                setRadio(radioValue);
+            // load default
+            let slots = $("#single-main").find(':selected').data('slot');
+            let index = $("#single-main").find(':selected').data('index');
+            setRadio(1, slots);
+            
+            
+            $('#single-main').on("change", function (e) { 
+                let slots = $(this).find(':selected').data('slot');
+                let index = $(this).find(':selected').data('index');
+                $.ajax({
+                    type : "GET", 
+                    dataType: 'html',
+                    url : "./wp-admin/admin-ajax.php",
+                    data : {
+                        action: "select2",
+                        slots: slots,
+                        index: index
+                    },
+                    beforeSend: function(){
+                        $(".choose-person").remove();
+                    },
+                    success: function(response) {
+                        $( ".wrap-data-ajax" ).append( response );
+                        setRadio(1, slots);
+                        $(".basic-single").select2({
+                            placeholder: "Select ...",
+                            allowClear: true
+                        });
+                    },
+                    error: function( jqXHR, textStatus, errorThrown ){
+                        // console.log( 'The following error occured: ' + textStatus, errorThrown );
+                    }
+                });
             });
+        });
 
+        // event change radio
+        function raidoChange(slots, index){
+            setRadio(index, slots);
+        }
+        
+         // event change checkbox
+        function checkboxChange(className, event){
+            console.log(event);
+            
+            if(event.checked) {
+                $("."+className).css("display","block");
+            } else {
+                $("."+className).css("display","none");
+            }
+        }
 
-            function setRadio(value) {
-                if(value != 0)
+        function setRadio(value, slots) {
+            if(value != 0)
+            {
+                for(var i=1; i <= slots; i++)
                 {
-                    for(var i=1; i <= list; i++)
+                    if(i <= value)
                     {
-                        if(i <= value)
-                        {
-                            $("#guest-" + i).css("display", "block");
-                        } else {
-                            $("#guest-" + i).css("display", "none");
-                        }
+                        $("#guest-" + i).css("display", "block");
+                    } else {
+                        $("#guest-" + i).css("display", "none");
                     }
                 }
-                
             }
-
-
-            $(".checkbox-menu").change(function() {
-                let className = $(this).val();
-                if(this.checked) {
-                    $("."+className).css("display","block");
-                } else {
-                    $("."+className).css("display","none");
-                }
-            });
-            
-
-        });
+                
+        }
     </script>
 </body></html>
