@@ -168,8 +168,6 @@
         
          // event change checkbox
         function checkboxChange(className, event){
-            console.log(event);
-            
             if(event.checked) {
                 $("."+className).css("display","block");
             } else {

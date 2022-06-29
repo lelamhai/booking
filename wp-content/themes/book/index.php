@@ -335,6 +335,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" class="choose-person" value="<?php echo $list?>">
+
                             <?php 
                                 for($i=1; $i <= $list; $i ++)
                                 {
@@ -348,13 +350,14 @@
                                                 <?php if( have_rows('menu', 'option') ): ?>
                                                     <?php while( have_rows('menu', 'option') ): the_row(); ?>
                                                         <label class="number"><?php echo get_sub_field('title_parent') ?>
-                                                            <input type="checkbox" class="checkbox-menu" onchange="checkboxChange('guest<?php echo $i?>-<?php echo $tempValue ?>', this)" value="guest<?php echo $i?>-<?php echo $tempValue ?>">
+                                                            <input type="checkbox" class="checkbox-menu guest<?php echo $i?>" onchange="checkboxChange('guest<?php echo $i?>-<?php echo $tempValue ?>', this)" value="guest<?php echo $i?>-<?php echo $tempValue ?>">
                                                             <span class="checkmark"></span>
                                                         </label>
                                                         <?php $tempValue++ ?>
                                                     <?php endwhile; ?>
                                                 <?php endif;?>
                                             </div>
+
 
                                             <div class="wrap-guests">
                                                 <?php if( have_rows('menu', 'option') ): ?>
@@ -394,7 +397,7 @@
                                                     <?php endwhile; ?>
                                                 <?php endif;?>
                                             </div>
-
+                                            <div class="error-checkbox red">Please select an option</div>
                                         </div>
                                     <?php
                                 }
