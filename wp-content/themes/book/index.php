@@ -410,7 +410,7 @@
                                                     <?php endwhile; ?>
                                                 <?php endif;?>
                                             </div>
-                                            <div class="error-checkbox red">Please select an option</div>
+                                            <div class="error-checkbox red">Field with * is required.</div>
                                         </div>
                                     <?php
                                 }
