@@ -1,6 +1,16 @@
 <?php
     get_header();
 ?>
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .error-checkbox {
+            opacity: 0;
+        }
+    </style>
+
     <main class="main">
         <section class="banner">
                 
@@ -254,7 +264,7 @@
                         </div>
 
                         <div class="wrap-input-form wrap-input-email">
-                            <div class="label-card">Your email</div>
+                            <div class="label-card">Your email<span class="red">*</span></div>
                             <input type="email" class="email">
                             <div class="error red">Error</div>
                         </div>
@@ -285,10 +295,10 @@
                                 <div class="choose-number">
                                     NUMBER OF GUEST<span class="red">*</span>
                                 </div>
+                                
 
                                 <div class="wrap-button-number">
                                     <div class="select-nember over-hide">
-                                        
                                         <?php
                                             $index = 1;
                                             $list = 0;
@@ -296,37 +306,41 @@
                                         ?>
                                         <?php if( have_rows('pick_time_body', 'option') ): ?>
                                             <?php while( have_rows('pick_time_body', 'option') ): the_row(); ?>
+
                                                 <?php
                                                     if($index == get_row_index())
                                                     {
                                                         $list = get_sub_field('slot');
-                                                        ?>
-                                                            <input type="hidden" value="<?php echo $list?>" id="slots">
-                                                        <?php
-                                                        for($i=1; $i<=$list; $i++)
+
+                                                        if($list > 0)
                                                         {
-                                                            if($first)
+                                                            for($i=1; $i<=$list; $i++)
                                                             {
-                                                                ?>
-                                                                    <div class="item-slot">
-                                                                        <input class="checkbox-budget" type="radio" name="budget" onchange="raidoChange(<?php echo $list?>, <?php echo $i?>)" data-slot="<?php echo $list?>" id="budget-<?php echo $i?>" value="<?php echo $i?>" checked>
-                                                                        <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
-                                                                            <span data-hover="<?php echo $i?>"><?php echo $i?></span>
-                                                                        </label>
-                                                                    </div>
-                                                                    
-                                                                <?php
-                                                            } else {
-                                                                ?>
-                                                                    <div class="item-slot">
-                                                                        <input class="checkbox-budget" type="radio" name="budget"  onchange="raidoChange(<?php echo $list?>, <?php echo $i?>)" data-slot="<?php echo $list?>" id="budget-<?php echo $i?>" value="<?php echo $i?>">
-                                                                        <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
-                                                                            <span data-hover="<?php echo $i?>"><?php echo $i?></span>
-                                                                        </label>
-                                                                    </div>
-                                                                <?php
+                                                                if($first)
+                                                                {
+                                                                    ?>
+                                                                        <div class="item-slot">
+                                                                            <input class="checkbox-budget" type="radio" name="budget" onchange="raidoChange(<?php echo $list?>, <?php echo $i?>)" data-slot="<?php echo $list?>" id="budget-<?php echo $i?>" value="<?php echo $i?>" checked>
+                                                                            <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
+                                                                                <span data-hover="<?php echo $i?>"><?php echo $i?></span>
+                                                                            </label>
+                                                                        </div>
+                                                                        
+                                                                    <?php
+                                                                } else {
+                                                                    ?>
+                                                                        <div class="item-slot">
+                                                                            <input class="checkbox-budget" type="radio" name="budget"  onchange="raidoChange(<?php echo $list?>, <?php echo $i?>)" data-slot="<?php echo $list?>" id="budget-<?php echo $i?>" value="<?php echo $i?>">
+                                                                            <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
+                                                                                <span data-hover="<?php echo $i?>"><?php echo $i?></span>
+                                                                            </label>
+                                                                        </div>
+                                                                    <?php
+                                                                }
+                                                                $first = false;
                                                             }
-                                                            $first = false;
+                                                        } else {
+                                                            echo "There are no available seats. Please call us or select another time.";
                                                         }
                                                     }
                                                 ?>
@@ -335,13 +349,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" class="choose-person" value="<?php echo $list?>">
-
+                            <input type="hidden" id="slots" class="choose-person" value="<?php echo $list?>">
                             <?php 
                                 for($i=1; $i <= $list; $i ++)
                                 {
                                     ?>
-                                        <div class="choose-person frame-guests" id="guest-<?php echo $i?>">
+                                        <div class="choose-person" id="guest-<?php echo $i?>">
                                             <div class="choose-number">
                                                 GUEST <?php echo $i?><span class="red">*</span>
                                             </div>
@@ -350,7 +363,7 @@
                                                 <?php if( have_rows('menu', 'option') ): ?>
                                                     <?php while( have_rows('menu', 'option') ): the_row(); ?>
                                                         <label class="number"><?php echo get_sub_field('title_parent') ?>
-                                                            <input type="checkbox" class="checkbox-menu guest<?php echo $i?>" onchange="checkboxChange('guest<?php echo $i?>-<?php echo $tempValue ?>', this)" value="guest<?php echo $i?>-<?php echo $tempValue ?>">
+                                                            <input type="checkbox" class="checkbox-menu guest<?php echo $i?>" onchange="checkboxChange('guest<?php echo $i?>-<?php echo $tempValue ?>', this, <?php echo $i?>)" value="<?php echo get_row_index()?>">
                                                             <span class="checkmark"></span>
                                                         </label>
                                                         <?php $tempValue++ ?>

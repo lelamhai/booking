@@ -53,7 +53,7 @@
                 if(fullname.length == 0)
                 {
                     $('.wrap-input-full .error').css("opacity", 1);
-                    $('.wrap-input-full .error').text('Please input a value');
+                    $('.wrap-input-full .error').text('Field with * is required.');
                     isFullname = false;
                 } else {
                     $('.wrap-input-full .error').css("opacity", 0);
@@ -64,7 +64,7 @@
                 if(phoneNumber.length == 0)
                 {
                     $('.wrap-input-phone-number .error').css("opacity", 1);
-                    $('.wrap-input-phone-number .error').text('Please input a value');
+                    $('.wrap-input-phone-number .error').text('Field with * is required.');
                     isPhoneNumber = false;
                 } else {
                     if(isVietnamesePhoneNumber(phoneNumber)) {
@@ -81,7 +81,7 @@
                 if(email.length == 0)
                 {
                     $('.wrap-input-email .error').css("opacity", 1);
-                    $('.wrap-input-email .error').text('Please input a value');
+                    $('.wrap-input-email .error').text('Field with * is required.');
                     isEmail = false;
                 } else {
                     if(validateEmail(email)) { 
@@ -98,7 +98,7 @@
                 if(datepicker.length == 0)
                 {
                     $('.wrap-input-datepicker .error').css("opacity", 1);
-                    $('.wrap-input-datepicker .error').text('Please input a value');
+                    $('.wrap-input-datepicker .error').text('Field with * is required.');
                     isDatepicker = false;
                 } else {
                     $('.wrap-input-datepicker .error').css("opacity", 0);
@@ -109,7 +109,7 @@
                 if(select2.length == 0)
                 {
                     $('.wrap-input-single-main .error').css("opacity", 1);
-                    $('.wrap-input-single-main .error').text('Please input a value');
+                    $('.wrap-input-single-main .error').text('Field with * is required.');
                     isSelect2 = false;
                 } else {
                     $('.wrap-input-single-main .error').css("opacity", 0);
@@ -117,11 +117,37 @@
                     isSelect2 = true;
                 }
 
-                if(isFullname && isPhoneNumber &&  isEmail && isDatepicker && isSelect2)
+                
+
+                let slots = $("#slots").val();
+                for(let i=1; i<=slots; i++)
                 {
-                    alert("Finish");
+                    if(!$("#guest-"+i).hasClass('hidden'))
+                    {
+                        let countTotal = 0;
+                        let countChecked = 0;
+                        $('input:checkbox.guest'+i).each(function () {
+                            console.log('input:checkbox.guest'+i);
+                            if(!this.checked)
+                            {
+                                countChecked ++;
+                            } 
+                            countTotal ++;
+                        });
+                       
+                        if(countTotal == countChecked)
+                        {
+                            $("#guest-"+i+" .error-checkbox").css("opacity", 1);
+                        } else {
+                            $("#guest-"+i+" .error-checkbox").css("opacity", 0);
+                        }
+                    }
                 }
 
+                // if(isFullname && isPhoneNumber &&  isEmail && isDatepicker && isSelect2)
+                // {
+                //     alert("Finish");
+                // }
             });
 
 
@@ -167,9 +193,11 @@
         }
         
          // event change checkbox
-        function checkboxChange(className, event){
+        function checkboxChange(className, event, index){
             if(event.checked) {
                 $("."+className).css("display","block");
+                let index = $(event).val();
+                $("#guest-"+index+" .error-checkbox").css("opacity", 0);
             } else {
                 $("."+className).css("display","none");
             }
@@ -182,9 +210,9 @@
                 {
                     if(i <= value)
                     {
-                        $("#guest-" + i).css("display", "block");
+                        $("#guest-" + i).removeClass("hidden");
                     } else {
-                        $("#guest-" + i).css("display", "none");
+                        $("#guest-" + i).addClass("hidden");
                     }
                 }
             }
