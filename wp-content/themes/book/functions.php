@@ -1,8 +1,9 @@
 <?php
 function regsiter_styles()
 {
-    $version = "21";
+    $version = "49";
     
+    wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-style',   get_template_directory_uri() ."/assets/css/style.css", array(), $version);
     wp_enqueue_style('book-responsive',   get_template_directory_uri() ."/assets/css/responsive.css", array(), $version);
     wp_enqueue_style('book-slick',   get_template_directory_uri() ."/assets/slick/slick.css", array(), $version);
@@ -184,6 +185,12 @@ function select2_function() {
                     <?php
                  }
             ?>
+        <?php
+        ?>
+            <div class="wrap-input-form wrap-input-message choose-person">
+                <div class="label-card">Your message<span class="red">*</span></div>
+                <textarea name="message" rows="6" cols="50" placeholder="Message"></textarea>
+            </div>
         <?php
     }
     wp_die(); 

@@ -1,14 +1,5 @@
 <footer>
        <div class="wrap-footer">
-           <div class="footer-row1">
-                <?php if( have_rows('footer', 'option') ): ?>
-                    <?php while( have_rows('footer', 'option') ): the_row(); ?>
-                        <div class="footer-service"><a href="./privacy-policy" style="color: #fff"><?php echo get_sub_field('text_term_of_service') ?></a></div>
-                        <div class="footer-service"><a href="./terms" style="color: #fff"><?php  echo get_sub_field('text_privacy_policy', 'options'); ?></a></div>
-                    <?php endwhile; ?>
-                <?php endif; ?>
-           </div>
-
            <div class="footer-row2">©All Rights Reserved. Powered by <a href="http://softkeymarketing.com/" style="color: #fff;">Softkeymarketing.com</a></div>
        </div>
     </footer>
@@ -32,6 +23,10 @@
             $(".basic-single").select2({
                 placeholder: "Select ...",
                 allowClear: true
+            });
+
+            $('.menu-right-more').click(function(){
+                $(this).parent().parent().parent().children(".content-menu-child").toggle("menu-hide");
             });
 
             $('.submit').click(function(){
@@ -78,21 +73,31 @@
                     }
                 }
 
-                if(email.length == 0)
-                {
-                    $('.wrap-input-email .error').css("opacity", 1);
-                    $('.wrap-input-email .error').text('Field with * is required.');
-                    isEmail = false;
+                // if(email.length == 0)
+                // {
+                //     $('.wrap-input-email .error').css("opacity", 1);
+                //     $('.wrap-input-email .error').text('Field with * is required.');
+                //     isEmail = false;
+                // } else {
+                //     if(validateEmail(email)) { 
+                //         $('.wrap-input-email .error').css("opacity", 0);
+                //         $('.wrap-input-email .error').text('Error');
+                //         isEmail = true;
+                //     } else {
+                //         $('.wrap-input-email .error').css("opacity", 1);
+                //         $('.wrap-input-email .error').text('Please enter your email');
+                //         isEmail = false;
+                //     }
+                // }
+
+                if(validateEmail(email)) { 
+                    $('.wrap-input-email .error').css("opacity", 0);
+                    $('.wrap-input-email .error').text('Error');
+                    isEmail = true;
                 } else {
-                    if(validateEmail(email)) { 
-                        $('.wrap-input-email .error').css("opacity", 0);
-                        $('.wrap-input-email .error').text('Error');
-                        isEmail = true;
-                    } else {
-                        $('.wrap-input-email .error').css("opacity", 1);
-                        $('.wrap-input-email .error').text('Please enter your email');
-                        isEmail = false;
-                    }
+                    $('.wrap-input-email .error').css("opacity", 1);
+                    $('.wrap-input-email .error').text('Please enter your email');
+                    isEmail = false;
                 }
 
                 if(datepicker.length == 0)
@@ -144,10 +149,6 @@
                     }
                 }
 
-                // if(isFullname && isPhoneNumber &&  isEmail && isDatepicker && isSelect2)
-                // {
-                //     alert("Finish");
-                // }
             });
 
 
@@ -223,8 +224,12 @@
             return emailReg.test( email );
         }
 
-        function isVietnamesePhoneNumber($number) {
-            return /^\d{3}-?\d{3}-?\d{4}$/g.test($number);
+        function isVietnamesePhoneNumber(number) {
+            if(number.length <= 10 && $.isNumeric(number))
+            {
+                return true;
+            }
+            return false;
         }
     </script>
 </body></html>

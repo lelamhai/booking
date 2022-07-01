@@ -22,7 +22,8 @@
             .menu-main,
             .form,
             .wrap-contact,
-            .welcome {
+            .welcome,
+            .gift {
                 margin-left: 15px;
                 margin-right: 15px;
             }
@@ -134,13 +135,40 @@
     .menu-main,
     .form,
     .wrap-contact,
-    .welcome {
+    .welcome,
+    .gift {
         margin-left: 15px;
         margin-right: 15px;
     }
 
+    .wrap-contact,
+    .wrap-gift,
+    .welcome-nail  {
+        flex-direction: column;
+    }
+
+    .contact-column6,
+    .column-left {
+        width: 100% !important;
+        padding-right:0 !important;
+        padding-bottom: 30px!important;
+    }
+
+    .contact-column4,
+    .column-right {
+        width: 100% !important;
+        padding-left: 0 !important;
+    }
+
     .wrap-contact {
         flex-direction: column;
+    }
+
+    .contact-time b:first-child {
+        text-align: unset;
+    }
+    .list-time {
+        align-items: unset;
     }
 
     .contact-column1 {

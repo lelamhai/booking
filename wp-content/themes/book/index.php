@@ -1,16 +1,6 @@
 <?php
     get_header();
 ?>
-    <style>
-        .hidden {
-            display: none;
-        }
-
-        .error-checkbox {
-            opacity: 0;
-        }
-    </style>
-
     <main class="main">
         <section class="banner">
                 
@@ -38,86 +28,102 @@
         </section>
         <div class="container">
             <section class="nail">
-                <div class="nail-title" style="color: #991113;">
-                    <?php the_field('name_company_header', 'options'); ?>
-                </div>
                 <div class="nail-address">
                     <?php the_field('address_body', 'options'); ?>
                 </div>
                 <div class="nail-call">
                     <a href="tel:<?php the_field('number_phone_body', 'options'); ?>">Tel: <?php the_field('number_phone_body', 'options'); ?></a>
                 </div>
-                <div class="nail-social-network">
-                    <div class="nail-list-social">
-
-                    <?php if( have_rows('social_network', 'option') ): ?>
-                        <?php while( have_rows('social_network', 'option') ): the_row(); ?>
-
-                            <div class="item-social">
-                                <a href="<?php echo get_sub_field('link_facebook')?>">
-                                    <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/icon_facebook.png" alt="">
-                                </a>
-                            </div>
-
-                            <div class="item-social">
-                                <a href="<?php echo get_sub_field('link_instagram')?>">
-                                    <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/icon_instagram.png" alt="">
-                                </a>
-                            </div>
-
-                            <div class="item-social">
-                                <a href="<?php echo get_sub_field('link_youtube')?>">
-                                    <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/icon_youtube.png" alt="">
-                                </a>
-                            </div>
-
-                        <?php endwhile; ?>
-                    <?php endif; ?>
-
-
-                    </div>
-                </div>
 
                 <div class="info">
                     <div class="item-info">
                         <a href="tel: <?php the_field('number_phone_body', 'options'); ?>">
-                            Call Us &gt;&gt;
+                            Call Us
                         </a>
                     </div>
                     <div class="item-info">
                         <a target="_blank" href="<?php the_field('get_direction_body', 'options'); ?>">
-                            Get Directions &gt;&gt;
+                            Get Directions
                         </a>
                     </div>
                 </div>
                 <div class="nail-open-time">
                     <a href="#Opening">Our opening hours &gt;&gt;</a>
                 </div>
-                <div class="nail-heart pc">
-                    <img src="<?php the_field('heart_big_body', 'options'); ?>" alt="">
-                </div>
             </section>
 
-            <section class="welcome">
+            <!-- <section class="welcome">
                 <div class="wrap-welcome">
                     <div class="content-frame">
                         <?php the_field('content_frame_body', 'options'); ?>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
-            <section class="rating">
-                <div class="rating-content"><?php the_field('text_up_review', 'options'); ?></div>
-                <div class="rating-review">
-                    <div class="wrap-review">
-                       WRITE A REVIEW
+            <section class="welcome">
+                <div class="wrap-welcome">
+                    <div class="welcome-nail">
+                        <div class="column-left">
+                            <div class="title-welcome-nail">
+                                Welcome to Flower Nail & Spa
+                            </div>
+                            <div class="content-welcome-nail">
+                                Add a little bit of body text Add a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit
+                            </div>
+                            <div class="button-welcome">
+                                <div class="wrap-review">
+                                    WRITE A REVIEW
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column-right">
+                            <div class="image-welcome-nail">
+                                <img src="<?php echo get_template_directory_uri()?>/assets/img/welcome.jpg" alt="">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="star">
+                <!-- <div class="rating-review">
+                    <div class="wrap-review">
+                       WRITE A REVIEW
+                    </div>
+                </div> -->
+
+                <!-- <div class="star">
                     <img src="<?php the_field('star_body', 'options'); ?>" alt="">
-                </div>
+                </div> -->
             </section>
+
+            <section class="gift" id="Gift">
+                <div class="wrap-gift">
+                    <div class="column-left">
+                        <div class="image-gift">
+                            <img src="<?php echo get_template_directory_uri()?>/assets/img/gift.jpg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="column-right">
+                        <div class="title-gift">Gift Cards</div>
+                        <div class="content-gift">
+                            Buy gift cards for your beloved ones Buy gift cards for your beloved ones Buy gift cards for your beloved ones
+                        </div>
+                        <div class="group-button">
+                            <div class="buy-gift">Buy Now</div>
+                            <div class="Check-gift">Check Balance</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div class="gift-heart1"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/new_heart.png" alt=""></div>
+                <div class="wrap-gift">
+                    <div class="gift-title">Buy gift cards for your beloved ones</div>
+                    <div class="gift-buy">
+                        <div class="wrap-gift-buy">BUY NOW</div>
+                    </div>
+                </div> -->
+            </section>
+
 
             <section class="video">
                 <div class="wrap-video">
@@ -125,15 +131,7 @@
                 </div>
             </section>
 
-            <section class="gift" id="Gift">
-                <div class="gift-heart1"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/new_heart.png" alt=""></div>
-                <div class="wrap-gift">
-                    <div class="gift-title">Buy gift cards for your beloved ones</div>
-                    <div class="gift-buy">
-                        <div class="wrap-gift-buy">BUY NOW</div>
-                    </div>
-                </div>
-            </section>
+          
 
             <section class="menu" id="OurMenu">
                 <div class="wrap-menu">
@@ -149,19 +147,18 @@
                     <div class="menu-column3">
                         <div class="wrap-menu-column3">
                             <a href="tel:0969999999">
-                                CONFIRM/CANCEL APPT
+                                CANCEL APPT
                             </a>
                         </div>
                     </div>
                 </div>
             </section>
 
-
             <section class="menu-main">
                 <div class="menu-main-row">
                     <div class="wrap-menu-title">
                         <div class="menu-label-left">
-                            NAME
+                            <!-- NAME -->
                         </div>
                         <div class="menu-label-right">
                             PRICE
@@ -192,36 +189,30 @@
                             </div>
                             
                             <div class="menu-label-right">
-                                <?php 
-                                    if(get_sub_field('price_parent') != null)
-                                    {
-                                        ?>
-                                            <div class="menu-description-parent">
-                                                <?php echo get_sub_field('price_parent')?>
-                                            </div>
-                                        <?php
-                                    }
-                                ?>
+                                <div class="menu-right-more">
+                                    More +
+                                </div>
                             </div>
                         </div>
-                        
-                        <?php if( have_rows('menu_child') ): ?>
-                            <?php while( have_rows('menu_child') ): the_row(); ?>
-                                <div class="wrap-menu-main">
-                                    <div class="menu-label-left">
-                                        <div class="menu-main-title">
-                                            <?php echo get_sub_field('title')?>
+                        <div class="content-menu-child menu-hide">
+                            <?php if( have_rows('menu_child') ): ?>
+                                <?php while( have_rows('menu_child') ): the_row(); ?>
+                                    <div class="wrap-menu-main">
+                                        <div class="menu-label-left">
+                                            <div class="menu-main-title">
+                                                <?php echo get_sub_field('title')?>
+                                            </div>
+                                            <div class="meun-main-title">
+                                                <?php echo get_sub_field('description')?>
+                                            </div>
                                         </div>
-                                        <div class="meun-main-title">
-                                            <?php echo get_sub_field('description')?>
+                                        <div class="menu-label-right">
+                                            <?php echo get_sub_field('price')?>
                                         </div>
                                     </div>
-                                    <div class="menu-label-right">
-                                        <?php echo get_sub_field('price')?>
-                                    </div>
-                                </div>
-                            <?php endwhile; ?>
-                        <?php endif; ?>
+                                <?php endwhile; ?>
+                            <?php endif; ?>
+                        </div>
                     </div>
                     <?php endwhile; ?>
                 <?php endif; ?>
@@ -233,9 +224,6 @@
                     <div class="form-top-title">
                         RESERVATION
                     </div>
-                    <div class="form-star">
-                        <img src="<?php echo get_template_directory_uri()?>/assets/img/stars.png" alt="">
-                    </div>
 
                     <div class="form-title">
                         MAKE A RESERVATION
@@ -245,10 +233,6 @@
                         Book online, chat with us or you can always call us during our business hours.<br>
                         Please cancel your appointment if your schedule changes. We appreciate you. Thank you!
                     </div>
-
-                    <style>
-                       
-                    </style>
 
                     <div class="wrap-form-card">
                         <div class="wrap-input-form wrap-input-full">
@@ -264,7 +248,7 @@
                         </div>
 
                         <div class="wrap-input-form wrap-input-email">
-                            <div class="label-card">Your email<span class="red">*</span></div>
+                            <div class="label-card">Your email</div>
                             <input type="email" class="email">
                             <div class="error red">Error</div>
                         </div>
@@ -415,10 +399,12 @@
                                     <?php
                                 }
                             ?>
+                           <div class="wrap-input-form wrap-input-message choose-person">
+                                <div class="label-card">Your message<span class="red">*</span></div>
+                                <textarea name="message" rows="6" cols="50" placeholder="Message"></textarea>
+                            </div>
                         </div>
                         
-
-                      
 
                         <div class="wrap-button submit">
                             <button>Submit</button>
@@ -427,31 +413,16 @@
                 </div>
             </section>
         </div>
+   
         <section class="contact" id="Opening" style="background-color: <?php the_field('background_color_contact', 'options'); ?>">
             <div class="wrap-contact">
-                <div class="contact-column1">
-                    <div class="wrap-contact-call">
-                        <div class="contact-call">
-                            <div class="call-title">Contact</div>
-                            <div class="wrap-tel">
-                                <a href="tel:<?php the_field('number_phone_body', 'options'); ?>">CALL NOW</a>
-                            </div>
-                            <p><?php the_field('number_phone_body', 'options'); ?></p>
-                        </div>
+                <div class="contact-column6">
+                    <div class="title-contact">About Us</div>
+                    <div class="content-contact">
+                    Add a little bit of body text Add a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body text
                     </div>
                 </div>
-                <div class="contact-column2">
-                    <div class="wrap-contact-address">
-                        <div class="contact-address">
-                            <div class="address-title">Address</div>
-                            <div class="wrap-direction">
-                                <a target="_blank" href="<?php the_field('get_direction_body', 'options'); ?>">GET DIRECTIONS</a>
-                            </div>
-                            <p><?php the_field('address_body', 'options'); ?></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-column3">
+                <div class="contact-column4">
                     <div class="wrap-contact-time">
                         <div class="contact-time">
                             <b>Opening Hours</b>
@@ -465,7 +436,16 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
+            <div class="footer-row1">
+                <?php if( have_rows('footer', 'option') ): ?>
+                    <?php while( have_rows('footer', 'option') ): the_row(); ?>
+                        <div class="footer-service"><a href="./privacy-policy" style="color: #fff"><?php echo get_sub_field('text_term_of_service') ?></a></div>
+                        <div class="footer-service"><a href="./terms" style="color: #fff"><?php  echo get_sub_field('text_privacy_policy', 'options'); ?></a></div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+           </div>
         </section>
     </main>
 <?php
