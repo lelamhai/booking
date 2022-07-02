@@ -190,7 +190,7 @@
                             
                             <div class="menu-label-right">
                                 <div class="menu-right-more">
-                                    More +
+                                    More
                                 </div>
                             </div>
                         </div>
@@ -400,7 +400,7 @@
                                 }
                             ?>
                            <div class="wrap-input-form wrap-input-message choose-person">
-                                <div class="label-card">Your message<span class="red">*</span></div>
+                                <div class="label-card">Your message</div>
                                 <textarea name="message" rows="6" cols="50" placeholder="Message"></textarea>
                             </div>
                         </div>
