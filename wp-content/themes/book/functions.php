@@ -1,4 +1,7 @@
 <?php
+require get_template_directory() . '/include/database.php';
+
+
 function regsiter_styles()
 {
     $version = "49";
