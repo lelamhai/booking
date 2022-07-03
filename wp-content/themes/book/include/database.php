@@ -19,7 +19,7 @@ function booking_create_table() {
             booking_date TIMESTAMP,
             booking_slots INT NOT NULL,
             booking_timeid INT NOT NULL,
-            booking_serviceid INT NOT NULL,
+            booking_serviceid TEXT NOT NULL,
             PRIMARY KEY (booking_id)
             )$charset_collate;";
 
@@ -158,6 +158,42 @@ function time_count()
     return count($results);
 }
 
+function time_data_first()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix. "time";
+    $results = $wpdb->get_results(
+        $wpdb->prepare(
+            "
+                SELECT time_slots
+                FROM  $table_name
+                LIMIT 1;  
+            ",
+            $table_name
+        )
+    );
+
+    return $results;
+}
+
+function time_data_by_id($id)
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix. "time";
+    $results = $wpdb->get_results(
+        $wpdb->prepare(
+            "
+                SELECT time_slots
+                FROM  $table_name
+                WHERE time_id = $id
+            "
+        )
+    );
+    return $results;
+}
+
+
+
 
 /*
 ** Create table Service
@@ -213,24 +249,7 @@ function service_count()
     
 }
 
-function service_list_parent()
-{
-    global $wpdb;
-    $table_name = $wpdb->prefix. "service";
-    $results = $wpdb->get_results(
-        $wpdb->prepare(
-            "
-                SELECT *
-                FROM  $table_name
-                WHERE service_parentid = 0
-            "
-        )
-    );
-
-    return $results;
-}
-
-function service_list_children($id)
+function service_select($id = 0)
 {
     global $wpdb;
     $table_name = $wpdb->prefix. "service";
@@ -240,6 +259,23 @@ function service_list_children($id)
                 SELECT *
                 FROM  $table_name
                 WHERE service_parentid = $id
+            "
+        )
+    );
+
+    return $results;
+}
+
+function service_data_by_id($id)
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix. "service";
+    $results = $wpdb->get_results(
+        $wpdb->prepare(
+            "
+                SELECT *
+                FROM  $table_name
+                WHERE service_id = $id
             "
         )
     );

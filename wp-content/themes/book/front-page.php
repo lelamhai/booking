@@ -260,9 +260,7 @@
                             <div class="error red">Error</div>
                         </div>
 
-                            <?php 
-                                
-                            ?>
+                      
 
                         <div class="wrap-input-form wrap-input-single-main">
                             <div class="label-card">Pick a preferred time<span class="red">*</span></div>
@@ -271,12 +269,12 @@
                                     foreach(time_list() as $time)
                                     {
                                         ?>
-                                            <option><?php echo $time->time_hour?></option>
+                                            <option value="<?php echo $time->time_id?>"><?php echo $time->time_hour?></option>
                                         <?php
+                                       
                                     }
                                 ?>
                             </select>
-                            
                             <div class="error red">Error</div>
                         </div>
                         
@@ -291,103 +289,99 @@
                                 display: none;
                             }
                         </style>
+
+                        
+
                         <div class="wrap-data-ajax">
-                            <div class="wrap-guest-1">
+                            <div class="wrap-guest">
                                 <div class="wrap-number-of-guest">
                                     <div class="guest-title">NUMBER OF GUEST<span class="red">*</span></div>
                                     <div class="select-nember over-hide">
-                                        <div class="item-slot">
-                                            <input class="checkbox-budget" type="radio" name="budget" id="budget-1" value="1" checked="">
-                                            <label class="for-checkbox-budget" for="budget-1">
-                                                <span data-hover="1">1</span>
-                                            </label>
-                                        </div>
-
-                                        <div class="item-slot">
-                                            <input class="checkbox-budget" type="radio" name="budget" id="budget-2" value="2">
-                                            <label class="for-checkbox-budget" for="budget-2">
-                                                <span data-hover="2">2</span>
-                                            </label>
-                                        </div>
-                                        <div class="item-slot">
-                                            <input class="checkbox-budget" type="radio" name="budget" id="budget-3" value="3">
-                                            <label class="for-checkbox-budget" for="budget-3">
-                                                <span data-hover="3">3</span>
-                                            </label>
-                                        </div>
-                                        <div class="item-slot">
-                                            <input class="checkbox-budget" type="radio" name="budget" id="budget-4" value="4">
-                                            <label class="for-checkbox-budget" for="budget-4">
-                                                <span data-hover="4">4</span>
-                                            </label>
-                                        </div>
-                                        <div class="item-slot">
-                                                <input class="checkbox-budget" type="radio" name="budget" id="budget-5" value="5">
-                                                <label class="for-checkbox-budget" for="budget-5">
-                                                <span data-hover="5">5</span>
-                                                </label>
-                                        </div>
-                                        <div class="item-slot">
-                                            <input class="checkbox-budget" type="radio" name="budget" id="budget-6" value="6">
-                                            <label class="for-checkbox-budget" for="budget-6">
-                                                <span data-hover="6">6</span>
-                                            </label>
-                                        </div>
+                                        <?php
+                                            $first = true;
+                                            for($i=1; $i<=(int)time_data_first()[0]->time_slots; $i++)
+                                            {
+                                                if($first)
+                                                {
+                                                    ?>
+                                                        <div class="item-slot">
+                                                            <input class="checkbox-budget" type="radio" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>" checked>
+                                                            <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
+                                                                <span data-hover="<?php echo $i?>"><?php echo $i?></span>
+                                                            </label>
+                                                        </div>
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                        <div class="item-slot">
+                                                            <input class="checkbox-budget" type="radio" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>">
+                                                            <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
+                                                                <span data-hover="<?php echo $i?>"><?php echo $i?></span>
+                                                            </label>
+                                                        </div>
+                                                    <?php
+                                                }
+                                                $first = false;
+                                            }
+                                        ?>
+                                        
                                     </div>            
                                 </div>
                                 
-                                <div class="wrap-item-guest">
-                                    <div class="guest-item-title">GUEST 1<span class="red">*</span></div>
-                                    <div class="wrap-button-number">
-                                        <label class="number">Nails
-                                            <input type="checkbox" class="checkbox-menu guest1" value="1">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="number">Nail designs                                                            
-                                            <input type="checkbox" class="checkbox-menu guest1" value="2">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="number">manicure                                                            
-                                            <input type="checkbox" class="checkbox-menu guest1" value="3">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="number">lelamhai                                                            
-                                            <input type="checkbox" class="checkbox-menu guest1" value="4">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <!-- <?php
-                                        var_dump(service_list_children(1));
-                                    ?> -->
-
-                                    <div class="wrap-guest-service">
-                                        <?php
-                                            foreach(service_list_parent() as $parent)
-                                            {
-                                                ?>
-                                                    <div class="service-title"><?php echo $parent->service_name?></div>
-
-                                                    <div class="service-content">
-                                                        <select class="basic-single" style="width: 100%">
-                                                        <?php 
-                                                            foreach(service_list_children($parent->service_id) as $child)
-                                                            {
-                                                                ?>
-                                                                    <option><?php echo $child->service_name?></option>
-                                                                <?php
-                                                            }
-                                                        ?>
-                                                        </select>
-                                                    </div>
+                                <?php
+                                for($i=1; $i<=(int)time_data_first()[0]->time_slots; $i++)
+                                {
+                                    ?>
+                                        <div class="wrap-item-guest">
+                                            <div class="guest-item-title">GUEST <?php echo $i?><span class="red">*</span></div>
+                                            <div class="wrap-button-number">
                                                 <?php
-                                            }
-                                        ?>
-                                    </div>
+                                                        foreach(service_select() as $parent)
+                                                        {
+                                                            ?>
+                                                            <label class="number"><?php  echo $parent->service_name?>
+                                                                <input type="checkbox" class="checkbox-menu guest1" value="1">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            <?php
+                                                        }
+                                                ?>
+                                            </div>
+
+                                            <div class="wrap-guest-service">
+                                                <?php
+                                                    foreach(service_select() as $parent)
+                                                    {
+                                                        ?>
+                                                            <div class="service-title"><?php echo $parent->service_name?></div>
+                                                            <div class="service-content">
+                                                                <select class="basic-single" style="width: 100%">
+                                                                <?php 
+                                                                    foreach(service_select($parent->service_id) as $child)
+                                                                    {
+                                                                        ?>
+                                                                            <option><?php echo $child->service_name?></option>
+                                                                        <?php
+                                                                    }
+                                                                ?>
+                                                                </select>
+                                                            </div>
+                                                        <?php
+                                                    }
+                                                ?>
+                                                <div class="error-checkbox red" style="opacity: 1;">Field with * is required.</div>
+                                               
+                                            </div>
+                                        </div>
+                                    <?php
+                                }
+                                ?>
+                                <div class="wrap-input-form wrap-input-message choose-person">
+                                    <div class="label-card">Your message</div>
+                                    <textarea name="message" rows="6" cols="50" placeholder="Message"></textarea>
                                 </div>
                             </div>
                         </div>
-                       
-                        
 
                         <div class="wrap-button submit">
                             <button>Submit</button>

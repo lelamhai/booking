@@ -54,4 +54,31 @@ $(document).ready(function() {
         let url = $("#linkgood").val();
         window.open(url);
     });
+
+
+    $('#single-main').on("change", function (e) { 
+        let time_id = $(this).find(':selected').val();
+        $.ajax({
+            type : "GET", 
+            dataType: 'html',
+            url : "http://localhost/booking/wp-admin/admin-ajax.php",
+            data : {
+                action: "selectTime",
+                time_id: time_id,
+            },
+            beforeSend: function(){
+                $(".wrap-guest").remove();
+            },
+            success: function(response) {
+                $( ".wrap-data-ajax" ).append( response );
+                $(".basic-single").select2({
+                    placeholder: "Select ...",
+                    allowClear: true
+                });
+            },
+            error: function( jqXHR, textStatus, errorThrown ){
+                // console.log( 'The following error occured: ' + textStatus, errorThrown );
+            }
+        });
+    });
 });
