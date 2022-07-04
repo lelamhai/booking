@@ -56,6 +56,7 @@ $(document).ready(function() {
     });
 
 
+    // form
     $('#single-main').on("change", function (e) { 
         let time_id = $(this).find(':selected').val();
         $.ajax({
@@ -77,8 +78,216 @@ $(document).ready(function() {
                 });
             },
             error: function( jqXHR, textStatus, errorThrown ){
-                // console.log( 'The following error occured: ' + textStatus, errorThrown );
             }
         });
     });
+
+    $('.submit').click(function(){
+
+        let isFullname = false;
+        let isPhoneNumber = false;
+        let isEmail = false;
+        let isDatepicker = false;
+        let isSelect2 = false;
+
+        let fullname = $('.full-name').val();
+        let phoneNumber = $('.phone-number').val();
+        let email = $('.email').val();
+        let datepicker = $('.datepicker').val();
+        let select2 = $('.single-main').val();
+
+
+
+        if(fullname.length == 0)
+        {
+            $('.wrap-input-full .error').css("opacity", 1);
+            $('.wrap-input-full .error').text('Field with * is required.');
+            isFullname = false;
+        } else {
+            $('.wrap-input-full .error').css("opacity", 0);
+            $('.wrap-input-full .error').text('');
+            isFullname = true;
+        }
+
+        if(phoneNumber.length == 0)
+        {
+            $('.wrap-input-phone-number .error').css("opacity", 1);
+            $('.wrap-input-phone-number .error').text('Field with * is required.');
+            isPhoneNumber = false;
+        } else {
+            if(isVietnamesePhoneNumber(phoneNumber)) {
+                $('.wrap-input-phone-number .error').css("opacity", 0);
+                $('.wrap-input-phone-number .error').text('Error');
+                isPhoneNumber = true;
+            } else {
+                $('.wrap-input-phone-number .error').css("opacity", 1);
+                $('.wrap-input-phone-number .error').text('Please enter your phone number');
+                isPhone = false;
+            }
+        }
+
+        if(email.length == 0)
+        {
+            // $('.wrap-input-email .error').css("opacity", 1);
+            // $('.wrap-input-email .error').text('Field with * is required.');
+            isEmail = true;
+        } else {
+            if(validateEmail(email)) { 
+                $('.wrap-input-email .error').css("opacity", 0);
+                $('.wrap-input-email .error').text('Error');
+                isEmail = true;
+            } else {
+                $('.wrap-input-email .error').css("opacity", 1);
+                $('.wrap-input-email .error').text('Please enter your email');
+                isEmail = false;
+            }
+        }
+
+        if(validateEmail(email)) { 
+            $('.wrap-input-email .error').css("opacity", 0);
+            $('.wrap-input-email .error').text('Error');
+            isEmail = true;
+        } else {
+            $('.wrap-input-email .error').css("opacity", 1);
+            $('.wrap-input-email .error').text('Please enter your email');
+            isEmail = false;
+        }
+
+        if(datepicker.length == 0)
+        {
+            $('.wrap-input-datepicker .error').css("opacity", 1);
+            $('.wrap-input-datepicker .error').text('Field with * is required.');
+            isDatepicker = false;
+        } else {
+            $('.wrap-input-datepicker .error').css("opacity", 0);
+            $('.wrap-input-datepicker .error').text('Error');
+            isDatepicker = true;
+        }
+
+        if(select2.length == 0)
+        {
+            $('.wrap-input-single-main .error').css("opacity", 1);
+            $('.wrap-input-single-main .error').text('Field with * is required.');
+            isSelect2 = false;
+        } else {
+            $('.wrap-input-single-main .error').css("opacity", 0);
+            $('.wrap-input-single-main .error').text('Error');
+            isSelect2 = true;
+        }
+
+
+        let slots = 0;
+        $('input:radio.checkbox-budget').each(function () {
+            if(this.checked)
+            {
+                slots = $(this).val();
+            } 
+        });
+
+        let totalSlots = 0;
+        let countChecked = 0;
+        for(let k=1; k<=slots; k++)
+        {   
+            let checked = 0;
+
+            $(".wrap-service-parent-"+k+">.wrap-button-number>.number>.checkbox-menu").each(function (index, obj) {
+                if (this.checked) {
+                    let parentId = $(this).data("id");
+                    let parentName = $(this).data("name");
+
+                    checked = 1;
+                    countChecked ++;
+                } 
+            });
+
+            $(".wrap-service-parent-"+k+">.wrap-service-child>.wrap-service-item").each(function (index, obj) {
+                if(!$(this).hasClass('hidden'))
+                {
+                    let id = $(this).children(".service-content").children(".basic-single").find(':selected').val();
+                    let name = $(this).children(".service-content").children(".basic-single").find(':selected').text();
+                    // console.log("name: " + name);
+                    // console.log("id: " + id);
+                   
+                }
+            });
+
+            if(checked > 0)
+            {
+                totalSlots ++;
+            }
+
+            if(countChecked == 0)
+            {
+                $(".wrap-service-parent-"+k+">.wrap-service-child>.error-checkbox").css("opacity", 1);
+            } else {
+                $(".wrap-service-parent-"+k+">.wrap-service-child>.error-checkbox").css("opacity", 0);
+            }
+        }
+
+        if(isFullname && isPhoneNumber &&  isEmail && isDatepicker && isSelect2 && totalSlots == slots)
+        {
+            let fullName = $(".full-name").val();
+            let phoneNumber = $(".phone-number").val();
+            let email = $(".email").val();
+            let datepicker = $( "#datepicker" ).datepicker({format: 'dd-mm-yy HH:mm:ss' });
+            let message = $(".message").val();
+            let time_id = $("#single-main").find(':selected').val();
+
+            $.ajax({
+                type : "GET", 
+                dataType: 'html',
+                url : "http://localhost/booking/wp-admin/admin-ajax.php",
+                data : {
+                    action: "insert",
+                    fullName: fullName,
+                    email: email,
+                    phoneNumber: phoneNumber,
+                    message: message,
+                    time_id: time_id
+                },
+                beforeSend: function(){
+                    $(".wrap-guest").remove();
+                },
+                success: function(response) {
+                   console.log(response);
+                },
+                error: function( jqXHR, textStatus, errorThrown ){
+                }
+            });
+
+
+
+            console.log("fullName: " + fullName);
+            console.log("phoneNumber: " + phoneNumber);
+            console.log("email: " + email);
+            console.log("datepicker: " + datepicker);
+            console.log("message: " + message);
+            console.log("time_id: " + time_id);
+        }
+    });
+
 });
+
+function onChangeRadio(e)
+{
+    let slots = $(e).val();
+    if(slots > 0)
+    {
+        $(".wrap-service-parent").css("display","none");
+        for(let i=1; i<=slots; i++)
+        {
+            $(".wrap-service-parent-"+i).css("display","block");
+        }
+    }
+}
+
+function onChangeCheckbox(e)
+{
+    let index = $(e).val();
+    if(e.checked)
+    {
+        $(e).parent().parent().parent().children(".wrap-service-child").children(".wrap-service-item-"+index).removeClass("hidden");
+    } else {
+        $(e).parent().parent().parent().children(".wrap-service-child").children(".wrap-service-item-"+index).addClass("hidden");
+    }
+}

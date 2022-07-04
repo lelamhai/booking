@@ -2,10 +2,9 @@
 require get_template_directory() . '/include/database.php';
 require get_template_directory() . '/include/ajax.php';
 
-
 function regsiter_styles()
 {
-    $version = "51";
+    $version = "91";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-style',   get_template_directory_uri() ."/assets/css/style.css", array(), $version);
@@ -66,136 +65,4 @@ function my_acf_validate_value_text( $valid, $value, $field, $input ){
     return $valid;
 }
 
-
-add_action('wp_ajax_select2', 'select2_function');
-add_action('wp_ajax_nopriv_select2', 'select2_function');
-function select2_function() {
-    $first = true;
-    if($_GET['slots'] != null)
-    {
-        ?>
-            <div class="choose-person">
-                <div class="choose-number">
-                    NUMBER OF GUEST<span class="red">*</span>
-                </div>
-
-                <div class="wrap-button-number">
-                    <div class="select-nember over-hide">
-                        <?php if( have_rows('pick_time_body', 'option') ): ?>
-                                <?php while( have_rows('pick_time_body', 'option') ): the_row(); ?>
-                                    <?php
-                                        if($_GET['index'] == get_row_index())
-                                        {
-                                            if($_GET['slots'] > 0)
-                                            {
-                                                for($i=1; $i<=$_GET['slots']; $i++)
-                                                {
-                                                    if($first)
-                                                    {
-                                                        ?>
-                                                            <div class="item-slot">
-                                                                <input class="checkbox-budget" type="radio" name="budget"onchange="raidoChange(<?php echo $_GET['slots'] ?>, <?php echo $i?>)" id="budget-<?php echo $i?>" value="<?php echo $i?>" checked>
-                                                                <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
-                                                                    <span data-hover="<?php echo $i?>"><?php echo $i?></span>
-                                                                </label>
-                                                            </div>
-                                                            
-                                                        <?php
-                                                    } else {
-                                                        ?>
-                                                            <div class="item-slot">
-                                                                <input class="checkbox-budget" type="radio" name="budget"onchange="raidoChange(<?php echo $_GET['slots'] ?>, <?php echo $i?>)" id="budget-<?php echo $i?>" value="<?php echo $i?>">
-                                                                <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
-                                                                    <span data-hover="<?php echo $i?>"><?php echo $i?></span>
-                                                                </label>
-                                                            </div>
-                                                        <?php
-                                                    }
-                                                    $first = false;
-                                                }
-                                            } else {
-                                                echo "There are no available seats. Please call us or select another time.";
-                                            }
-                                            
-                                        }
-                                    ?>
-                                    
-                                <?php endwhile; ?>
-                        <?php endif; ?>
-                     </div>
-                </div>
-            </div>
-            <input type="hidden" id="slots" class="choose-person" value="<?php echo $_GET['slots']?>">
-            <?php
-                 for($i=1; $i <= $_GET['slots']; $i ++)
-                 {
-                    ?>
-                        <div class="choose-person" id="guest-<?php echo $i?>">
-                            <div class="choose-number">
-                                GUEST <?php echo $i?><span class="red">*</span>
-                            </div>
-                            <div class="wrap-button-number">
-                                <?php $tempValue = 1 ?>
-                                    <?php if( have_rows('menu', 'option') ): ?>
-                                        <?php while( have_rows('menu', 'option') ): the_row(); ?>
-                                            <label class="number"><?php echo get_sub_field('title_parent') ?>
-                                                <input type="checkbox" class="checkbox-menu guest<?php echo $i?>" onchange="checkboxChange('guest<?php echo $i?>-<?php echo $tempValue ?>', this, <?php echo count(get_sub_field('menu_child'))?>)" value="<?php echo get_row_index()?>">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <?php $tempValue++ ?>
-                                        <?php endwhile; ?>
-                                    <?php endif;?>
-                            </div>
-
-                            <div class="wrap-guests">
-                                <?php if( have_rows('menu', 'option') ): ?>
-                                    <?php $temp = 1 ?>
-                                    <?php while( have_rows('menu', 'option') ): the_row(); ?>
-                                        <?php
-                                            $title =  get_sub_field('title_parent');
-                                            if(have_rows('menu_child'))
-                                            {
-                                                ?>
-                                                    <div class="guest<?php echo $i?>-<?php echo $temp?> wrap-required">
-                                                        <div class="title-required"><?php echo  $title?></div>
-                                                        <div class="input-required input-menu">
-                                                            <select class="js-states form-control basic-single" style="width: 100%">
-                                                                <?php if( have_rows('menu_child') ): ?>
-                                                                    <?php while( have_rows('menu_child') ): the_row(); ?>
-                                                                        <option><?php echo get_sub_field('title'); ?></option>
-                                                                    <?php endwhile; ?>
-                                                                <?php endif;?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                <?php
-                                            } else {
-                                                ?>
-                                                    <div class="guest<?php echo $i?>-<?php echo $temp?> wrap-required">
-                                                        <div class="title-required"><?php echo  $title?></div>
-                                                            <div class="input-required input-menu">
-                                                            <input type="text">
-                                                        </div>
-                                                    </div>
-                                                <?php
-                                            }
-                                        ?>
-                                        <?php $temp++ ?>
-                                    <?php endwhile; ?>
-                                <?php endif;?>
-                            </div>
-                            <div class="error-checkbox red">Field with * is required.</div>
-                        </div>
-                    <?php
-                 }
-            ?>
-        <?php
-        ?>
-            <div class="wrap-input-form wrap-input-message choose-person">
-                <div class="label-card">Your message<span class="red">*</span></div>
-                <textarea name="message" rows="6" cols="50" placeholder="Message"></textarea>
-            </div>
-        <?php
-    }
-    wp_die(); 
-}
+?>

@@ -18,7 +18,7 @@
                                     {
                                         ?>
                                             <div class="item-slot">
-                                                <input class="checkbox-budget" type="radio" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>" checked>
+                                                <input class="checkbox-budget" type="radio" onchange="onChangeRadio(this)" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>" checked>
                                                 <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
                                                     <span data-hover="<?php echo $i?>"><?php echo $i?></span>
                                                 </label>
@@ -27,7 +27,7 @@
                                         } else {
                                         ?>
                                             <div class="item-slot">
-                                                <input class="checkbox-budget" type="radio" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>">
+                                                <input class="checkbox-budget" type="radio"  onchange="onChangeRadio(this)" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>">
                                                     <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
                                                     <span data-hover="<?php echo $i?>"><?php echo $i?></span>
                                                 </label>
@@ -42,55 +42,116 @@
                     </div>
                     
                     <?php
+                        $first = true;
                         for($i=1; $i<=(int)time_data_by_id($time_id)[0]->time_slots; $i++)
                         {
-                            ?>
-                                <div class="wrap-item-guest">
+                            if($first)
+                            {
+                                ?>
+                               <div class="wrap-service-parent wrap-service-parent-<?php echo $i?>" style="display: block">
                                     <div class="guest-item-title">GUEST <?php echo $i?><span class="red">*</span></div>
                                     <div class="wrap-button-number">
                                         <?php
+                                            $index = 1;
                                             foreach(service_select() as $parent)
                                             {
                                                 ?>
                                                     <label class="number"><?php  echo $parent->service_name?>
-                                                        <input type="checkbox" class="checkbox-menu guest1" value="1">
+                                                        <input type="checkbox" class="checkbox-menu" onchange="onChangeCheckbox(this)" data-id="<?php echo $parent->service_id?>" data-name="<?php echo $parent->service_name?>" value="<?php echo $index?>">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 <?php
+                                                $index ++;
                                             }
                                         ?>
                                     </div>
-                                    <div class="wrap-guest-service">
+                                    <div class="wrap-service-child">
                                         <?php
+                                            $index=1;
                                             foreach(service_select() as $parent)
                                             {
                                                 ?>
-                                                    <div class="service-title"><?php echo $parent->service_name?></div>
-                                                        <div class="service-content">
-                                                        <select class="basic-single" style="width: 100%">
-                                                            <?php 
-                                                                foreach(service_select($parent->service_id) as $child)
-                                                                {
-                                                                    ?>
-                                                                        <option><?php echo $child->service_name?></option>
-                                                                    <?php
-                                                                }
-                                                            ?>
-                                                        </select>
+                                                    <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
+                                                        <div class="service-title"><?php echo $parent->service_name?></div>
+                                                            <div class="service-content">
+                                                            <select class="basic-single" style="width: 100%">
+                                                                <?php 
+                                                                    foreach(service_select($parent->service_id) as $child)
+                                                                    {
+                                                                        ?>
+                                                                            <option value="<?php echo $child->service_id?>"><?php echo $child->service_name?></option>
+                                                                        <?php
+                                                                    }
+                                                                ?>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 <?php
+                                                $index ++;
                                             }
                                         ?>
-                                        <div class="error-checkbox red" style="opacity: 1;">Field with * is required.</div>
+                                        <div class="error-checkbox red">Field with * is required.</div>
                                    
                                     </div>
                                 </div>
                             <?php
+
+                            } else {
+                                ?>
+                                <div class="wrap-service-parent wrap-service-parent-<?php echo $i?>">
+                                        <div class="guest-item-title">GUEST <?php echo $i?><span class="red">*</span></div>
+                                        <div class="wrap-button-number">
+                                            <?php
+                                                $index = 1;
+                                                foreach(service_select() as $parent)
+                                                {
+                                                    ?>
+                                                        <label class="number"><?php  echo $parent->service_name?>
+                                                            <input type="checkbox" class="checkbox-menu" onchange="onChangeCheckbox(this)" data-id="<?php echo $parent->service_id?>" data-name="<?php echo $parent->service_name?>" value="<?php echo $index?>">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    <?php
+                                                    $index ++;
+                                                }
+                                            ?>
+                                        </div>
+                                        <div class="wrap-service-child">
+                                            <?php
+                                                $index = 1;
+                                                foreach(service_select() as $parent)
+                                                {
+                                                    ?>
+                                                        <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
+                                                            <div class="service-title"><?php echo $parent->service_name?></div>
+                                                                <div class="service-content">
+                                                                <select class="basic-single" style="width: 100%">
+                                                                    <?php 
+                                                                        foreach(service_select($parent->service_id) as $child)
+                                                                        {
+                                                                            ?>
+                                                                                <option  value="<?php echo $child->service_id?>"><?php echo $child->service_name?></option>
+                                                                            <?php
+                                                                        }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    <?php
+                                                    $index ++;
+                                                }
+                                            ?>
+                                            <div class="error-checkbox red">Field with * is required.</div>
+                                    
+                                        </div>
+                                    </div>
+                                <?php
+                            }
+                            $first = false;
                         }
                     ?>
                         <div class="wrap-input-form wrap-input-message choose-person">
                             <div class="label-card">Your message</div>
-                            <textarea name="message" rows="6" cols="50" placeholder="Message"></textarea>
+                            <textarea class="message" name="message" rows="6" cols="50" placeholder="Message"></textarea>
                         </div>
                     
                 </div>
@@ -98,4 +159,22 @@
         }
         wp_die(); 
     }
+
+
+
+
+    add_action('wp_ajax_insert', 'insert_function');
+    add_action('wp_ajax_nopriv_insert', 'insert_function');
+    function insert_function() {
+
+        if($_GET['phoneNumber'] != null && $_GET['fullName'] != null && $_GET['time_id'] != null )
+        {
+            $phoneNumber = $_GET['phoneNumber'];
+            $fullName = $_GET['fullName'];
+            $time_id = $_GET['time_id'];
+            booking_insert($phoneNumber, $fullName, $time_id);
+        }
+        wp_die(); 
+    }
+
 ?>

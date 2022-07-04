@@ -14,25 +14,26 @@ function booking_create_table() {
             booking_id INT NOT NULL auto_increment,
             booking_phone INT(11) NOT NULL unique,
             booking_fullname VARCHAR(255) NOT NULL,
-            booking_gmail VARCHAR(255) NULL,
-            booking_message TEXT NULL,
-            booking_date TIMESTAMP,
-            booking_slots INT NOT NULL,
             booking_timeid INT NOT NULL,
-            booking_serviceid TEXT NOT NULL,
             PRIMARY KEY (booking_id)
             )$charset_collate;";
 
         require_once(ABSPATH . "wp-admin/includes/upgrade.php");
         dbDelta( $create_sql );
     }
-    
 }
 add_action( 'init', 'booking_create_table');
 
-function booking_insert()
+function booking_insert($phone, $fullName, $timeid)
 {
-
+    global $wpdb;
+    $table_name = $wpdb->prefix. "booking";
+    $data = array(
+        'booking_phone' => $phone,
+        'booking_fullname' => $fullName,
+        'booking_timeid' => $timeid,
+    );
+    $wpdb->insert($table_name, $data);
 }
 
 function booking_update()
