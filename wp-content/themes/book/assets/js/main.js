@@ -55,31 +55,41 @@ $(document).ready(function() {
         window.open(url);
     });
 
+    // menu more
+    $('.menu-right-more').click(function(){
+        $(this).parent().parent().parent().children(".content-menu-child").toggle("menu-hide");
+    });
 
-    // form
+    
+    // datepicker
+    $( "#datepicker" ).datepicker({
+        minDate: new Date()
+    }).datepicker("setDate",'now');
+
+
+    $("#single-main").select2({
+        placeholder: "Select a time",
+        allowClear: true
+    });
+
+    $(".basic-single").select2({
+        placeholder: "Select ...",
+        allowClear: true
+    });
+
+
+   
+    
+
+
+    let date = $('.datepicker').val();
+    let time_id = $('.single-main').val();
+    loadData(date,time_id);
+
     $('#single-main').on("change", function (e) { 
         let time_id = $(this).find(':selected').val();
-        $.ajax({
-            type : "GET", 
-            dataType: 'html',
-            url : "http://localhost/booking/wp-admin/admin-ajax.php",
-            data : {
-                action: "selectTime",
-                time_id: time_id,
-            },
-            beforeSend: function(){
-                $(".wrap-guest").remove();
-            },
-            success: function(response) {
-                $( ".wrap-data-ajax" ).append( response );
-                $(".basic-single").select2({
-                    placeholder: "Select ...",
-                    allowClear: true
-                });
-            },
-            error: function( jqXHR, textStatus, errorThrown ){
-            }
-        });
+        let date = $('.datepicker').val();
+        loadData(date,time_id);
     });
 
     $('.submit').click(function(){
@@ -185,10 +195,11 @@ $(document).ready(function() {
         });
 
         let totalSlots = 0;
-        let countChecked = 0;
         for(let k=1; k<=slots; k++)
         {   
             let checked = 0;
+            let countChecked = 0;
+
 
             $(".wrap-service-parent-"+k+">.wrap-button-number>.number>.checkbox-menu").each(function (index, obj) {
                 if (this.checked) {
@@ -268,6 +279,91 @@ $(document).ready(function() {
 
 });
 
+function selectTime()
+{
+    $('#single-main').on("change", function (e) { 
+        let time_id = $(this).find(':selected').val();
+        let date = $('.datepicker').val();
+        loadData(date,time_id);
+        
+        // $.ajax({
+        //     type : "GET", 
+        //     dataType: 'json',
+        //     contentType: "application/json; charset=utf-8",
+        //     url : "http://localhost/booking/wp-admin/admin-ajax.php",
+        //     data : {
+        //         action: "selectTime",
+        //         time_id: time_id,
+        //     },
+        //     beforeSend: function(){
+        //         $(".wrap-guest").remove();
+        //     },
+        //     success: function(response) {
+        //         $( ".wrap-data-ajax" ).append( response );
+        //         $(".basic-single").select2({
+        //             placeholder: "Select ...",
+        //             allowClear: true
+        //         });
+        //     },
+        //     error: function( jqXHR, textStatus, errorThrown ){
+        //     }
+        // });
+    });
+}
+
+function loadData(date,time_id)
+{
+    
+    $.ajax({
+        type : "GET", 
+        dataType: 'html',
+        contentType: "application/json; charset=utf-8",
+        url : "http://localhost/booking/wp-admin/admin-ajax.php",
+        data : {
+            action: "getSlots",
+            date: date,
+            time_id: time_id
+
+        },
+        beforeSend: function(){
+            $(".item-slot").remove();
+        },
+        success: function(response) {
+            console.log(response);
+            let obj = jQuery.parseJSON( response );
+            if(obj.success)
+            {
+                let html = "";
+                if(obj.data>0)
+                {
+                    for(let i=1; i<= obj.data; i++)
+                    {
+                        if(i==1)
+                        {
+                            html = html + "<div class='item-slot'><input class='checkbox-budget' type='radio' onchange='onChangeRadio(this)' name='budget' id='budget-"+i+"' value='"+i+"' checked><label class='for-checkbox-budget' for='budget-"+i+"'><span data-hover='"+i+"'>"+i+"</span></label></div>"
+                        } else {
+                            html = html +"<div class='item-slot'><input class='checkbox-budget' type='radio' onchange='onChangeRadio(this)' name='budget' id='budget-"+i+"' value='"+i+"'><label class='for-checkbox-budget' for='budget-"+i+"'><span data-hover='"+i+"'>"+i+"</span></label></div>"
+                        }
+                    }
+                    $( ".select-nember" ).append( html );
+                    $(".wrap-input-message").css("display","block");
+                    $('.wrap-service-parent-1').css("display","block");
+                    $('.empty-slot').remove();
+                } else {
+                    $('.wrap-service-parent-1').css("display","none");
+                    $( ".select-nember" ).append( "<div class='empty-slot' style='padding: 15px 0 30px 0'>There are no available seats. Please call us or select another time.</div>" );
+                    $(".wrap-input-message").css("display","none");
+                }
+                
+            }
+        },
+        error: function( jqXHR, textStatus, errorThrown ){
+        }
+    });
+}
+
+
+
 function onChangeRadio(e)
 {
     let slots = $(e).val();
@@ -291,3 +387,17 @@ function onChangeCheckbox(e)
         $(e).parent().parent().parent().children(".wrap-service-child").children(".wrap-service-item-"+index).addClass("hidden");
     }
 }
+
+function validateEmail(email) {
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    return emailReg.test( email );
+}
+
+function isVietnamesePhoneNumber(number) {
+    if(number.length <= 10 && $.isNumeric(number))
+    {
+        return true;
+    }
+    return false;
+}
+

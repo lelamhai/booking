@@ -10,39 +10,8 @@
 
     <script>
         $(document).ready(function() {
-            $( function() {
-                $( "#datepicker" ).datepicker({
-                    minDate: new Date()
-                }).datepicker("setDate",'now');
-            } );
-
-
-            $("#single-main").select2({
-                placeholder: "Select a time",
-                allowClear: true
-            });
-
-            $(".basic-single").select2({
-                placeholder: "Select ...",
-                allowClear: true
-            });
-
-            $('.menu-right-more').click(function(){
-                $(this).parent().parent().parent().children(".content-menu-child").toggle("menu-hide");
-            });
+           
+           
         });
-
-        function validateEmail(email) {
-            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-            return emailReg.test( email );
-        }
-
-        function isVietnamesePhoneNumber(number) {
-            if(number.length <= 10 && $.isNumeric(number))
-            {
-                return true;
-            }
-            return false;
-        }
     </script>
 </body></html>

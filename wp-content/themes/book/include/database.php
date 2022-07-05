@@ -92,21 +92,16 @@ function booking_get_data_by_phone($phone)
     return $results;
 }
 
-function booking_get_data_by_date_timeid($date = null, $timeid = 1)
+function booking_get_slots_by_date_timeid($date, $timeid)
 {
-    if($date != null)
-    {
-        $date = date("d/m/Y");
-    }
-
     global $wpdb;
     $table_name = $wpdb->prefix. "booking";
     $results = $wpdb->get_results(
         $wpdb->prepare(
             "
-                SELECT booking_phone
+                SELECT booking_slots
                 FROM  $table_name
-                WHERE booking_date = $date AND booking_timeid = $timeid;
+                WHERE booking_date = '2022-07-05' AND booking_timeid = $timeid;
             "
         )
     );
@@ -232,7 +227,7 @@ function time_data_first()
         )
     );
 
-    // $list = booking_get_data_by_date_timeid();
+    // $list = booking_get_slots_by_date_timeid();
 
     // var_dump($list);exit;
     return $results;
@@ -252,6 +247,13 @@ function time_data_by_id($id)
         )
     );
     return $results;
+}
+
+
+function time_data_get_slots($date, $time_id)
+{
+    $getSlotsBooking = booking_get_slots_by_date_timeid($date, $time_id);
+    return $getSlotsBooking;
 }
 
 
