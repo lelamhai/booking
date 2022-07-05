@@ -263,15 +263,6 @@ $(document).ready(function() {
                 error: function( jqXHR, textStatus, errorThrown ){
                 }
             });
-
-
-
-            // console.log("fullName: " + fullName);
-            // console.log("phoneNumber: " + phoneNumber);
-            // console.log("email: " + email);
-            // console.log("datepicker: " + datepicker);
-            // console.log("message: " + message);
-            // console.log("time_id: " + time_id);
         }
     });
 

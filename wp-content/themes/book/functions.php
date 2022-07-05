@@ -4,7 +4,7 @@ require get_template_directory() . '/include/ajax.php';
 
 function regsiter_styles()
 {
-    $version = "102";
+    $version = "108";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-style',   get_template_directory_uri() ."/assets/css/style.css", array(), $version);

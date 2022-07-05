@@ -14,7 +14,7 @@ function booking_create_table() {
             booking_id INT NOT NULL auto_increment,
             booking_fullname VARCHAR(255) NOT NULL,
             booking_phone INT(11) NOT NULL unique,
-            booking_date VARCHAR(255) NOT NULL,
+            booking_date DATETIME NOT NULL,
             booking_slots INT NOT NULL,
             booking_email VARCHAR(255) NULL,
             booking_message TEXT NULL,
@@ -30,12 +30,15 @@ add_action( 'init', 'booking_create_table');
 
 function booking_insert($phone, $fullName, $timeid, $datepicker, $message, $slots, $email)
 {
+    $time = strtotime($datepicker);
+    $newformat = date('Y-m-d',$time);
+
     global $wpdb;
     $table_name = $wpdb->prefix. "booking";
     $data = array(
         'booking_fullname' => $fullName,
         'booking_phone' => $phone,
-        'booking_date' => $datepicker,
+        'booking_date' => $newformat,
         'booking_slots' => $slots,
         'booking_email' => $email,
         'booking_message' => $message,
@@ -87,6 +90,28 @@ function booking_get_data_by_phone($phone)
         )
     );
     return $results;
+}
+
+function booking_get_data_by_date_timeid($date = null, $timeid = 1)
+{
+    if($date != null)
+    {
+        $date = date("d/m/Y");
+    }
+
+    global $wpdb;
+    $table_name = $wpdb->prefix. "booking";
+    $results = $wpdb->get_results(
+        $wpdb->prepare(
+            "
+                SELECT booking_phone
+                FROM  $table_name
+                WHERE booking_date = $date AND booking_timeid = $timeid;
+            "
+        )
+    );
+    return $results;
+
 }
 
 
@@ -207,6 +232,9 @@ function time_data_first()
         )
     );
 
+    // $list = booking_get_data_by_date_timeid();
+
+    // var_dump($list);exit;
     return $results;
 }
 

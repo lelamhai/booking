@@ -11,7 +11,9 @@
     <script>
         $(document).ready(function() {
             $( function() {
-                $( "#datepicker" ).datepicker();
+                $( "#datepicker" ).datepicker({
+                    minDate: new Date()
+                }).datepicker("setDate",'now');
             } );
 
 
