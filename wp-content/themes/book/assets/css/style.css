@@ -780,13 +780,41 @@ body {
   position: relative;
   padding-left: 35px;
   margin-right: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   cursor: pointer;
   font-size: 18px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.guest-item-title {
+  padding-bottom: 10px;
+}
+
+.wrap-slots {
+  display: flex;
+}
+
+.select2-selection__clear {
+  display: none;
+}
+
+.wrap-service-parent {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.wrap-input-message textarea {
+  padding: 15px;
+}
+
+.wrap-service-parent {
+  padding: 10px 0;
 }
 
 /* Hide the browser's default checkbox */

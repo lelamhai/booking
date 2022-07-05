@@ -77,21 +77,27 @@ $(document).ready(function() {
         allowClear: true
     });
 
-
-   
-    
-
-
+    // load data
     let date = $('.datepicker').val();
     let time_id = $('.single-main').val();
     loadData(date,time_id);
 
+    // select time
     $('#single-main').on("change", function (e) { 
         let time_id = $(this).find(':selected').val();
         let date = $('.datepicker').val();
         loadData(date,time_id);
     });
 
+    // select date
+    $('#datepicker').change(function(e){
+        let time_id = $('.single-main').val();
+        console.log(time_id);
+        let date = $(this).val();
+        loadData(date,time_id);
+    });
+
+    // submit
     $('.submit').click(function(){
 
         let isFullname = false;
@@ -276,44 +282,11 @@ $(document).ready(function() {
             });
         }
     });
-
 });
 
-function selectTime()
-{
-    $('#single-main').on("change", function (e) { 
-        let time_id = $(this).find(':selected').val();
-        let date = $('.datepicker').val();
-        loadData(date,time_id);
-        
-        // $.ajax({
-        //     type : "GET", 
-        //     dataType: 'json',
-        //     contentType: "application/json; charset=utf-8",
-        //     url : "http://localhost/booking/wp-admin/admin-ajax.php",
-        //     data : {
-        //         action: "selectTime",
-        //         time_id: time_id,
-        //     },
-        //     beforeSend: function(){
-        //         $(".wrap-guest").remove();
-        //     },
-        //     success: function(response) {
-        //         $( ".wrap-data-ajax" ).append( response );
-        //         $(".basic-single").select2({
-        //             placeholder: "Select ...",
-        //             allowClear: true
-        //         });
-        //     },
-        //     error: function( jqXHR, textStatus, errorThrown ){
-        //     }
-        // });
-    });
-}
 
 function loadData(date,time_id)
 {
-    
     $.ajax({
         type : "GET", 
         dataType: 'html',
@@ -326,38 +299,17 @@ function loadData(date,time_id)
 
         },
         beforeSend: function(){
-            $(".item-slot").remove();
+            $(".wrap-guest").remove();
         },
         success: function(response) {
-            console.log(response);
-            let obj = jQuery.parseJSON( response );
-            if(obj.success)
-            {
-                let html = "";
-                if(obj.data>0)
-                {
-                    for(let i=1; i<= obj.data; i++)
-                    {
-                        if(i==1)
-                        {
-                            html = html + "<div class='item-slot'><input class='checkbox-budget' type='radio' onchange='onChangeRadio(this)' name='budget' id='budget-"+i+"' value='"+i+"' checked><label class='for-checkbox-budget' for='budget-"+i+"'><span data-hover='"+i+"'>"+i+"</span></label></div>"
-                        } else {
-                            html = html +"<div class='item-slot'><input class='checkbox-budget' type='radio' onchange='onChangeRadio(this)' name='budget' id='budget-"+i+"' value='"+i+"'><label class='for-checkbox-budget' for='budget-"+i+"'><span data-hover='"+i+"'>"+i+"</span></label></div>"
-                        }
-                    }
-                    $( ".select-nember" ).append( html );
-                    $(".wrap-input-message").css("display","block");
-                    $('.wrap-service-parent-1').css("display","block");
-                    $('.empty-slot').remove();
-                } else {
-                    $('.wrap-service-parent-1').css("display","none");
-                    $( ".select-nember" ).append( "<div class='empty-slot' style='padding: 15px 0 30px 0'>There are no available seats. Please call us or select another time.</div>" );
-                    $(".wrap-input-message").css("display","none");
-                }
-                
-            }
+            $('.wrap-data-ajax').append(response);
+            $(".basic-single").select2({
+                placeholder: "Select ...",
+                allowClear: true
+            });
         },
         error: function( jqXHR, textStatus, errorThrown ){
+
         }
     });
 }

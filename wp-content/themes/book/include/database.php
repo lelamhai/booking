@@ -101,7 +101,7 @@ function booking_get_slots_by_date_timeid($date, $timeid)
             "
                 SELECT booking_slots
                 FROM  $table_name
-                WHERE booking_date = '2022-07-05' AND booking_timeid = $timeid;
+                WHERE booking_date = '$date' AND booking_timeid = $timeid;
             "
         )
     );
