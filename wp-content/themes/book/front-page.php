@@ -260,8 +260,6 @@
                             <div class="error red">Error</div>
                         </div>
 
-                      
-
                         <div class="wrap-input-form wrap-input-single-main">
                             <div class="label-card">Pick a preferred time<span class="red">*</span></div>
                             <select id="single-main" class="single-main" style="width: 100%">
@@ -281,7 +279,7 @@
                         <div class="form-hr"></div>
                         
                         <div class="wrap-data-ajax">
-                            
+                            <!-- load ajax -->
                         </div>
 
                         <div class="wrap-button submit">

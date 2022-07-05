@@ -12,7 +12,8 @@
             $message = $_GET['message'];
             $slots = $_GET['slots'];
             $email = $_GET['email'];
-            booking_insert($phoneNumber, $fullName, $time_id, $datepicker, $message, $slots, $email);
+            $services = $_GET['services'];
+            booking_insert($phoneNumber, $fullName, $time_id, $datepicker, $message, $slots, $email, $services);
         }
         wp_die(); 
     }

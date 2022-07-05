@@ -16,6 +16,7 @@ function booking_create_table() {
             booking_phone INT(11) NOT NULL unique,
             booking_date DATETIME NOT NULL,
             booking_slots INT NOT NULL,
+            booking_services TEXT NOT NULL,
             booking_email VARCHAR(255) NULL,
             booking_message TEXT NULL,
             booking_timeid INT NOT NULL,
@@ -28,7 +29,7 @@ function booking_create_table() {
 }
 add_action( 'init', 'booking_create_table');
 
-function booking_insert($phone, $fullName, $timeid, $datepicker, $message, $slots, $email)
+function booking_insert($phone, $fullName, $timeid, $datepicker, $message, $slots, $email, $services)
 {
     $time = strtotime($datepicker);
     $newformat = date('Y-m-d',$time);
@@ -40,6 +41,7 @@ function booking_insert($phone, $fullName, $timeid, $datepicker, $message, $slot
         'booking_phone' => $phone,
         'booking_date' => $newformat,
         'booking_slots' => $slots,
+        'booking_services' => $services,
         'booking_email' => $email,
         'booking_message' => $message,
         'booking_timeid' => $timeid,

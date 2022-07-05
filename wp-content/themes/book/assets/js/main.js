@@ -144,8 +144,6 @@ $(document).ready(function() {
 
         if(email.length == 0)
         {
-            // $('.wrap-input-email .error').css("opacity", 1);
-            // $('.wrap-input-email .error').text('Field with * is required.');
             isEmail = true;
         } else {
             if(validateEmail(email)) { 
@@ -200,33 +198,49 @@ $(document).ready(function() {
             } 
         });
 
+        
+
         let totalSlots = 0;
+        let arrayJson = Array();
         for(let k=1; k<=slots; k++)
         {   
             let checked = 0;
             let countChecked = 0;
-
-
+            // parent
             $(".wrap-service-parent-"+k+">.wrap-button-number>.number>.checkbox-menu").each(function (index, obj) {
                 if (this.checked) {
-                    let parentId = $(this).data("id");
-                    let parentName = $(this).data("name");
-
+                    // let parentId = $(this).data("id");
+                    // let parentName = $(this).data("name");
                     checked = 1;
                     countChecked ++;
                 } 
             });
+            
+            let arrayJsonSlots = Array();
+            let objectJsonSlots = {};
 
+            // children
             $(".wrap-service-parent-"+k+">.wrap-service-child>.wrap-service-item").each(function (index, obj) {
+                let oneOnly = true;
                 if(!$(this).hasClass('hidden'))
                 {
-                    let id = $(this).children(".service-content").children(".basic-single").find(':selected').val();
-                    let name = $(this).children(".service-content").children(".basic-single").find(':selected').text();
-                    // console.log("name: " + name);
-                    // console.log("id: " + id);
-                   
+                    if(oneOnly)
+                    {
+                        let id = $(this).children(".service-content").children(".basic-single").find(':selected').val();
+                        let name = $(this).children(".service-content").children(".basic-single").find(':selected').text();
+                        
+                        objectJsonSlots[name] = id;
+                        arrayJsonSlots.push(objectJsonSlots);
+                    }
+
+                    oneOnly = false;
                 }
+                   
             });
+
+            arrayJson.push(arrayJsonSlots);
+           
+
 
             if(checked > 0)
             {
@@ -240,6 +254,7 @@ $(document).ready(function() {
                 $(".wrap-service-parent-"+k+">.wrap-service-child>.error-checkbox").css("opacity", 0);
             }
         }
+       
 
         if(isFullname && isPhoneNumber &&  isEmail && isDatepicker && isSelect2 && totalSlots==slots && slots!=0)
         {
@@ -249,6 +264,8 @@ $(document).ready(function() {
             let datepicker = $( "#datepicker" ).datepicker({dateFormat: 'DD-MM-YYYY HH:mm:ss' }).val();
             let message = $(".message").val();
             let time_id = $("#single-main").find(':selected').val();
+            var services = JSON.stringify(arrayJson);
+
 
             $.ajax({
                 type : "GET", 
@@ -262,6 +279,7 @@ $(document).ready(function() {
                     email: email,
                     message: message,
                     slots: slots,
+                    services: services,
                     time_id: time_id
                 },
                 beforeSend: function(){
@@ -271,7 +289,7 @@ $(document).ready(function() {
                     if(response == 1)
                     {
                         alert("Booking finish");
-                        location.reload();
+                        // location.reload();
                     } else 
                     {
                         alert("Sorry, Phone number is already in use. Please try again.");
@@ -313,8 +331,6 @@ function loadData(date,time_id)
         }
     });
 }
-
-
 
 function onChangeRadio(e)
 {
