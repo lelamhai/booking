@@ -224,12 +224,12 @@ $(document).ready(function() {
             }
         }
 
-        if(isFullname && isPhoneNumber &&  isEmail && isDatepicker && isSelect2 && totalSlots == slots)
+        if(isFullname && isPhoneNumber &&  isEmail && isDatepicker && isSelect2 && totalSlots==slots && slots!=0)
         {
             let fullName = $(".full-name").val();
             let phoneNumber = $(".phone-number").val();
             let email = $(".email").val();
-            let datepicker = $( "#datepicker" ).datepicker({format: 'dd-mm-yy HH:mm:ss' });
+            let datepicker = $( "#datepicker" ).datepicker({dateFormat: 'DD-MM-YYYY HH:mm:ss' }).val();
             let message = $(".message").val();
             let time_id = $("#single-main").find(':selected').val();
 
@@ -240,16 +240,25 @@ $(document).ready(function() {
                 data : {
                     action: "insert",
                     fullName: fullName,
-                    email: email,
                     phoneNumber: phoneNumber,
+                    datepicker: datepicker,
+                    email: email,
                     message: message,
+                    slots: slots,
                     time_id: time_id
                 },
                 beforeSend: function(){
-                    $(".wrap-guest").remove();
+                   
                 },
                 success: function(response) {
-                   console.log(response);
+                    if(response == 1)
+                    {
+                        alert("Booking finish");
+                        location.reload();
+                    } else 
+                    {
+                        alert("Sorry, Phone number is already in use. Please try again.");
+                    }
                 },
                 error: function( jqXHR, textStatus, errorThrown ){
                 }
@@ -257,12 +266,12 @@ $(document).ready(function() {
 
 
 
-            console.log("fullName: " + fullName);
-            console.log("phoneNumber: " + phoneNumber);
-            console.log("email: " + email);
-            console.log("datepicker: " + datepicker);
-            console.log("message: " + message);
-            console.log("time_id: " + time_id);
+            // console.log("fullName: " + fullName);
+            // console.log("phoneNumber: " + phoneNumber);
+            // console.log("email: " + email);
+            // console.log("datepicker: " + datepicker);
+            // console.log("message: " + message);
+            // console.log("time_id: " + time_id);
         }
     });
 

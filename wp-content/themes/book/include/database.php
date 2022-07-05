@@ -12,8 +12,12 @@ function booking_create_table() {
     if( $wpdb->get_var("SHOW TABLES LIKE '" . $table_name . "'") !=  $table_name)
     {   $create_sql = "CREATE TABLE " . $table_name . " (
             booking_id INT NOT NULL auto_increment,
-            booking_phone INT(11) NOT NULL unique,
             booking_fullname VARCHAR(255) NOT NULL,
+            booking_phone INT(11) NOT NULL unique,
+            booking_date VARCHAR(255) NOT NULL,
+            booking_slots INT NOT NULL,
+            booking_email VARCHAR(255) NULL,
+            booking_message TEXT NULL,
             booking_timeid INT NOT NULL,
             PRIMARY KEY (booking_id)
             )$charset_collate;";
@@ -24,16 +28,29 @@ function booking_create_table() {
 }
 add_action( 'init', 'booking_create_table');
 
-function booking_insert($phone, $fullName, $timeid)
+function booking_insert($phone, $fullName, $timeid, $datepicker, $message, $slots, $email)
 {
     global $wpdb;
     $table_name = $wpdb->prefix. "booking";
     $data = array(
-        'booking_phone' => $phone,
         'booking_fullname' => $fullName,
+        'booking_phone' => $phone,
+        'booking_date' => $datepicker,
+        'booking_slots' => $slots,
+        'booking_email' => $email,
+        'booking_message' => $message,
         'booking_timeid' => $timeid,
     );
-    $wpdb->insert($table_name, $data);
+
+    $results = booking_get_data_by_phone($phone);
+
+    if(count($results) == 0)
+    {
+        $wpdb->insert($table_name, $data);
+        echo 1;
+    } else {
+        echo 0;
+    }
 }
 
 function booking_update()
@@ -54,6 +71,22 @@ function booking_list()
 function booking_count()
 {
     
+}
+
+function booking_get_data_by_phone($phone)
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix. "booking";
+    $results = $wpdb->get_results(
+        $wpdb->prepare(
+            "
+                SELECT booking_phone
+                FROM  $table_name
+                WHERE booking_phone = $phone
+            "
+        )
+    );
+    return $results;
 }
 
 
@@ -168,7 +201,7 @@ function time_data_first()
             "
                 SELECT time_slots
                 FROM  $table_name
-                LIMIT 1;  
+                LIMIT 1
             ",
             $table_name
         )

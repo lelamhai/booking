@@ -11,30 +11,35 @@
                         <div class="guest-title">NUMBER OF GUEST<span class="red">*</span></div>
                         <div class="select-nember over-hide">
                             <?php
-                                $first = true;
-                                for($i=1; $i<=(int)time_data_by_id($time_id)[0]->time_slots; $i++)
+                                if((int)time_data_by_id($time_id)[0]->time_slots > 0)
                                 {
-                                    if($first)
+                                    $first = true;
+                                    for($i=1; $i<=(int)time_data_by_id($time_id)[0]->time_slots; $i++)
                                     {
-                                        ?>
-                                            <div class="item-slot">
-                                                <input class="checkbox-budget" type="radio" onchange="onChangeRadio(this)" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>" checked>
-                                                <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
-                                                    <span data-hover="<?php echo $i?>"><?php echo $i?></span>
-                                                </label>
-                                            </div>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <div class="item-slot">
-                                                <input class="checkbox-budget" type="radio"  onchange="onChangeRadio(this)" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>">
+                                        if($first)
+                                        {
+                                            ?>
+                                                <div class="item-slot">
+                                                    <input class="checkbox-budget" type="radio" onchange="onChangeRadio(this)" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>" checked>
                                                     <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
-                                                    <span data-hover="<?php echo $i?>"><?php echo $i?></span>
-                                                </label>
-                                            </div>
-                                        <?php
+                                                        <span data-hover="<?php echo $i?>"><?php echo $i?></span>
+                                                    </label>
+                                                </div>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <div class="item-slot">
+                                                    <input class="checkbox-budget" type="radio"  onchange="onChangeRadio(this)" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>">
+                                                        <label class="for-checkbox-budget" for="budget-<?php echo $i?>">
+                                                        <span data-hover="<?php echo $i?>"><?php echo $i?></span>
+                                                    </label>
+                                                </div>
+                                            <?php
+                                        }
+                                        $first = false;
                                     }
-                                    $first = false;
+                                } else {
+                                    echo "<div style='padding: 15px 0 30px 0'>There are no available seats. Please call us or select another time.";
                                 }
                             ?>
                                         
@@ -167,12 +172,16 @@
     add_action('wp_ajax_nopriv_insert', 'insert_function');
     function insert_function() {
 
-        if($_GET['phoneNumber'] != null && $_GET['fullName'] != null && $_GET['time_id'] != null )
+        if($_GET['phoneNumber'] != null && $_GET['fullName'] != null && $_GET['time_id'] != null && $_GET['datepicker'] && $_GET['slots'])
         {
             $phoneNumber = $_GET['phoneNumber'];
             $fullName = $_GET['fullName'];
             $time_id = $_GET['time_id'];
-            booking_insert($phoneNumber, $fullName, $time_id);
+            $datepicker = $_GET['datepicker'];
+            $message = $_GET['message'];
+            $slots = $_GET['slots'];
+            $email = $_GET['email'];
+            booking_insert($phoneNumber, $fullName, $time_id, $datepicker, $message, $slots, $email);
         }
         wp_die(); 
     }
