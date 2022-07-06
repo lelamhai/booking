@@ -276,14 +276,8 @@ $(document).ready(function() {
                    
                 },
                 success: function(response) {
-                    if(response == 1)
-                    {
-                        alert("Booking finish");
-                        location.reload();
-                    } else 
-                    {
-                        alert("Sorry, Phone number is already in use. Please try again.");
-                    }
+                    alert("Booking finish");
+                    location.reload();
                 },
                 error: function( jqXHR, textStatus, errorThrown ){
                 }

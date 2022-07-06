@@ -13,7 +13,7 @@ function booking_create_table() {
     {   $create_sql = "CREATE TABLE " . $table_name . " (
             booking_id INT NOT NULL auto_increment,
             booking_fullname VARCHAR(255) NOT NULL,
-            booking_phone INT(11) NOT NULL unique,
+            booking_phone INT(11) NOT NULL,
             booking_date DATETIME NOT NULL,
             booking_slots INT NOT NULL,
             booking_services TEXT NOT NULL,
@@ -47,16 +47,7 @@ function booking_insert($phone, $fullName, $timeid, $datepicker, $message, $slot
         'booking_message' => $message,
         'booking_timeid' => $timeid,
     );
-
-    $results = booking_get_data_by_phone($phone);
-
-    if(count($results) == 0)
-    {
-        $wpdb->insert($table_name, $data);
-        echo 1;
-    } else {
-        echo 0;
-    }
+    $wpdb->insert($table_name, $data);
 }
 
 function booking_update()
@@ -77,22 +68,6 @@ function booking_list()
 function booking_count()
 {
     
-}
-
-function booking_get_data_by_phone($phone)
-{
-    global $wpdb;
-    $table_name = $wpdb->prefix. "booking";
-    $results = $wpdb->get_results(
-        $wpdb->prepare(
-            "
-                SELECT booking_phone
-                FROM  $table_name
-                WHERE booking_phone = $phone
-            "
-        )
-    );
-    return $results;
 }
 
 function booking_get_slots_by_date_timeid($date, $timeid)
