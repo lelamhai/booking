@@ -199,9 +199,9 @@ $(document).ready(function() {
         });
 
         
-
         let totalSlots = 0;
-        let arrayJson = Array();
+        
+        let service = Array();
         for(let k=1; k<=slots; k++)
         {   
             let checked = 0;
@@ -215,32 +215,20 @@ $(document).ready(function() {
                     countChecked ++;
                 } 
             });
-            
-            let arrayJsonSlots = Array();
-            let objectJsonSlots = {};
 
+            let arrChildren = Array();
             // children
             $(".wrap-service-parent-"+k+">.wrap-service-child>.wrap-service-item").each(function (index, obj) {
-                let oneOnly = true;
                 if(!$(this).hasClass('hidden'))
                 {
-                    if(oneOnly)
-                    {
-                        let id = $(this).children(".service-content").children(".basic-single").find(':selected').val();
-                        let name = $(this).children(".service-content").children(".basic-single").find(':selected').text();
-                        
-                        objectJsonSlots[name] = id;
-                        arrayJsonSlots.push(objectJsonSlots);
-                    }
-
-                    oneOnly = false;
+                    let id = $(this).children(".service-content").children(".basic-single").find(':selected').val();
+                    let name = $(this).children(".service-content").children(".basic-single").find(':selected').text();
+                    
+                    arrChildren.push(name);
                 }
-                   
             });
 
-            arrayJson.push(arrayJsonSlots);
-           
-
+            service.push(arrChildren);
 
             if(checked > 0)
             {
@@ -254,6 +242,8 @@ $(document).ready(function() {
                 $(".wrap-service-parent-"+k+">.wrap-service-child>.error-checkbox").css("opacity", 0);
             }
         }
+        
+
        
 
         if(isFullname && isPhoneNumber &&  isEmail && isDatepicker && isSelect2 && totalSlots==slots && slots!=0)
@@ -264,8 +254,8 @@ $(document).ready(function() {
             let datepicker = $( "#datepicker" ).datepicker({dateFormat: 'DD-MM-YYYY HH:mm:ss' }).val();
             let message = $(".message").val();
             let time_id = $("#single-main").find(':selected').val();
-            var services = JSON.stringify(arrayJson);
 
+            var services = JSON.stringify(service);
 
             $.ajax({
                 type : "GET", 
@@ -289,7 +279,7 @@ $(document).ready(function() {
                     if(response == 1)
                     {
                         alert("Booking finish");
-                        // location.reload();
+                        location.reload();
                     } else 
                     {
                         alert("Sorry, Phone number is already in use. Please try again.");
