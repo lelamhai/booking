@@ -20,6 +20,7 @@ function booking_create_table() {
             booking_email VARCHAR(255) NULL,
             booking_message TEXT NULL,
             booking_timeid INT NOT NULL,
+            booking_status BOOLEAN NOT NULL DEFAULT true,
             PRIMARY KEY (booking_id)
             )$charset_collate;";
 
@@ -108,7 +109,19 @@ function booking_get_slots_by_date_timeid($date, $timeid)
         )
     );
     return $results;
+}
 
+function booking_update_status($phone, $status)
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix. "booking";
+    $wpdb->update( 
+        $table_name, 
+        array( 
+            'booking_status' => $status
+        ), 
+        array('booking_phone' => $phone) 
+    );
 }
 
 
@@ -228,10 +241,6 @@ function time_data_first()
             $table_name
         )
     );
-
-    // $list = booking_get_slots_by_date_timeid();
-
-    // var_dump($list);exit;
     return $results;
 }
 
