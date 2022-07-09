@@ -1,7 +1,14 @@
 <?php
 require get_template_directory() . '/include/database.php';
+
 require get_template_directory() . '/include/ajax.php';
 
+require get_template_directory() . '/include/taxonomies.php';
+
+require get_template_directory() . '/include/post-types.php';
+
+
+add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
     $version = "132";
@@ -23,46 +30,5 @@ function regsiter_styles()
 }
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 
-if( function_exists('acf_add_options_page') ) {
-    acf_add_options_page(array('page_title'=>'Web Editor','page_title'=>'Web Editor','menu_slug'=>'acf-options-theme-options'));
-}
-
-add_filter('acf/validate_value/name=content_frame_body', 'my_acf_validate_value', 10, 4);
-function my_acf_validate_value( $valid, $value, $field, $input ){
-    
-    // bail early if value is already invalid
-    if( !$valid ) {
-        
-        return $valid;
-        
-    }
-    
-    if( strlen(strip_tags($value)) > 550 ) {
-        
-        $valid = 'You can\'t enter more that 550 chars';
-        
-    }
-    // return
-    return $valid;
-}
-
-add_filter('acf/validate_value/name=text_up_review', 'my_acf_validate_value_text', 10, 4);
-function my_acf_validate_value_text( $valid, $value, $field, $input ){
-    
-    // bail early if value is already invalid
-    if( !$valid ) {
-        
-        return $valid;
-        
-    }
-    
-    if( strlen(strip_tags($value)) > 110 ) {
-        
-        $valid = 'You can\'t enter more that 110 chars';
-        
-    }
-    // return
-    return $valid;
-}
 
 ?>
