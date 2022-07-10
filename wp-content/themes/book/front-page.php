@@ -262,14 +262,21 @@
 
                         <div class="wrap-input-form wrap-input-single-main">
                             <div class="label-card">Pick a preferred time<span class="red">*</span></div>
+                            <?php
+                                 $terms = get_terms( array(
+                                    'taxonomy' => 'times',
+                                    'orderby'  => 'id',
+                                    'order'    => 'ASC',
+                                    'hide_empty' => false,
+                                ) );
+                            ?>
                             <select id="single-main" class="single-main" style="width: 100%">
                                 <?php 
-                                    foreach(time_list() as $time)
+                                    foreach($terms as $term)
                                     {
                                         ?>
-                                            <option value="<?php echo $time->time_id?>"><?php echo $time->time_hour?></option>
+                                            <option value="<?php echo $term->term_id?>"><?php echo $term->name?></option>
                                         <?php
-                                       
                                     }
                                 ?>
                             </select>

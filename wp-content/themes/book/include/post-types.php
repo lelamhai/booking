@@ -1,119 +1,127 @@
 <?php
-function softkeymkt_register_my_cpts() {
-
-	/**
-	 * Post Type: Booking.
-	 */
-
-	$labels = [
-		"name" => __( "Booking", "softkey-marketing" ),
-		"singular_name" => __( "Booking", "softkey-marketing" ),
-	];
-
-	$args = [
-		"label" => __( "Booking", "softkey-marketing" ),
-		"labels" => $labels,
-		"description" => "Stores all the booking order that user book the slot",
-		"public" => true,
-		"publicly_queryable" => true,
-		"show_ui" => true,
-		"show_in_rest" => true,
-		"rest_base" => "",
-		"rest_controller_class" => "WP_REST_Posts_Controller",
-		"rest_namespace" => "wp/v2",
-		"has_archive" => true,
-		"show_in_menu" => true,
-		"show_in_nav_menus" => true,
-		"delete_with_user" => false,
-		"exclude_from_search" => false,
-		"capability_type" => "post",
-		"map_meta_cap" => true,
-		"hierarchical" => false,
-		"can_export" => true,
-		"rewrite" => [ "slug" => "booking", "with_front" => true ],
-		"query_var" => true,
-		"menu_position" => 5,
-		"supports" => [ "title", "editor", "thumbnail", "custom-fields", "author", "post-formats" ],
-		"taxonomies" => [ "post_tag" ],
-		"show_in_graphql" => false,
-	];
-
-	register_post_type( "booking", $args );
+/*
+* Creating a function to create our CPT
+*/
+  
+add_action( 'init', 'custom_post_type', 0 );
+function custom_post_type() {
+  
+	// Set UI labels for Custom Post Type
+		$labels = array(
+			'name'                => _x( 'Booking', 'Post Type General Name' ),
+			'singular_name'       => _x( 'Booking', 'Post Type Singular Name' ),
+			'menu_name'           => __( 'Booking' ),
+			'parent_item_colon'   => __( 'Parent Booking' ),
+			'all_items'           => __( 'All Booking' ),
+			'view_item'           => __( 'View Booking' ),
+			'add_new_item'        => __( 'Add New Booking' ),
+			'add_new'             => __( 'Add New' ),
+			'edit_item'           => __( 'Edit Booking' ),
+			'update_item'         => __( 'Update Booking' ),
+			'search_items'        => __( 'Search Booking' ),
+			'not_found'           => __( 'Not Found' ),
+			'not_found_in_trash'  => __( 'Not found in Trash' ),
+		);
+		  
+		// Set other options for Custom Post Type
+		$args = array(
+			'label'               => __( 'Bookings' ),
+			'description'         => __( 'Booking news and reviews' ),
+			'labels'              => $labels,
+			// Features this CPT supports in Post Editor
+			'supports'            => array( 'title', 'custom-fields', 'excerpt'),
+			// You can associate this CPT with a taxonomy or custom taxonomy. 
+			'taxonomies'          => array( 'times' ),
+			/* A hierarchical CPT is like Pages and can have
+			* Parent and child items. A non-hierarchical CPT
+			* is like Posts.
+			*/
+			'hierarchical'        => false,
+			'public'              => true,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'show_in_nav_menus'   => true,
+			'show_in_admin_bar'   => true,
+			'menu_position'       => 5,
+			'can_export'          => true,
+			'has_archive'         => true,
+			'exclude_from_search' => false,
+			'publicly_queryable'  => true,
+			'capability_type'     => 'post',
+			'show_in_rest' => false,
+	  
+		);
+		  
+		// Registering your Custom Post Type
+		register_post_type( 'booking', $args );
 }
 
-add_action( 'init', 'softkeymkt_register_my_cpts' );
 
-add_action( 'add_meta_boxes_booking', 'softkeymkt_add_metabox' );
-// or add_action( 'admin_menu', 'softkeymkt_add_metabox' );
-// or use this for all post type add_action( 'add_meta_boxes', 'softkeymkt_add_metabox' );
-
-function softkeymkt_add_metabox() {
-
+add_action( 'add_meta_boxes_booking', 'add_metabox' );
+function add_metabox() {
 	add_meta_box(
-		'softkeymkt_metabox', // metabox ID
-		'Booking fields', // title
-		'softkeymkt_metabox_callback', // callback function
+		'booking_metabox', // metabox ID
+		'Fields', // title
+		'Booking_metabox_callback', // callback function
 		'booking', // post type or post types in array
 		'normal', // position (normal, side, advanced)
 		'default' // priority (default, low, high, core)
 	);
-
 }
 
-function softkeymkt_metabox_callback( $post ) {
 
-	$booking_fullname = get_post_meta( $post->ID, 'booking_fullname', true );
-	$booking_phone = get_post_meta( $post->ID, 'booking_phone', true );
-	$booking_email = get_post_meta( $post->ID, 'booking_email', true );
-	//$dropdown_example = get_post_meta( $post->ID, 'dropdown_example', true );
+function Booking_metabox_callback( $post ) {
 
-	// nonce, actually I think it is not necessary here
+	$date = get_post_meta( $post->ID, 'booking_date', true );
+	$phone = get_post_meta( $post->ID, 'booking_phone', true );
+	$services = get_post_meta( $post->ID, 'booking_services', true );
+	$status = get_post_meta( $post->ID, 'booking_status', true );
+	$slots = get_post_meta( $post->ID, 'booking_slots', true );
+	$email = get_post_meta( $post->ID, 'booking_email', true );
+
 	wp_nonce_field( 'bookingnonce', '_softkeymktnonce' );
 
 	$metabox = '<table class="form-table">
 		<tbody>';
 	$metabox .= '<tr>
-				<th><label for="booking_fullname">Booking Fullname</label></th>
-				<td><input type="text" id="booking_fullname" name="booking_fullname" value="' . esc_attr( $booking_fullname ) . '" class="regular-text"></td>
+				<th><label>Datetime</label></th>
+				<td><input type="text" name="booking_date" value="' . esc_attr( $date ) . '" class="regular-text"></td>
 			</tr>';
 	$metabox .= '<tr>
-				<th><label for="booking_phone">Booking Phone</label></th>
-				<td><input type="text" id="booking_phone" name="booking_phone" value="' . esc_attr( $booking_phone ) . '" class="regular-text"></td>
+				<th><label>Phone</label></th>
+				<td><input type="text" name="booking_phone" value="' . esc_attr( $phone ) . '" class="regular-text"></td>
 			</tr>';
 	$metabox .= '<tr>
-				<th><label for="booking_email">Booking Email</label></th>
-				<td><input type="email" id="booking_email" name="booking_email" value="' . esc_attr( $booking_email ) . '" class="regular-text"></td>
+				<th><label>Slots</label></th>
+				<td><input type="text" name="booking_slots" value="' . esc_attr( $slots ) . '" class="regular-text"></td>
 			</tr>';
-	/*$metabox .= '<tr>
-				<th><label for="seo_tobots">SEO robots</label></th>
-				<td>
-					<select id="seo_robots" name="seo_robots">
-						<option value="">Select...</option>
-						<option value="index,follow"' . selected( 'index,follow', $seo_robots, false ) . '>Show for search engines</option>
-						<option value="noindex,nofollow"' . selected( 'noindex,nofollow', $seo_robots, false ) . '>Hide for search engines</option>
-					</select>
-				</td>
-			</tr>';*/
+	$metabox .= '<tr>
+			<th><label>Email</label></th>
+			<td><input type="email" name="booking_email" value="' . esc_attr( $email ) . '" class="regular-text"></td>
+			</tr>';
+	$metabox .= '<tr>
+			<th><label>Status</label></th>
+			<td><input type="text" name="booking_status" value="' . esc_attr( $status ) . '" class="regular-text"></td>
+			</tr>';
+	$metabox .= '<tr>
+			<th><label>Services</label></th>
+			<td>
+				<textarea name="booking_services" rows="4" cols="50">
+					' . esc_attr( $services ) . '
+				</textarea>
+			</td>
+			</tr>';
 	$metabox .= '</tbody>
 	</table>';
 	echo $metabox;
-
 }
 
+
+
 add_action( 'save_post_booking', 'softkeymkt_save_meta', 10, 2 );
-// or use this for all post type add_action( 'save_post', 'softkeymkt_save_meta', 10, 2 ); 
-
 function softkeymkt_save_meta( $post_id, $post ) {
-
 	// nonce check
 	if ( ! isset( $_POST[ '_softkeymktnonce' ] ) || ! wp_verify_nonce( $_POST[ '_softkeymktnonce' ], 'bookingnonce' ) ) {
-		return $post_id;
-	}
-
-	// check current user permissions
-	$post_type = get_post_type_object( $post->post_type );
-
-	if ( ! current_user_can( $post_type->cap->edit_post, $post_id ) ) {
 		return $post_id;
 	}
 
@@ -122,15 +130,10 @@ function softkeymkt_save_meta( $post_id, $post ) {
 		return $post_id;
 	}
 
-	// define your own post type here
-	if( 'page' !== $post->post_type ) {
-		return $post_id;
-	}
-
-	if( isset( $_POST[ 'booking_fullname' ] ) ) {
-		update_post_meta( $post_id, 'booking_fullname', sanitize_text_field( $_POST[ 'booking_fullname' ] ) );
+	if( isset( $_POST[ 'booking_date' ] ) ) {
+		update_post_meta( $post_id, 'booking_date', sanitize_text_field( $_POST[ 'booking_date' ] ) );
 	} else {
-		delete_post_meta( $post_id, 'booking_fullname' );
+		delete_post_meta( $post_id, 'booking_date' );
 	}
 
 	if( isset( $_POST[ 'booking_phone' ] ) ) {
@@ -145,12 +148,22 @@ function softkeymkt_save_meta( $post_id, $post ) {
 		delete_post_meta( $post_id, 'booking_email' );
 	}
 
-	// if( isset( $_POST[ 'seo_robots' ] ) ) {
-	// 	update_post_meta( $post_id, 'seo_robots', sanitize_text_field( $_POST[ 'seo_robots' ] ) );
-	// } else {
-	// 	delete_post_meta( $post_id, 'seo_robots' );
-	// }
+	if( isset( $_POST[ 'booking_services' ] ) ) {
+		update_post_meta( $post_id, 'booking_services', sanitize_text_field( $_POST[ 'booking_services' ] ) );
+	} else {
+		delete_post_meta( $post_id, 'booking_services' );
+	}
 
+	if( isset( $_POST[ 'booking_slots' ] ) ) {
+		update_post_meta( $post_id, 'booking_slots', sanitize_text_field( $_POST[ 'booking_slots' ] ) );
+	} else {
+		delete_post_meta( $post_id, 'booking_slots' );
+	}
+
+	if( isset( $_POST[ 'booking_status' ] ) ) {
+		update_post_meta( $post_id, 'booking_status', sanitize_text_field( $_POST[ 'booking_status' ] ) );
+	} else {
+		delete_post_meta( $post_id, 'booking_status' );
+	}
 	return $post_id;
-
 }
