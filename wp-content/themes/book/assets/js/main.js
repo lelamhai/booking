@@ -276,7 +276,8 @@ $(document).ready(function() {
                    
                 },
                 success: function(response) {
-                    alert("Booking finish");
+                    alert(response);
+                    // alert("Booking finish");
                     location.reload();
                 },
                 error: function( jqXHR, textStatus, errorThrown ){

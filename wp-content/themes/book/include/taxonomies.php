@@ -121,14 +121,14 @@
 		if($columns['description'])
 		{
 			unset($columns['description']);
-			unset($columns['posts']);
+			// unset($columns['posts']);
 			unset($columns['slug']);
 		}
 		$columns['slots'] = 'slots';
 		return $columns;
 	}
 
-	// Create fields to times
+	// Create fields to times 
 	add_action( 'times_add_form_fields', 'techiepress_add_times_fields' );
 	function techiepress_add_times_fields() {
 		?>

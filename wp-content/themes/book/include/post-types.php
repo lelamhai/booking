@@ -1,77 +1,64 @@
 <?php
-/*
-* Creating a function to create our CPT
-*/
-  
-add_action( 'init', 'custom_post_type', 0 );
-function custom_post_type() {
-  
-	// Set UI labels for Custom Post Type
-		$labels = array(
-			'name'                => _x( 'Booking', 'Post Type General Name' ),
-			'singular_name'       => _x( 'Booking', 'Post Type Singular Name' ),
-			'menu_name'           => __( 'Booking' ),
-			'parent_item_colon'   => __( 'Parent Booking' ),
-			'all_items'           => __( 'All Booking' ),
-			'view_item'           => __( 'View Booking' ),
-			'add_new_item'        => __( 'Add New Booking' ),
-			'add_new'             => __( 'Add New' ),
-			'edit_item'           => __( 'Edit Booking' ),
-			'update_item'         => __( 'Update Booking' ),
-			'search_items'        => __( 'Search Booking' ),
-			'not_found'           => __( 'Not Found' ),
-			'not_found_in_trash'  => __( 'Not found in Trash' ),
-		);
-		  
-		// Set other options for Custom Post Type
-		$args = array(
-			'label'               => __( 'Bookings' ),
-			'description'         => __( 'Booking news and reviews' ),
-			'labels'              => $labels,
-			// Features this CPT supports in Post Editor
-			'supports'            => array( 'title', 'custom-fields', 'excerpt'),
-			// You can associate this CPT with a taxonomy or custom taxonomy. 
-			'taxonomies'          => array( 'times' ),
-			/* A hierarchical CPT is like Pages and can have
-			* Parent and child items. A non-hierarchical CPT
-			* is like Posts.
-			*/
-			'hierarchical'        => false,
-			'public'              => true,
-			'show_ui'             => true,
-			'show_in_menu'        => true,
-			'show_in_nav_menus'   => true,
-			'show_in_admin_bar'   => true,
-			'menu_position'       => 5,
-			'can_export'          => true,
-			'has_archive'         => true,
-			'exclude_from_search' => false,
-			'publicly_queryable'  => true,
-			'capability_type'     => 'post',
-			'show_in_rest' => false,
-	  
-		);
-		  
-		// Registering your Custom Post Type
-		register_post_type( 'booking', $args );
+add_action('init', 'create_custom_post_type');
+function create_custom_post_type()
+{
+    /*
+     * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
+     */
+    $label = array(
+        'name' => 'Books', //Tên post type dạng số nhiều
+        'singular_name' => 'Books' //Tên post type dạng số ít
+    );
+
+    /*
+     * Biến $args là những tham số quan trọng trong Post Type
+     */
+    $args = array(
+        'labels' => $label, //Gọi các label trong biến $label ở trên
+        'description' => 'Post type đăng Books', //Mô tả của post type
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'author',
+            'thumbnail',
+            'comments',
+            'trackbacks',
+            'revisions',
+            'custom-fields',
+        ), //Các tính năng được hỗ trợ trong post type
+        'taxonomies' => array( 'times', 'services' ), //Các taxonomy được phép sử dụng để phân loại nội dung
+        'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, true thì giống như Page
+        'public' => true, //Kích hoạt post type
+        'show_ui' => true, //Hiển thị khung quản trị như Post/Page
+        'show_in_menu' => true, //Hiển thị trên Admin Menu (tay trái)
+        'show_in_nav_menus' => true, //Hiển thị trong Appearance -> Menus
+        'show_in_admin_bar' => true, //Hiển thị trên thanh Admin bar màu đen.
+        'menu_position' => 5, //Thứ tự vị trí hiển thị trong menu (tay trái)
+        'can_export' => true, //Có thể export nội dung bằng Tools -> Export
+        'has_archive' => true, //Cho phép lưu trữ (month, date, year)
+        'exclude_from_search' => false, //Loại bỏ khỏi kết quả tìm kiếm
+        'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
+        'capability_type' => 'post' //
+    );
+
+    register_post_type('books', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
 }
 
-
-add_action( 'add_meta_boxes_booking', 'add_metabox' );
+add_action( 'add_meta_boxes_books', 'add_metabox' );
 function add_metabox() {
 	add_meta_box(
-		'booking_metabox', // metabox ID
-		'Fields', // title
-		'Booking_metabox_callback', // callback function
-		'booking', // post type or post types in array
+		'books_metabox', // metabox ID
+		'Fields Books', // title
+		'books_metabox_callback', // callback function
+		'books', // post type or post types in array
 		'normal', // position (normal, side, advanced)
 		'default' // priority (default, low, high, core)
 	);
 }
 
-
-function Booking_metabox_callback( $post ) {
-
+// Show layout
+function books_metabox_callback( $post ) {
 	$date = get_post_meta( $post->ID, 'booking_date', true );
 	$phone = get_post_meta( $post->ID, 'booking_phone', true );
 	$services = get_post_meta( $post->ID, 'booking_services', true );
@@ -117,13 +104,21 @@ function Booking_metabox_callback( $post ) {
 }
 
 
-
-add_action( 'save_post_booking', 'softkeymkt_save_meta', 10, 2 );
+// Save data
+add_action( 'save_post_books', 'softkeymkt_save_meta', 10, 2 );
 function softkeymkt_save_meta( $post_id, $post ) {
 	// nonce check
 	if ( ! isset( $_POST[ '_softkeymktnonce' ] ) || ! wp_verify_nonce( $_POST[ '_softkeymktnonce' ], 'bookingnonce' ) ) {
 		return $post_id;
 	}
+
+	// check current user permissions
+	$post_type = get_post_type_object( $post->post_type );
+
+	if ( ! current_user_can( $post_type->cap->edit_post, $post_id ) ) {
+		return $post_id;
+	}
+	
 
 	// Do not save the data if autosave
 	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {

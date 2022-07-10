@@ -1,17 +1,14 @@
 <?php
-require get_template_directory() . '/include/database.php';
-
-require get_template_directory() . '/include/ajax.php';
-
 require get_template_directory() . '/include/taxonomies.php';
-
 require get_template_directory() . '/include/post-types.php';
+require get_template_directory() . '/include/query.php';
+require get_template_directory() . '/include/ajax.php';
 
 
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
-    $version = "132";
+    $version = "134";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-style',   get_template_directory_uri() ."/assets/css/style.css", array(), $version);
@@ -29,6 +26,4 @@ function regsiter_styles()
 
 }
 add_action('wp_enqueue_scripts', 'regsiter_styles');
-
-
 ?>

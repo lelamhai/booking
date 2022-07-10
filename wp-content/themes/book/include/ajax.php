@@ -13,7 +13,8 @@
             $slots = $_GET['slots'];
             $email = $_GET['email'];
             $services = $_GET['services'];
-            booking_insert($phoneNumber, $fullName, $time_id, $datepicker, $message, $slots, $email, $services);
+            
+            books_insert($phoneNumber, $fullName, $time_id, $datepicker, $message, $slots, $email, $services);
         }
         wp_die(); 
     }
@@ -29,18 +30,19 @@
 
             $date=date_create($_GET["date"]);
             $dateNew = date_format($date,"Y/m/d");
-            $slotsBooking = time_data_get_slots($dateNew , $_GET["time_id"]);
 
-            $booked = 0;
-            foreach($slotsBooking as $slot)
-            {
-                $booked = $booked + $slot->booking_slots;
-            }
+
+            // $taxonomies = get_terms( array(
+            //     'taxonomy' => 'services',
+            //     'hide_empty' => false,
+            //     'parent'   => 0
+            // ) );
+
             
-            $slots = time_data_by_id($_GET["time_id"])[0]->time_slots;
-            $slots = $slots - $booked;
+            $slots= booking_get_slots($dateNew, $_GET["time_id"]);
+
             ?>
-                <div class="wrap-guest">
+                   <div class="wrap-guest">
                     <div class="wrap-number-of-guest">
                         <div class="guest-title">NUMBER OF GUEST<span class="red">*</span></div>
                         <div class="select-nember over-hide">
@@ -92,11 +94,11 @@
                                     <div class="wrap-button-number">
                                         <?php
                                             $index = 1;
-                                            foreach(service_select() as $parent)
+                                            foreach(services_get_taxonomy() as $parent)
                                             {
                                                 ?>
-                                                    <label class="number"><?php  echo $parent->service_name?>
-                                                        <input type="checkbox" class="checkbox-menu" onchange="onChangeCheckbox(this)" data-id="<?php echo $parent->service_id?>" data-name="<?php echo $parent->service_name?>" value="<?php echo $index?>">
+                                                    <label class="number"><?php  echo $parent->name?>
+                                                        <input type="checkbox" class="checkbox-menu" onchange="onChangeCheckbox(this)" data-id="<?php echo $parent->term_id?>" data-name="<?php echo $parent->name?>" value="<?php echo $index?>">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 <?php
@@ -107,18 +109,18 @@
                                     <div class="wrap-service-child">
                                         <?php
                                             $index=1;
-                                            foreach(service_select() as $parent)
+                                            foreach(services_get_taxonomy() as $parent)
                                             {
                                                 ?>
                                                     <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
-                                                        <div class="service-title"><?php echo $parent->service_name?></div>
+                                                        <div class="service-title"><?php echo $parent->name?></div>
                                                             <div class="service-content">
                                                             <select class="basic-single" style="width: 100%">
                                                                 <?php 
-                                                                    foreach(service_select($parent->service_id) as $child)
+                                                                    foreach(services_get_taxonomy($parent->term_id) as $child)
                                                                     {
                                                                         ?>
-                                                                            <option value="<?php echo $child->service_id?>"><?php echo $child->service_name?></option>
+                                                                            <option value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
                                                                         <?php
                                                                     }
                                                                 ?>
@@ -142,11 +144,11 @@
                                         <div class="wrap-button-number">
                                             <?php
                                                 $index = 1;
-                                                foreach(service_select() as $parent)
+                                                foreach(services_get_taxonomy() as $parent)
                                                 {
                                                     ?>
-                                                        <label class="number"><?php  echo $parent->service_name?>
-                                                            <input type="checkbox" class="checkbox-menu" onchange="onChangeCheckbox(this)" data-id="<?php echo $parent->service_id?>" data-name="<?php echo $parent->service_name?>" value="<?php echo $index?>">
+                                                        <label class="number"><?php  echo $parent->name?>
+                                                            <input type="checkbox" class="checkbox-menu" onchange="onChangeCheckbox(this)" data-id="<?php echo $parent->term_id?>" data-name="<?php echo $parent->name?>" value="<?php echo $index?>">
                                                             <span class="checkmark"></span>
                                                         </label>
                                                     <?php
@@ -157,18 +159,18 @@
                                         <div class="wrap-service-child">
                                             <?php
                                                 $index = 1;
-                                                foreach(service_select() as $parent)
+                                                foreach(services_get_taxonomy() as $parent)
                                                 {
                                                     ?>
                                                         <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
-                                                            <div class="service-title"><?php echo $parent->service_name?></div>
+                                                            <div class="service-title"><?php echo $parent->name?></div>
                                                                 <div class="service-content">
                                                                 <select class="basic-single" style="width: 100%">
                                                                     <?php 
-                                                                        foreach(service_select($parent->service_id) as $child)
+                                                                        foreach(services_get_taxonomy($parent->term_id) as $child)
                                                                         {
                                                                             ?>
-                                                                                <option  value="<?php echo $child->service_id?>"><?php echo $child->service_name?></option>
+                                                                                <option  value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
                                                                             <?php
                                                                         }
                                                                     ?>
@@ -203,7 +205,6 @@
                     
                 </div>
             <?php
-
         }
 
         wp_die(); 
