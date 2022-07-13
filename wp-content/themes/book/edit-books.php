@@ -256,7 +256,7 @@
                 $.ajax({
                 type : "GET", 
                 dataType: 'html',
-                url : "http://localhost/booking/wp-admin/admin-ajax.php",
+                url : "/wp-admin/admin-ajax.php",
                 data : {
                     action: "deleteTaxonomy",
                     id: id,
@@ -303,7 +303,7 @@
                         $.ajax({
                             type : "GET", 
                             dataType: 'html',
-                            url : "http://localhost/booking/wp-admin/admin-ajax.php",
+                            url : "./wp-admin/admin-ajax.php",
                             data : {
                                 action: "createMenu",
                                 id:id,
@@ -328,7 +328,7 @@
                         $.ajax({
                             type : "GET", 
                             dataType: 'html',
-                            url : "http://localhost/booking/wp-admin/admin-ajax.php",
+                            url : "./wp-admin/admin-ajax.php",
                             data : {
                                 action: "updateMenu",
                                 id: id,

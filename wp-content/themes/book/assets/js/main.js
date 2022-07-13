@@ -260,7 +260,7 @@ $(document).ready(function() {
             $.ajax({
                 type : "GET", 
                 dataType: 'html',
-                url : "http://localhost/booking/wp-admin/admin-ajax.php",
+                url : "./wp-admin/admin-ajax.php",
                 data : {
                     action: "insert",
                     fullName: fullName,
@@ -294,7 +294,7 @@ function loadData(date,time_id)
         type : "GET", 
         dataType: 'html',
         contentType: "application/json; charset=utf-8",
-        url : "http://localhost/booking/wp-admin/admin-ajax.php",
+        url : "./wp-admin/admin-ajax.php",
         data : {
             action: "getSlots",
             date: date,
@@ -347,7 +347,7 @@ function validateEmail(email) {
 }
 
 function isVietnamesePhoneNumber(number) {
-    if(number.length <= 10 && $.isNumeric(number))
+    if(number.length <= 14 && $.isNumeric(number))
     {
         return true;
     }
