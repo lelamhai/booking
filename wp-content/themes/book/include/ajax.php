@@ -13,7 +13,7 @@
             $slots = $_GET['slots'];
             $email = $_GET['email'];
             $services = $_GET['services'];
-            
+
             books_insert($phoneNumber, $fullName, $time_id, $datepicker, $message, $slots, $email, $services);
         }
         wp_die(); 
@@ -30,14 +30,6 @@
 
             $date=date_create($_GET["date"]);
             $dateNew = date_format($date,"Y/m/d");
-
-
-            // $taxonomies = get_terms( array(
-            //     'taxonomy' => 'services',
-            //     'hide_empty' => false,
-            //     'parent'   => 0
-            // ) );
-
             
             $slots= booking_get_slots($dateNew, $_GET["time_id"]);
 

@@ -67,7 +67,7 @@ function books_insert($phone, $fullName, $timeid, $datepicker, $message, $slots,
     );
 
     $id = wp_insert_post($new_post);
-    if ( is_wp_error( $postID ) ) {
+    if ( is_wp_error( $id ) ) {
         echo "System errors";
     } 
     wp_set_object_terms( $id, intval( $timeid ), 'times' );
@@ -80,6 +80,15 @@ function books_insert($phone, $fullName, $timeid, $datepicker, $message, $slots,
     update_post_meta( $id, 'booking_slots', sanitize_text_field($slots ));
 
     echo "Booking finish";
+}
+
+function delete_term($id, $taxonomy)
+{
+    $id = wp_delete_term($id, $taxonomy );
+    if ( is_wp_error( $id ) ) {
+        echo "System errors";
+    } 
+    echo "Delete finish";
 }
 
 ?>

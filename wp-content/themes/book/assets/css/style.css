@@ -531,6 +531,7 @@ body {
 
 .wrap-button-number {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .choose-person {
