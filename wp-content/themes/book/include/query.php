@@ -45,11 +45,20 @@ function time_get_slots($timeId)
 
 function services_get_taxonomy($id=0)
 {
-    $taxonomies = get_terms( array(
+    $args = array(  
+        // 'taxonomy' => 'services',
+        // 'parent'   => $id,
+        // 'hide_empty' => false,
+        // 'meta_key' => 'services-index',
+        // 'orderby' => 'meta_value',
+        // 'order' => 'ASC'
+
         'taxonomy' => 'services',
+        'parent'   => $id,
         'hide_empty' => false,
-        'parent'   => $id
-    ) );
+    );
+
+    $taxonomies = get_terms($args);
     return $taxonomies;
 }
 
@@ -90,5 +99,7 @@ function delete_term($id, $taxonomy)
     } 
     echo "Delete finish";
 }
+
+
 
 ?>

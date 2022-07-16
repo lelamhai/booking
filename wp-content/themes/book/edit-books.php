@@ -35,6 +35,11 @@
                 padding-top: 30px;
             }
 
+            .title-level {
+                font-weight: bold;
+                font-size: 24px;
+            }
+
             .title-menu {
                 font-size: 32px;
                 color: #0f6ac4;
@@ -62,8 +67,8 @@
                 padding: 30px 0 45px 0;
             }
 
-            .button-menu {
-                margin-right: 15px
+            .block-level1:first-child>.wrap-level>.level>.wrap-right>.delete-level {
+                display: none;
             }
 
             .wrap-level {
@@ -71,12 +76,14 @@
                 margin: 30px 0;
             }
 
-
-
             .wrap-menu-block {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
+            }
+
+            .menu-price {
+                position: relative;
             }
 
             .menu-title,
@@ -84,6 +91,12 @@
             .menu-description {
                 width: 100%;
                 margin: 15px 0;
+            }
+
+            .menu-title span,
+            .menu-price span,
+            .menu-description span {
+                font-weight: bold;
             }
 
             .title,
@@ -94,11 +107,26 @@
                 padding: 10px 15px;
             }
 
+            .price {
+                padding-left: 30px;
+            }
+
+            .price-dolla {
+                position: absolute;
+                top: 30px;
+                left: 15px;
+                font-weight: bold;
+            }
+
             .level {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 margin-bottom: 15px;
+            }
+
+            .wrap-right {
+                display: flex;
             }
 
             .block-level2 {
@@ -119,6 +147,24 @@
                 color: #fff;
                 border-radius: 5px;
             }
+
+            .delete-level {
+                margin-left: 15px;
+            }
+
+            .add-sub-service {
+                text-align: center;
+                width: 100%;
+            }
+
+            .add-sub-service button {
+                border: 0;
+                background-color: #008037;
+                padding: 10px 15px;
+                color: #fff;
+                border-radius: 5px;
+            }
+
 
             @media (min-width: 768px)
             {
@@ -154,20 +200,25 @@
     <body>
     <!-- Modal -->
     
-    <!-- data-toggle="modal" data-target="#exampleModal" -->
+    <!-- data-toggle="modal" data-target="#deleteModal" -->
 
-    <div class="modal fade" id="exampleModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="message">Do you want to delete?</div>
-                <div class="comfirm">
-                    <button class="yes">Yes</button>
-                    <button class="no">No</button>
+    <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="message">Do you want to delete?</div>
+                    <input type="hidden" id="popup-title" value="">
+                    <input type="hidden" id="popup-id" value="">
+                    <input type="hidden" id="popup-taxonomy" value="">
+                    <input type="hidden" id="popup-tempParentId" value="">
+                    <input type="hidden" id="popup-tempChildId" value="">
+                    <div class="comfirm">
+                        <button class="yes">Yes</button>
+                        <button class="no" data-dismiss="modal">No</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
         <main>
@@ -175,67 +226,92 @@
                 <div class="wrap-menu">
                     <div class="head-menu">
                         <div class="title-menu">Your Services</div>
-                        <button class="save">Save changes</button>
                     </div>
 
-                    <div class="create-level">
-                        <div class="button-menu"><button class="create-menu">Add a service</button></div>
-                        <div class="input-menu"><input type="number" value="1" class="menu-count" min="1"></div>
-                    </div>
                     <div class="body-menu">
                         <?php
-                            foreach(get_data_taxonomy(0) as $parent)
+                            if(count(get_data_taxonomy(0)) == 0)
                             {
-                                $price = get_term_meta($parent->term_id, 'services-price', true );
                                 ?>
-                                    <div class="wrap-menu-block block-level1">
-                                        <div class="wrap-level" data-id="<?php echo $parent->term_id?>" data-taxonomy="services" data-parent="0">
-                                            <div class="level">
-                                                <div class="title-level">Level 1</div>
-                                                <div class="delete-level1"><button class="delete-nemu">Delete</button></div>
+                                        <div class="wrap-menu-block block-level1">
+                                            <div class="wrap-level" data-id="0" data-taxonomy="services" data-parent="0" data-title="parent" data-tempparent='0'>
+                                                <div class="level">
+                                                    <div class="title-level">Level 1</div>
+                                                    <div class="wrap-right">
+                                                        <div class="button-menu"><button class="create-menu">Add</button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="menu-title"><span>Title</span><input type="text" class="title" value="<?php echo $parent->name?>"></div>
+                                                <div class="menu-price"><span>Price</span><input type="number" class="price" value="<?php echo $price?>"><div class="price-dolla">$</div></div>
+                                                <div class="menu-description"><span>Description</span><input type="text" class="description" value="<?php echo $parent->description?>"></div>
                                             </div>
-                                            <div class="menu-title"><input type="text" class="title" value="<?php echo $parent->name?>"></div>
-                                            <div class="menu-price"><input type="number" class="price" value="<?php echo $price?>"></div>
-                                            <div class="menu-description"><input type="text" class="description" value="<?php echo $parent->description?>"></div>
+                                            <div class="add-sub-service"><button class="add-sub">Add sub-services</button></div>
                                         </div>
-                                        <div class="wrap-menu-block block-level2">
-                                        <?php
-                                            if(count(get_data_taxonomy($parent->term_id))>0)
-                                            {
-                                                ?>
-                                                  
-                                                        <?php
-                                                            foreach(get_data_taxonomy($parent->term_id) as $children)
-                                                            {
-                                                                $price = get_term_meta($children->term_id, 'services-price', true );
-                                                                ?>
-                                                                    <div class="wrap-level" data-id="<?php echo $children->term_id?>" data-taxonomy="services" data-parent="<?php echo $children->parent?>">
-                                                                        <div class="level">
-                                                                            <div class="title-level">Level 2</div>
-                                                                            <div class="delete-level1"><button class="delete-nemu">Delete</button></div>
-                                                                        </div>
-                                                                        <div class="menu-title"><input type="text"  class="title" value="<?php echo $children->name?>"></div>
-                                                                        <div class="menu-price"><input type="number" class="price" value="<?php echo $price?>"></div>
-                                                                        <div class="menu-description"><input type="text" class="description" value="<?php echo $children->description?>"></div>
-                                                                    </div>
-                                                                <?php
-                                                            }
-                                                        ?>
-                                                <?php
-                                            }
-                                        ?>
-                                        </div>
-
-                                        <div class="wrap-menu-button">
-                                            <button class="add-sub">Add a sub-service</button>
-                                        </div>
-                                    </div>
                                 <?php
+                            } else {
+
+                                foreach(get_data_taxonomy(0) as $parent)
+                                {
+                                    $price = get_term_meta($parent->term_id, 'services-price', true );
+                                    ?>
+                                        <div class="wrap-menu-block block-level1">
+                                            <div class="wrap-level" data-id="<?php echo $parent->term_id?>" data-taxonomy="services" data-parent="0" data-title="parent">
+                                                <div class="level">
+                                                    <div class="title-level">Level 1</div>
+                                                    <div class="wrap-right">
+                                                        <div class="button-menu"><button class="create-menu">Add</button></div>
+                                                        <div class="delete-level"><button class="delete-nemu" data-toggle="modal" data-target="#deleteModal">Delete</button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="menu-title"><span>Title</span><input type="text" class="title" value="<?php echo $parent->name?>"></div>
+                                                <div class="menu-price"><span>Price</span><input type="number" class="price" value="<?php echo $price?>"><div class="price-dolla">$</div></div>
+                                                <div class="menu-description"><span>Description</span><input type="text" class="description" value="<?php echo $parent->description?>"></div>
+                                            </div>
+                                            
+                                            <?php
+                                                if(count(get_data_taxonomy($parent->term_id))>0)
+                                                {
+                                                    ?><div class="wrap-menu-block block-level2"><?php
+                                                    ?>
+                                                            <?php
+                                                                foreach(get_data_taxonomy($parent->term_id) as $children)
+                                                                {
+                                                                    $price = get_term_meta($children->term_id, 'services-price', true );
+                                                                    ?>
+                                                                        <div class="wrap-level" data-id="<?php echo $children->term_id?>" data-taxonomy="services" data-parent="<?php echo $children->parent?>" data-title="children">
+                                                                            <div class="level">
+                                                                                <div class="title-level">Level 2</div>
+                                                                                <div class="wrap-right">
+                                                                                    <div class="button-menu"><button class="create-menu">Add</button></div>
+                                                                                    <div class="delete-level"><button class="delete-nemu" data-toggle="modal" data-target="#deleteModal">Delete</button></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="menu-title"><span>Title</span><input type="text"  class="title" value="<?php echo $children->name?>"></div>
+                                                                            <div class="menu-price"><span>Price</span><input type="number" class="price" value="<?php echo $price?>"><div class="price-dolla">$</div></div>
+                                                                            <div class="menu-description"><span>Description</span><input type="text" class="description" value="<?php echo $children->description?>"></div>
+                                                                        </div>
+                                                                    <?php
+                                                                }
+                                                            ?>
+                                                    <?php
+                                                    ?></div><?php
+                                                } else {
+                                                    ?>
+                                                        <div class="add-sub-service"><button class="add-sub">Add sub-services</button></div>
+                                                    <?php
+                                                }
+                                            ?>
+                                            
+                                        </div>
+                                    <?php
+                                }
                             }
                         ?>
 
                        
                     </div>
+
+                    <button class="save">Save changes</button>
                 </div>
             </section>
         </main>
@@ -244,114 +320,207 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
+            // $(document).on('click', '.delete-nemu', function() {
+            //     let id = $(this).parent().parent().parent().data('id');
+            //     let taxonomy = $(this).parent().parent().parent().data('taxonomy');
+            //     if(id == 0)
+            //     {
+            //         $(this).parent().parent().parent().parent().remove();
+            //         return;
+            //     }
+
+            //     $.ajax({
+            //     type : "GET", 
+            //     dataType: 'html',
+            //     url : "/wp-admin/admin-ajax.php",
+            //     data : {
+            //         action: "deleteTaxonomy",
+            //         id: id,
+            //         taxonomy: taxonomy
+            //     },
+            //     beforeSend: function(){
+                   
+            //     },
+            //     success: function(response) {
+            //         alert(response);
+            //         location.reload();
+            //     },
+            //     error: function( jqXHR, textStatus, errorThrown ){
+            //     }
+            //     });
+            // });
+
             $(document).on('click', '.delete-nemu', function() {
-                let id = $(this).parent().parent().parent().data('id');
-                let taxonomy = $(this).parent().parent().parent().data('taxonomy');
+                clearInputPopup ();
+                let id = $(this).parents(".wrap-level").data('id');
+                $("#popup-id").val(id);
+                if(id==0)
+                {
+                    let title = $(this).parents(".wrap-level").data('title');
+                    $("#popup-title").val(title);
+                    if(title == "parent")
+                    {
+                        let tempParentID = $(this).parents(".wrap-level").data('tempparent');
+                        $("#popup-tempParentId").val(tempParentID);
+                        
+                    } else {
+                        let tempChildrenID = $(this).parents(".wrap-level").data('tempchildren');
+                        $("#popup-tempChildId").val(tempChildrenID);
+                    }
+                } else {
+                    let taxonomy = $(this).parents(".wrap-level").data('taxonomy');
+                    $("#popup-taxonomy").val(taxonomy);
+                }
+            });
+
+            $('.yes').click(function(){
+                let id = $("#popup-id").val();
                 if(id == 0)
                 {
-                    $(this).parent().parent().parent().parent().remove();
-                    return;
-                }
+                    let title = $("#popup-title").val();
+                    if(title == "parent")
+                    {
+                        let parentId = $("#popup-tempParentId").val();
+                        $('.wrap-level[data-tempparent="'+parentId +'"]').parents(".block-level1").remove();
 
-                $.ajax({
-                type : "GET", 
-                dataType: 'html',
-                url : "/wp-admin/admin-ajax.php",
-                data : {
-                    action: "deleteTaxonomy",
-                    id: id,
-                    taxonomy: taxonomy
-                },
-                beforeSend: function(){
-                   
-                },
-                success: function(response) {
-                    alert(response);
-                    location.reload();
-                },
-                error: function( jqXHR, textStatus, errorThrown ){
+                    } else {
+                        let childrenId = $("#popup-tempChildId").val();
+                        let count = $('.wrap-level[data-tempchildren="'+childrenId+'"]').parents(".block-level2").children().length;
+                        if(count == 1)
+                        {
+                            let html = "<div class='add-sub-service'><button class='add-sub'>Add sub-services</button></div>";
+                            $('.wrap-level[data-tempchildren="'+childrenId+'"]').parents(".block-level1").append(html);
+
+                            $('.wrap-level[data-tempchildren="'+childrenId+'"]').parents(".block-level2").remove();
+                        }
+
+                        $('.wrap-level[data-tempchildren="'+childrenId+'"]').remove();
+                    }
+                    $('#deleteModal').modal('toggle');
+                } else {
+                    let taxonomy = $("#popup-taxonomy").val();
+                    $.ajax({
+                        type : "GET", 
+                        dataType: 'html',
+                        url : "./wp-admin/admin-ajax.php",
+                        data : {
+                            action: "deleteTaxonomy",
+                            id: id,
+                            taxonomy: taxonomy
+                        },
+                        beforeSend: function(){
+                        
+                        },
+                        success: function(response) {
+                            // $('.wrap-level[data-id="'+id+'"]').parents(".block-level1").remove();
+                            $('#deleteModal').modal('toggle');
+                            alert(response);
+                            location.reload();
+                        },
+                        error: function( jqXHR, textStatus, errorThrown ){
+                            console.log(errorThrown);
+                        }
+                    });
                 }
-                });
+                
             });
 
-            $('.create-menu').click(function(){
-                let count = $('.menu-count').val();
+            let tempParent = 1;
+            let tempChild = 1;
+            $(document).on('click', '.create-menu', function() {
+                let title = $(this).parents(".wrap-level").data("title");
                 let html = "";
-                for(let i=0; i<count; i++)
+                if(title === "parent")
                 {
-                    html = html + "<div class='wrap-menu-block block-level1'><div class='wrap-level' data-id='0' data-taxonomy='services' data-parent='0'><div class='level'><div class='title-level'>Level 1</div><div class='delete-level1'><button class='delete-nemu'>Delete</button></div></div><div class='menu-title'><input type='text' class='title'></div><div class='menu-price'><input type='number' class='price'></div><div class='menu-description'><input type='text' class='description'></div></div></div>";
+                    html = "<div class='wrap-menu-block block-level1'><div class='wrap-level' data-id='0' data-taxonomy='services' data-parent='0' data-title='parent' data-tempparent='"+tempParent+"'><div class='level'><div class='title-level'>Level 1</div><div class='wrap-right'><div class='button-menu'><button class='create-menu'>Add</button></div><div class='delete-level'><button class='delete-nemu' data-toggle='modal' data-target='#deleteModal'>Delete</button></div></div></div><div class='menu-title'><span>Title</span><input type='text' class='title' value=''></div><div class='menu-price'><span>Price</span><input type='number' class='price' value=''><div class='price-dolla'>$</div></div><div class='menu-description'><span>Description</span><input type='text' class='description' value=''></div><div class='add-sub-service'><button class='add-sub'>Add sub-services</button></div></div>";
+                    $(this).parents(".wrap-level").parent().after(html);
+                    tempParent ++;
+                } else {
+                    html = "<div class='wrap-level' data-id='0' data-taxonomy='services' data-parent='' data-title='children' data-tempchildren='"+tempChild+"'><div class='level'><div class='title-level'>Level 2</div><div class='wrap-right'><div class='button-menu'><button class='create-menu'>Add</button></div><div class='delete-level'><button class='delete-nemu' data-toggle='modal' data-target='#deleteModal'>Delete</button></div></div></div><div class='menu-title'><span>Title</span><input type='text' class='title' value=''></div><div class='menu-price'><span>Price</span><input type='number' class='price' value=''><div class='price-dolla'>$</div></div><div class='menu-description'><span>Description</span><input type='text' class='description' value=''></div></div>";
+                    $(this).parents(".wrap-level").after(html);
+                    tempChild ++;
                 }
-                $( ".body-menu" ).prepend( html );
             });
 
-            $('.add-sub').click(function(){
-                let parentId = $(this).parent().parent().children(".wrap-level").data('id');
-                let html = "<div class='wrap-level' data-id='0' data-taxonomy='services' data-parent='"+parentId+"'><div class='level'><div class='title-level'>Level 2</div><div class='delete-level1'><button class='delete-nemu'>Delete</button></div></div><div class='menu-title'><input type='text' class='title'></div><div class='menu-price'><input type='number' class='price'></div><div class='menu-description'><input type='text' class='description'></div></div>";
-                $(this).parent().parent().children('.block-level2').prepend( html );
+            $(document).on('click', '.add-sub', function() {
+                let html = "";
+                html = "<div class='wrap-menu-block block-level2'><div class='wrap-level' data-id='0' data-taxonomy='services' data-parent='0' data-title='children' data-tempchildren='"+tempChild+"'><div class='level'><div class='title-level'>Level 2</div><div class='wrap-right'><div class='button-menu'><button class='create-menu'>Add</button></div><div class='delete-level'><button class='delete-nemu' data-toggle='modal' data-target='#deleteModal'>Delete</button></div></div></div><div class='menu-title'><span>Title</span><input type='text' class='title' value=''></div><div class='menu-price'><span>Price</span><input type='number' class='price' value=''><div class='price-dolla'>$</div></div><div class='menu-description'><span>Description</span><input type='text' class='description' value=''></div></div></div>";
+                $(this).parents(".block-level1").append(html);
+                $(this).parents(".add-sub-service").remove();
+                tempChild ++;
             });
+           
 
             $(document).on('click', '.save', function() { 
-                $(".wrap-level").each(function (index, obj) {
-                    let id = $(this).data("id");
-                    let parentId = $(this).data("parent");
-                    let taxonomy = $(this).data("taxonomy");
-                    let title = $(this).children('.menu-title').children('.title').val();
-                    let price = $(this).children('.menu-price').children('.price').val();
-                    let description = $(this).children('.menu-description').children('.description').val();
-                    if(id == 0)
-                    {
-                        $.ajax({
-                            type : "GET", 
-                            dataType: 'html',
-                            url : "./wp-admin/admin-ajax.php",
-                            data : {
-                                action: "createMenu",
-                                id:id,
-                                parentId:parentId,
-                                taxonomy: taxonomy,
-                                title: title,
-                                price: price,
-                                description: description
+                // $(".wrap-level").each(function (index, obj) {
+                //     let id = $(this).data("id");
+                //     let parentId = $(this).data("parent");
+                //     let taxonomy = $(this).data("taxonomy");
+                //     let title = $(this).children('.menu-title').children('.title').val();
+                //     let price = $(this).children('.menu-price').children('.price').val();
+                //     let description = $(this).children('.menu-description').children('.description').val();
+                //     if(id == 0)
+                //     {
+                //         $.ajax({
+                //             type : "GET", 
+                //             dataType: 'html',
+                //             url : "./wp-admin/admin-ajax.php",
+                //             data : {
+                //                 action: "createMenu",
+                //                 id:id,
+                //                 parentId:parentId,
+                //                 taxonomy: taxonomy,
+                //                 title: title,
+                //                 price: price,
+                //                 description: description
 
-                            },
-                            beforeSend: function(){
+                //             },
+                //             beforeSend: function(){
                             
-                            },
-                            success: function(response) {
-                                console.log(response);
-                            },
-                            error: function( jqXHR, textStatus, errorThrown ){
-                            }
-                        });
-                    } else {
-                        // update menu
-                        $.ajax({
-                            type : "GET", 
-                            dataType: 'html',
-                            url : "./wp-admin/admin-ajax.php",
-                            data : {
-                                action: "updateMenu",
-                                id: id,
-                                parentId:parentId,
-                                taxonomy: taxonomy,
-                                title: title,
-                                price: price,
-                                description: description
-                            },
-                            beforeSend: function(){
+                //             },
+                //             success: function(response) {
+                //                 console.log(response);
+                //             },
+                //             error: function( jqXHR, textStatus, errorThrown ){
+                //             }
+                //         });
+                //     } else {
+                //         // update menu
+                //         $.ajax({
+                //             type : "GET", 
+                //             dataType: 'html',
+                //             url : "./wp-admin/admin-ajax.php",
+                //             data : {
+                //                 action: "updateMenu",
+                //                 id: id,
+                //                 parentId:parentId,
+                //                 taxonomy: taxonomy,
+                //                 title: title,
+                //                 price: price,
+                //                 description: description
+                //             },
+                //             beforeSend: function(){
                             
-                            },
-                            success: function(response) {
+                //             },
+                //             success: function(response) {
 
-                            },
-                            error: function( jqXHR, textStatus, errorThrown ){
-                            }
-                        });
-                    }
-                });
-                location.reload();
+                //             },
+                //             error: function( jqXHR, textStatus, errorThrown ){
+                //             }
+                //         });
+                //     }
+                // });
+                // location.reload();
             });
 
         });
+
+        function clearInputPopup ()
+        {
+            $("#popup-id").val("");
+            $("#popup-taxonomy").val("");
+            $("#popup-tempParentId").val("");
+            $("#popup-tempChildId").val("");
+        }
     </script>
 </html>

@@ -38,6 +38,7 @@
 			unset($columns['posts']);
 		}
 		$columns['price'] = 'Price';
+		$columns['index'] = 'Index';
 		return $columns;
 	}
 
@@ -49,27 +50,41 @@
 				<label for="services-price">Price</label>
 				<input type="number" name="services-price" id="services-price" value="0" min="0">
 			</div>
+			<div class="form-field">
+				<label for="services-index">Index</label>
+				<input type="number" name="services-index" id="services-index" value="0" min="0">
+			</div>
 		<?php	
 	}
 
 	// Load slots to the new columns
 	add_action( 'manage_services_custom_column', 'techiepress_manage_services_custom_columns', 10, 3 );
 	function techiepress_manage_services_custom_columns( $string, $columns, $term_id ) {
+
 		switch ( $columns ) {
 			case 'price':
 				echo get_term_meta( $term_id, 'services-price', true );
 				break;
+
+			case 'index':
+					echo get_term_meta( $term_id, 'services-index', true );
+					break;
 		}
 	}
 
 	// Edit the field to the edit screen.
 	add_action( 'services_edit_form_fields', 'techiepress_edit_services_fields', 10, 2 );
 	function techiepress_edit_services_fields( $term, $taxonomy ) {
-		$value = get_term_meta($term->term_id, 'services-price', true );
+		$price = get_term_meta($term->term_id, 'services-price', true );
+		$index = get_term_meta($term->term_id, 'services-index', true );
 		?>
 			<tr class="form-field">
 				<th scope="row"><label for="services-price">Price</label></th>
-				<td><input type="number" name="services-price" id="services-price" value="<?php echo esc_attr( $value ); ?>" min="0">
+				<td><input type="number" name="services-price" id="services-price" value="<?php echo esc_attr( $price ); ?>" min="0">
+			</tr>
+			<tr class="form-field">
+				<th scope="row"><label for="services-index">Index</label></th>
+				<td><input type="number" name="services-index" id="services-index" value="<?php echo esc_attr( $index ); ?>" min="0">
 			</tr>
 		<?php
 	}
@@ -79,6 +94,7 @@
 	add_action( 'edited_services', 'techiepress_created_services_fields' );
 	function techiepress_created_services_fields( $term_id ) {
 		update_term_meta( $term_id, 'services-price', sanitize_text_field( $_POST['services-price'] ) );
+		update_term_meta( $term_id, 'services-index', sanitize_text_field( $_POST['services-index'] ) );
 	}
 }
 
