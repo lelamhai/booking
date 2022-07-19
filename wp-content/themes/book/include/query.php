@@ -46,16 +46,16 @@ function time_get_slots($timeId)
 function services_get_taxonomy($id=0)
 {
     $args = array(  
-        // 'taxonomy' => 'services',
-        // 'parent'   => $id,
-        // 'hide_empty' => false,
-        // 'meta_key' => 'services-index',
-        // 'orderby' => 'meta_value',
-        // 'order' => 'ASC'
-
         'taxonomy' => 'services',
         'parent'   => $id,
         'hide_empty' => false,
+        'meta_key' => 'services-index',
+        'orderby' => 'meta_value',
+        'order' => 'ASC'
+
+        // 'taxonomy' => 'services',
+        // 'parent'   => $id,
+        // 'hide_empty' => false,
     );
 
     $taxonomies = get_terms($args);

@@ -9,7 +9,8 @@ add_action('wp_ajax_nopriv_deleteTaxonomy', 'deleteTaxonomy_function');
 function deleteTaxonomy_function() {
     if($_GET['id'] != null && $_GET['taxonomy'] != null)
     {
-        delete_term($_GET['id'], $_GET['taxonomy']);
+        wp_delete_term($_GET['id'], $_GET['taxonomy']);
+        echo "Delete finish";
     }
     wp_die(); 
 }
@@ -28,9 +29,6 @@ function createMenu_function() {
             )
         );
 
-       
-        
-
         if ( ! is_wp_error( $insert_res ) ) {
             $termId = 0;
             foreach($insert_res as $value)
@@ -38,7 +36,8 @@ function createMenu_function() {
                 $termId = $value;
             }
             update_term_meta($termId, 'services-price', sanitize_text_field( $_GET['price']));
-            echo 'Success!';
+            update_term_meta($termId, 'services-index', sanitize_text_field( $_GET['index'] ) );
+            echo $termId;
         }
     }
     wp_die(); 
@@ -65,8 +64,8 @@ function updateMenu_function() {
                 $termId = $value;
             }
             update_term_meta($_GET['id'], 'services-price', sanitize_text_field( $_GET['price'] ) );
+            update_term_meta($_GET['id'], 'services-index', sanitize_text_field( $_GET['index'] ) );
             echo 'Success!';
-
         }
     }
     wp_die(); 

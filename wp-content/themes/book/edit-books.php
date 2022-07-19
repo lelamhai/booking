@@ -320,36 +320,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
-            // $(document).on('click', '.delete-nemu', function() {
-            //     let id = $(this).parent().parent().parent().data('id');
-            //     let taxonomy = $(this).parent().parent().parent().data('taxonomy');
-            //     if(id == 0)
-            //     {
-            //         $(this).parent().parent().parent().parent().remove();
-            //         return;
-            //     }
-
-            //     $.ajax({
-            //     type : "GET", 
-            //     dataType: 'html',
-            //     url : "/wp-admin/admin-ajax.php",
-            //     data : {
-            //         action: "deleteTaxonomy",
-            //         id: id,
-            //         taxonomy: taxonomy
-            //     },
-            //     beforeSend: function(){
-                   
-            //     },
-            //     success: function(response) {
-            //         alert(response);
-            //         location.reload();
-            //     },
-            //     error: function( jqXHR, textStatus, errorThrown ){
-            //     }
-            //     });
-            // });
-
             $(document).on('click', '.delete-nemu', function() {
                 clearInputPopup ();
                 let id = $(this).parents(".wrap-level").data('id');
@@ -412,7 +382,6 @@
                         
                         },
                         success: function(response) {
-                            // $('.wrap-level[data-id="'+id+'"]').parents(".block-level1").remove();
                             $('#deleteModal').modal('toggle');
                             alert(response);
                             location.reload();
@@ -429,6 +398,7 @@
             let tempChild = 1;
             $(document).on('click', '.create-menu', function() {
                 let title = $(this).parents(".wrap-level").data("title");
+                let parentId = $(this).parents(".wrap-level").data("parent");
                 let html = "";
                 if(title === "parent")
                 {
@@ -436,15 +406,16 @@
                     $(this).parents(".wrap-level").parent().after(html);
                     tempParent ++;
                 } else {
-                    html = "<div class='wrap-level' data-id='0' data-taxonomy='services' data-parent='' data-title='children' data-tempchildren='"+tempChild+"'><div class='level'><div class='title-level'>Level 2</div><div class='wrap-right'><div class='button-menu'><button class='create-menu'>Add</button></div><div class='delete-level'><button class='delete-nemu' data-toggle='modal' data-target='#deleteModal'>Delete</button></div></div></div><div class='menu-title'><span>Title</span><input type='text' class='title' value=''></div><div class='menu-price'><span>Price</span><input type='number' class='price' value=''><div class='price-dolla'>$</div></div><div class='menu-description'><span>Description</span><input type='text' class='description' value=''></div></div>";
+                    html = "<div class='wrap-level' data-id='0' data-taxonomy='services' data-parent='"+parentId+"' data-title='children' data-tempchildren='"+tempChild+"'><div class='level'><div class='title-level'>Level 2</div><div class='wrap-right'><div class='button-menu'><button class='create-menu'>Add</button></div><div class='delete-level'><button class='delete-nemu' data-toggle='modal' data-target='#deleteModal'>Delete</button></div></div></div><div class='menu-title'><span>Title</span><input type='text' class='title' value=''></div><div class='menu-price'><span>Price</span><input type='number' class='price' value=''><div class='price-dolla'>$</div></div><div class='menu-description'><span>Description</span><input type='text' class='description' value=''></div></div>";
                     $(this).parents(".wrap-level").after(html);
                     tempChild ++;
                 }
             });
 
             $(document).on('click', '.add-sub', function() {
+                let parentId = $(this).parents(".block-level1").children().data("id");
                 let html = "";
-                html = "<div class='wrap-menu-block block-level2'><div class='wrap-level' data-id='0' data-taxonomy='services' data-parent='0' data-title='children' data-tempchildren='"+tempChild+"'><div class='level'><div class='title-level'>Level 2</div><div class='wrap-right'><div class='button-menu'><button class='create-menu'>Add</button></div><div class='delete-level'><button class='delete-nemu' data-toggle='modal' data-target='#deleteModal'>Delete</button></div></div></div><div class='menu-title'><span>Title</span><input type='text' class='title' value=''></div><div class='menu-price'><span>Price</span><input type='number' class='price' value=''><div class='price-dolla'>$</div></div><div class='menu-description'><span>Description</span><input type='text' class='description' value=''></div></div></div>";
+                html = "<div class='wrap-menu-block block-level2'><div class='wrap-level' data-id='0' data-taxonomy='services' data-parent='"+parentId+"' data-title='children' data-tempchildren='"+tempChild+"'><div class='level'><div class='title-level'>Level 2</div><div class='wrap-right'><div class='button-menu'><button class='create-menu'>Add</button></div><div class='delete-level'><button class='delete-nemu' data-toggle='modal' data-target='#deleteModal'>Delete</button></div></div></div><div class='menu-title'><span>Title</span><input type='text' class='title' value=''></div><div class='menu-price'><span>Price</span><input type='number' class='price' value=''><div class='price-dolla'>$</div></div><div class='menu-description'><span>Description</span><input type='text' class='description' value=''></div></div></div>";
                 $(this).parents(".block-level1").append(html);
                 $(this).parents(".add-sub-service").remove();
                 tempChild ++;
@@ -452,65 +423,178 @@
            
 
             $(document).on('click', '.save', function() { 
-                // $(".wrap-level").each(function (index, obj) {
-                //     let id = $(this).data("id");
-                //     let parentId = $(this).data("parent");
-                //     let taxonomy = $(this).data("taxonomy");
-                //     let title = $(this).children('.menu-title').children('.title').val();
-                //     let price = $(this).children('.menu-price').children('.price').val();
-                //     let description = $(this).children('.menu-description').children('.description').val();
-                //     if(id == 0)
-                //     {
-                //         $.ajax({
-                //             type : "GET", 
-                //             dataType: 'html',
-                //             url : "./wp-admin/admin-ajax.php",
-                //             data : {
-                //                 action: "createMenu",
-                //                 id:id,
-                //                 parentId:parentId,
-                //                 taxonomy: taxonomy,
-                //                 title: title,
-                //                 price: price,
-                //                 description: description
+                let indexParent = 1;
+                
+                //parent
+                $(".block-level1").each(function (index, obj) {
+                    let id = $(this).children(".wrap-level").data("id");
+                    let parentId = $(this).children(".wrap-level").data("parent");
+                    let taxonomy = $(this).children(".wrap-level").data("taxonomy");
+                    let title = $(this).children(".wrap-level").children('.menu-title').children('.title').val();
+                    let price = $(this).children(".wrap-level").children('.menu-price').children('.price').val();
+                    let description = $(this).children(".wrap-level").children('.menu-description').children('.description').val();
 
-                //             },
-                //             beforeSend: function(){
-                            
-                //             },
-                //             success: function(response) {
-                //                 console.log(response);
-                //             },
-                //             error: function( jqXHR, textStatus, errorThrown ){
-                //             }
-                //         });
-                //     } else {
-                //         // update menu
-                //         $.ajax({
-                //             type : "GET", 
-                //             dataType: 'html',
-                //             url : "./wp-admin/admin-ajax.php",
-                //             data : {
-                //                 action: "updateMenu",
-                //                 id: id,
-                //                 parentId:parentId,
-                //                 taxonomy: taxonomy,
-                //                 title: title,
-                //                 price: price,
-                //                 description: description
-                //             },
-                //             beforeSend: function(){
-                            
-                //             },
-                //             success: function(response) {
+                    if(id != 0)
+                    {
+                        $.ajax({
+                            type : "GET", 
+                            dataType: 'html',
+                            url : "./wp-admin/admin-ajax.php",
+                            data : {
+                                action: "updateMenu",
+                                id: id,
+                                parentId:parentId,
+                                taxonomy: taxonomy,
+                                title: title,
+                                price: price,
+                                description: description,
+                                index: indexParent
+                            },
+                            beforeSend: function(){
 
-                //             },
-                //             error: function( jqXHR, textStatus, errorThrown ){
-                //             }
-                //         });
-                //     }
-                // });
-                // location.reload();
+                            },
+                            success: function(response) {
+
+                            },
+                            error: function( jqXHR, textStatus, errorThrown ){
+                            }
+                        });
+                        indexParent ++
+                    } else {
+                        $.ajax({
+                            type : "GET", 
+                            dataType: 'html',
+                            url : "./wp-admin/admin-ajax.php",
+                            data : {
+                                action: "createMenu",
+                                id:id,
+                                parentId:parentId,
+                                taxonomy: taxonomy,
+                                title: title,
+                                price: price,
+                                description: description,
+                                index: indexParent
+                            },
+                            beforeSend: function(){
+
+                            },
+                            success: function(response) {
+                                // $(this).children(".block-level2").children(".wrap-level").css("background-color","red");
+                                let indexChildren = 1;
+                                $(this).children(".block-level2").children(".wrap-level").each(function (index, obj) {
+                                    let parentId = response;
+                                    let taxonomy = $(obj).data("taxonomy");
+                                    let title = $(obj).children('.menu-title').children('.title').val();
+                                    let price = $(obj).children('.menu-price').children('.price').val();
+                                    let description = $(obj).children('.menu-description').children('.description').val();
+                                   
+                                    $.ajax({
+                                        type : "GET", 
+                                        dataType: 'html',
+                                        url : "./wp-admin/admin-ajax.php",
+                                        data : {
+                                            action: "createMenu",
+                                            id:id,
+                                            parentId:parentId,
+                                            taxonomy: taxonomy,
+                                            title: title,
+                                            price: price,
+                                            description: description,
+                                            index: indexChildren
+                                        },
+                                        beforeSend: function(){
+
+                                        },
+                                        success: function(response) {
+                                        },
+                                        error: function( jqXHR, textStatus, errorThrown ){
+                                        }
+                                    });
+                                    indexChildren++;
+                                });
+
+                            }.bind(this),
+
+                            error: function( jqXHR, textStatus, errorThrown ){
+                            }
+                        });
+                        indexParent ++;
+                    }
+
+                    // children
+                    if(id != 0)
+                    {
+                        if($(this).children(".wrap-menu-block").hasClass("block-level2"))
+                        {
+                            let indexChildren = 1;
+                            $(this).children(".block-level2").children(".wrap-level").each(function (index, obj) {
+                                let id = $(this).data("id");
+                                let parentId = $(this).data("parent");
+                                let taxonomy = $(this).data("taxonomy");
+                                let title = $(this).children('.menu-title').children('.title').val();
+                                let price = $(this).children('.menu-price').children('.price').val();
+                                let description = $(this).children('.menu-description').children('.description').val();
+
+                                if(id != 0)
+                                {
+                                    $.ajax({
+                                        type : "GET", 
+                                        dataType: 'html',
+                                        url : "./wp-admin/admin-ajax.php",
+                                        data : {
+                                            action: "updateMenu",
+                                            id: id,
+                                            parentId:parentId,
+                                            taxonomy: taxonomy,
+                                            title: title,
+                                            price: price,
+                                            description: description,
+                                            index: indexChildren
+                                        },
+                                        beforeSend: function(){
+
+                                        },
+                                        success: function(response) {
+
+                                        },
+                                        error: function( jqXHR, textStatus, errorThrown ){
+                                        }
+                                    });
+                                    indexChildren ++;
+                                } else {
+                                    $.ajax({
+                                        type : "GET", 
+                                        dataType: 'html',
+                                        url : "./wp-admin/admin-ajax.php",
+                                        data : {
+                                            action: "createMenu",
+                                            id:id,
+                                            parentId:parentId,
+                                            taxonomy: taxonomy,
+                                            title: title,
+                                            price: price,
+                                            description: description,
+                                            index: indexChildren
+                                        },
+                                        beforeSend: function(){
+
+                                        },
+                                        success: function(response) {
+                                        },
+                                        error: function( jqXHR, textStatus, errorThrown ){
+                                        }
+                                    });
+                                    indexChildren ++;
+                                }
+                            });
+                        }
+                    }
+                });
+                setTimeout(
+                function() 
+                {
+                    location.reload();
+                }, 2000);
             });
 
         });
