@@ -141,6 +141,7 @@
 			unset($columns['slug']);
 		}
 		$columns['slots'] = 'slots';
+		$columns['index'] = 'index';
 		return $columns;
 	}
 
@@ -151,6 +152,10 @@
 			<div class="form-field">
 				<label for="times-slots">Slots</label>
 				<input type="number" name="times-slots" id="times-slots" value="1" min="1">
+			</div>
+			<div class="form-field">
+				<label for="times-index">Index</label>
+				<input type="number" name="times-index" id="times-index" value="1" min="1">
 			</div>
 		<?php
 	}
@@ -163,6 +168,10 @@
 			case 'slots':
 				echo get_term_meta( $term_id, 'times-slots', true );
 				break;
+
+			case 'index':
+				echo get_term_meta( $term_id, 'times-index', true );
+				break;
 		}
 	}
 
@@ -170,10 +179,16 @@
 	add_action( 'times_edit_form_fields', 'techiepress_edit_times_fields', 10, 2 );
 	function techiepress_edit_times_fields( $term, $taxonomy ) {
 		$value = get_term_meta($term->term_id, 'times-slots', true );
+		$index = get_term_meta($term->term_id, 'times-index', true );
 		?>
 			<tr class="form-field">
 				<th scope="row"><label for="times-slots">Slots</label></th>
 				<td><input type="text" name="times-slots" id="times-slots" value="<?php echo esc_attr( $value ); ?>" min="1">
+			</tr>
+
+			<tr class="form-field">
+				<th scope="row"><label for="times-index">Index</label></th>
+				<td><input type="text" name="times-index" id="times-index" value="<?php echo esc_attr( $index ); ?>" min="1">
 			</tr>
 		<?php
 	}
@@ -183,5 +198,6 @@
 	add_action( 'edited_times', 'techiepress_created_times_fields' );
 	function techiepress_created_times_fields( $term_id ) {
 		update_term_meta( $term_id, 'times-slots', sanitize_text_field( $_POST['times-slots'] ) );
+		update_term_meta( $term_id, 'times-index', sanitize_text_field( $_POST['times-index'] ) );
 	}
 }

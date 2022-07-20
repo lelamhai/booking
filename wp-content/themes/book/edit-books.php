@@ -11,10 +11,15 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <style>
             main {
-                max-width: 960px;
+                max-width: 800px;
                 margin: auto;
             }
 
+            .menu {
+                margin-bottom: 45px;
+            }
+
+            .create-time,
             .create-menu {
                 background-color: #008037;
                 padding: 10px;
@@ -52,8 +57,10 @@
                 color: #fff;
                 border: 0;
                 border-radius: 5px;
+                margin: 30px 0 45px 0;
             }
 
+            .delete-time,
             .delete-nemu {
                 color: #fff;
                 background-color: #ac2b2b;
@@ -70,6 +77,8 @@
             .block-level1:first-child>.wrap-level>.level>.wrap-right>.delete-level {
                 display: none;
             }
+
+           
 
             .wrap-level {
                 width: 100%;
@@ -165,6 +174,23 @@
                 border-radius: 5px;
             }
 
+            /* times */
+            .wrap-times-tile .seats,
+            .wrap-times-tile .time {
+                font-weight: bold;
+            }
+            .wrap-times-tile {
+                display:flex;
+                margin: 15px 0 30px 0;
+            }
+
+            .group-button {
+                display:flex;
+            }
+
+            .wrap-times-row:nth-child(4) > .group-button > .delete-level {
+                display: none;
+            }
 
             @media (min-width: 768px)
             {
@@ -213,8 +239,25 @@
                     <input type="hidden" id="popup-tempParentId" value="">
                     <input type="hidden" id="popup-tempChildId" value="">
                     <div class="comfirm">
-                        <button class="yes">Yes</button>
-                        <button class="no" data-dismiss="modal">No</button>
+                        <button class="yes yes-serivces">Yes</button>
+                        <button class="no no-serivces" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteTimes">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="message">Do you want to delete?</div>
+                    <input type="hidden" id="popup-times-id" value="">
+                    <input type="hidden" id="popup-times-taxonomy" value="">
+                    <input type="hidden" id="popup-times-tempId" value="">
+                    <div class="comfirm">
+                        <button class="yes yes-times">Yes</button>
+                        <button class="no no-times" data-dismiss="modal">No</button>
                     </div>
                 </div>
             </div>
@@ -311,7 +354,119 @@
                        
                     </div>
 
-                    <button class="save">Save changes</button>
+                    <button class="save save-services">Save changes</button>
+                </div>
+            </section>
+            
+            <style>
+                .time {
+                    width: 300px;
+                }
+                .seats {
+                    width: 100px;
+                     margin-right: 15px;
+                }
+
+                .wrap-times-row {
+                    display: flex;
+                    padding: 15px 0;
+                    align-items: center;
+                }
+
+                .time input {
+                    padding: 5px;
+                }
+
+                .seats input {
+                    padding: 5px;
+                    width: 100%;
+                }
+
+                .input-fill {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    font-size: 10px;
+                }
+
+                .input-fill .fill-all {
+                    width: 64px;
+                    padding: 0 5px;
+                    margin-left: 5px;
+                }
+
+                .time-excerpt {
+                    padding: 30px 0;
+                }
+
+                .button-fill-all {
+                    font-size: 10px;
+                    background-color: #008037;
+                    border: 0;
+                    color: #fff;
+                    border-radius: 5px;
+                }
+
+            </style>
+
+            <section class="menu">
+                <div class="wrap-menu">
+                    <div class="head-menu">
+                        <div class="title-menu">Time & Seat Available for Online Appointments</div>
+                    </div>
+
+                    <div class="body-menu">
+                        <div class="time-excerpt">Enter 0 (zero) in the box below to turn off online appointments</div>
+                        
+                        <div class="wrap-times-tile">
+                            <div class="time"></div>
+                            <div class="seats input-fill">
+                                Fill all: <input type="number" value="1" class="fill-all">
+                            </div>
+                            <div class="group-button">
+                                <button class="button-fill-all ">Update</button>
+                            </div>
+                        </div>
+
+                        <div class="wrap-times-tile" style="margin-bottom: 0;">
+                            <div class="time">Time</div>
+                            <div class="seats">Seats</div>
+                            <div class="group-button"></div>
+                        </div>
+                        <?php
+                            if(count(get_data_times()) == 0)
+                            {
+                                ?>
+                                    <div class="wrap-times-row" data-id="0" data-taxonomy="times" data-tempid="0">
+                                        <div class="time"><input type="text" class="input-time" value=""></div>
+                                        <div class="seats"><input type="number" class="input-slots" value=""></div>
+                                        <div class="group-button">
+                                            <div class="button-menu"><button class="create-time">Add</button></div>
+                                            <div class="delete-level"><button class="delete-time" data-toggle="modal" data-target="#deleteTimes">Delete</button></div>
+                                        </div>
+                                    </div>
+                                <?php
+                            } else {
+                                foreach(get_data_times() as $time)
+                                {
+                                    $slots = get_term_meta($time->term_id, 'times-slots', true );
+                                    ?>
+                                        <div class="wrap-times-row" data-id="<?php echo $time->term_id?>" data-taxonomy="times">
+                                            <div class="time"><input type="text" class="input-time" value="<?php echo $time->name?>"></div>
+                                            <div class="seats"><input type="number" class="input-slots" value="<?php echo $slots?>"></div>
+                                            <div class="group-button">
+                                                <div class="button-menu"><button class="create-time">Add</button></div>
+                                                <div class="delete-level"><button class="delete-time" data-toggle="modal" data-target="#deleteTimes">Delete</button></div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                }
+                            }
+
+                        ?>
+                    </div>
+
+                    <button class="save save-time">Save changes</button>
                 </div>
             </section>
         </main>
@@ -343,7 +498,7 @@
                 }
             });
 
-            $('.yes').click(function(){
+            $('.yes-serivces').click(function(){
                 let id = $("#popup-id").val();
                 if(id == 0)
                 {
@@ -383,7 +538,6 @@
                         },
                         success: function(response) {
                             $('#deleteModal').modal('toggle');
-                            alert(response);
                             location.reload();
                         },
                         error: function( jqXHR, textStatus, errorThrown ){
@@ -420,9 +574,8 @@
                 $(this).parents(".add-sub-service").remove();
                 tempChild ++;
             });
-           
 
-            $(document).on('click', '.save', function() { 
+            $(document).on('click', '.save-services', function() { 
                 let indexParent = 1;
                 
                 //parent
@@ -606,5 +759,142 @@
             $("#popup-tempParentId").val("");
             $("#popup-tempChildId").val("");
         }
+
+        let tempId = 1;
+        $(document).on('click', '.create-time', function() { 
+            let html = "<div class='wrap-times-row' data-id='0' data-taxonomy='times' data-tempid='"+tempId+"'><div class='time'><input type='text'  class='input-time' value=''></div><div class='seats'><input type='number' class='input-slots' value=''></div><div class='group-button'><div class='button-menu'><button class='create-time'>Add</button></div><div class='delete-level'><button class='delete-time' data-toggle='modal' data-target='#deleteTimes'>Delete</button></div></div></div>";
+            $(this).parents(".wrap-times-row").after(html);
+            tempId ++;
+        });
+
+        $(document).on('click', '.save-time', function() { 
+            let indexTime = 1;
+            $(".wrap-times-row").each(function (index, obj) {
+                let id = $(this).data("id");
+                let taxonomy = $(this).data("taxonomy");
+                let time =  $(this).children(".time").children().val();
+                let slots =  $(this).children(".seats").children().val();
+
+                if(id != 0)
+                {
+                    $.ajax({
+                        type : "GET", 
+                        dataType: 'html',
+                        url : "./wp-admin/admin-ajax.php",
+                        data : {
+                                action: "updateTime",
+                                id: id,
+                                taxonomy: taxonomy,
+                                time: time,
+                                slots: slots,
+                                index: indexTime
+                        },
+                        beforeSend: function(){
+
+                        },
+                        success: function(response) {
+
+                        },
+                        error: function( jqXHR, textStatus, errorThrown ){
+                        }
+                    });
+                    indexTime ++;
+                } else if(time != null) {
+                    $.ajax({
+                        type : "GET", 
+                        dataType: 'html',
+                        url : "./wp-admin/admin-ajax.php",
+                        data : {
+                                action: "createTime",
+                                taxonomy: taxonomy,
+                                time: time,
+                                slots: slots,
+                                index: indexTime
+                        },
+                        beforeSend: function(){
+
+                        },
+                        success: function(response) {
+
+                        },
+                        error: function( jqXHR, textStatus, errorThrown ){
+                        }
+                    });
+                    indexTime ++;
+                }
+            });
+            setTimeout(
+            function() 
+            {
+                location.reload();
+            }, 2000);
+        });
+
+        $(document).on('click', '.delete-time', function() { 
+            clearInputTimes();
+            let id = $(this).parents(".wrap-times-row").data("id");
+            let taxonomy = $(this).parents(".wrap-times-row").data("taxonomy");
+
+            if(id == 0)
+            {
+                let tempId = $(this).parents(".wrap-times-row").data("tempid");
+                $("#popup-times-id").val(id);
+                $("#popup-times-tempId").val(tempId);
+            } else {
+                $("#popup-times-id").val(id);
+                $("#popup-times-taxonomy").val(taxonomy);
+            }
+        });
+
+        $(document).on('click', '.yes-times', function() { 
+            let id = $("#popup-times-id").val();
+            let taxonomy = $("#popup-times-taxonomy").val();
+            if(id == 0)
+            {
+                let tempId = $("#popup-times-tempId").val();
+                $('.wrap-times-row[data-tempid="'+tempId+'"]').remove();
+                $('#deleteTimes').modal('toggle');
+            } else {
+                $.ajax({
+                    type : "GET", 
+                    dataType: 'html',
+                    url : "./wp-admin/admin-ajax.php",
+                    data : {
+                        action: "deleteTaxonomy",
+                        id: id,
+                        taxonomy: taxonomy
+                    },
+                    beforeSend: function(){
+                        
+                    },
+                    success: function(response) {
+                        $('#deleteTimes').modal('toggle');
+                        location.reload();
+                    },
+                    error: function( jqXHR, textStatus, errorThrown ){
+                        console.log(errorThrown);
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', '.button-fill-all', function() { 
+            let fillAll = $(".fill-all").val();
+            $(".wrap-times-row").each(function (index, obj) {
+                $(this).children(".seats").children().val(fillAll);
+            });
+        });
+
+        
+
+        function clearInputTimes()
+        {
+            $("#popup-times-id").val("");
+            $("#popup-times-taxonomy").val("");
+            $("#popup-times-tempId").val("");
+        }
+        
+
+      
     </script>
 </html>

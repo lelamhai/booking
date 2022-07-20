@@ -100,6 +100,27 @@ function delete_term($id, $taxonomy)
     echo "Delete finish";
 }
 
+function times_get_data_taxonomy()
+{
+    $args = array(  
+        'taxonomy' => 'times',
+        'parent'   => 0,
+        'hide_empty' => false,
+        'meta_key' => 'times-index',
+        'orderby' => 'meta_value',
+        'order' => 'ASC'
 
+
+        // 'taxonomy' => 'times',
+        // 'parent'   => 0,
+        // 'hide_empty' => false,
+        // 'meta_key' => 'times-index',
+        // 'orderby' => 'meta_value',
+        // 'order' => 'DESC'
+    );
+
+    $taxonomies = get_terms($args);
+    return $taxonomies;
+}
 
 ?>
