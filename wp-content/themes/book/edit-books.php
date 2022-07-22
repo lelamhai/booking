@@ -42,6 +42,30 @@
                 padding: 0 15px;
             }
 
+            /* Hours */
+            .wrap-hours {
+                margin: 15px 0;
+            }
+
+            .label-hours {
+                padding-bottom: 10px;
+                font-weight: bold;
+            }
+
+            .time-from {
+                padding: 0 5px;
+                margin-right: 15px;
+            }
+
+            .time-to {
+                padding: 0 5px;
+                margin-right: 15px;
+            }
+
+            .wrap-input-hours b {
+                padding: 0 15px;
+            }
+
 
             /* Menu */
             .create-time,
@@ -443,7 +467,301 @@
                     <button class="save save-business">Save changes</button>
                 </div>
             </section>
+            
+            <section class="menu">
+                <div class="wrap-menu">
+                    <div class="head-menu">
+                        <div class="title-menu">Your Opening Hours</div>
+                    </div>
 
+                    <div class="body-hours">
+                            <?php
+                                for($i=0; $i<7; $i++)
+                                {
+                                    ?><div class="wrap-hours"><?php
+                                    $key = "week".($i+2);
+
+                                    $value = "";
+                                    if(get_option($key))
+                                    {
+                                        $value = get_option($key);
+                                        $arr = explode('-', $value);
+                                    }
+
+                                    // var_dump($arr);
+
+                                    if($i == 0)
+                                    {
+                                        ?>
+                                            <div class="label-hours">Monday</div>
+                                        <?php
+                                    }
+
+                                    if($i == 1)
+                                    {
+                                        ?>
+                                            <div class="label-hours">Tuesday</div>
+                                        <?php
+                                    }
+
+                                    if($i == 2)
+                                    {
+                                        ?>
+                                            <div class="label-hours">Wednesday</div>
+                                        <?php
+                                    }
+
+                                    if($i == 3)
+                                    {
+                                        ?>
+                                            <div class="label-hours">Thursday</div>
+                                        <?php
+                                    }
+
+                                    if($i == 4)
+                                    {
+                                        ?>
+                                            <div class="label-hours">Firday</div>
+                                        <?php
+                                    }
+
+                                    if($i == 5)
+                                    {
+                                        ?>
+                                            <div class="label-hours">Saturday</div>
+                                        <?php
+                                    }
+
+                                    if($i == 6)
+                                    {
+                                        ?>
+                                            <div class="label-hours">Sunday</div>
+                                        <?php
+                                    }
+                                    ?>
+                                        <div class="wrap-input-hours">
+                                            <?php
+                                                $valueFrom = "9:30";
+                                                if(count($arr) > 0)
+                                                {
+                                                    $valueFrom = $arr[0];
+                                                } 
+                                            ?>
+                                            <input type="text" class="time-from" value="<?php echo $valueFrom?>">
+                                            <?php 
+                                                $list = array("", "AM", "PM");
+                                                $index = 1;
+                                                if(count($arr) > 0)
+                                                {
+                                                    if($arr[1] != "")
+                                                    {
+                                                        $optionFrom = $arr[1];
+                                                        $index = $optionFrom;
+                                                    }
+                                                }
+                                            ?>
+                                            <select name="" id="" class="option-from">
+                                                <?php
+                                                    for($j=0; $j<count($list); $j++)
+                                                    {
+                                                        if($j == $index)
+                                                        {
+                                                            ?>
+                                                                <option value="<?php echo $j;?>" selected><?php echo $list[$j];?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                                <option value="<?php echo $j;?>"><?php echo $list[$j];?></option>
+                                                            <?php
+                                                        }
+                                                        
+                                                    }
+                                                ?>
+                                            </select>
+                                            <b>to</b>
+                                            <?php
+                                                $valueFrom = "9:30";
+                                                if(count($arr) > 0)
+                                                {
+                                                    $valueFrom = $arr[2];
+                                                } 
+                                            ?>
+                                            <input type="text" class="time-to" value="<?php echo $valueFrom?>">
+                                            <?php 
+                                                $list = array("", "AM", "PM");
+                                                $index = 2;
+                                                if(count($arr) > 0)
+                                                {
+                                                    if($arr[3] != "")
+                                                    {
+                                                        $optionFrom = $arr[3];
+                                                        $index = $optionFrom;
+                                                    }
+                                                }
+                                            ?>
+                                            <select name="" id="" class="option-to">
+                                                <?php
+                                                    for($j=0; $j<count($list); $j++)
+                                                    {
+                                                        if($j == $index)
+                                                        {
+                                                            ?>
+                                                                <option value="<?php echo $j;?>" selected><?php echo $list[$j];?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                                <option value="<?php echo $j;?>"><?php echo $list[$j];?></option>
+                                                            <?php
+                                                        }
+                                                        
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    <?php
+                                    ?></div><?php
+                                }
+                            ?>
+                           
+                        </div>
+
+                        <!-- <div class="wrap-hours">
+                            <div class="label-hours">Monday</div>
+                            <div class="wrap-input-hours">
+                                <input type="text" class="time-from" value="9:30">
+                                <select name="" id="" class="option-from">
+                                    <option value="0"> </option>
+                                    <option value="1" selected>AM</option>
+                                    <option value="2">PM</option>
+                                </select>
+                                <b>to</b>
+                                <input type="text" class="time-to" value="9:30">
+                                <select name="" id="" class="option-to">
+                                    <option value="0"> </option>
+                                    <option value="1">AM</option>
+                                    <option value="2"selected>PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="wrap-hours">
+                            <div class="label-hours">Tuesday</div>
+                            <div class="wrap-input-hours">
+                                <input type="text" class="time-from" value="9:30">
+                                <select name="" id="" class="option-from">
+                                    <option value="0"> </option>
+                                    <option value="1" selected>AM</option>
+                                    <option value="2">PM</option>
+                                </select>
+                                <b>to</b>
+                                <input type="text" class="time-to" value="9:30">
+                                <select name="" id="" class="option-to">
+                                    <option value="0"> </option>
+                                    <option value="1">AM</option>
+                                    <option value="2"selected>PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="wrap-hours">
+                            <div class="label-hours">Wednesday</div>
+                            <div class="wrap-input-hours">
+                                <input type="text" class="time-from" value="9:30">
+                                <select name="" id="" class="option-from">
+                                    <option value="0"> </option>
+                                    <option value="1" selected>AM</option>
+                                    <option value="2">PM</option>
+                                </select>
+                                <b>to</b>
+                                <input type="text" class="time-to" value="9:30">
+                                <select name="" id="" class="option-to">
+                                    <option value="0"> </option>
+                                    <option value="1">AM</option>
+                                    <option value="2"selected>PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="wrap-hours">
+                            <div class="label-hours">Thursday</div>
+                            <div class="wrap-input-hours">
+                                <input type="text" class="time-from" value="9:30">
+                                <select name="" id="" class="option-from">
+                                    <option value="0"> </option>
+                                    <option value="1" selected>AM</option>
+                                    <option value="2">PM</option>
+                                </select>
+                                <b>to</b>
+                                <input type="text" class="time-to" value="9:30">
+                                <select name="" id="" class="option-to">
+                                    <option value="0"> </option>
+                                    <option value="1">AM</option>
+                                    <option value="2"selected>PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="wrap-hours">
+                            <div class="label-hours">Firday</div>
+                            <div class="wrap-input-hours">
+                                <input type="text" class="time-from" value="9:30">
+                                <select name="" id="" class="option-from">
+                                    <option value="0"> </option>
+                                    <option value="1" selected>AM</option>
+                                    <option value="2">PM</option>
+                                </select>
+                                <b>to</b>
+                                <input type="text" class="time-to" value="9:30">
+                                <select name="" id="" class="option-to">
+                                    <option value="0"> </option>
+                                    <option value="1">AM</option>
+                                    <option value="2"selected>PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="wrap-hours">
+                            <div class="label-hours">Saturday</div>
+                            <div class="wrap-input-hours">
+                                <input type="text" class="time-from" value="9:30">
+                                <select name="" id="" class="option-from">
+                                    <option value="0"> </option>
+                                    <option value="1" selected>AM</option>
+                                    <option value="2">PM</option>
+                                </select>
+                                <b>to</b>
+                                <input type="text" class="time-to" value="9:30">
+                                <select name="" id="" class="option-to">
+                                    <option value="0"> </option>
+                                    <option value="1">AM</option>
+                                    <option value="2"selected>PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="wrap-hours">
+                            <div class="label-hours">Sunday</div>
+                            <div class="wrap-input-hours">
+                                <input type="text" class="time-from" value="9:30">
+                                <select name="" id="" class="option-from">
+                                    <option value="0"> </option>
+                                    <option value="1" selected>AM</option>
+                                    <option value="2">PM</option>
+                                </select>
+                                <b>to</b>
+                                <input type="text" class="time-to" value="9:30">
+                                <select name="" id="" class="option-to">
+                                    <option value="0"> </option>
+                                    <option value="1">AM</option>
+                                    <option value="2"selected>PM</option>
+                                </select>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <button class="save save-hours">Save changes</button>
+                </div>
+            </section>
 
             <section class="menu">
                 <div class="wrap-menu">
@@ -641,6 +959,45 @@
                     location.reload();
                 }, 2000);
             });
+
+
+            // Hours
+            $('.save-hours').click(function(){
+                $(".wrap-hours").each(function (index, obj) {
+                    let timeFrom = $(this).children(".wrap-input-hours").children(".time-from").val();
+                    let optionFrom = $(this).children(".wrap-input-hours").children(".option-from").val();
+                    let timeTo = $(this).children(".wrap-input-hours").children(".time-to").val();
+                    let optionTo = $(this).children(".wrap-input-hours").children(".option-to").val();
+
+                    let key = "week"+ (index + 2);
+                    let name = timeFrom + "-" + optionFrom + "-" + timeTo + "-" + optionTo;
+
+                    $.ajax({
+                        type : "GET", 
+                        dataType: 'html',
+                        url : "./wp-admin/admin-ajax.php",
+                        data : {
+                            action: "addOption",
+                            key: key,
+                            name: name
+                        },
+                        beforeSend: function(){
+                            
+                        },
+                        success: function(response) {
+                        },
+                        error: function( jqXHR, textStatus, errorThrown ){
+                            console.log(errorThrown);
+                        }
+                    });
+                });
+                setTimeout(
+                function() 
+                {
+                    location.reload();
+                }, 2000);
+            });
+            
 
 
             $(document).on('click', '.delete-nemu', function() {
