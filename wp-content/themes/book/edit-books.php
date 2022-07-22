@@ -19,6 +19,31 @@
                 margin-bottom: 45px;
             }
 
+            /* Business */
+            .body-business {
+                display: flex;
+            }
+            .col {
+                width: 50%;
+            }
+
+            .wrap-business {
+                padding: 15px 0;
+            }
+
+            .label-business {
+                padding-bottom: 5px;
+                font-weight: bold;
+            }
+
+            .input-business {
+                width: 90%;
+                height: 40px;
+                padding: 0 15px;
+            }
+
+
+            /* Menu */
             .create-time,
             .create-menu {
                 background-color: #008037;
@@ -192,6 +217,54 @@
                 display: none;
             }
 
+            .time {
+                    width: 300px;
+                }
+                .seats {
+                    width: 100px;
+                     margin-right: 15px;
+                }
+
+                .wrap-times-row {
+                    display: flex;
+                    padding: 15px 0;
+                    align-items: center;
+                }
+
+                .time input {
+                    padding: 5px;
+                }
+
+                .seats input {
+                    padding: 5px;
+                    width: 100%;
+                }
+
+                .input-fill {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    font-size: 10px;
+                }
+
+                .input-fill .fill-all {
+                    width: 64px;
+                    padding: 0 5px;
+                    margin-left: 5px;
+                }
+
+                .time-excerpt {
+                    padding: 30px 0;
+                }
+
+                .button-fill-all {
+                    font-size: 10px;
+                    background-color: #008037;
+                    border: 0;
+                    color: #fff;
+                    border-radius: 5px;
+                }
+
             @media (min-width: 768px)
             {
                 .modal-dialog {
@@ -265,6 +338,113 @@
     </div>
 
         <main>
+            <section class="menu">
+                <div class="wrap-menu">
+                    <div class="head-menu">
+                        <div class="title-menu">Your Business Info</div>
+                    </div>
+
+                    <div class="body-business">
+                        <div class="col">
+                            <div class="wrap-business">
+                                <div class="label-business">Business name</div>
+                                <?php
+                                    $businessName = "";
+                                    if(get_option("businessName"))
+                                    {
+                                        $businessName = get_option("businessName");
+                                    }
+                                ?>
+                                <input type="text" class="input-business" data-key="businessName" value="<?php echo $businessName; ?>">
+                            </div>
+                            <div class="wrap-business">
+                                <div class="label-business">Address</div>
+                                <?php
+                                    $address = "";
+                                    if(get_option("address"))
+                                    {
+                                        $address = get_option("address");
+                                    }
+                                ?>
+                                <input type="text" class="input-business" data-key="address" value="<?php echo $address?>">
+                            </div>
+                            <div class="wrap-business">
+                                <div class="label-business">Phone number</div>
+                                <?php
+                                    $phoneNumber = "";
+                                    if(get_option("phoneNumber"))
+                                    {
+                                        $phoneNumber = get_option("phoneNumber");
+                                    }
+                                ?>
+                                <input type="number" class="input-business" data-key="phoneNumber" value="<?php echo $phoneNumber?>">
+                            </div>
+                            <div class="wrap-business">
+                                <div class="label-business">Google maps (link)</div>
+                                <?php
+                                    $googleMaps = "";
+                                    if(get_option("googleMaps"))
+                                    {
+                                        $googleMaps = get_option("googleMaps");
+                                    }
+                                ?>
+                                <input type="url" class="input-business" data-key="googleMaps" value="<?php echo $googleMaps?>">
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="wrap-business">
+                                <div class="label-business">Google review (link)</div>
+                                <?php
+                                    $googleReview = "";
+                                    if(get_option("googleReview"))
+                                    {
+                                        $googleReview = get_option("googleReview");
+                                    }
+                                ?>
+                                <input type="url" class="input-business" data-key="googleReview" value="<?php echo $googleReview?>">
+                            </div>
+                            <div class="wrap-business">
+                                <div class="label-business">Your facebook (link)</div>
+                                <?php
+                                    $facebook = "";
+                                    if(get_option("facebook"))
+                                    {
+                                        $facebook = get_option("facebook");
+                                    }
+                                ?>
+                                <input type="url" class="input-business" data-key="facebook" value="<?php echo $facebook?>">
+                            </div>
+                            <div class="wrap-business">
+                                <div class="label-business">Your instagram (link)</div>
+                                <?php
+                                    $instagram = "";
+                                    if(get_option("instagram"))
+                                    {
+                                        $instagram = get_option("instagram");
+                                    }
+                                ?>
+                                <input type="url" class="input-business" data-key="instagram" value="<?php echo $instagram?>">
+                            </div>
+                            <div class="wrap-business">
+                                <div class="label-business">Your youtube channel (link)</div>
+                                <?php
+                                    $youtube = "";
+                                    if(get_option("youtube"))
+                                    {
+                                        $youtube = get_option("youtube");
+                                    }
+                                ?>
+                                <input type="url" class="input-business" data-key="youtube" value="<?php echo $youtube?>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="save save-business">Save changes</button>
+                </div>
+            </section>
+
+
             <section class="menu">
                 <div class="wrap-menu">
                     <div class="head-menu">
@@ -359,53 +539,7 @@
             </section>
             
             <style>
-                .time {
-                    width: 300px;
-                }
-                .seats {
-                    width: 100px;
-                     margin-right: 15px;
-                }
-
-                .wrap-times-row {
-                    display: flex;
-                    padding: 15px 0;
-                    align-items: center;
-                }
-
-                .time input {
-                    padding: 5px;
-                }
-
-                .seats input {
-                    padding: 5px;
-                    width: 100%;
-                }
-
-                .input-fill {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
-                    font-size: 10px;
-                }
-
-                .input-fill .fill-all {
-                    width: 64px;
-                    padding: 0 5px;
-                    margin-left: 5px;
-                }
-
-                .time-excerpt {
-                    padding: 30px 0;
-                }
-
-                .button-fill-all {
-                    font-size: 10px;
-                    background-color: #008037;
-                    border: 0;
-                    color: #fff;
-                    border-radius: 5px;
-                }
+                
 
             </style>
 
@@ -475,6 +609,40 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('.save-business').click(function(){
+                $(".wrap-business").each(function (index, obj) {
+                    let elements = $(this).children(".input-business");
+                    let key = elements.data("key");
+                    let name = elements.val();
+				
+                    $.ajax({
+                        type : "GET", 
+                        dataType: 'html',
+                        url : "./wp-admin/admin-ajax.php",
+                        data : {
+                            action: "addOption",
+                            key: key,
+                            name: name
+                        },
+                        beforeSend: function(){
+                            
+                        },
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function( jqXHR, textStatus, errorThrown ){
+                            console.log(errorThrown);
+                        }
+                    });
+                });
+                setTimeout(
+                function() 
+                {
+                    location.reload();
+                }, 2000);
+            });
+
+
             $(document).on('click', '.delete-nemu', function() {
                 clearInputPopup ();
                 let id = $(this).parents(".wrap-level").data('id');
@@ -884,8 +1052,6 @@
                 $(this).children(".seats").children().val(fillAll);
             });
         });
-
-        
 
         function clearInputTimes()
         {

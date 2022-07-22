@@ -9,6 +9,34 @@ function get_data_times()
     return times_get_data_taxonomy();
 }
 
+add_action('wp_ajax_addOption', 'addOption_function');
+add_action('wp_ajax_nopriv_addOption', 'addOption_function');
+function addOption_function() {
+    if(!empty($_GET['key'])) 
+    {
+		$option_name = $_GET['key'] ;
+		$new_value = $_GET['name'] ;
+		if ( get_option( $option_name ) != $new_value ) {
+			update_option( $option_name, $new_value );
+		} else {
+			$deprecated = ' ';
+			$autoload = 'no';
+			add_option( $option_name, $new_value, $deprecated, $autoload );
+		}
+		
+//         if (get_option($_GET['key']) )
+//         {
+//             // update
+//             update_option( $_GET['key'], $_GET['name'], '','yes' );
+//         } else {
+//             // create
+//             add_option($_GET['key'], $_GET['name'], '', 'yes');
+//         }
+    }
+    wp_die(); 
+}
+
+
 add_action('wp_ajax_deleteTaxonomy', 'deleteTaxonomy_function');
 add_action('wp_ajax_nopriv_deleteTaxonomy', 'deleteTaxonomy_function');
 function deleteTaxonomy_function() {
