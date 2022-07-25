@@ -10,6 +10,29 @@
         <title>Page Title</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <style>
+            /* modal */
+            .loader {
+                border: 9px solid #000;
+                border-top-color: #0f6ac4;
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
             main {
                 max-width: 800px;
                 margin: auto;
@@ -66,6 +89,12 @@
                 padding: 0 15px;
             }
 
+            .hours-active {
+                margin-left: 60px;
+                color: #fff;
+                padding: 3px;
+                border: 0;
+            }
 
             /* Menu */
             .create-time,
@@ -75,6 +104,10 @@
                 border: 0;
                 color: #fff;
                 border-radius: 5px;
+            }
+
+            .create-time {
+                padding: 5px;
             }
 
             .menu-count {
@@ -116,6 +149,10 @@
                 border: 0;
                 padding: 10px 15px;
                 border-radius: 5px;
+            }
+
+            .delete-time {
+                padding: 5px;
             }
 
             .create-level {
@@ -255,12 +292,13 @@
                     align-items: center;
                 }
 
-                .time input {
-                    padding: 5px;
+                .time .input-time {
+                    width: 80px;
+                    margin-right: 15px;
+
                 }
 
                 .seats input {
-                    padding: 5px;
                     width: 100%;
                 }
 
@@ -361,6 +399,22 @@
         </div>
     </div>
 
+    <div class="modal fade" id="finish">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="message">Save successfully</div>
+                    <div class="comfirm">
+                        <button class="yes" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade in" id="loading" data-keyboard="false" data-backdrop="static">
+        <div class="loader"></div>
+    </div>
         <main>
             <section class="menu">
                 <div class="wrap-menu">
@@ -549,14 +603,13 @@
                                             ?>
                                             <input type="text" class="time-from" value="<?php echo $valueFrom?>">
                                             <?php 
-                                                $list = array("", "AM", "PM");
+                                                $list = array("AM", "PM");
                                                 $index = 1;
                                                 if(count($arr) > 0)
                                                 {
                                                     if($arr[1] != "")
                                                     {
-                                                        $optionFrom = $arr[1];
-                                                        $index = $optionFrom;
+                                                        $index = $arr[1];
                                                     }
                                                 }
                                             ?>
@@ -588,14 +641,12 @@
                                             ?>
                                             <input type="text" class="time-to" value="<?php echo $valueFrom?>">
                                             <?php 
-                                                $list = array("", "AM", "PM");
                                                 $index = 2;
                                                 if(count($arr) > 0)
                                                 {
                                                     if($arr[3] != "")
                                                     {
-                                                        $optionFrom = $arr[3];
-                                                        $index = $optionFrom;
+                                                        $index = $arr[3];
                                                     }
                                                 }
                                             ?>
@@ -617,146 +668,47 @@
                                                     }
                                                 ?>
                                             </select>
+                                            <?php
+                                                $actives = array("Closed","Open");
+                                                $index = 1;
+                                                if(count($arr) > 0)
+                                                {
+                                                    if($arr[4] != "")
+                                                    {
+                                                        $index = $arr[4];
+                                                    }
+                                                }
+
+                                                $styleSelect = "style='background-color: #ac2b2b;'";
+                                                if($index == 1)
+                                                {
+                                                    $styleSelect = "style='background-color: #008037;'";
+                                                }
+                                            ?>
+                                            <select name="" id="" class="hours-active" <?php echo $styleSelect; ?>>
+                                                <?php
+
+                                                    for($k=0; $k<count($actives); $k++)
+                                                    {
+                                                        if($k == $index)
+                                                        {
+                                                            ?>
+                                                                <option value="<?php echo $k;?>" selected><?php echo $actives[$k];?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                                <option value="<?php echo $k;?>"><?php echo $actives[$k];?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                ?>
+                                            </select>
                                         </div>
                                     <?php
                                     ?></div><?php
                                 }
                             ?>
-                           
                         </div>
-
-                        <!-- <div class="wrap-hours">
-                            <div class="label-hours">Monday</div>
-                            <div class="wrap-input-hours">
-                                <input type="text" class="time-from" value="9:30">
-                                <select name="" id="" class="option-from">
-                                    <option value="0"> </option>
-                                    <option value="1" selected>AM</option>
-                                    <option value="2">PM</option>
-                                </select>
-                                <b>to</b>
-                                <input type="text" class="time-to" value="9:30">
-                                <select name="" id="" class="option-to">
-                                    <option value="0"> </option>
-                                    <option value="1">AM</option>
-                                    <option value="2"selected>PM</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="wrap-hours">
-                            <div class="label-hours">Tuesday</div>
-                            <div class="wrap-input-hours">
-                                <input type="text" class="time-from" value="9:30">
-                                <select name="" id="" class="option-from">
-                                    <option value="0"> </option>
-                                    <option value="1" selected>AM</option>
-                                    <option value="2">PM</option>
-                                </select>
-                                <b>to</b>
-                                <input type="text" class="time-to" value="9:30">
-                                <select name="" id="" class="option-to">
-                                    <option value="0"> </option>
-                                    <option value="1">AM</option>
-                                    <option value="2"selected>PM</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="wrap-hours">
-                            <div class="label-hours">Wednesday</div>
-                            <div class="wrap-input-hours">
-                                <input type="text" class="time-from" value="9:30">
-                                <select name="" id="" class="option-from">
-                                    <option value="0"> </option>
-                                    <option value="1" selected>AM</option>
-                                    <option value="2">PM</option>
-                                </select>
-                                <b>to</b>
-                                <input type="text" class="time-to" value="9:30">
-                                <select name="" id="" class="option-to">
-                                    <option value="0"> </option>
-                                    <option value="1">AM</option>
-                                    <option value="2"selected>PM</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="wrap-hours">
-                            <div class="label-hours">Thursday</div>
-                            <div class="wrap-input-hours">
-                                <input type="text" class="time-from" value="9:30">
-                                <select name="" id="" class="option-from">
-                                    <option value="0"> </option>
-                                    <option value="1" selected>AM</option>
-                                    <option value="2">PM</option>
-                                </select>
-                                <b>to</b>
-                                <input type="text" class="time-to" value="9:30">
-                                <select name="" id="" class="option-to">
-                                    <option value="0"> </option>
-                                    <option value="1">AM</option>
-                                    <option value="2"selected>PM</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="wrap-hours">
-                            <div class="label-hours">Firday</div>
-                            <div class="wrap-input-hours">
-                                <input type="text" class="time-from" value="9:30">
-                                <select name="" id="" class="option-from">
-                                    <option value="0"> </option>
-                                    <option value="1" selected>AM</option>
-                                    <option value="2">PM</option>
-                                </select>
-                                <b>to</b>
-                                <input type="text" class="time-to" value="9:30">
-                                <select name="" id="" class="option-to">
-                                    <option value="0"> </option>
-                                    <option value="1">AM</option>
-                                    <option value="2"selected>PM</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="wrap-hours">
-                            <div class="label-hours">Saturday</div>
-                            <div class="wrap-input-hours">
-                                <input type="text" class="time-from" value="9:30">
-                                <select name="" id="" class="option-from">
-                                    <option value="0"> </option>
-                                    <option value="1" selected>AM</option>
-                                    <option value="2">PM</option>
-                                </select>
-                                <b>to</b>
-                                <input type="text" class="time-to" value="9:30">
-                                <select name="" id="" class="option-to">
-                                    <option value="0"> </option>
-                                    <option value="1">AM</option>
-                                    <option value="2"selected>PM</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="wrap-hours">
-                            <div class="label-hours">Sunday</div>
-                            <div class="wrap-input-hours">
-                                <input type="text" class="time-from" value="9:30">
-                                <select name="" id="" class="option-from">
-                                    <option value="0"> </option>
-                                    <option value="1" selected>AM</option>
-                                    <option value="2">PM</option>
-                                </select>
-                                <b>to</b>
-                                <input type="text" class="time-to" value="9:30">
-                                <select name="" id="" class="option-to">
-                                    <option value="0"> </option>
-                                    <option value="1">AM</option>
-                                    <option value="2"selected>PM</option>
-                                </select>
-                            </div>
-                        </div> -->
                     </div>
 
                     <button class="save save-hours">Save changes</button>
@@ -890,7 +842,19 @@
                             {
                                 ?>
                                     <div class="wrap-times-row" data-id="0" data-taxonomy="times" data-tempid="0">
-                                        <div class="time"><input type="text" class="input-time" value=""></div>
+                                        <div class="time">
+                                            <input type="text" class="input-time" value="">
+                                            <select name="" id="" class="time-option">
+                                                <?php
+                                                    for($j=0; $j<count($list); $j++)
+                                                    {
+                                                        ?>
+                                                            <option value="<?php echo $j?>"><?php echo $list[$j]?></option>
+                                                        <?php
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
                                         <div class="seats"><input type="number" class="input-slots" value=""></div>
                                         <div class="group-button">
                                             <div class="button-menu"><button class="create-time">Add</button></div>
@@ -904,7 +868,37 @@
                                     $slots = get_term_meta($time->term_id, 'times-slots', true );
                                     ?>
                                         <div class="wrap-times-row" data-id="<?php echo $time->term_id?>" data-taxonomy="times">
-                                            <div class="time"><input type="text" class="input-time" value="<?php echo $time->name?>"></div>
+                                            <div class="time">
+
+                                                <?php
+                                                    $timeExplode = explode('-', $time->name);
+                                                    $index = 0;
+                                                    if($timeExplode[1] != "")
+                                                    {
+                                                        $index = $timeExplode[1];
+                                                    }
+                                                ?>
+
+                                                <input type="text" class="input-time" value="<?php echo $timeExplode[0]?>">
+                                                <select name="" id="" class="time-option">
+                                                    <?php
+                                                        for($j=0; $j<count($list); $j++)
+                                                        {
+                                                            if($index == $j)
+                                                            {
+                                                                ?>
+                                                                    <option value="<?php echo $j?>" selected><?php echo $list[$j]?></option>
+                                                                <?php
+                                                            } else {
+                                                                ?>
+                                                                    <option value="<?php echo $j?>"><?php echo $list[$j]?></option>
+                                                                <?php
+                                                            }
+                                                            
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
                                             <div class="seats"><input type="number" class="input-slots" value="<?php echo $slots?>"></div>
                                             <div class="group-button">
                                                 <div class="button-menu"><button class="create-time">Add</button></div>
@@ -927,7 +921,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
+            let isFinish = localStorage.getItem('isFinish');
+
+            if ( isFinish == 1) {
+                $('#finish').modal('toggle');
+                localStorage.setItem("isFinish", 0);
+            } 
+
             $('.save-business').click(function(){
+                $('#loading').modal('toggle');
+
                 $(".wrap-business").each(function (index, obj) {
                     let elements = $(this).children(".input-business");
                     let key = elements.data("key");
@@ -956,6 +959,7 @@
                 setTimeout(
                 function() 
                 {
+                    localStorage.setItem("isFinish", 1);
                     location.reload();
                 }, 2000);
             });
@@ -963,14 +967,17 @@
 
             // Hours
             $('.save-hours').click(function(){
+                $('#loading').modal('toggle');
+
                 $(".wrap-hours").each(function (index, obj) {
                     let timeFrom = $(this).children(".wrap-input-hours").children(".time-from").val();
                     let optionFrom = $(this).children(".wrap-input-hours").children(".option-from").val();
                     let timeTo = $(this).children(".wrap-input-hours").children(".time-to").val();
                     let optionTo = $(this).children(".wrap-input-hours").children(".option-to").val();
+                    let active = $(this).children(".wrap-input-hours").children(".hours-active").val();
 
                     let key = "week"+ (index + 2);
-                    let name = timeFrom + "-" + optionFrom + "-" + timeTo + "-" + optionTo;
+                    let name = timeFrom + "-" + optionFrom + "-" + timeTo + "-" + optionTo + "-" + active;
 
                     $.ajax({
                         type : "GET", 
@@ -985,6 +992,7 @@
                             
                         },
                         success: function(response) {
+
                         },
                         error: function( jqXHR, textStatus, errorThrown ){
                             console.log(errorThrown);
@@ -994,12 +1002,23 @@
                 setTimeout(
                 function() 
                 {
+                    localStorage.setItem("isFinish", 1);
                     location.reload();
                 }, 2000);
             });
+
+            $('.hours-active').change(function (){
+                let index = $(this).find('option:selected').val();
+                if(index == 0)
+                {
+                    $(this).css("background-color", "#ac2b2b");
+                } else {
+                    $(this).css("background-color", "#008037");
+                }
+            });
             
 
-
+            // services
             $(document).on('click', '.delete-nemu', function() {
                 clearInputPopup ();
                 let id = $(this).parents(".wrap-level").data('id');
@@ -1022,7 +1041,6 @@
                     $("#popup-taxonomy").val(taxonomy);
                 }
             });
-
             $('.yes-serivces').click(function(){
                 let id = $("#popup-id").val();
                 if(id == 0)
@@ -1072,7 +1090,6 @@
                 }
                 
             });
-
             let tempParent = 1;
             let tempChild = 1;
             $(document).on('click', '.create-menu', function() {
@@ -1090,7 +1107,6 @@
                     tempChild ++;
                 }
             });
-
             $(document).on('click', '.add-sub', function() {
                 let parentId = $(this).parents(".block-level1").children().data("id");
                 let html = "";
@@ -1099,8 +1115,8 @@
                 $(this).parents(".add-sub-service").remove();
                 tempChild ++;
             });
-
             $(document).on('click', '.save-services', function() { 
+                $('#loading').modal('toggle');
                 let indexParent = 1;
                 
                 //parent
@@ -1271,10 +1287,10 @@
                 setTimeout(
                 function() 
                 {
+                    localStorage.setItem("isFinish", 1);
                     location.reload();
                 }, 2000);
             });
-
         });
 
         function clearInputPopup ()
@@ -1287,19 +1303,21 @@
 
         let tempId = 1;
         $(document).on('click', '.create-time', function() { 
-            let html = "<div class='wrap-times-row' data-id='0' data-taxonomy='times' data-tempid='"+tempId+"'><div class='time'><input type='text'  class='input-time' value=''></div><div class='seats'><input type='number' class='input-slots' value=''></div><div class='group-button'><div class='button-menu'><button class='create-time'>Add</button></div><div class='delete-level'><button class='delete-time' data-toggle='modal' data-target='#deleteTimes'>Delete</button></div></div></div>";
+            let html = "<div class='wrap-times-row' data-id='0' data-taxonomy='times' data-tempid='"+tempId+"'><div class='time'><input type='text'  class='input-time' value=''><select class='time-option'><option value='0' selected>AM</option><option value='1'>PM</option></select></div><div class='seats'><input type='number' class='input-slots' value=''></div><div class='group-button'><div class='button-menu'><button class='create-time'>Add</button></div><div class='delete-level'><button class='delete-time' data-toggle='modal' data-target='#deleteTimes'>Delete</button></div></div></div>";
             $(this).parents(".wrap-times-row").after(html);
             tempId ++;
         });
 
         $(document).on('click', '.save-time', function() { 
+            $('#loading').modal('toggle');
             let indexTime = 1;
             $(".wrap-times-row").each(function (index, obj) {
                 let id = $(this).data("id");
                 let taxonomy = $(this).data("taxonomy");
-                let time =  $(this).children(".time").children().val();
+                let time =  $(this).children(".time").children(".input-time").val();
+                let timeOption = $(this).children(".time").children(".time-option").val();
                 let slots =  $(this).children(".seats").children().val();
-
+                strTime = time + "-" + timeOption;
                 if(id != 0)
                 {
                     $.ajax({
@@ -1310,7 +1328,7 @@
                                 action: "updateTime",
                                 id: id,
                                 taxonomy: taxonomy,
-                                time: time,
+                                time: strTime,
                                 slots: slots,
                                 index: indexTime
                         },
@@ -1324,7 +1342,7 @@
                         }
                     });
                     indexTime ++;
-                } else if(time != null) {
+                } else if(time != "") {
                     $.ajax({
                         type : "GET", 
                         dataType: 'html',
@@ -1332,7 +1350,7 @@
                         data : {
                                 action: "createTime",
                                 taxonomy: taxonomy,
-                                time: time,
+                                time: strTime,
                                 slots: slots,
                                 index: indexTime
                         },
@@ -1351,6 +1369,7 @@
             setTimeout(
             function() 
             {
+                localStorage.setItem("isFinish", 1);
                 location.reload();
             }, 2000);
         });
