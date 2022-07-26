@@ -416,505 +416,687 @@
         <div class="loader"></div>
     </div>
         <main>
-            <section class="menu">
-                <div class="wrap-menu">
-                    <div class="head-menu">
-                        <div class="title-menu">Your Business Info</div>
-                    </div>
+            <div id="exTab1" class="container-fs">
+                <ul  class="nav nav-pills" id="myTab">
+                    <li class="active">
+                        <a  href="#1a" data-toggle="tab">BUSINESSS INFO</a>
+                    </li>
+                    <li>
+                        <a href="#2a" data-toggle="tab">WEBSITE INFO</a>
+                    </li>
+                   
+                </ul>
+                <div class="tab-content clearfix">
+                    <!-- Business info -->
+                    <div class="tab-pane active" id="1a">
+                        <section class="menu">
+                            <div class="wrap-menu">
+                                <div class="head-menu">
+                                    <div class="title-menu">Your Business Info</div>
+                                </div>
 
-                    <div class="body-business">
-                        <div class="col">
-                            <div class="wrap-business">
-                                <div class="label-business">Business name</div>
-                                <?php
-                                    $businessName = "";
-                                    if(get_option("businessName"))
-                                    {
-                                        $businessName = get_option("businessName");
-                                    }
-                                ?>
-                                <input type="text" class="input-business" data-key="businessName" value="<?php echo $businessName; ?>">
-                            </div>
-                            <div class="wrap-business">
-                                <div class="label-business">Address</div>
-                                <?php
-                                    $address = "";
-                                    if(get_option("address"))
-                                    {
-                                        $address = get_option("address");
-                                    }
-                                ?>
-                                <input type="text" class="input-business" data-key="address" value="<?php echo $address?>">
-                            </div>
-                            <div class="wrap-business">
-                                <div class="label-business">Phone number</div>
-                                <?php
-                                    $phoneNumber = "";
-                                    if(get_option("phoneNumber"))
-                                    {
-                                        $phoneNumber = get_option("phoneNumber");
-                                    }
-                                ?>
-                                <input type="number" class="input-business" data-key="phoneNumber" value="<?php echo $phoneNumber?>">
-                            </div>
-                            <div class="wrap-business">
-                                <div class="label-business">Google maps (link)</div>
-                                <?php
-                                    $googleMaps = "";
-                                    if(get_option("googleMaps"))
-                                    {
-                                        $googleMaps = get_option("googleMaps");
-                                    }
-                                ?>
-                                <input type="url" class="input-business" data-key="googleMaps" value="<?php echo $googleMaps?>">
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="wrap-business">
-                                <div class="label-business">Google review (link)</div>
-                                <?php
-                                    $googleReview = "";
-                                    if(get_option("googleReview"))
-                                    {
-                                        $googleReview = get_option("googleReview");
-                                    }
-                                ?>
-                                <input type="url" class="input-business" data-key="googleReview" value="<?php echo $googleReview?>">
-                            </div>
-                            <div class="wrap-business">
-                                <div class="label-business">Your facebook (link)</div>
-                                <?php
-                                    $facebook = "";
-                                    if(get_option("facebook"))
-                                    {
-                                        $facebook = get_option("facebook");
-                                    }
-                                ?>
-                                <input type="url" class="input-business" data-key="facebook" value="<?php echo $facebook?>">
-                            </div>
-                            <div class="wrap-business">
-                                <div class="label-business">Your instagram (link)</div>
-                                <?php
-                                    $instagram = "";
-                                    if(get_option("instagram"))
-                                    {
-                                        $instagram = get_option("instagram");
-                                    }
-                                ?>
-                                <input type="url" class="input-business" data-key="instagram" value="<?php echo $instagram?>">
-                            </div>
-                            <div class="wrap-business">
-                                <div class="label-business">Your youtube channel (link)</div>
-                                <?php
-                                    $youtube = "";
-                                    if(get_option("youtube"))
-                                    {
-                                        $youtube = get_option("youtube");
-                                    }
-                                ?>
-                                <input type="url" class="input-business" data-key="youtube" value="<?php echo $youtube?>">
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="save save-business">Save changes</button>
-                </div>
-            </section>
-            
-            <section class="menu">
-                <div class="wrap-menu">
-                    <div class="head-menu">
-                        <div class="title-menu">Your Opening Hours</div>
-                    </div>
-
-                    <div class="body-hours">
-                            <?php
-                                for($i=0; $i<7; $i++)
-                                {
-                                    ?><div class="wrap-hours"><?php
-                                    $key = "week".($i+2);
-
-                                    $value = "";
-                                    if(get_option($key))
-                                    {
-                                        $value = get_option($key);
-                                        $arr = explode('-', $value);
-                                    }
-
-                                    // var_dump($arr);
-
-                                    if($i == 0)
-                                    {
-                                        ?>
-                                            <div class="label-hours">Monday</div>
-                                        <?php
-                                    }
-
-                                    if($i == 1)
-                                    {
-                                        ?>
-                                            <div class="label-hours">Tuesday</div>
-                                        <?php
-                                    }
-
-                                    if($i == 2)
-                                    {
-                                        ?>
-                                            <div class="label-hours">Wednesday</div>
-                                        <?php
-                                    }
-
-                                    if($i == 3)
-                                    {
-                                        ?>
-                                            <div class="label-hours">Thursday</div>
-                                        <?php
-                                    }
-
-                                    if($i == 4)
-                                    {
-                                        ?>
-                                            <div class="label-hours">Firday</div>
-                                        <?php
-                                    }
-
-                                    if($i == 5)
-                                    {
-                                        ?>
-                                            <div class="label-hours">Saturday</div>
-                                        <?php
-                                    }
-
-                                    if($i == 6)
-                                    {
-                                        ?>
-                                            <div class="label-hours">Sunday</div>
-                                        <?php
-                                    }
-                                    ?>
-                                        <div class="wrap-input-hours">
+                                <div class="body-business">
+                                    <div class="col">
+                                        <div class="wrap-business">
+                                            <div class="label-business">Business name</div>
                                             <?php
-                                                $valueFrom = "9:30";
-                                                if(count($arr) > 0)
+                                                $businessName = "";
+                                                if(get_option("businessName"))
                                                 {
-                                                    $valueFrom = $arr[0];
-                                                } 
-                                            ?>
-                                            <input type="text" class="time-from" value="<?php echo $valueFrom?>">
-                                            <?php 
-                                                $list = array("AM", "PM");
-                                                $index = 1;
-                                                if(count($arr) > 0)
-                                                {
-                                                    if($arr[1] != "")
-                                                    {
-                                                        $index = $arr[1];
-                                                    }
+                                                    $businessName = get_option("businessName");
                                                 }
                                             ?>
-                                            <select name="" id="" class="option-from">
-                                                <?php
-                                                    for($j=0; $j<count($list); $j++)
-                                                    {
-                                                        if($j == $index)
-                                                        {
-                                                            ?>
-                                                                <option value="<?php echo $j;?>" selected><?php echo $list[$j];?></option>
-                                                            <?php
-                                                        } else {
-                                                            ?>
-                                                                <option value="<?php echo $j;?>"><?php echo $list[$j];?></option>
-                                                            <?php
-                                                        }
-                                                        
-                                                    }
-                                                ?>
-                                            </select>
-                                            <b>to</b>
-                                            <?php
-                                                $valueFrom = "9:30";
-                                                if(count($arr) > 0)
-                                                {
-                                                    $valueFrom = $arr[2];
-                                                } 
-                                            ?>
-                                            <input type="text" class="time-to" value="<?php echo $valueFrom?>">
-                                            <?php 
-                                                $index = 2;
-                                                if(count($arr) > 0)
-                                                {
-                                                    if($arr[3] != "")
-                                                    {
-                                                        $index = $arr[3];
-                                                    }
-                                                }
-                                            ?>
-                                            <select name="" id="" class="option-to">
-                                                <?php
-                                                    for($j=0; $j<count($list); $j++)
-                                                    {
-                                                        if($j == $index)
-                                                        {
-                                                            ?>
-                                                                <option value="<?php echo $j;?>" selected><?php echo $list[$j];?></option>
-                                                            <?php
-                                                        } else {
-                                                            ?>
-                                                                <option value="<?php echo $j;?>"><?php echo $list[$j];?></option>
-                                                            <?php
-                                                        }
-                                                        
-                                                    }
-                                                ?>
-                                            </select>
-                                            <?php
-                                                $actives = array("Closed","Open");
-                                                $index = 1;
-                                                if(count($arr) > 0)
-                                                {
-                                                    if($arr[4] != "")
-                                                    {
-                                                        $index = $arr[4];
-                                                    }
-                                                }
-
-                                                $styleSelect = "style='background-color: #ac2b2b;'";
-                                                if($index == 1)
-                                                {
-                                                    $styleSelect = "style='background-color: #008037;'";
-                                                }
-                                            ?>
-                                            <select name="" id="" class="hours-active" <?php echo $styleSelect; ?>>
-                                                <?php
-
-                                                    for($k=0; $k<count($actives); $k++)
-                                                    {
-                                                        if($k == $index)
-                                                        {
-                                                            ?>
-                                                                <option value="<?php echo $k;?>" selected><?php echo $actives[$k];?></option>
-                                                            <?php
-                                                        } else {
-                                                            ?>
-                                                                <option value="<?php echo $k;?>"><?php echo $actives[$k];?></option>
-                                                            <?php
-                                                        }
-                                                    }
-                                                ?>
-                                            </select>
+                                            <input type="text" class="input-business" data-key="businessName" value="<?php echo $businessName; ?>">
                                         </div>
+                                        <div class="wrap-business">
+                                            <div class="label-business">Address</div>
+                                            <?php
+                                                $address = "";
+                                                if(get_option("address"))
+                                                {
+                                                    $address = get_option("address");
+                                                }
+                                            ?>
+                                            <input type="text" class="input-business" data-key="address" value="<?php echo $address?>">
+                                        </div>
+                                        <div class="wrap-business">
+                                            <div class="label-business">Phone number</div>
+                                            <?php
+                                                $phoneNumber = "";
+                                                if(get_option("phoneNumber"))
+                                                {
+                                                    $phoneNumber = get_option("phoneNumber");
+                                                }
+                                            ?>
+                                            <input type="number" class="input-business" data-key="phoneNumber" value="<?php echo $phoneNumber?>">
+                                        </div>
+                                        <div class="wrap-business">
+                                            <div class="label-business">Google maps (link)</div>
+                                            <?php
+                                                $googleMaps = "";
+                                                if(get_option("googleMaps"))
+                                                {
+                                                    $googleMaps = get_option("googleMaps");
+                                                }
+                                            ?>
+                                            <input type="url" class="input-business" data-key="googleMaps" value="<?php echo $googleMaps?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="wrap-business">
+                                            <div class="label-business">Google review (link)</div>
+                                            <?php
+                                                $googleReview = "";
+                                                if(get_option("googleReview"))
+                                                {
+                                                    $googleReview = get_option("googleReview");
+                                                }
+                                            ?>
+                                            <input type="url" class="input-business" data-key="googleReview" value="<?php echo $googleReview?>">
+                                        </div>
+                                        <div class="wrap-business">
+                                            <div class="label-business">Your facebook (link)</div>
+                                            <?php
+                                                $facebook = "";
+                                                if(get_option("facebook"))
+                                                {
+                                                    $facebook = get_option("facebook");
+                                                }
+                                            ?>
+                                            <input type="url" class="input-business" data-key="facebook" value="<?php echo $facebook?>">
+                                        </div>
+                                        <div class="wrap-business">
+                                            <div class="label-business">Your instagram (link)</div>
+                                            <?php
+                                                $instagram = "";
+                                                if(get_option("instagram"))
+                                                {
+                                                    $instagram = get_option("instagram");
+                                                }
+                                            ?>
+                                            <input type="url" class="input-business" data-key="instagram" value="<?php echo $instagram?>">
+                                        </div>
+                                        <div class="wrap-business">
+                                            <div class="label-business">Your youtube channel (link)</div>
+                                            <?php
+                                                $youtube = "";
+                                                if(get_option("youtube"))
+                                                {
+                                                    $youtube = get_option("youtube");
+                                                }
+                                            ?>
+                                            <input type="url" class="input-business" data-key="youtube" value="<?php echo $youtube?>">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="save save-business">Save changes</button>
+                            </div>
+                        </section>
+                        
+                        <section class="menu">
+                            <div class="wrap-menu">
+                                <div class="head-menu">
+                                    <div class="title-menu">Your Services</div>
+                                </div>
+
+                                <div class="body-menu">
                                     <?php
-                                    ?></div><?php
-                                }
-                            ?>
-                        </div>
-                    </div>
-
-                    <button class="save save-hours">Save changes</button>
-                </div>
-            </section>
-
-            <section class="menu">
-                <div class="wrap-menu">
-                    <div class="head-menu">
-                        <div class="title-menu">Your Services</div>
-                    </div>
-
-                    <div class="body-menu">
-                        <?php
-                            if(count(get_data_taxonomy(0)) == 0)
-                            {
-                                ?>
-                                        <div class="wrap-menu-block block-level1">
-                                            <div class="wrap-level" data-id="0" data-taxonomy="services" data-parent="0" data-title="parent" data-tempparent='0'>
-                                                <div class="level">
-                                                    <div class="title-level">Level 1</div>
-                                                    <div class="wrap-right">
-                                                        <div class="button-menu"><button class="create-menu">Add</button></div>
+                                        if(count(get_data_taxonomy(0)) == 0)
+                                        {
+                                            ?>
+                                                    <div class="wrap-menu-block block-level1">
+                                                        <div class="wrap-level" data-id="0" data-taxonomy="services" data-parent="0" data-title="parent" data-tempparent='0'>
+                                                            <div class="level">
+                                                                <div class="title-level">Level 1</div>
+                                                                <div class="wrap-right">
+                                                                    <div class="button-menu"><button class="create-menu">Add</button></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="menu-title"><span>Title</span><input type="text" class="title" value="<?php echo $parent->name?>"></div>
+                                                            <div class="menu-price"><span>Price</span><input type="number" class="price" value="<?php echo $price?>"><div class="price-dolla">$</div></div>
+                                                            <div class="menu-description"><span>Description</span><input type="text" class="description" value="<?php echo $parent->description?>"></div>
+                                                        </div>
+                                                        <div class="add-sub-service"><button class="add-sub">Add sub-services</button></div>
                                                     </div>
-                                                </div>
-                                                <div class="menu-title"><span>Title</span><input type="text" class="title" value="<?php echo $parent->name?>"></div>
-                                                <div class="menu-price"><span>Price</span><input type="number" class="price" value="<?php echo $price?>"><div class="price-dolla">$</div></div>
-                                                <div class="menu-description"><span>Description</span><input type="text" class="description" value="<?php echo $parent->description?>"></div>
-                                            </div>
-                                            <div class="add-sub-service"><button class="add-sub">Add sub-services</button></div>
-                                        </div>
-                                <?php
-                            } else {
-
-                                foreach(get_data_taxonomy(0) as $parent)
-                                {
-                                    $price = get_term_meta($parent->term_id, 'services-price', true );
-                                    ?>
-                                        <div class="wrap-menu-block block-level1">
-                                            <div class="wrap-level" data-id="<?php echo $parent->term_id?>" data-taxonomy="services" data-parent="0" data-title="parent">
-                                                <div class="level">
-                                                    <div class="title-level">Level 1</div>
-                                                    <div class="wrap-right">
-                                                        <div class="button-menu"><button class="create-menu">Add</button></div>
-                                                        <div class="delete-level"><button class="delete-nemu" data-toggle="modal" data-target="#deleteModal">Delete</button></div>
-                                                    </div>
-                                                </div>
-                                                <div class="menu-title"><span>Title</span><input type="text" class="title" value="<?php echo $parent->name?>"></div>
-                                                <div class="menu-price"><span>Price</span><input type="number" class="price" value="<?php echo $price?>"><div class="price-dolla">$</div></div>
-                                                <div class="menu-description"><span>Description</span><input type="text" class="description" value="<?php echo $parent->description?>"></div>
-                                            </div>
-                                            
                                             <?php
-                                                if(count(get_data_taxonomy($parent->term_id))>0)
-                                                {
-                                                    ?><div class="wrap-menu-block block-level2"><?php
+                                        } else {
+
+                                            foreach(get_data_taxonomy(0) as $parent)
+                                            {
+                                                $price = get_term_meta($parent->term_id, 'services-price', true );
+                                                ?>
+                                                    <div class="wrap-menu-block block-level1">
+                                                        <div class="wrap-level" data-id="<?php echo $parent->term_id?>" data-taxonomy="services" data-parent="0" data-title="parent">
+                                                            <div class="level">
+                                                                <div class="title-level">Level 1</div>
+                                                                <div class="wrap-right">
+                                                                    <div class="button-menu"><button class="create-menu">Add</button></div>
+                                                                    <div class="delete-level"><button class="delete-nemu" data-toggle="modal" data-target="#deleteModal">Delete</button></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="menu-title"><span>Title</span><input type="text" class="title" value="<?php echo $parent->name?>"></div>
+                                                            <div class="menu-price"><span>Price</span><input type="number" class="price" value="<?php echo $price?>"><div class="price-dolla">$</div></div>
+                                                            <div class="menu-description"><span>Description</span><input type="text" class="description" value="<?php echo $parent->description?>"></div>
+                                                        </div>
+                                                        
+                                                        <?php
+                                                            if(count(get_data_taxonomy($parent->term_id))>0)
+                                                            {
+                                                                ?><div class="wrap-menu-block block-level2"><?php
+                                                                ?>
+                                                                        <?php
+                                                                            foreach(get_data_taxonomy($parent->term_id) as $children)
+                                                                            {
+                                                                                $price = get_term_meta($children->term_id, 'services-price', true );
+                                                                                ?>
+                                                                                    <div class="wrap-level" data-id="<?php echo $children->term_id?>" data-taxonomy="services" data-parent="<?php echo $children->parent?>" data-title="children">
+                                                                                        <div class="level">
+                                                                                            <div class="title-level">Level 2</div>
+                                                                                            <div class="wrap-right">
+                                                                                                <div class="button-menu"><button class="create-menu">Add</button></div>
+                                                                                                <div class="delete-level"><button class="delete-nemu" data-toggle="modal" data-target="#deleteModal">Delete</button></div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="menu-title"><span>Title</span><input type="text"  class="title" value="<?php echo $children->name?>"></div>
+                                                                                        <div class="menu-price"><span>Price</span><input type="number" class="price" value="<?php echo $price?>"><div class="price-dolla">$</div></div>
+                                                                                        <div class="menu-description"><span>Description</span><input type="text" class="description" value="<?php echo $children->description?>"></div>
+                                                                                    </div>
+                                                                                <?php
+                                                                            }
+                                                                        ?>
+                                                                <?php
+                                                                ?></div><?php
+                                                            } else {
+                                                                ?>
+                                                                    <div class="add-sub-service"><button class="add-sub">Add sub-services</button></div>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                        
+                                                    </div>
+                                                <?php
+                                            }
+                                        }
+                                    ?>
+
+                                
+                                </div>
+
+                                <button class="save save-services">Save changes</button>
+                            </div>
+                        </section>
+
+                        <section class="menu">
+                            <div class="wrap-menu">
+                                <div class="head-menu">
+                                    <div class="title-menu">Your Opening Hours</div>
+                                </div>
+
+                                <div class="body-hours">
+                                    <?php
+                                        for($i=0; $i<7; $i++)
+                                        {
+                                            ?><div class="wrap-hours"><?php
+                                            $key = "week".($i+2);
+
+                                            $value = "";
+                                            if(get_option($key))
+                                            {
+                                                $value = get_option($key);
+                                                $arr = explode('-', $value);
+                                            }
+
+                                            // var_dump($arr);
+
+                                            if($i == 0)
+                                            {
+                                                ?>
+                                                    <div class="label-hours">Monday</div>
+                                                <?php
+                                            }
+
+                                            if($i == 1)
+                                            {
+                                                ?>
+                                                    <div class="label-hours">Tuesday</div>
+                                                <?php
+                                            }
+
+                                            if($i == 2)
+                                            {
+                                                ?>
+                                                    <div class="label-hours">Wednesday</div>
+                                                <?php
+                                            }
+
+                                            if($i == 3)
+                                            {
+                                                ?>
+                                                    <div class="label-hours">Thursday</div>
+                                                <?php
+                                            }
+
+                                            if($i == 4)
+                                            {
+                                                ?>
+                                                    <div class="label-hours">Firday</div>
+                                                <?php
+                                            }
+
+                                            if($i == 5)
+                                            {
+                                                ?>
+                                                    <div class="label-hours">Saturday</div>
+                                                <?php
+                                            }
+
+                                            if($i == 6)
+                                            {
+                                                ?>
+                                                    <div class="label-hours">Sunday</div>
+                                                <?php
+                                            }
+                                            ?>
+                                                <div class="wrap-input-hours">
+                                                    <?php
+                                                        $valueFrom = "9:30";
+                                                        if(count($arr) > 0)
+                                                        {
+                                                            $valueFrom = $arr[0];
+                                                        } 
                                                     ?>
-                                                            <?php
-                                                                foreach(get_data_taxonomy($parent->term_id) as $children)
+                                                    <input type="text" class="time-from" value="<?php echo $valueFrom?>">
+                                                    <?php 
+                                                        $list = array("AM", "PM");
+                                                        $index = 1;
+                                                        if(count($arr) > 0)
+                                                        {
+                                                            if($arr[1] != "")
+                                                            {
+                                                                $index = $arr[1];
+                                                            }
+                                                        }
+                                                    ?>
+                                                    <select name="" id="" class="option-from">
+                                                        <?php
+                                                            for($j=0; $j<count($list); $j++)
+                                                            {
+                                                                if($j == $index)
                                                                 {
-                                                                    $price = get_term_meta($children->term_id, 'services-price', true );
                                                                     ?>
-                                                                        <div class="wrap-level" data-id="<?php echo $children->term_id?>" data-taxonomy="services" data-parent="<?php echo $children->parent?>" data-title="children">
-                                                                            <div class="level">
-                                                                                <div class="title-level">Level 2</div>
-                                                                                <div class="wrap-right">
-                                                                                    <div class="button-menu"><button class="create-menu">Add</button></div>
-                                                                                    <div class="delete-level"><button class="delete-nemu" data-toggle="modal" data-target="#deleteModal">Delete</button></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="menu-title"><span>Title</span><input type="text"  class="title" value="<?php echo $children->name?>"></div>
-                                                                            <div class="menu-price"><span>Price</span><input type="number" class="price" value="<?php echo $price?>"><div class="price-dolla">$</div></div>
-                                                                            <div class="menu-description"><span>Description</span><input type="text" class="description" value="<?php echo $children->description?>"></div>
-                                                                        </div>
+                                                                        <option value="<?php echo $j;?>" selected><?php echo $list[$j];?></option>
+                                                                    <?php
+                                                                } else {
+                                                                    ?>
+                                                                        <option value="<?php echo $j;?>"><?php echo $list[$j];?></option>
+                                                                    <?php
+                                                                }
+                                                                
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                    <b>to</b>
+                                                    <?php
+                                                        $valueFrom = "9:30";
+                                                        if(count($arr) > 0)
+                                                        {
+                                                            $valueFrom = $arr[2];
+                                                        } 
+                                                    ?>
+                                                    <input type="text" class="time-to" value="<?php echo $valueFrom?>">
+                                                    <?php 
+                                                        $index = 2;
+                                                        if(count($arr) > 0)
+                                                        {
+                                                            if($arr[3] != "")
+                                                            {
+                                                                $index = $arr[3];
+                                                            }
+                                                        }
+                                                    ?>
+                                                    <select name="" id="" class="option-to">
+                                                        <?php
+                                                            for($j=0; $j<count($list); $j++)
+                                                            {
+                                                                if($j == $index)
+                                                                {
+                                                                    ?>
+                                                                        <option value="<?php echo $j;?>" selected><?php echo $list[$j];?></option>
+                                                                    <?php
+                                                                } else {
+                                                                    ?>
+                                                                        <option value="<?php echo $j;?>"><?php echo $list[$j];?></option>
+                                                                    <?php
+                                                                }
+                                                                
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                    <?php
+                                                        $actives = array("Closed","Open");
+                                                        $index = 1;
+                                                        if(count($arr) > 0)
+                                                        {
+                                                            if($arr[4] != "")
+                                                            {
+                                                                $index = $arr[4];
+                                                            }
+                                                        }
+
+                                                        $styleSelect = "style='background-color: #ac2b2b;'";
+                                                        if($index == 1)
+                                                        {
+                                                            $styleSelect = "style='background-color: #008037;'";
+                                                        }
+                                                    ?>
+                                                    <select name="" id="" class="hours-active" <?php echo $styleSelect; ?>>
+                                                        <?php
+
+                                                            for($k=0; $k<count($actives); $k++)
+                                                            {
+                                                                if($k == $index)
+                                                                {
+                                                                    ?>
+                                                                        <option value="<?php echo $k;?>" selected><?php echo $actives[$k];?></option>
+                                                                    <?php
+                                                                } else {
+                                                                    ?>
+                                                                        <option value="<?php echo $k;?>"><?php echo $actives[$k];?></option>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            <?php
+                                            ?></div><?php
+                                        }
+                                    ?>
+                                </div>
+
+                                <button class="save save-hours">Save changes</button>
+                            </div>
+                        </section>
+
+                        <section class="menu">
+                            <div class="wrap-menu">
+                                <div class="head-menu">
+                                    <div class="title-menu">Time & Seat Available for Online Appointments</div>
+                                </div>
+                                
+                                <div class="body-menu">
+                                    <div class="time-excerpt">Enter 0 (zero) in the box below to turn off online appointments</div>
+                                    
+                                    <div class="wrap-times-tile">
+                                        <div class="time"></div>
+                                        <div class="seats input-fill">
+                                            Fill all: <input type="number" value="1" class="fill-all">
+                                        </div>
+                                        <div class="group-button">
+                                            <button class="button-fill-all ">Update</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="wrap-times-tile" style="margin-bottom: 0;">
+                                        <div class="time">Time</div>
+                                        <div class="seats">Seats</div>
+                                        <div class="group-button"></div>
+                                    </div>
+                                    <?php
+                                        if(count(get_data_times()) == 0)
+                                        {
+                                            ?>
+                                                <div class="wrap-times-row" data-id="0" data-taxonomy="times" data-tempid="0">
+                                                    <div class="time">
+                                                        <input type="text" class="input-time" value="">
+                                                        <select name="" id="" class="time-option">
+                                                            <?php
+                                                                for($j=0; $j<count($list); $j++)
+                                                                {
+                                                                    ?>
+                                                                        <option value="<?php echo $j?>"><?php echo $list[$j]?></option>
                                                                     <?php
                                                                 }
                                                             ?>
-                                                    <?php
-                                                    ?></div><?php
-                                                } else {
-                                                    ?>
-                                                        <div class="add-sub-service"><button class="add-sub">Add sub-services</button></div>
-                                                    <?php
-                                                }
-                                            ?>
-                                            
-                                        </div>
-                                    <?php
-                                }
-                            }
-                        ?>
-
-                       
-                    </div>
-
-                    <button class="save save-services">Save changes</button>
-                </div>
-            </section>
-            
-            <style>
-                
-
-            </style>
-
-            <section class="menu">
-                <div class="wrap-menu">
-                    <div class="head-menu">
-                        <div class="title-menu">Time & Seat Available for Online Appointments</div>
-                    </div>
-
-                    <div class="body-menu">
-                        <div class="time-excerpt">Enter 0 (zero) in the box below to turn off online appointments</div>
-                        
-                        <div class="wrap-times-tile">
-                            <div class="time"></div>
-                            <div class="seats input-fill">
-                                Fill all: <input type="number" value="1" class="fill-all">
-                            </div>
-                            <div class="group-button">
-                                <button class="button-fill-all ">Update</button>
-                            </div>
-                        </div>
-
-                        <div class="wrap-times-tile" style="margin-bottom: 0;">
-                            <div class="time">Time</div>
-                            <div class="seats">Seats</div>
-                            <div class="group-button"></div>
-                        </div>
-                        <?php
-                            if(count(get_data_times()) == 0)
-                            {
-                                ?>
-                                    <div class="wrap-times-row" data-id="0" data-taxonomy="times" data-tempid="0">
-                                        <div class="time">
-                                            <input type="text" class="input-time" value="">
-                                            <select name="" id="" class="time-option">
-                                                <?php
-                                                    for($j=0; $j<count($list); $j++)
-                                                    {
-                                                        ?>
-                                                            <option value="<?php echo $j?>"><?php echo $list[$j]?></option>
-                                                        <?php
-                                                    }
+                                                        </select>
+                                                    </div>
+                                                    <div class="seats"><input type="number" class="input-slots" value=""></div>
+                                                    <div class="group-button">
+                                                        <div class="button-menu"><button class="create-time">Add</button></div>
+                                                        <div class="delete-level"><button class="delete-time" data-toggle="modal" data-target="#deleteTimes">Delete</button></div>
+                                                    </div>
+                                                </div>
+                                            <?php
+                                        } else {
+                                            foreach(get_data_times() as $time)
+                                            {
+                                                $slots = get_term_meta($time->term_id, 'times-slots', true );
                                                 ?>
-                                            </select>
-                                        </div>
-                                        <div class="seats"><input type="number" class="input-slots" value=""></div>
-                                        <div class="group-button">
-                                            <div class="button-menu"><button class="create-time">Add</button></div>
-                                            <div class="delete-level"><button class="delete-time" data-toggle="modal" data-target="#deleteTimes">Delete</button></div>
-                                        </div>
-                                    </div>
-                                <?php
-                            } else {
-                                foreach(get_data_times() as $time)
-                                {
-                                    $slots = get_term_meta($time->term_id, 'times-slots', true );
+                                                    <div class="wrap-times-row" data-id="<?php echo $time->term_id?>" data-taxonomy="times">
+                                                        <div class="time">
+
+                                                            <?php
+                                                                $timeExplode = explode('-', $time->name);
+                                                                $index = 0;
+                                                                if($timeExplode[1] != "")
+                                                                {
+                                                                    $index = $timeExplode[1];
+                                                                }
+                                                            ?>
+
+                                                            <input type="text" class="input-time" value="<?php echo $timeExplode[0]?>">
+                                                            <select name="" id="" class="time-option">
+                                                                <?php
+                                                                    for($j=0; $j<count($list); $j++)
+                                                                    {
+                                                                        if($index == $j)
+                                                                        {
+                                                                            ?>
+                                                                                <option value="<?php echo $j?>" selected><?php echo $list[$j]?></option>
+                                                                            <?php
+                                                                        } else {
+                                                                            ?>
+                                                                                <option value="<?php echo $j?>"><?php echo $list[$j]?></option>
+                                                                            <?php
+                                                                        }
+                                                                        
+                                                                    }
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="seats"><input type="number" class="input-slots" value="<?php echo $slots?>"></div>
+                                                        <div class="group-button">
+                                                            <div class="button-menu"><button class="create-time">Add</button></div>
+                                                            <div class="delete-level"><button class="delete-time" data-toggle="modal" data-target="#deleteTimes">Delete</button></div>
+                                                        </div>
+                                                    </div>
+                                                <?php
+                                            }
+                                        }
+
                                     ?>
-                                        <div class="wrap-times-row" data-id="<?php echo $time->term_id?>" data-taxonomy="times">
-                                            <div class="time">
+                                </div>
 
-                                                <?php
-                                                    $timeExplode = explode('-', $time->name);
-                                                    $index = 0;
-                                                    if($timeExplode[1] != "")
-                                                    {
-                                                        $index = $timeExplode[1];
-                                                    }
-                                                ?>
+                                <button class="save save-time">Save changes</button>
+                            </div>
+                        </section>
+                    </div>
 
-                                                <input type="text" class="input-time" value="<?php echo $timeExplode[0]?>">
-                                                <select name="" id="" class="time-option">
-                                                    <?php
-                                                        for($j=0; $j<count($list); $j++)
-                                                        {
-                                                            if($index == $j)
+                    <!-- Website info -->
+
+                    <style>
+                        #exTab1  {
+                            margin-top: 45px;
+                        }
+
+                        #exTab1 .nav-pills {
+                            display: flex;
+                            justify-content: center;
+                        }
+
+                        #exTab1 .nav-pills>li>a {
+                            font-size: 20px;
+                            font-weight: bold;
+                        }
+
+                        #output {
+                            width: 100px;
+                            height: auto;
+                        }
+
+                        .group-color {
+                            display: flex;
+                            margin-bottom: 30px;
+                        }
+
+                        .wrap-header-color {
+                            margin-right: 60px;
+                        }
+
+                        .header-logo {
+                            margin-bottom: 30px;
+                        }
+
+                        .title-header-menu {
+                            font-weight: bold;
+                            padding-bottom: 15px;
+                            font-size: 17px;
+                        }
+
+                        .menu-link-menu {
+                            margin: 15px 0;
+                        }
+
+                        
+                        .youtube-header,
+                        .link-menu,
+                        .additional-menu {
+                            width: 100%;
+                        }
+                    </style>
+
+
+                    <div class="tab-pane" id="2a">
+                        <section class="menu">
+                            <div class="wrap-menu">
+                                <div class="head-menu">
+                                    <div class="title-menu">YOUR WEBSITE INFO</div>
+                                </div>
+
+                                <div class="body-menu">
+                                    <div class="website-info">
+                                        <div class="label-website-info">Enter your domain's name</div>
+                                        <input type="text" class="input-website-info">
+                                    </div>
+                                </div>
+
+                                <button class="save save-website-info">Save changes</button>
+                            </div>
+                        </section>
+
+                        <section class="menu">
+                            <div class="wrap-menu">
+                                <form id="header-form" method="post" enctype="multipart/form-data">
+                                    <div class="head-menu">
+                                        <div class="title-menu">Header</div>
+                                    </div>
+
+                                    <div class="body-menu">
+                                            <div class="wrap-header-edit">
+                                                <div class="group-color">
+                                                    <div class="wrap-header-color">
+                                                        <div class="label-color">Header Color</div>
+                                                        <?php
+                                                            $color = "#000";
+                                                            if(get_option("headerColor"))
                                                             {
-                                                                ?>
-                                                                    <option value="<?php echo $j?>" selected><?php echo $list[$j]?></option>
-                                                                <?php
-                                                            } else {
-                                                                ?>
-                                                                    <option value="<?php echo $j?>"><?php echo $list[$j]?></option>
-                                                                <?php
+                                                                $color = get_option("headerColor");
                                                             }
-                                                            
+                                                        ?>
+                                                        <input type="color" value="<?php echo $color?>" class="header-color" data-key="headerColor">
+                                                    </div>
+
+                                                    <div class="wrap-text-color">
+                                                        <div class="label-color">Text Color</div>
+                                                        <?php
+                                                            $colorText = "#000";
+                                                            if(get_option("textColor"))
+                                                            {
+                                                                $colorText = get_option("textColor");
+                                                            }
+                                                        ?>
+                                                        <input type="color" value="<?php echo $colorText?>" class="text-color" data-key="textColor">
+                                                    </div>
+                                                </div>
+
+                                                <div class="header-logo">
+                                                    <div class="label-logo">Logo</div>
+                                                    <?php
+                                                        $url = get_template_directory_uri()."/assets/img/image.png";
+                                                        if(get_option("logo"))
+                                                        {
+                                                            $url = get_option("logo");
                                                         }
                                                     ?>
-                                                </select>
-                                            </div>
-                                            <div class="seats"><input type="number" class="input-slots" value="<?php echo $slots?>"></div>
-                                            <div class="group-button">
-                                                <div class="button-menu"><button class="create-time">Add</button></div>
-                                                <div class="delete-level"><button class="delete-time" data-toggle="modal" data-target="#deleteTimes">Delete</button></div>
-                                            </div>
-                                        </div>
-                                    <?php
-                                }
-                            }
+                                                    <img id="output" src="<?php echo $url?>"/>
+                                                    <input type="file" id="fileinput" accept="image/*" onchange="loadFile(event)" data-key="logo">
+                                                </div>
 
-                        ?>
+                                                <div class="header-menu">
+                                                    <div class="title-header-menu">
+                                                        Header Menu
+                                                    </div>
+
+                                                    <div class="menu-additional-menu">
+                                                        <div class="label-additional-menu">Additional menu</div>
+                                                        <?php 
+                                                            $additionalMenu = "";
+                                                            if(get_option("additionalMenu"))
+                                                            {
+                                                                $additionalMenu = get_option("additionalMenu");
+                                                            }
+                                                        ?>
+                                                        <input type="text" value="<?php echo $additionalMenu?>" class="additional-menu" data-key="additionalMenu">
+                                                    </div>
+
+                                                    <div class="menu-link-menu">
+                                                        <div class="label-link-menu">Link</div>
+                                                        <?php 
+                                                            $linkMenu = "";
+                                                            if(get_option("linkMenu"))
+                                                            {
+                                                                $linkMenu = get_option("linkMenu");
+                                                            }
+                                                        ?>
+                                                        <input type="text" value="<?php echo $linkMenu?>" class="link-menu" data-key="linkMenu">
+                                                    </div>
+
+                                                    <div class="menu-youtube-menu">
+                                                        <div class="label-youtube-menu">Header Youtube Video (youtube video -> share -> embed -> copy link & paste in here)</div>
+                                                        <?php 
+                                                            $youtubeHeader = "";
+                                                            if(get_option("youtubeHeader"))
+                                                            {
+                                                                $youtubeHeader = get_option("youtubeHeader");
+                                                            }
+                                                        ?>
+                                                        <input type="text" value="<?php echo $youtubeHeader?>" class="youtube-header" data-key="youtubeHeader">
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                    </div>
+                                    
+                                    <button class="save save-header">Save changes</button>
+                                </form>
+                            </div>
+                        </section>
                     </div>
-
-                    <button class="save save-time">Save changes</button>
                 </div>
-            </section>
+            </div>
         </main>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -1436,7 +1618,91 @@
             $("#popup-times-tempId").val("");
         }
         
+        // ====================== Tab2 ================== \\
+        $(function() {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                localStorage.setItem('lastTab', $(this).attr('href'));
+            });
+            var lastTab = localStorage.getItem('lastTab');
+            
+            if (lastTab) {
+                $('[href="' + lastTab + '"]').tab('show');
+            }
+        });
 
+        var loadFile = function(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+
+        $( "#header-form" ).submit(function( event ) {
+            $('#loading').modal('toggle');
+
+            let headerColor = $(".header-color").val();
+            let keyHeaderColor = $(".header-color").data("key");
+           
+            let textColor = $(".text-color").val();
+            let keyTextColor = $(".text-color").data("key");
+           
+            let file = $("#fileinput").prop('files')[0];
+            let keyFile = $("#fileinput").data("key");
+
+            let additionalMenu = $(".additional-menu").val();
+            let keyadditionalMenu = $(".additional-menu").data("key");
+
+            let linkMenu = $(".link-menu").val();
+            let keyLinkMenu = $(".link-menu").data("key");
+
+            let youtubeHeader = $(".youtube-header").val();
+            let keyYoutubeHeader = $(".youtube-header").data("key");
+
+            console.log("headerColor: " + headerColor + " keyHeaderColor: " + keyHeaderColor);
+            console.log("textColor: " + textColor + " keyTextColor: " + keyTextColor);
+            console.log("additionalMenu: " + additionalMenu + " keyadditionalMenu: " + keyadditionalMenu);
+            console.log("linkMenu: " + linkMenu + " keyLinkMenu: " + keyLinkMenu);
+            console.log("youtubeHeader: " + youtubeHeader + " keyYoutubeHeader: " + keyYoutubeHeader);
+
+
+            var data_form = new FormData();
+            data_form.append('keyHeaderColor', keyHeaderColor);
+            data_form.append('keyTextColor', keyTextColor);
+            data_form.append('keyFile', keyFile);
+            data_form.append('keyadditionalMenu', keyadditionalMenu);
+            data_form.append('keyLinkMenu', keyLinkMenu);
+            data_form.append('keyYoutubeHeader', keyYoutubeHeader);
+
+            data_form.append('headerColor', headerColor);
+            data_form.append('textColor', textColor);
+            data_form.append('file', file);
+            data_form.append('additionalMenu', additionalMenu);
+            data_form.append('linkMenu', linkMenu);
+            data_form.append('youtubeHeader', youtubeHeader);
+
+
+            data_form.append('action', 'upload_image')
+            jQuery.ajax({
+                type: "post",
+                url: "./wp-admin/admin-ajax.php",
+                processData: false,
+                contentType: false,
+                data: data_form,
+                beforeSend: function () {
+                
+                },
+                success: function (response) {
+                    localStorage.setItem("isFinish", 1);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    console.log(error);
+                },
+            });
+
+            event.preventDefault();
+        });
       
     </script>
 </html>

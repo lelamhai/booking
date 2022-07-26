@@ -23,15 +23,6 @@ function addOption_function() {
 			$autoload = 'no';
 			add_option( $option_name, $new_value, $deprecated, $autoload );
 		}
-		
-//         if (get_option($_GET['key']) )
-//         {
-//             // update
-//             update_option( $_GET['key'], $_GET['name'], '','yes' );
-//         } else {
-//             // create
-//             add_option($_GET['key'], $_GET['name'], '', 'yes');
-//         }
     }
     wp_die(); 
 }
@@ -160,3 +151,87 @@ function updateTime_function() {
     }
     wp_die(); 
 }
+
+// ===================== tab2 ===============\\
+add_action("wp_ajax_upload_image", "upload_image");
+add_action("wp_ajax_nopriv_upload_image", "upload_image");
+function upload_image()
+{
+    if (isset($_FILES['file']['name'])) { 
+        if(! function_exists('wp_handle_upload')){
+            require_once(ABSPATH.'wp-admin/includes/file.php');
+        }
+        $uploadedfile = $_FILES['file'];
+        $upload_overrides = array('test_form' => false);
+        $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
+        if($movefile && !isset($movefile['error']))
+        {
+            $option_name = $_POST['keyFile'] ;
+            $new_value = $movefile['url'];
+            if ( get_option( $option_name ) != $new_value ) {
+                update_option( $option_name, $new_value );
+            } else {
+                $deprecated = ' ';
+                $autoload = 'no';
+                add_option( $option_name, $new_value, $deprecated, $autoload );
+            }
+        } else {
+            echo $movefile['error'];
+        }
+    }
+
+    $option_name = $_POST['keyHeaderColor'] ;
+	$new_value = $_POST['headerColor'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+
+
+    $option_name = $_POST['keyTextColor'] ;
+	$new_value = $_POST['textColor'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    $option_name = $_POST['keyadditionalMenu'] ;
+	$new_value = $_POST['additionalMenu'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+
+    $option_name = $_POST['keyLinkMenu'] ;
+	$new_value = $_POST['linkMenu'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    $option_name = $_POST['keyYoutubeHeader'] ;
+	$new_value = $_POST['youtubeHeader'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+    wp_die();
+}
+
