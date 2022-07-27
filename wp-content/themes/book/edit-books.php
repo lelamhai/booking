@@ -424,6 +424,9 @@
                     <li>
                         <a href="#2a" data-toggle="tab">WEBSITE INFO</a>
                     </li>
+                    <li>
+                        <a href="./" target="_blank">VISIT YOUR WEBSITE</a>
+                    </li>
                    
                 </ul>
                 <div class="tab-content clearfix">
@@ -941,7 +944,12 @@
                             font-weight: bold;
                         }
 
-                        #output {
+                        #output,
+                        #output1,
+                        #output2,
+                        #output3,
+                        #output4,
+                        #output5 {
                             width: 100px;
                             height: auto;
                         }
@@ -975,27 +983,42 @@
                         .additional-menu {
                             width: 100%;
                         }
+
+                        .nav>li>a {
+                            background-color: #eee;
+                        }
+
+                        .nav-pills>li+li {
+                            margin-left: 15px;
+                        }
+
+                        .group-input-color {
+                            display: flex;
+                        }
+
+                        .hexcolor {
+                            width: 100px;
+                        }
+
+                        .wrap-button-color {
+                            margin: 0 60px;
+                        }
+
+                        .wrap-title-welcome-word {
+                            margin-bottom: 30px;
+                        }
+
+                        .title-welcome {
+                            width: 100%;
+                        }
+                        
+                        .content-welcome {
+                            width: 100%;
+                        }
                     </style>
 
 
                     <div class="tab-pane" id="2a">
-                        <section class="menu">
-                            <div class="wrap-menu">
-                                <div class="head-menu">
-                                    <div class="title-menu">YOUR WEBSITE INFO</div>
-                                </div>
-
-                                <div class="body-menu">
-                                    <div class="website-info">
-                                        <div class="label-website-info">Enter your domain's name</div>
-                                        <input type="text" class="input-website-info">
-                                    </div>
-                                </div>
-
-                                <button class="save save-website-info">Save changes</button>
-                            </div>
-                        </section>
-
                         <section class="menu">
                             <div class="wrap-menu">
                                 <form id="header-form" method="post" enctype="multipart/form-data">
@@ -1009,25 +1032,32 @@
                                                     <div class="wrap-header-color">
                                                         <div class="label-color">Header Color</div>
                                                         <?php
-                                                            $color = "#000";
+                                                            $color = "#000000";
                                                             if(get_option("headerColor"))
                                                             {
                                                                 $color = get_option("headerColor");
                                                             }
                                                         ?>
-                                                        <input type="color" value="<?php echo $color?>" class="header-color" data-key="headerColor">
+                                                        
+                                                        <div class="group-input-color">
+                                                            <input type="color" id="headerColor" class="header-color" data-key="headerColor" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>"> 
+                                                            <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>" id="hexHeaderColor" class="hexcolor"></input>
+                                                        </div>
                                                     </div>
 
                                                     <div class="wrap-text-color">
                                                         <div class="label-color">Text Color</div>
                                                         <?php
-                                                            $colorText = "#000";
+                                                            $colorText = "#000000";
                                                             if(get_option("textColor"))
                                                             {
                                                                 $colorText = get_option("textColor");
                                                             }
                                                         ?>
-                                                        <input type="color" value="<?php echo $colorText?>" class="text-color" data-key="textColor">
+                                                        <div class="group-input-color">
+                                                            <input type="color" id="textColor" class="text-color" data-key="textColor" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorText?>"> 
+                                                            <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>" id="hexTextColor" class="hexcolor"></input>
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -1084,14 +1114,175 @@
                                                         ?>
                                                         <input type="text" value="<?php echo $youtubeHeader?>" class="youtube-header" data-key="youtubeHeader">
                                                     </div>
-
-
                                                 </div>
                                             </div>
                                     </div>
                                     
                                     <button class="save save-header">Save changes</button>
                                 </form>
+                            </div>
+                        </section>
+                        
+                        <style>
+                            .name-body {
+                                font-size: 18px;
+                                color: #0f6ac4;
+                            }
+
+                            .image-welcome {
+                                margin: 15px 0;
+                            }
+                        </style>
+
+                        <section class="menu">
+                            <div class="wrap-menu">
+                                <div class="head-menu">
+                                    <div class="title-menu">Body</div>
+                                </div>
+
+                                <div class="body-menu">
+                                    <div class="group-color">
+                                        <div class="wrap-background-color">
+                                            <div class="label-color">Background Color</div>
+                                                <?php
+                                                    $color = "#000000";
+                                                    if(get_option("backgroundColor"))
+                                                    {
+                                                        $color = get_option("backgroundColor");
+                                                    }
+                                                ?>
+                                                        
+                                            <div class="group-input-color">
+                                                <input type="color" id="backgroundColor" class="background-color" data-key="backgroundColor" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>"> 
+                                                <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>" id="hexBackgroundColor" class="hexcolor"></input>
+                                            </div>
+                                        </div>
+
+                                        <div class="wrap-button-color">
+                                            <div class="label-color">Button Color</div>
+                                                <?php
+                                                    $colorButton = "#000000";
+                                                    if(get_option("buttonColor"))
+                                                    {
+                                                        $colorButton = get_option("buttonColor");
+                                                    }
+                                                ?>
+                                            <div class="group-input-color">
+                                                <input type="color" id="buttonColor" class="button-color" data-key="buttonColor" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorButton?>"> 
+                                                <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorButton?>" id="hexButtonColor" class="hexcolor"></input>
+                                            </div>
+                                        </div>
+
+                                        <div class="wrap-body-text-color">
+                                            <div class="label-color">Text Color</div>
+                                                <?php
+                                                    $textColorBody = "#000000";
+                                                    if(get_option("textColorBody"))
+                                                    {
+                                                        $textColorBody = get_option("textColorBody");
+                                                    }
+                                                ?>
+                                            <div class="group-input-color">
+                                                <input type="color" id="textColorBody" class="text-color-body" data-key="textColorBody" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $textColorBody?>"> 
+                                                <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $textColorBody?>" id="hexTextColorBody" class="hexcolor"></input>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="welcome-word">
+                                        <div class="name-body">Your welcome words</div>
+                                        <div class="wrap-title-welcome-word">
+                                            <div class="title-body">Title text</div>
+                                            <?php
+                                                    $text = "";
+                                                    if(get_option("titleWelcome"))
+                                                    {
+                                                        $text = get_option("titleWelcome");
+                                                    }
+                                            ?>
+                                            <input type="text" class="title-welcome" data-key="titleWelcome" value="<?php echo $text?>">
+                                        </div>
+                                        <div class="wrap-content-welcome-word">
+                                            <div class="title-body">Body text</div>
+                                            <?php
+                                                $text = "";
+                                                if(get_option("contentWelcome"))
+                                                {
+                                                    $text = get_option("contentWelcome");
+                                                }
+                                            ?>
+                                            <textarea cols="30" rows="5" class="content-welcome" data-key="contentWelcome"><?php echo $text?></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="wrap-image-welcome">
+
+                                            <div class="image-welcome">
+                                                    <?php
+                                                        $url = get_template_directory_uri()."/assets/img/image.png";
+                                                        if(get_option("slider1"))
+                                                        {
+                                                            $url = get_option("slider1");
+                                                        }
+                                                    ?>
+                                                    <img id="output1" src="<?php echo $url?>"/>
+                                                    <input type="file" id="fileinput1" accept="image/*" onchange="loadFile1(event)" data-key="slider1">
+                                            </div>
+
+                                            <div class="image-welcome">
+                                                    <?php
+                                                        $url = get_template_directory_uri()."/assets/img/image.png";
+                                                        if(get_option("slider2"))
+                                                        {
+                                                            $url = get_option("slider2");
+                                                        }
+                                                    ?>
+                                                    <img id="output2" src="<?php echo $url?>"/>
+                                                    <input type="file" id="fileinput2" accept="image/*" onchange="loadFile2(event)" data-key="slider2">
+                                            </div>
+
+
+                                            <div class="image-welcome">
+                                                    <?php
+                                                        $url = get_template_directory_uri()."/assets/img/image.png";
+                                                        if(get_option("slider3"))
+                                                        {
+                                                            $url = get_option("slider3");
+                                                        }
+                                                    ?>
+                                                    <img id="output3" src="<?php echo $url?>"/>
+                                                    <input type="file" id="fileinput3" accept="image/*" onchange="loadFile3(event)" data-key="slider3">
+                                            </div>
+
+
+                                            <div class="image-welcome">
+                                                    <?php
+                                                        $url = get_template_directory_uri()."/assets/img/image.png";
+                                                        if(get_option("slider4"))
+                                                        {
+                                                            $url = get_option("slider4");
+                                                        }
+                                                    ?>
+                                                    <img id="output4" src="<?php echo $url?>"/>
+                                                    <input type="file" id="fileinput4" accept="image/*" onchange="loadFile4(event)" data-key="slider4">
+                                            </div>
+
+
+                                            <div class="image-welcome">
+                                                    <?php
+                                                        $url = get_template_directory_uri()."/assets/img/image.png";
+                                                        if(get_option("slider5"))
+                                                        {
+                                                            $url = get_option("slider5");
+                                                        }
+                                                    ?>
+                                                    <img id="output5" src="<?php echo $url?>"/>
+                                                    <input type="file" id="fileinput5" accept="image/*" onchange="loadFile5(event)" data-key="slider5">
+                                            </div>
+
+                                    </div>
+                                </div>
+                                <button class="save save-body">Save changes</button>
                             </div>
                         </section>
                     </div>
@@ -1619,6 +1810,35 @@
         }
         
         // ====================== Tab2 ================== \\
+        $('#headerColor').on('input', function() {
+            $('#hexHeaderColor').val(this.value);
+        });
+        $('#hexHeaderColor').on('input', function() {
+            $('#headerColor').val(this.value);
+        });
+
+        $('#backgroundColor').on('input', function() {
+            $('#hexBackgroundColor').val(this.value);
+        });
+        $('#hexBackgroundColor').on('input', function() {
+            $('#backgroundColor').val(this.value);
+        });
+
+        $('#buttonColor').on('input', function() {
+            $('#hexButtonColor').val(this.value);
+        });
+        $('#hexButtonColor').on('input', function() {
+            $('#buttonColor').val(this.value);
+        });
+
+        $('#textColorBody').on('input', function() {
+            $('#hexTextColorBody').val(this.value);
+        });
+        $('#hexTextColorBody').on('input', function() {
+            $('#textColorBody').val(this.value);
+        });
+        
+        
         $(function() {
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 localStorage.setItem('lastTab', $(this).attr('href'));
@@ -1659,11 +1879,11 @@
             let youtubeHeader = $(".youtube-header").val();
             let keyYoutubeHeader = $(".youtube-header").data("key");
 
-            console.log("headerColor: " + headerColor + " keyHeaderColor: " + keyHeaderColor);
-            console.log("textColor: " + textColor + " keyTextColor: " + keyTextColor);
-            console.log("additionalMenu: " + additionalMenu + " keyadditionalMenu: " + keyadditionalMenu);
-            console.log("linkMenu: " + linkMenu + " keyLinkMenu: " + keyLinkMenu);
-            console.log("youtubeHeader: " + youtubeHeader + " keyYoutubeHeader: " + keyYoutubeHeader);
+            // console.log("headerColor: " + headerColor + " keyHeaderColor: " + keyHeaderColor);
+            // console.log("textColor: " + textColor + " keyTextColor: " + keyTextColor);
+            // console.log("additionalMenu: " + additionalMenu + " keyadditionalMenu: " + keyadditionalMenu);
+            // console.log("linkMenu: " + linkMenu + " keyLinkMenu: " + keyLinkMenu);
+            // console.log("youtubeHeader: " + youtubeHeader + " keyYoutubeHeader: " + keyYoutubeHeader);
 
 
             var data_form = new FormData();
@@ -1703,6 +1923,110 @@
 
             event.preventDefault();
         });
-      
+
+        var loadFile1 = function(event) {
+            var output = document.getElementById('output1');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+
+        var loadFile2 = function(event) {
+            var output = document.getElementById('output2');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+
+        var loadFile3 = function(event) {
+            var output = document.getElementById('output3');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+
+        var loadFile4 = function(event) {
+            var output = document.getElementById('output4');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+
+        var loadFile5 = function(event) {
+            var output = document.getElementById('output5');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+
+        $(document).on('click', '.save-body', function() {
+            let backgroundColor = $(".background-color").val();
+            let keyBackgroundColor = $(".background-color").data("key");
+
+            let buttonColor = $(".button-color").val();
+            let keyButtonColor = $(".button-color").data("key");
+
+            let textColorBody = $(".text-color-body").val();
+            let keyTextColorBody = $(".text-color-body").data("key");
+
+            let titleWelcome = $(".title-welcome").val();
+            let keyTitleWelcome = $(".title-welcome").data("key");
+
+            let contentWelcome = $(".content-welcome").val();
+            let keyContentWelcome = $(".content-welcome").data("key");
+           
+            var data_form = new FormData();
+            data_form.append('backgroundColor', backgroundColor);
+            data_form.append('keyBackgroundColor', keyBackgroundColor);
+
+            data_form.append('buttonColor', buttonColor);
+            data_form.append('keyButtonColor', keyButtonColor);
+
+            data_form.append('textColorBody', textColorBody);
+            data_form.append('keyTextColorBody', keyTextColorBody);
+
+            data_form.append('titleWelcome', titleWelcome);
+            data_form.append('keyTitleWelcome', keyTitleWelcome);
+
+            data_form.append('contentWelcome', contentWelcome);
+            data_form.append('keyContentWelcome', keyContentWelcome);
+
+            for(let i=1; i<= 5; i ++)
+            {
+                let file = $("#fileinput"+i).prop('files')[0];
+                let keyFile = $("#fileinput"+i).data("key");
+                console.log("file: " + file + "--- keyFile: " + keyFile);
+
+                data_form.append('keyFile'+i, keyFile);
+                data_form.append('file'+i, file);
+            }
+
+            data_form.append('action', 'body')
+
+            // console.log(titleWelcome + "\n" + keyTitleWelcome);
+            jQuery.ajax({
+                type: "post",
+                url: "./wp-admin/admin-ajax.php",
+                processData: false,
+                contentType: false,
+                data: data_form,
+                beforeSend: function () {
+                
+                },
+                success: function (response) {
+                    console.log(response);
+                    // localStorage.setItem("isFinish", 1);
+                    // location.reload();
+                },
+                error: function (request, status, error) {
+                    console.log(error);
+                },
+            });
+        });
     </script>
 </html>

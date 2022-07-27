@@ -235,3 +235,88 @@ function upload_image()
     wp_die();
 }
 
+add_action("wp_ajax_body", "body_function");
+add_action("wp_ajax_nopriv_body", "body_function");
+function body_function() {
+    $option_name = $_POST['keyBackgroundColor'] ;
+	$new_value = $_POST['backgroundColor'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    $option_name = $_POST['keyButtonColor'] ;
+	$new_value = $_POST['buttonColor'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    $option_name = $_POST['keyTextColorBody'] ;
+	$new_value = $_POST['textColorBody'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    $option_name = $_POST['keyTitleWelcome'] ;
+	$new_value = $_POST['titleWelcome'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    $option_name = $_POST['keyContentWelcome'] ;
+	$new_value = $_POST['contentWelcome'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    if(! function_exists('wp_handle_upload')){
+        require_once(ABSPATH.'wp-admin/includes/file.php');
+    }
+
+    for($i=1; $i<=5; $i++)
+    {
+        $file = "file".$i;
+        $key = "keyFile".$i;
+
+        if (isset($_FILES[$file]['name'])) { 
+            $uploadedfile = $_FILES[$file];
+            $upload_overrides = array('test_form' => false);
+            $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
+            if($movefile && !isset($movefile['error']))
+            {
+                $option_name = $_POST[$key] ;
+                $new_value = $movefile['url'];
+                if ( get_option( $option_name ) != $new_value ) {
+                    update_option( $option_name, $new_value );
+                } else {
+                    $deprecated = ' ';
+                    $autoload = 'no';
+                    add_option( $option_name, $new_value, $deprecated, $autoload );
+                }
+            } else {
+                echo $movefile['error'];
+            }
+        }
+    }
+
+    wp_die(); 
+}
