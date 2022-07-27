@@ -1817,12 +1817,20 @@
             $('#headerColor').val(this.value);
         });
 
+        $('#textColor').on('input', function() {
+            $('#hexTextColor').val(this.value);
+        });
+        $('#hexTextColor').on('input', function() {
+            $('#textColor').val(this.value);
+        });
+
         $('#backgroundColor').on('input', function() {
             $('#hexBackgroundColor').val(this.value);
         });
         $('#hexBackgroundColor').on('input', function() {
             $('#backgroundColor').val(this.value);
         });
+
 
         $('#buttonColor').on('input', function() {
             $('#hexButtonColor').val(this.value);
@@ -1831,12 +1839,14 @@
             $('#buttonColor').val(this.value);
         });
 
+
         $('#textColorBody').on('input', function() {
             $('#hexTextColorBody').val(this.value);
         });
         $('#hexTextColorBody').on('input', function() {
             $('#textColorBody').val(this.value);
         });
+
         
         
         $(function() {
@@ -1965,6 +1975,8 @@
         };
 
         $(document).on('click', '.save-body', function() {
+            $('#loading').modal('toggle');
+
             let backgroundColor = $(".background-color").val();
             let keyBackgroundColor = $(".background-color").data("key");
 
@@ -2019,9 +2031,8 @@
                 
                 },
                 success: function (response) {
-                    console.log(response);
-                    // localStorage.setItem("isFinish", 1);
-                    // location.reload();
+                    localStorage.setItem("isFinish", 1);
+                    location.reload();
                 },
                 error: function (request, status, error) {
                     console.log(error);
