@@ -315,6 +315,69 @@ function body_function() {
             } else {
                 echo $movefile['error'];
             }
+        } else if($_POST[$file] == "") {
+            var_dump("null");
+            $option_name = $_POST[$key] ;
+            $new_value = $_POST[$file];
+            if ( get_option( $option_name ) != $new_value ) {
+                update_option( $option_name, $new_value );
+            } else {
+                $deprecated = ' ';
+                $autoload = 'no';
+                add_option( $option_name, $new_value, $deprecated, $autoload );
+            }
+        }
+    }
+    wp_die(); 
+}
+
+add_action("wp_ajax_reviews", "reviews_function");
+add_action("wp_ajax_nopriv_reviews", "reviews_function");
+function reviews_function() {
+    $option_name = $_POST['keyBackgroundColorReviews'] ;
+	$new_value = $_POST['backgroundColorReviews'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    $option_name = $_POST['keyTextColorReviews'] ;
+	$new_value = $_POST['textColorReviews'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    $option_name = $_POST['keyTitleReviews'] ;
+	$new_value = $_POST['titleReviews'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    for($i=1; $i<=3; $i++)
+    {
+        $key = "keyTextBodyReviews".$i;
+        $value = "textBodyReviews".$i;
+
+        $option_name = $_POST[$key] ;
+        $new_value = $_POST[$value] ;
+        
+        if ( get_option( $option_name ) != $new_value ) {
+            update_option( $option_name, $new_value );
+        } else {
+            $deprecated = ' ';
+            $autoload = 'no';
+            add_option( $option_name, $new_value, $deprecated, $autoload );
         }
     }
 

@@ -1015,6 +1015,11 @@
                         .content-welcome {
                             width: 100%;
                         }
+
+                        .remove-image {
+                            position: absolute;
+                            margin-left: 75px;
+                        }
                     </style>
 
 
@@ -1056,13 +1061,14 @@
                                                         ?>
                                                         <div class="group-input-color">
                                                             <input type="color" id="textColor" class="text-color" data-key="textColor" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorText?>"> 
-                                                            <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>" id="hexTextColor" class="hexcolor"></input>
+                                                            <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorText?>" id="hexTextColor" class="hexcolor"></input>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="header-logo">
                                                     <div class="label-logo">Logo</div>
+                                                    <button class="remove-image">X</button>
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
                                                         if(get_option("logo"))
@@ -1070,7 +1076,7 @@
                                                             $url = get_option("logo");
                                                         }
                                                     ?>
-                                                    <img id="output" src="<?php echo $url?>"/>
+                                                    <img id="output" class="output-image" src="<?php echo $url?>"/>
                                                     <input type="file" id="fileinput" accept="image/*" onchange="loadFile(event)" data-key="logo">
                                                 </div>
 
@@ -1130,7 +1136,7 @@
                             }
 
                             .image-welcome {
-                                margin: 15px 0;
+                                margin: 30px 0;
                             }
                         </style>
 
@@ -1223,10 +1229,17 @@
                                                         if(get_option("slider1"))
                                                         {
                                                             $url = get_option("slider1");
+                                                            ?>
+                                                                <button class="remove-image">X</button> 
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                                <button class="remove-image" style="display:none">X</button>
+                                                            <?php
                                                         }
                                                     ?>
-                                                    <img id="output1" src="<?php echo $url?>"/>
-                                                    <input type="file" id="fileinput1" accept="image/*" onchange="loadFile1(event)" data-key="slider1">
+                                                    <img id="output1" class="output-image" src="<?php echo $url?>"/>
+                                                    <input type="file" class="fileinput" id="fileinput1" accept="image/*" onchange="loadFile1(event)" data-key="slider1">
                                             </div>
 
                                             <div class="image-welcome">
@@ -1235,10 +1248,17 @@
                                                         if(get_option("slider2"))
                                                         {
                                                             $url = get_option("slider2");
+                                                            ?>
+                                                                <button class="remove-image">X</button> 
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                                <button class="remove-image" style="display:none">X</button>
+                                                            <?php
                                                         }
                                                     ?>
-                                                    <img id="output2" src="<?php echo $url?>"/>
-                                                    <input type="file" id="fileinput2" accept="image/*" onchange="loadFile2(event)" data-key="slider2">
+                                                    <img id="output2" class="output-image" src="<?php echo $url?>"/>
+                                                    <input type="file" class="fileinput" id="fileinput2" accept="image/*" onchange="loadFile2(event)" data-key="slider2">
                                             </div>
 
 
@@ -1248,10 +1268,17 @@
                                                         if(get_option("slider3"))
                                                         {
                                                             $url = get_option("slider3");
+                                                            ?>
+                                                                <button class="remove-image">X</button> 
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                                <button class="remove-image" style="display:none">X</button>
+                                                            <?php
                                                         }
                                                     ?>
-                                                    <img id="output3" src="<?php echo $url?>"/>
-                                                    <input type="file" id="fileinput3" accept="image/*" onchange="loadFile3(event)" data-key="slider3">
+                                                    <img id="output3" class="output-image" src="<?php echo $url?>"/>
+                                                    <input type="file" class="fileinput" id="fileinput3" accept="image/*" onchange="loadFile3(event)" data-key="slider3">
                                             </div>
 
 
@@ -1261,10 +1288,17 @@
                                                         if(get_option("slider4"))
                                                         {
                                                             $url = get_option("slider4");
+                                                            ?>
+                                                                <button class="remove-image">X</button> 
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                                <button class="remove-image" style="display:none">X</button>
+                                                            <?php
                                                         }
                                                     ?>
-                                                    <img id="output4" src="<?php echo $url?>"/>
-                                                    <input type="file" id="fileinput4" accept="image/*" onchange="loadFile4(event)" data-key="slider4">
+                                                    <img id="output4" class="output-image" src="<?php echo $url?>"/>
+                                                    <input type="file" class="fileinput" id="fileinput4" accept="image/*" onchange="loadFile4(event)" data-key="slider4">
                                             </div>
 
 
@@ -1274,10 +1308,17 @@
                                                         if(get_option("slider5"))
                                                         {
                                                             $url = get_option("slider5");
+                                                            ?>
+                                                                <button class="remove-image">X</button> 
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                                <button class="remove-image" style="display:none">X</button>
+                                                            <?php
                                                         }
                                                     ?>
-                                                    <img id="output5" src="<?php echo $url?>"/>
-                                                    <input type="file" id="fileinput5" accept="image/*" onchange="loadFile5(event)" data-key="slider5">
+                                                    <img id="output5" class="output-image" src="<?php echo $url?>"/>
+                                                    <input type="file" class="fileinput" id="fileinput5" accept="image/*" onchange="loadFile5(event)" data-key="slider5">
                                             </div>
 
                                     </div>
@@ -1285,6 +1326,103 @@
                                 <button class="save save-body">Save changes</button>
                             </div>
                         </section>
+                        
+                        <style>
+                            .wrap-content-reviews-word {
+                                margin: 15px 0;
+                            }
+                        </style>
+
+                        <section class="menu">
+                            <div class="wrap-menu">
+                                <div class="body-menu">
+                                    <div class="wrap-reivews">
+                                        <div class="name-body">Client's Reviews or Your Notifications</div>
+                                        <div class="group-color">
+                                            <div class="wrap-background-color">
+                                                <div class="label-color">Background Color</div>
+                                                    <?php
+                                                        $colorReviews = "#000000";
+                                                        if(get_option("backgroundColorReviews"))
+                                                        {
+                                                            $colorReviews = get_option("backgroundColorReviews");
+                                                        }
+                                                    ?>
+                                                            
+                                                <div class="group-input-color">
+                                                    <input type="color" id="backgroundColorReviews" class="background-color-reviews" data-key="backgroundColorReviews" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorReviews?>"> 
+                                                    <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorReviews?>" id="hexBackgroundColorReviews" class="hexcolor"></input>
+                                                </div>
+                                            </div>
+
+                                            <div class="wrap-button-color">
+                                                <div class="label-color">Text Color</div>
+                                                    <?php
+                                                        $textColorReviews = "#000000";
+                                                        if(get_option("textColorReviews"))
+                                                        {
+                                                            $textColorReviews = get_option("textColorReviews");
+                                                        }
+                                                    ?>
+                                                <div class="group-input-color">
+                                                    <input type="color" id="textColorReivews" class="text-color-reviews" data-key="textColorReviews" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $textColorReviews?>"> 
+                                                    <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $textColorReviews?>" id="hexTextColorReviews" class="hexcolor"></input>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="wrap-title-welcome-word">
+                                            <div class="title-body">Title text</div>
+                                            <?php
+                                                    $text = "";
+                                                    if(get_option("titleReviews"))
+                                                    {
+                                                        $text = get_option("titleReviews");
+                                                    }
+                                            ?>
+                                            <input type="text" class="title-welcome title-reviews" data-key="titleReviews" value="<?php echo $text?>">
+                                        </div>
+                                        <div class="wrap-content-reviews-word">
+                                            <div class="title-body">Body text 1</div>
+                                            <?php
+                                                $text = "";
+                                                if(get_option("textBodyReviews1"))
+                                                {
+                                                    $text = get_option("textBodyReviews1");
+                                                }
+                                            ?>
+                                            <textarea cols="30" rows="5" class="content-welcome textBodyReviews1" data-key="textBodyReviews1"><?php echo $text?></textarea>
+                                        </div>
+                                        <div class="wrap-content-reviews-word">
+                                            <div class="title-body">Body text 2</div>
+                                            <?php
+                                                $text = "";
+                                                if(get_option("textBodyReviews2"))
+                                                {
+                                                    $text = get_option("textBodyReviews2");
+                                                }
+                                            ?>
+                                            <textarea cols="30" rows="5" class="content-welcome textBodyReviews2" data-key="textBodyReviews2"><?php echo $text?></textarea>
+                                        </div>
+                                        <div class="wrap-content-reviews-word">
+                                            <div class="title-body">Body text 3</div>
+                                            <?php
+                                                $text = "";
+                                                if(get_option("textBodyReviews3"))
+                                                {
+                                                    $text = get_option("textBodyReviews3");
+                                                }
+                                            ?>
+                                            <textarea cols="30" rows="5" class="content-welcome textBodyReviews3" data-key="textBodyReviews3"><?php echo $text?></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <button class="save save-reviews">Save changes</button>
+                            </div>
+                        </section>
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -1847,6 +1985,22 @@
             $('#textColorBody').val(this.value);
         });
 
+
+        // Reviews
+        $('#backgroundColorReviews').on('input', function() {
+            $('#hexBackgroundColorReviews').val(this.value);
+        });
+        $('#hexHeaderColor').on('input', function() {
+            $('#hexBackgroundColorReviews').val(this.value);
+        });
+
+        $('#textColorReivews').on('input', function() {
+            $('#hexTextColorReviews').val(this.value);
+        });
+        $('#hexTextColorReviews').on('input', function() {
+            $('#textColorReivews').val(this.value);
+        });
+
         
         
         $(function() {
@@ -1937,6 +2091,10 @@
         var loadFile1 = function(event) {
             var output = document.getElementById('output1');
             output.src = URL.createObjectURL(event.target.files[0]);
+            if(output.src != "")
+            {   
+                $(event.currentTarget).parents(".image-welcome").children(".remove-image").css("display", "block");
+            }
             output.onload = function() {
             URL.revokeObjectURL(output.src) // free memory
             }
@@ -1945,6 +2103,10 @@
         var loadFile2 = function(event) {
             var output = document.getElementById('output2');
             output.src = URL.createObjectURL(event.target.files[0]);
+            if(output.src != "")
+            {   
+                $(event.currentTarget).parents(".image-welcome").children(".remove-image").css("display", "block");
+            }
             output.onload = function() {
             URL.revokeObjectURL(output.src) // free memory
             }
@@ -1953,6 +2115,10 @@
         var loadFile3 = function(event) {
             var output = document.getElementById('output3');
             output.src = URL.createObjectURL(event.target.files[0]);
+            if(output.src != "")
+            {   
+                $(event.currentTarget).parents(".image-welcome").children(".remove-image").css("display", "block");
+            }
             output.onload = function() {
             URL.revokeObjectURL(output.src) // free memory
             }
@@ -1961,6 +2127,10 @@
         var loadFile4 = function(event) {
             var output = document.getElementById('output4');
             output.src = URL.createObjectURL(event.target.files[0]);
+            if(output.src != "")
+            {   
+                $(event.currentTarget).parents(".image-welcome").children(".remove-image").css("display", "block");
+            }
             output.onload = function() {
             URL.revokeObjectURL(output.src) // free memory
             }
@@ -1969,6 +2139,10 @@
         var loadFile5 = function(event) {
             var output = document.getElementById('output5');
             output.src = URL.createObjectURL(event.target.files[0]);
+            if(output.src != "")
+            {   
+                $(event.currentTarget).parents(".image-welcome").children(".remove-image").css("display", "block");
+            }
             output.onload = function() {
             URL.revokeObjectURL(output.src) // free memory
             }
@@ -2010,12 +2184,27 @@
 
             for(let i=1; i<= 5; i ++)
             {
-                let file = $("#fileinput"+i).prop('files')[0];
+                let url = "#output" + i;
                 let keyFile = $("#fileinput"+i).data("key");
-                console.log("file: " + file + "--- keyFile: " + keyFile);
 
-                data_form.append('keyFile'+i, keyFile);
-                data_form.append('file'+i, file);
+                if($(url).attr('src') == ''){
+                    data_form.append('keyFile'+i, keyFile);
+                    data_form.append('file'+i, '');
+
+                }
+                else{
+                    // let keyFile = $("#fileinput"+i).data("key");
+                    let file = $("#fileinput"+i).prop('files')[0];
+
+                    data_form.append('keyFile'+i, keyFile);
+                    data_form.append('file'+i, file);
+                }
+
+                // let file = $("#fileinput"+i).prop('files')[0];
+                // let keyFile = $("#fileinput"+i).data("key");
+
+                // data_form.append('keyFile'+i, keyFile);
+                // data_form.append('file'+i, file);
             }
 
             data_form.append('action', 'body')
@@ -2038,6 +2227,67 @@
                     console.log(error);
                 },
             });
+        });
+
+        $(document).on('click', '.save-reviews', function() {
+            $('#loading').modal('toggle');
+
+            let valueBackgroundColorReviews = $("#backgroundColorReviews").val();
+            let keyBackgroundColorReviewss = $("#backgroundColorReviews").data("key");
+
+            let valueTextColorReivews = $("#textColorReivews").val();
+            let keyTextColorReivews = $("#textColorReivews").data("key");
+
+            let valueTitleReviews = $(".title-reviews").val();
+            let keyTitleReviews = $(".title-reviews").data("key");
+
+
+            var data_form = new FormData();
+            data_form.append('keyBackgroundColorReviews', keyBackgroundColorReviewss);
+            data_form.append('backgroundColorReviews', valueBackgroundColorReviews);
+
+            data_form.append('keyTextColorReviews', keyTextColorReivews);
+            data_form.append('textColorReviews', valueTextColorReivews);
+
+            data_form.append('keyTitleReviews', keyTitleReviews);
+            data_form.append('titleReviews', valueTitleReviews);
+            
+            for(let i=1; i<=3; i++)
+            {
+                let classReviews = ".textBodyReviews"+i;
+
+                let key = $(classReviews).data("key");
+                let value = $(classReviews).val();
+
+                data_form.append('keyTextBodyReviews'+i, key);
+                data_form.append('textBodyReviews'+i, value);
+            }
+
+            data_form.append('action', 'reviews')
+
+            jQuery.ajax({
+                type: "post",
+                url: "./wp-admin/admin-ajax.php",
+                processData: false,
+                contentType: false,
+                data: data_form,
+                beforeSend: function () {
+                
+                },
+                success: function (response) {
+                    localStorage.setItem("isFinish", 1);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    console.log(error);
+                },
+            });
+        });
+
+        $(".remove-image").click(function(){
+            $(this).css("display", "none");
+            $(this).parents(".image-welcome").children(".output-image").attr("src","");
+            $(this).parents(".image-welcome").children(".fileinput").val("");
         });
     </script>
 </html>
