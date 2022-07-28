@@ -178,6 +178,16 @@ function upload_image()
         } else {
             echo $movefile['error'];
         }
+    } else if($_POST[$file] == "") {
+        $option_name = $_POST['keyFile'] ;
+        $new_value = '';
+        if ( get_option( $option_name ) != $new_value ) {
+            update_option( $option_name, $new_value );
+        } else {
+            $deprecated = ' ';
+            $autoload = 'no';
+            add_option( $option_name, $new_value, $deprecated, $autoload );
+        }
     }
 
     $option_name = $_POST['keyHeaderColor'] ;
@@ -429,9 +439,9 @@ function gift_function() {
         } else {
             echo $movefile['error'];
         }
-    } else if($_POST[$file] == "") {
-        $option_name = $_POST['keyFile'] ;
-        $new_value = $_POST['file'];
+    } else if($_POST['file'] == "") {
+        $option_name = $_POST['keyFile'];
+        $new_value = "";
         if ( get_option( $option_name ) != $new_value ) {
             update_option( $option_name, $new_value );
         } else {

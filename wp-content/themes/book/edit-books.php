@@ -1021,7 +1021,7 @@
                     <div class="tab-pane" id="2a">
                         <section class="menu">
                             <div class="wrap-menu">
-                                <form id="header-form" method="post" enctype="multipart/form-data">
+                                <!-- <form id="header-form" method="post" enctype="multipart/form-data"> -->
                                     <div class="head-menu">
                                         <div class="title-menu">Header</div>
                                     </div>
@@ -1061,18 +1061,24 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="header-logo">
+                                                <div class="header-logo image-welcome">
                                                     <div class="label-logo">Logo</div>
-                                                    <button class="remove-image">X</button>
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
                                                         if(get_option("logo"))
                                                         {
                                                             $url = get_option("logo");
+                                                            ?>
+                                                                <button class="remove-image">X</button> 
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                                <button class="remove-image" style="display:none">X</button>
+                                                            <?php
                                                         }
                                                     ?>
                                                     <img id="output" class="output-image" src="<?php echo $url?>"/>
-                                                    <input type="file" id="fileinput" accept="image/*" onchange="loadFile(event)" data-key="logo">
+                                                    <input type="file" class="fileinput" id="fileinput" accept="image/*" onchange="loadFile(event)" data-key="logo">
                                                 </div>
 
                                                 <div class="header-menu">
@@ -1120,7 +1126,7 @@
                                     </div>
                                     
                                     <button class="save save-header">Save changes</button>
-                                </form>
+                                <!-- </form> -->
                             </div>
                         </section>
                         
@@ -2069,8 +2075,7 @@
             URL.revokeObjectURL(output.src) // free memory
             }
         };
-
-        $( "#header-form" ).submit(function( event ) {
+        $(document).on('click', '.save-header', function() {
             $('#loading').modal('toggle');
 
             let headerColor = $(".header-color").val();
@@ -2338,6 +2343,8 @@
         };
 
         $(document).on('click', '.save-gift', function() {
+            $('#loading').modal('toggle');
+
             let keyTitleGift = $('.title-gift').data("key");
             let titleGift = $('.title-gift').val();
 
@@ -2357,9 +2364,8 @@
             let keyFile = $("#fileinputGift").data("key");
 
             if($("#outputGift").attr('src') == ''){
-                data_form.append('gift', keyFile);
+                data_form.append('keyFile', keyFile);
                 data_form.append('file', '');
-
             }
             else{
                 let file = $("#fileinputGift").prop('files')[0];
@@ -2381,8 +2387,8 @@
                 
                 },
                 success: function (response) {
-                    // localStorage.setItem("isFinish", 1);
-                    // location.reload();
+                    localStorage.setItem("isFinish", 1);
+                    location.reload();
                 },
                 error: function (request, status, error) {
                     console.log(error);
