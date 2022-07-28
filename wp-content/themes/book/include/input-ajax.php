@@ -316,7 +316,6 @@ function body_function() {
                 echo $movefile['error'];
             }
         } else if($_POST[$file] == "") {
-            var_dump("null");
             $option_name = $_POST[$key] ;
             $new_value = $_POST[$file];
             if ( get_option( $option_name ) != $new_value ) {
@@ -371,7 +370,68 @@ function reviews_function() {
 
         $option_name = $_POST[$key] ;
         $new_value = $_POST[$value] ;
-        
+
+        if ( get_option( $option_name ) != $new_value ) {
+            update_option( $option_name, $new_value );
+        } else {
+            $deprecated = ' ';
+            $autoload = 'no';
+            add_option( $option_name, $new_value, $deprecated, $autoload );
+        }
+    }
+
+    wp_die(); 
+}
+
+add_action("wp_ajax_gift", "gift_function");
+add_action("wp_ajax_nopriv_gift", "gift_function");
+function gift_function() {
+
+    $option_name = $_POST['keyTitleGift'] ;
+	$new_value = $_POST['titleGift'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    $option_name = $_POST['keyContentGift'] ;
+	$new_value = $_POST['contentGift'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    if(! function_exists('wp_handle_upload')){
+        require_once(ABSPATH.'wp-admin/includes/file.php');
+    }
+
+    if (isset($_FILES['file']['name'])) { 
+        $uploadedfile = $_FILES['file'];
+        $upload_overrides = array('test_form' => false);
+        $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
+        if($movefile && !isset($movefile['error']))
+        {
+            $option_name = $_POST['keyFile'] ;
+            $new_value = $movefile['url'];
+            if ( get_option( $option_name ) != $new_value ) {
+                update_option( $option_name, $new_value );
+            } else {
+                $deprecated = ' ';
+                $autoload = 'no';
+                add_option( $option_name, $new_value, $deprecated, $autoload );
+            }
+        } else {
+            echo $movefile['error'];
+        }
+    } else if($_POST[$file] == "") {
+        $option_name = $_POST['keyFile'] ;
+        $new_value = $_POST['file'];
         if ( get_option( $option_name ) != $new_value ) {
             update_option( $option_name, $new_value );
         } else {

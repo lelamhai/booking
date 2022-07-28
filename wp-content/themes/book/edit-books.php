@@ -944,12 +944,7 @@
                             font-weight: bold;
                         }
 
-                        #output,
-                        #output1,
-                        #output2,
-                        #output3,
-                        #output4,
-                        #output5 {
+                        .output-image {
                             width: 100px;
                             height: auto;
                         }
@@ -1422,7 +1417,60 @@
                             </div>
                         </section>
                         
-                        
+                        <section class="menu">
+                            <div class="wrap-menu">
+                                <div class="body-menu">
+                                    <div class="wrap-gift">
+                                        <div class="name-body">Gift Cards</div>
+
+                                        <div class="wrap-title-welcome-word">
+                                            <div class="title-body">Title text</div>
+                                            <?php
+                                                    $text = "";
+                                                    if(get_option("titleGift"))
+                                                    {
+                                                        $text = get_option("titleGift");
+                                                    }
+                                            ?>
+                                            <input type="text" class="title-welcome title-gift" data-key="titleGift" value="<?php echo $text?>">
+                                        </div>
+
+                                        <div class="wrap-content-welcome-word">
+                                            <div class="title-body">Body text</div>
+                                            <?php
+                                                $text = "";
+                                                if(get_option("contentGift"))
+                                                {
+                                                    $text = get_option("contentGift");
+                                                }
+                                            ?>
+                                            <textarea cols="30" rows="5" class="content-welcome content-gift" data-key="contentGift"><?php echo $text?></textarea>
+                                        </div>
+
+                                        <div class="image-welcome">
+                                            <?php
+                                                $url = get_template_directory_uri()."/assets/img/image.png";
+                                                if(get_option("gift"))
+                                                {
+                                                    $url = get_option("gift");
+                                                    ?>
+                                                        <button class="remove-image">X</button> 
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                        <button class="remove-image" style="display:none">X</button>
+                                                    <?php
+                                                }
+                                            ?>
+                                                <img id="outputGift" class="output-image" src="<?php echo $url?>"/>
+                                                <input type="file" class="fileinput" id="fileinputGift" accept="image/*" onchange="loadFileGift(event)" data-key="gift">
+                                        </div>
+
+                                        <button class="save save-gift">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2193,18 +2241,11 @@
 
                 }
                 else{
-                    // let keyFile = $("#fileinput"+i).data("key");
                     let file = $("#fileinput"+i).prop('files')[0];
 
                     data_form.append('keyFile'+i, keyFile);
                     data_form.append('file'+i, file);
                 }
-
-                // let file = $("#fileinput"+i).prop('files')[0];
-                // let keyFile = $("#fileinput"+i).data("key");
-
-                // data_form.append('keyFile'+i, keyFile);
-                // data_form.append('file'+i, file);
             }
 
             data_form.append('action', 'body')
@@ -2283,6 +2324,72 @@
                 },
             });
         });
+
+        var loadFileGift = function(event) {
+            var output = document.getElementById('outputGift');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            if(output.src != "")
+            {   
+                $(event.currentTarget).parents(".image-welcome").children(".remove-image").css("display", "block");
+            }
+            output.onload = function() {
+            URL.revokeObjectURL(output.src)
+            }
+        };
+
+        $(document).on('click', '.save-gift', function() {
+            let keyTitleGift = $('.title-gift').data("key");
+            let titleGift = $('.title-gift').val();
+
+            let keyContentGift = $('.content-gift').data("key");
+            let contentGift = $('.content-gift').val();
+
+
+            var data_form = new FormData();
+            data_form.append('keyTitleGift', keyTitleGift);
+            data_form.append('titleGift', titleGift);
+
+            data_form.append('keyContentGift', keyContentGift);
+            data_form.append('contentGift', contentGift);
+
+
+            
+            let keyFile = $("#fileinputGift").data("key");
+
+            if($("#outputGift").attr('src') == ''){
+                data_form.append('gift', keyFile);
+                data_form.append('file', '');
+
+            }
+            else{
+                let file = $("#fileinputGift").prop('files')[0];
+
+                data_form.append('keyFile', keyFile);
+                data_form.append('file', file);
+            }
+
+            data_form.append('action', 'gift')
+
+
+            jQuery.ajax({
+                type: "post",
+                url: "./wp-admin/admin-ajax.php",
+                processData: false,
+                contentType: false,
+                data: data_form,
+                beforeSend: function () {
+                
+                },
+                success: function (response) {
+                    // localStorage.setItem("isFinish", 1);
+                    // location.reload();
+                },
+                error: function (request, status, error) {
+                    console.log(error);
+                },
+            });
+        });
+        
 
         $(".remove-image").click(function(){
             $(this).css("display", "none");
