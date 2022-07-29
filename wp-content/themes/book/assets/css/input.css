@@ -332,6 +332,22 @@ main {
 .wrap-content-reviews-word {
     margin: 15px 0;
 }
+.wrap-content-page-word {
+    margin: 60px 0;
+}
+.title-body,
+.label-youtube-menu,
+.label-additional-menu,
+.label-link-menu,
+.label-logo,
+.label-color {
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+.name-body {
+    padding-bottom: 30px;
+}
+
 @media (min-width: 768px) {
     .modal-dialog {
         width: 500px;

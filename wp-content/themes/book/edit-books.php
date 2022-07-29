@@ -85,7 +85,7 @@
                         <section class="menu">
                             <div class="wrap-menu">
                                 <div class="head-menu">
-                                    <div class="title-menu">Your Business Info</div>
+                                    <!-- <div class="title-menu">Your Business Info</div> -->
                                 </div>
 
                                 <div class="body-business">
@@ -1080,23 +1080,7 @@
                                         <textarea cols="30" rows="15" class="content-welcome content-about-us" data-key="contentAboutUs"><?php echo $text?></textarea>
                                     </div>
 
-                                    <style>
-                                        .wrap-content-page-word {
-                                            margin: 60px 0;
-                                        }
-
-
-                                        .title-body,
-                                        .label-youtube-menu,
-                                        .label-additional-menu,
-                                        .label-link-menu,
-                                        .label-logo,
-                                        .label-color {
-                                            font-weight: bold;
-                                            padding-bottom: 5px;
-                                        }
-                                    </style>
-
+                                   
                                     <div class="wrap-content-page-word">
                                         <div class="title-body">Terms of Service</div>
                                         <?php
@@ -1175,6 +1159,8 @@
         });
 
         $(document).on('click', '.save-footer', function() {
+            $('#loading').modal('toggle');
+
             let footerColor = $(".footer-color").val();
             let keyFooterColor = $(".footer-color").data("key");
 
@@ -1206,9 +1192,8 @@
 
                 },
                 success: function(response) {
-                    console.log(response);
-                    // localStorage.setItem("isFinish", 1);
-                    // location.reload();
+                    localStorage.setItem("isFinish", 1);
+                    location.reload();
                 },
                 error: function(request, status, error) {
                     console.log(error);
