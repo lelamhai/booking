@@ -675,7 +675,7 @@
                                                     </div>
 
                                                     <div class="menu-youtube-menu">
-                                                        <div class="label-youtube-menu">Header Youtube Video (youtube video -> share -> embed -> copy link & paste in here)</div>
+                                                        <div class="label-youtube-menu">Youtube video -> share -> embed -> copy the yellow highlight part of that video (see the example below) & paste in here</div>
                                                         <?php 
                                                             $youtubeHeader = "";
                                                             if(get_option("youtubeHeader"))
@@ -684,6 +684,7 @@
                                                             }
                                                         ?>
                                                         <input type="text" value="<?php echo $youtubeHeader?>" class="youtube-header" data-key="youtubeHeader">
+                                                        <img src="<?php echo get_template_directory_uri()."/assets/img/TutorialYoutube.png";?>" alt="" style="width: 50%; padding: 15px 0">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1090,7 +1091,7 @@
                                                     'wpautop'          => true,   // Whether to use wpautop for adding in paragraphs. Note that the paragraphs are added automatically when wpautop is false.
                                                     'media_buttons'    => false,   // Whether to display media insert/upload buttons
                                                     'textarea_name'    => $editor_id,   // The name assigned to the generated textarea and passed parameter when the form is submitted.
-                                                    'textarea_rows'    => get_option( 'default_post_edit_rows', 20 ),  // The number of rows to display for the textarea
+                                                    'textarea_rows'    => get_option( 'default_post_edit_rows', 30 ),  // The number of rows to display for the textarea
                                                     'tabindex'         => '',     // The tabindex value used for the form field
                                                     'editor_css'       => '',     // Additional CSS styling applied for both visual and HTML editors buttons, needs to include <style> tags, can use "scoped"
                                                     'editor_class'     => '',     // Any extra CSS Classes to append to the Editor textarea
@@ -1115,7 +1116,7 @@
                                                     'wpautop'          => true,   // Whether to use wpautop for adding in paragraphs. Note that the paragraphs are added automatically when wpautop is false.
                                                     'media_buttons'    => false,   // Whether to display media insert/upload buttons
                                                     'textarea_name'    => $editor_id,   // The name assigned to the generated textarea and passed parameter when the form is submitted.
-                                                    'textarea_rows'    => get_option( 'default_post_edit_rows', 20 ),  // The number of rows to display for the textarea
+                                                    'textarea_rows'    => get_option( 'default_post_edit_rows', 30 ),  // The number of rows to display for the textarea
                                                     'tabindex'         => '',     // The tabindex value used for the form field
                                                     'editor_css'       => '',     // Additional CSS styling applied for both visual and HTML editors buttons, needs to include <style> tags, can use "scoped"
                                                     'editor_class'     => '',     // Any extra CSS Classes to append to the Editor textarea
