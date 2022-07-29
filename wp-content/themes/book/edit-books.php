@@ -4,418 +4,68 @@
 */
 ?>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Page Title</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <style>
-            /* modal */
-            .loader {
-                border: 9px solid #000;
-                border-top-color: #0f6ac4;
-                width: 70px;
-                height: 70px;
-                border-radius: 50%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                animation: spin 1s linear infinite;
-            }
-
-            @keyframes spin {
-                0% {
-                    transform: rotate(0);
-                }
-                100% {
-                    transform: rotate(360deg);
-                }
-            }
-
-            main {
-                max-width: 800px;
-                margin: auto;
-            }
-
-            .menu {
-                margin-bottom: 45px;
-            }
-
-            /* Business */
-            .body-business {
-                display: flex;
-            }
-            .col {
-                width: 50%;
-            }
-
-            .wrap-business {
-                padding: 15px 0;
-            }
-
-            .label-business {
-                padding-bottom: 5px;
-                font-weight: bold;
-            }
-
-            .input-business {
-                width: 90%;
-                height: 40px;
-                padding: 0 15px;
-            }
-
-            /* Hours */
-            .wrap-hours {
-                margin: 15px 0;
-            }
-
-            .label-hours {
-                padding-bottom: 10px;
-                font-weight: bold;
-            }
-
-            .time-from {
-                padding: 0 5px;
-                margin-right: 15px;
-            }
-
-            .time-to {
-                padding: 0 5px;
-                margin-right: 15px;
-            }
-
-            .wrap-input-hours b {
-                padding: 0 15px;
-            }
-
-            .hours-active {
-                margin-left: 60px;
-                color: #fff;
-                padding: 3px;
-                border: 0;
-            }
-
-            /* Menu */
-            .create-time,
-            .create-menu {
-                background-color: #008037;
-                padding: 10px;
-                border: 0;
-                color: #fff;
-                border-radius: 5px;
-            }
-
-            .create-time {
-                padding: 5px;
-            }
-
-            .menu-count {
-                width: 160px;
-                height: 100%;
-                padding: 0 15px;
-            }
-
-            .head-menu {
-                display: flex;
-                justify-content: space-between;
-                padding-top: 30px;
-            }
-
-            .title-level {
-                font-weight: bold;
-                font-size: 24px;
-            }
-
-            .title-menu {
-                font-size: 32px;
-                color: #0f6ac4;
-            }
-
-            .save {
-                padding: 15px;
-                font-size: 20px;
-                background-color: #0f6ac4;
-                color: #fff;
-                border: 0;
-                border-radius: 5px;
-                margin: 30px 0 45px 0;
-            }
-
-            .delete-time,
-            .delete-nemu {
-                color: #fff;
-                background-color: #ac2b2b;
-                border: 0;
-                padding: 10px 15px;
-                border-radius: 5px;
-            }
-
-            .delete-time {
-                padding: 5px;
-            }
-
-            .create-level {
-                display: flex;
-                padding: 30px 0 45px 0;
-            }
-
-            .block-level1:first-child>.wrap-level>.level>.wrap-right>.delete-level {
-                display: none;
-            }
-
-           
-
-            .wrap-level {
-                width: 100%;
-                margin: 30px 0;
-            }
-
-            .wrap-menu-block {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-            }
-
-            .menu-price {
-                position: relative;
-            }
-
-            .menu-title,
-            .menu-price,
-            .menu-description {
-                width: 100%;
-                margin: 15px 0;
-            }
-
-            .menu-title span,
-            .menu-price span,
-            .menu-description span {
-                font-weight: bold;
-            }
-
-            .title,
-            .price,
-            .description {
-                width: 100%;
-                height: 40px;
-                padding: 10px 15px;
-            }
-
-            .price {
-                padding-left: 30px;
-            }
-
-            .price-dolla {
-                position: absolute;
-                top: 30px;
-                left: 15px;
-                font-weight: bold;
-            }
-
-            .level {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 15px;
-            }
-
-            .wrap-right {
-                display: flex;
-            }
-
-            .block-level2 {
-                width: 80%;
-            }
-
-            .wrap-menu-button {
-                padding-bottom: 30px;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-            }
-
-            .add-sub {
-                background-color: #008037;
-                padding: 10px;
-                border: 0;
-                color: #fff;
-                border-radius: 5px;
-            }
-
-            .delete-level {
-                margin-left: 15px;
-            }
-
-            .add-sub-service {
-                text-align: center;
-                width: 100%;
-            }
-
-            .add-sub-service button {
-                border: 0;
-                background-color: #008037;
-                padding: 10px 15px;
-                color: #fff;
-                border-radius: 5px;
-            }
-
-            /* times */
-            .wrap-times-tile .seats,
-            .wrap-times-tile .time {
-                font-weight: bold;
-            }
-            .wrap-times-tile {
-                display:flex;
-                margin: 15px 0 30px 0;
-            }
-
-            .group-button {
-                display:flex;
-            }
-
-            .wrap-times-row:nth-child(4) > .group-button > .delete-level {
-                display: none;
-            }
-
-            .time {
-                    width: 300px;
-                }
-                .seats {
-                    width: 100px;
-                     margin-right: 15px;
-                }
-
-                .wrap-times-row {
-                    display: flex;
-                    padding: 15px 0;
-                    align-items: center;
-                }
-
-                .time .input-time {
-                    width: 80px;
-                    margin-right: 15px;
-
-                }
-
-                .seats input {
-                    width: 100%;
-                }
-
-                .input-fill {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
-                    font-size: 10px;
-                }
-
-                .input-fill .fill-all {
-                    width: 64px;
-                    padding: 0 5px;
-                    margin-left: 5px;
-                }
-
-                .time-excerpt {
-                    padding: 30px 0;
-                }
-
-                .button-fill-all {
-                    font-size: 10px;
-                    background-color: #008037;
-                    border: 0;
-                    color: #fff;
-                    border-radius: 5px;
-                }
-
-            @media (min-width: 768px)
-            {
-                .modal-dialog {
-                    width: 500px;
-                    text-align: center;
-                }
-            }
-            
-            .message {
-                padding-bottom: 30px;
-                font-size: 28px;
-                font-weight: bold;
-            }
-
-            .yes {
-                background-color: #008037;
-                border: 0;
-                color: #fff;
-                padding: 5px 15px;
-                margin-right: 10px;
-            }
-
-            .no {
-                background-color: #0f6ac4;
-                color: #fff;
-                border: 0;
-                padding: 5px 15px;
-                margin-left: 10px;
-            }
-        </style>
-    </head>
-    <body>
-    <!-- Modal -->
-    
-    <!-- data-toggle="modal" data-target="#deleteModal" -->
-
-    <div class="modal fade" id="deleteModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="message">Do you want to delete?</div>
-                    <input type="hidden" id="popup-title" value="">
-                    <input type="hidden" id="popup-id" value="">
-                    <input type="hidden" id="popup-taxonomy" value="">
-                    <input type="hidden" id="popup-tempParentId" value="">
-                    <input type="hidden" id="popup-tempChildId" value="">
-                    <div class="comfirm">
-                        <button class="yes yes-serivces">Yes</button>
-                        <button class="no no-serivces" data-dismiss="modal">No</button>
+<?php
+    get_header();
+?>
+<style>
+    header,
+    footer {
+        display: none;
+    }
+</style>
+<main>
+        <div class="modal fade" id="deleteModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="message">Do you want to delete?</div>
+                        <input type="hidden" id="popup-title" value="">
+                        <input type="hidden" id="popup-id" value="">
+                        <input type="hidden" id="popup-taxonomy" value="">
+                        <input type="hidden" id="popup-tempParentId" value="">
+                        <input type="hidden" id="popup-tempChildId" value="">
+                        <div class="comfirm">
+                            <button class="yes yes-serivces">Yes</button>
+                            <button class="no no-serivces" data-dismiss="modal">No</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="deleteTimes">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="message">Do you want to delete?</div>
-                    <input type="hidden" id="popup-times-id" value="">
-                    <input type="hidden" id="popup-times-taxonomy" value="">
-                    <input type="hidden" id="popup-times-tempId" value="">
-                    <div class="comfirm">
-                        <button class="yes yes-times">Yes</button>
-                        <button class="no no-times" data-dismiss="modal">No</button>
+        <div class="modal fade" id="deleteTimes">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="message">Do you want to delete?</div>
+                        <input type="hidden" id="popup-times-id" value="">
+                        <input type="hidden" id="popup-times-taxonomy" value="">
+                        <input type="hidden" id="popup-times-tempId" value="">
+                        <div class="comfirm">
+                            <button class="yes yes-times">Yes</button>
+                            <button class="no no-times" data-dismiss="modal">No</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="finish">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="message">Save successfully</div>
-                    <div class="comfirm">
-                        <button class="yes" data-dismiss="modal">OK</button>
+        <div class="modal fade" id="finish">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="message">Save successfully</div>
+                        <div class="comfirm">
+                            <button class="yes" data-dismiss="modal">OK</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade in" id="loading" data-keyboard="false" data-backdrop="static">
-        <div class="loader"></div>
-    </div>
-        <main>
+        <div class="modal fade in" id="loading" data-keyboard="false" data-backdrop="static">
+            <div class="loader"></div>
+        </div>
             <div id="exTab1" class="container-fs">
                 <ul  class="nav nav-pills" id="myTab">
                     <li class="active">
@@ -929,93 +579,7 @@
 
                     <!-- Website info -->
 
-                    <style>
-                        #exTab1  {
-                            margin-top: 45px;
-                        }
-
-                        #exTab1 .nav-pills {
-                            display: flex;
-                            justify-content: center;
-                        }
-
-                        #exTab1 .nav-pills>li>a {
-                            font-size: 20px;
-                            font-weight: bold;
-                        }
-
-                        .output-image {
-                            width: 100px;
-                            height: auto;
-                        }
-
-                        .group-color {
-                            display: flex;
-                            margin-bottom: 30px;
-                        }
-
-                        .wrap-header-color {
-                            margin-right: 60px;
-                        }
-
-                        .header-logo {
-                            margin-bottom: 30px;
-                        }
-
-                        .title-header-menu {
-                            font-weight: bold;
-                            padding-bottom: 15px;
-                            font-size: 17px;
-                        }
-
-                        .menu-link-menu {
-                            margin: 15px 0;
-                        }
-
-                        
-                        .youtube-header,
-                        .link-menu,
-                        .additional-menu {
-                            width: 100%;
-                        }
-
-                        .nav>li>a {
-                            background-color: #eee;
-                        }
-
-                        .nav-pills>li+li {
-                            margin-left: 15px;
-                        }
-
-                        .group-input-color {
-                            display: flex;
-                        }
-
-                        .hexcolor {
-                            width: 100px;
-                        }
-
-                        .wrap-button-color {
-                            margin: 0 60px;
-                        }
-
-                        .wrap-title-welcome-word {
-                            margin-bottom: 30px;
-                        }
-
-                        .title-welcome {
-                            width: 100%;
-                        }
-                        
-                        .content-welcome {
-                            width: 100%;
-                        }
-
-                        .remove-image {
-                            position: absolute;
-                            margin-left: 75px;
-                        }
-                    </style>
+                    
 
 
                     <div class="tab-pane" id="2a">
@@ -1069,7 +633,7 @@
                                                         {
                                                             $url = get_option("logo");
                                                             ?>
-                                                                <button class="remove-image">X</button> 
+                                                                <button class="remove-image">x</button> 
                                                             <?php
                                                         } else {
                                                             ?>
@@ -1082,7 +646,7 @@
                                                 </div>
 
                                                 <div class="header-menu">
-                                                    <div class="title-header-menu">
+                                                    <div class="title-header-menu name-body">
                                                         Header Menu
                                                     </div>
 
@@ -1130,16 +694,7 @@
                             </div>
                         </section>
                         
-                        <style>
-                            .name-body {
-                                font-size: 18px;
-                                color: #0f6ac4;
-                            }
-
-                            .image-welcome {
-                                margin: 30px 0;
-                            }
-                        </style>
+                     
 
                         <section class="menu">
                             <div class="wrap-menu">
@@ -1231,7 +786,7 @@
                                                         {
                                                             $url = get_option("slider1");
                                                             ?>
-                                                                <button class="remove-image">X</button> 
+                                                                <button class="remove-image">x</button> 
                                                             <?php
                                                         } else {
                                                             ?>
@@ -1250,7 +805,7 @@
                                                         {
                                                             $url = get_option("slider2");
                                                             ?>
-                                                                <button class="remove-image">X</button> 
+                                                                <button class="remove-image">x</button> 
                                                             <?php
                                                         } else {
                                                             ?>
@@ -1270,7 +825,7 @@
                                                         {
                                                             $url = get_option("slider3");
                                                             ?>
-                                                                <button class="remove-image">X</button> 
+                                                                <button class="remove-image">x</button> 
                                                             <?php
                                                         } else {
                                                             ?>
@@ -1290,7 +845,7 @@
                                                         {
                                                             $url = get_option("slider4");
                                                             ?>
-                                                                <button class="remove-image">X</button> 
+                                                                <button class="remove-image">x</button> 
                                                             <?php
                                                         } else {
                                                             ?>
@@ -1310,7 +865,7 @@
                                                         {
                                                             $url = get_option("slider5");
                                                             ?>
-                                                                <button class="remove-image">X</button> 
+                                                                <button class="remove-image">x</button> 
                                                             <?php
                                                         } else {
                                                             ?>
@@ -1328,11 +883,6 @@
                             </div>
                         </section>
                         
-                        <style>
-                            .wrap-content-reviews-word {
-                                margin: 15px 0;
-                            }
-                        </style>
 
                         <section class="menu">
                             <div class="wrap-menu">
@@ -1460,7 +1010,7 @@
                                                 {
                                                     $url = get_option("gift");
                                                     ?>
-                                                        <button class="remove-image">X</button> 
+                                                        <button class="remove-image">x</button> 
                                                     <?php
                                                 } else {
                                                     ?>
@@ -1476,931 +1026,196 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </section>
+
+                        <section class="menu">
+                            <div class="wrap-menu">
+                                <div class="head-menu">
+                                    <div class="title-menu">Footer</div>
+                                </div>
+
+                                <div class="body-menu">
+                                    <div class="group-color">
+                                        <div class="wrap-footer-color">
+                                            <div class="label-color">Footer Color</div>
+                                            <?php
+                                                $color = "#000000";
+                                                if(get_option("footerColor"))
+                                                {
+                                                    $color = get_option("footerColor");
+                                                }
+                                            ?>
+                                                        
+                                            <div class="group-input-color">
+                                                <input type="color" id="footerColor" class="footer-color" data-key="footerColor" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>"> 
+                                                <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>" id="hexFooterColor" class="hexcolor"></input>
+                                            </div>
+                                        </div>
+
+                                        <div class="wrap-text-color wrap-button-color">
+                                            <div class="label-color">Text Color</div>
+                                            <?php
+                                                $colorText = "#000000";
+                                                if(get_option("textColorFooter"))
+                                                {
+                                                    $colorText = get_option("textColorFooter");
+                                                }
+                                            ?>
+                                            <div class="group-input-color">
+                                                <input type="color" id="textColorFooter" class="text-color-footer" data-key="textColorFooter" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorText?>"> 
+                                                <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorText?>" id="hexTextColorFooter" class="hexcolor"></input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="wrap-content-welcome-word">
+                                        <div class="title-body">About Us</div>
+                                        <?php
+                                            $text = "";
+                                            if(get_option("contentAboutUs"))
+                                            {
+                                                $text = get_option("contentAboutUs");
+                                            }
+                                        ?>
+                                        <textarea cols="30" rows="15" class="content-welcome content-about-us" data-key="contentAboutUs"><?php echo $text?></textarea>
+                                    </div>
+
+                                    <style>
+                                        .wrap-content-page-word {
+                                            margin: 60px 0;
+                                        }
+
+
+                                        .title-body,
+                                        .label-youtube-menu,
+                                        .label-additional-menu,
+                                        .label-link-menu,
+                                        .label-logo,
+                                        .label-color {
+                                            font-weight: bold;
+                                            padding-bottom: 5px;
+                                        }
+                                    </style>
+
+                                    <div class="wrap-content-page-word">
+                                        <div class="title-body">Terms of Service</div>
+                                        <?php
+                                            $content = "Terms of Service";
+                                            $editor_id = 'mycustomeditor';
+                                            $settings  = array (
+                                                    'wpautop'          => true,   // Whether to use wpautop for adding in paragraphs. Note that the paragraphs are added automatically when wpautop is false.
+                                                    'media_buttons'    => false,   // Whether to display media insert/upload buttons
+                                                    'textarea_name'    => $editor_id,   // The name assigned to the generated textarea and passed parameter when the form is submitted.
+                                                    'textarea_rows'    => get_option( 'default_post_edit_rows', 20 ),  // The number of rows to display for the textarea
+                                                    'tabindex'         => '',     // The tabindex value used for the form field
+                                                    'editor_css'       => '',     // Additional CSS styling applied for both visual and HTML editors buttons, needs to include <style> tags, can use "scoped"
+                                                    'editor_class'     => '',     // Any extra CSS Classes to append to the Editor textarea
+                                                    'teeny'            => false,  // Whether to output the minimal editor configuration used in PressThis
+                                                    'dfw'              => false,  // Whether to replace the default fullscreen editor with DFW (needs specific DOM elements and CSS)
+                                                    'tinymce'          => true,   // Load TinyMCE, can be used to pass settings directly to TinyMCE using an array
+                                                    'quicktags'        => true,   // Load Quicktags, can be used to pass settings directly to Quicktags using an array. Set to false to remove your editor's Visual and Text tabs.
+                                                    'drag_drop_upload' => true    // Enable Drag & Drop Upload Support (since WordPress 3.9)
+                                            );
+                                            
+                                            // display the editor
+                                            wp_editor($content, $editor_id, $settings );
+                                        ?>
+                                    </div>
+
+                                    <div class="wrap-content-page-word">
+                                        <div class="title-body">Privacy Policy</div>
+                                        <?php
+                                            $content = "Privacy Policy";
+                                            $editor_id = 'privacyPolicy';
+                                            $settings  = array (
+                                                    'wpautop'          => true,   // Whether to use wpautop for adding in paragraphs. Note that the paragraphs are added automatically when wpautop is false.
+                                                    'media_buttons'    => false,   // Whether to display media insert/upload buttons
+                                                    'textarea_name'    => $editor_id,   // The name assigned to the generated textarea and passed parameter when the form is submitted.
+                                                    'textarea_rows'    => get_option( 'default_post_edit_rows', 20 ),  // The number of rows to display for the textarea
+                                                    'tabindex'         => '',     // The tabindex value used for the form field
+                                                    'editor_css'       => '',     // Additional CSS styling applied for both visual and HTML editors buttons, needs to include <style> tags, can use "scoped"
+                                                    'editor_class'     => '',     // Any extra CSS Classes to append to the Editor textarea
+                                                    'teeny'            => false,  // Whether to output the minimal editor configuration used in PressThis
+                                                    'dfw'              => false,  // Whether to replace the default fullscreen editor with DFW (needs specific DOM elements and CSS)
+                                                    'tinymce'          => true,   // Load TinyMCE, can be used to pass settings directly to TinyMCE using an array
+                                                    'quicktags'        => true,   // Load Quicktags, can be used to pass settings directly to Quicktags using an array. Set to false to remove your editor's Visual and Text tabs.
+                                                    'drag_drop_upload' => true    // Enable Drag & Drop Upload Support (since WordPress 3.9)
+                                            );
+                                            
+                                            // display the editor
+                                            wp_editor( $content, $editor_id, $settings );
+                                        ?>
+                                    </div>
+
+                                </div>
+                                <button class="save save-footer">Save changes</button>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
-        </main>
-    </body>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            let isFinish = localStorage.getItem('isFinish');
+    </main>
+<?php
+    get_footer();
+?>  
+<script>
+    $(document).ready(function() {
+        $('#footerColor').on('input', function() {
+            $('#hexFooterColor').val(this.value);
+        });
+        $('#hexFooterColor').on('input', function() {
+            $('#footerColor').val(this.value);
+        });
+        
+        $('#textColorFooter').on('input', function() {
+            $('#hexTextColorFooter').val(this.value);
+        });
+        $('#hexTextColorFooter').on('input', function() {
+            $('#textColorFooter').val(this.value);
+        });
 
-            if ( isFinish == 1) {
-                $('#finish').modal('toggle');
-                localStorage.setItem("isFinish", 0);
-            } 
+        $(document).on('click', '.save-footer', function() {
+            let footerColor = $(".footer-color").val();
+            let keyFooterColor = $(".footer-color").data("key");
 
-            $('.save-business').click(function(){
-                $('#loading').modal('toggle');
-
-                $(".wrap-business").each(function (index, obj) {
-                    let elements = $(this).children(".input-business");
-                    let key = elements.data("key");
-                    let name = elements.val();
-				
-                    $.ajax({
-                        type : "GET", 
-                        dataType: 'html',
-                        url : "./wp-admin/admin-ajax.php",
-                        data : {
-                            action: "addOption",
-                            key: key,
-                            name: name
-                        },
-                        beforeSend: function(){
-                            
-                        },
-                        success: function(response) {
-                            console.log(response);
-                        },
-                        error: function( jqXHR, textStatus, errorThrown ){
-                            console.log(errorThrown);
-                        }
-                    });
-                });
-                setTimeout(
-                function() 
-                {
-                    localStorage.setItem("isFinish", 1);
-                    location.reload();
-                }, 2000);
-            });
+            let textColorFooter = $(".text-color-footer").val();
+            let keyTextColorFooter = $(".text-color-footer").data("key");
 
 
-            // Hours
-            $('.save-hours').click(function(){
-                $('#loading').modal('toggle');
-
-                $(".wrap-hours").each(function (index, obj) {
-                    let timeFrom = $(this).children(".wrap-input-hours").children(".time-from").val();
-                    let optionFrom = $(this).children(".wrap-input-hours").children(".option-from").val();
-                    let timeTo = $(this).children(".wrap-input-hours").children(".time-to").val();
-                    let optionTo = $(this).children(".wrap-input-hours").children(".option-to").val();
-                    let active = $(this).children(".wrap-input-hours").children(".hours-active").val();
-
-                    let key = "week"+ (index + 2);
-                    let name = timeFrom + "-" + optionFrom + "-" + timeTo + "-" + optionTo + "-" + active;
-
-                    $.ajax({
-                        type : "GET", 
-                        dataType: 'html',
-                        url : "./wp-admin/admin-ajax.php",
-                        data : {
-                            action: "addOption",
-                            key: key,
-                            name: name
-                        },
-                        beforeSend: function(){
-                            
-                        },
-                        success: function(response) {
-
-                        },
-                        error: function( jqXHR, textStatus, errorThrown ){
-                            console.log(errorThrown);
-                        }
-                    });
-                });
-                setTimeout(
-                function() 
-                {
-                    localStorage.setItem("isFinish", 1);
-                    location.reload();
-                }, 2000);
-            });
-
-            $('.hours-active').change(function (){
-                let index = $(this).find('option:selected').val();
-                if(index == 0)
-                {
-                    $(this).css("background-color", "#ac2b2b");
-                } else {
-                    $(this).css("background-color", "#008037");
-                }
-            });
+            let textAboutUs = $(".content-about-us").val();
+            let keyTextAboutUs = $(".content-about-us").data("key");
             
+            var data_form = new FormData();
+            data_form.append('keyFooterColor', keyFooterColor);
+            data_form.append('footerColor', footerColor);
 
-            // services
-            $(document).on('click', '.delete-nemu', function() {
-                clearInputPopup ();
-                let id = $(this).parents(".wrap-level").data('id');
-                $("#popup-id").val(id);
-                if(id==0)
-                {
-                    let title = $(this).parents(".wrap-level").data('title');
-                    $("#popup-title").val(title);
-                    if(title == "parent")
-                    {
-                        let tempParentID = $(this).parents(".wrap-level").data('tempparent');
-                        $("#popup-tempParentId").val(tempParentID);
-                        
-                    } else {
-                        let tempChildrenID = $(this).parents(".wrap-level").data('tempchildren');
-                        $("#popup-tempChildId").val(tempChildrenID);
-                    }
-                } else {
-                    let taxonomy = $(this).parents(".wrap-level").data('taxonomy');
-                    $("#popup-taxonomy").val(taxonomy);
-                }
+            data_form.append('keyTextColorFooter', keyTextColorFooter);
+            data_form.append('textColorFooter', textColorFooter);
+
+            data_form.append('keyContentAboutUs', keyTextAboutUs);
+            data_form.append('contentAboutUs', textAboutUs);
+
+            data_form.append('action', 'footer');
+            jQuery.ajax({
+                type: "post",
+                url: "./wp-admin/admin-ajax.php",
+                processData: false,
+                contentType: false,
+                data: data_form,
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+                    console.log(response);
+                    // localStorage.setItem("isFinish", 1);
+                    // location.reload();
+                },
+                error: function(request, status, error) {
+                    console.log(error);
+                },
             });
-            $('.yes-serivces').click(function(){
-                let id = $("#popup-id").val();
-                if(id == 0)
-                {
-                    let title = $("#popup-title").val();
-                    if(title == "parent")
-                    {
-                        let parentId = $("#popup-tempParentId").val();
-                        $('.wrap-level[data-tempparent="'+parentId +'"]').parents(".block-level1").remove();
-
-                    } else {
-                        let childrenId = $("#popup-tempChildId").val();
-                        let count = $('.wrap-level[data-tempchildren="'+childrenId+'"]').parents(".block-level2").children().length;
-                        if(count == 1)
-                        {
-                            let html = "<div class='add-sub-service'><button class='add-sub'>Add sub-services</button></div>";
-                            $('.wrap-level[data-tempchildren="'+childrenId+'"]').parents(".block-level1").append(html);
-
-                            $('.wrap-level[data-tempchildren="'+childrenId+'"]').parents(".block-level2").remove();
-                        }
-
-                        $('.wrap-level[data-tempchildren="'+childrenId+'"]').remove();
-                    }
-                    $('#deleteModal').modal('toggle');
-                } else {
-                    let taxonomy = $("#popup-taxonomy").val();
-                    $.ajax({
-                        type : "GET", 
-                        dataType: 'html',
-                        url : "./wp-admin/admin-ajax.php",
-                        data : {
-                            action: "deleteTaxonomy",
-                            id: id,
-                            taxonomy: taxonomy
-                        },
-                        beforeSend: function(){
-                        
-                        },
-                        success: function(response) {
-                            $('#deleteModal').modal('toggle');
-                            location.reload();
-                        },
-                        error: function( jqXHR, textStatus, errorThrown ){
-                            console.log(errorThrown);
-                        }
-                    });
-                }
-                
-            });
-            let tempParent = 1;
-            let tempChild = 1;
-            $(document).on('click', '.create-menu', function() {
-                let title = $(this).parents(".wrap-level").data("title");
-                let parentId = $(this).parents(".wrap-level").data("parent");
-                let html = "";
-                if(title === "parent")
-                {
-                    html = "<div class='wrap-menu-block block-level1'><div class='wrap-level' data-id='0' data-taxonomy='services' data-parent='0' data-title='parent' data-tempparent='"+tempParent+"'><div class='level'><div class='title-level'>Level 1</div><div class='wrap-right'><div class='button-menu'><button class='create-menu'>Add</button></div><div class='delete-level'><button class='delete-nemu' data-toggle='modal' data-target='#deleteModal'>Delete</button></div></div></div><div class='menu-title'><span>Title</span><input type='text' class='title' value=''></div><div class='menu-price'><span>Price</span><input type='number' class='price' value=''><div class='price-dolla'>$</div></div><div class='menu-description'><span>Description</span><input type='text' class='description' value=''></div><div class='add-sub-service'><button class='add-sub'>Add sub-services</button></div></div>";
-                    $(this).parents(".wrap-level").parent().after(html);
-                    tempParent ++;
-                } else {
-                    html = "<div class='wrap-level' data-id='0' data-taxonomy='services' data-parent='"+parentId+"' data-title='children' data-tempchildren='"+tempChild+"'><div class='level'><div class='title-level'>Level 2</div><div class='wrap-right'><div class='button-menu'><button class='create-menu'>Add</button></div><div class='delete-level'><button class='delete-nemu' data-toggle='modal' data-target='#deleteModal'>Delete</button></div></div></div><div class='menu-title'><span>Title</span><input type='text' class='title' value=''></div><div class='menu-price'><span>Price</span><input type='number' class='price' value=''><div class='price-dolla'>$</div></div><div class='menu-description'><span>Description</span><input type='text' class='description' value=''></div></div>";
-                    $(this).parents(".wrap-level").after(html);
-                    tempChild ++;
-                }
-            });
-            $(document).on('click', '.add-sub', function() {
-                let parentId = $(this).parents(".block-level1").children().data("id");
-                let html = "";
-                html = "<div class='wrap-menu-block block-level2'><div class='wrap-level' data-id='0' data-taxonomy='services' data-parent='"+parentId+"' data-title='children' data-tempchildren='"+tempChild+"'><div class='level'><div class='title-level'>Level 2</div><div class='wrap-right'><div class='button-menu'><button class='create-menu'>Add</button></div><div class='delete-level'><button class='delete-nemu' data-toggle='modal' data-target='#deleteModal'>Delete</button></div></div></div><div class='menu-title'><span>Title</span><input type='text' class='title' value=''></div><div class='menu-price'><span>Price</span><input type='number' class='price' value=''><div class='price-dolla'>$</div></div><div class='menu-description'><span>Description</span><input type='text' class='description' value=''></div></div></div>";
-                $(this).parents(".block-level1").append(html);
-                $(this).parents(".add-sub-service").remove();
-                tempChild ++;
-            });
-            $(document).on('click', '.save-services', function() { 
-                $('#loading').modal('toggle');
-                let indexParent = 1;
-                
-                //parent
-                $(".block-level1").each(function (index, obj) {
-                    let id = $(this).children(".wrap-level").data("id");
-                    let parentId = $(this).children(".wrap-level").data("parent");
-                    let taxonomy = $(this).children(".wrap-level").data("taxonomy");
-                    let title = $(this).children(".wrap-level").children('.menu-title').children('.title').val();
-                    let price = $(this).children(".wrap-level").children('.menu-price').children('.price').val();
-                    let description = $(this).children(".wrap-level").children('.menu-description').children('.description').val();
-
-                    if(id != 0)
-                    {
-                        $.ajax({
-                            type : "GET", 
-                            dataType: 'html',
-                            url : "./wp-admin/admin-ajax.php",
-                            data : {
-                                action: "updateMenu",
-                                id: id,
-                                parentId:parentId,
-                                taxonomy: taxonomy,
-                                title: title,
-                                price: price,
-                                description: description,
-                                index: indexParent
-                            },
-                            beforeSend: function(){
-
-                            },
-                            success: function(response) {
-
-                            },
-                            error: function( jqXHR, textStatus, errorThrown ){
-                            }
-                        });
-                        indexParent ++
-                    } else {
-                        $.ajax({
-                            type : "GET", 
-                            dataType: 'html',
-                            url : "./wp-admin/admin-ajax.php",
-                            data : {
-                                action: "createMenu",
-                                id:id,
-                                parentId:parentId,
-                                taxonomy: taxonomy,
-                                title: title,
-                                price: price,
-                                description: description,
-                                index: indexParent
-                            },
-                            beforeSend: function(){
-
-                            },
-                            success: function(response) {
-                                // $(this).children(".block-level2").children(".wrap-level").css("background-color","red");
-                                let indexChildren = 1;
-                                $(this).children(".block-level2").children(".wrap-level").each(function (index, obj) {
-                                    let parentId = response;
-                                    let taxonomy = $(obj).data("taxonomy");
-                                    let title = $(obj).children('.menu-title').children('.title').val();
-                                    let price = $(obj).children('.menu-price').children('.price').val();
-                                    let description = $(obj).children('.menu-description').children('.description').val();
-                                   
-                                    $.ajax({
-                                        type : "GET", 
-                                        dataType: 'html',
-                                        url : "./wp-admin/admin-ajax.php",
-                                        data : {
-                                            action: "createMenu",
-                                            id:id,
-                                            parentId:parentId,
-                                            taxonomy: taxonomy,
-                                            title: title,
-                                            price: price,
-                                            description: description,
-                                            index: indexChildren
-                                        },
-                                        beforeSend: function(){
-
-                                        },
-                                        success: function(response) {
-                                        },
-                                        error: function( jqXHR, textStatus, errorThrown ){
-                                        }
-                                    });
-                                    indexChildren++;
-                                });
-
-                            }.bind(this),
-
-                            error: function( jqXHR, textStatus, errorThrown ){
-                            }
-                        });
-                        indexParent ++;
-                    }
-
-                    // children
-                    if(id != 0)
-                    {
-                        if($(this).children(".wrap-menu-block").hasClass("block-level2"))
-                        {
-                            let indexChildren = 1;
-                            $(this).children(".block-level2").children(".wrap-level").each(function (index, obj) {
-                                let id = $(this).data("id");
-                                let parentId = $(this).data("parent");
-                                let taxonomy = $(this).data("taxonomy");
-                                let title = $(this).children('.menu-title').children('.title').val();
-                                let price = $(this).children('.menu-price').children('.price').val();
-                                let description = $(this).children('.menu-description').children('.description').val();
-
-                                if(id != 0)
-                                {
-                                    $.ajax({
-                                        type : "GET", 
-                                        dataType: 'html',
-                                        url : "./wp-admin/admin-ajax.php",
-                                        data : {
-                                            action: "updateMenu",
-                                            id: id,
-                                            parentId:parentId,
-                                            taxonomy: taxonomy,
-                                            title: title,
-                                            price: price,
-                                            description: description,
-                                            index: indexChildren
-                                        },
-                                        beforeSend: function(){
-
-                                        },
-                                        success: function(response) {
-
-                                        },
-                                        error: function( jqXHR, textStatus, errorThrown ){
-                                        }
-                                    });
-                                    indexChildren ++;
-                                } else {
-                                    $.ajax({
-                                        type : "GET", 
-                                        dataType: 'html',
-                                        url : "./wp-admin/admin-ajax.php",
-                                        data : {
-                                            action: "createMenu",
-                                            id:id,
-                                            parentId:parentId,
-                                            taxonomy: taxonomy,
-                                            title: title,
-                                            price: price,
-                                            description: description,
-                                            index: indexChildren
-                                        },
-                                        beforeSend: function(){
-
-                                        },
-                                        success: function(response) {
-                                        },
-                                        error: function( jqXHR, textStatus, errorThrown ){
-                                        }
-                                    });
-                                    indexChildren ++;
-                                }
-                            });
-                        }
-                    }
-                });
-                setTimeout(
-                function() 
-                {
-                    localStorage.setItem("isFinish", 1);
-                    location.reload();
-                }, 2000);
-            });
-        });
-
-        function clearInputPopup ()
-        {
-            $("#popup-id").val("");
-            $("#popup-taxonomy").val("");
-            $("#popup-tempParentId").val("");
-            $("#popup-tempChildId").val("");
-        }
-
-        let tempId = 1;
-        $(document).on('click', '.create-time', function() { 
-            let html = "<div class='wrap-times-row' data-id='0' data-taxonomy='times' data-tempid='"+tempId+"'><div class='time'><input type='text'  class='input-time' value=''><select class='time-option'><option value='0' selected>AM</option><option value='1'>PM</option></select></div><div class='seats'><input type='number' class='input-slots' value=''></div><div class='group-button'><div class='button-menu'><button class='create-time'>Add</button></div><div class='delete-level'><button class='delete-time' data-toggle='modal' data-target='#deleteTimes'>Delete</button></div></div></div>";
-            $(this).parents(".wrap-times-row").after(html);
-            tempId ++;
-        });
-
-        $(document).on('click', '.save-time', function() { 
-            $('#loading').modal('toggle');
-            let indexTime = 1;
-            $(".wrap-times-row").each(function (index, obj) {
-                let id = $(this).data("id");
-                let taxonomy = $(this).data("taxonomy");
-                let time =  $(this).children(".time").children(".input-time").val();
-                let timeOption = $(this).children(".time").children(".time-option").val();
-                let slots =  $(this).children(".seats").children().val();
-                strTime = time + "-" + timeOption;
-                if(id != 0)
-                {
-                    $.ajax({
-                        type : "GET", 
-                        dataType: 'html',
-                        url : "./wp-admin/admin-ajax.php",
-                        data : {
-                                action: "updateTime",
-                                id: id,
-                                taxonomy: taxonomy,
-                                time: strTime,
-                                slots: slots,
-                                index: indexTime
-                        },
-                        beforeSend: function(){
-
-                        },
-                        success: function(response) {
-
-                        },
-                        error: function( jqXHR, textStatus, errorThrown ){
-                        }
-                    });
-                    indexTime ++;
-                } else if(time != "") {
-                    $.ajax({
-                        type : "GET", 
-                        dataType: 'html',
-                        url : "./wp-admin/admin-ajax.php",
-                        data : {
-                                action: "createTime",
-                                taxonomy: taxonomy,
-                                time: strTime,
-                                slots: slots,
-                                index: indexTime
-                        },
-                        beforeSend: function(){
-
-                        },
-                        success: function(response) {
-
-                        },
-                        error: function( jqXHR, textStatus, errorThrown ){
-                        }
-                    });
-                    indexTime ++;
-                }
-            });
-            setTimeout(
-            function() 
-            {
-                localStorage.setItem("isFinish", 1);
-                location.reload();
-            }, 2000);
-        });
-
-        $(document).on('click', '.delete-time', function() { 
-            clearInputTimes();
-            let id = $(this).parents(".wrap-times-row").data("id");
-            let taxonomy = $(this).parents(".wrap-times-row").data("taxonomy");
-
-            if(id == 0)
-            {
-                let tempId = $(this).parents(".wrap-times-row").data("tempid");
-                $("#popup-times-id").val(id);
-                $("#popup-times-tempId").val(tempId);
-            } else {
-                $("#popup-times-id").val(id);
-                $("#popup-times-taxonomy").val(taxonomy);
-            }
-        });
-
-        $(document).on('click', '.yes-times', function() { 
-            let id = $("#popup-times-id").val();
-            let taxonomy = $("#popup-times-taxonomy").val();
-            if(id == 0)
-            {
-                let tempId = $("#popup-times-tempId").val();
-                $('.wrap-times-row[data-tempid="'+tempId+'"]').remove();
-                $('#deleteTimes').modal('toggle');
-            } else {
-                $.ajax({
-                    type : "GET", 
-                    dataType: 'html',
-                    url : "./wp-admin/admin-ajax.php",
-                    data : {
-                        action: "deleteTaxonomy",
-                        id: id,
-                        taxonomy: taxonomy
-                    },
-                    beforeSend: function(){
-                        
-                    },
-                    success: function(response) {
-                        $('#deleteTimes').modal('toggle');
-                        location.reload();
-                    },
-                    error: function( jqXHR, textStatus, errorThrown ){
-                        console.log(errorThrown);
-                    }
-                });
-            }
-        });
-
-        $(document).on('click', '.button-fill-all', function() { 
-            let fillAll = $(".fill-all").val();
-            $(".wrap-times-row").each(function (index, obj) {
-                $(this).children(".seats").children().val(fillAll);
-            });
-        });
-
-        function clearInputTimes()
-        {
-            $("#popup-times-id").val("");
-            $("#popup-times-taxonomy").val("");
-            $("#popup-times-tempId").val("");
-        }
-        
-        // ====================== Tab2 ================== \\
-        $('#headerColor').on('input', function() {
-            $('#hexHeaderColor').val(this.value);
-        });
-        $('#hexHeaderColor').on('input', function() {
-            $('#headerColor').val(this.value);
-        });
-
-        $('#textColor').on('input', function() {
-            $('#hexTextColor').val(this.value);
-        });
-        $('#hexTextColor').on('input', function() {
-            $('#textColor').val(this.value);
-        });
-
-        $('#backgroundColor').on('input', function() {
-            $('#hexBackgroundColor').val(this.value);
-        });
-        $('#hexBackgroundColor').on('input', function() {
-            $('#backgroundColor').val(this.value);
-        });
-
-
-        $('#buttonColor').on('input', function() {
-            $('#hexButtonColor').val(this.value);
-        });
-        $('#hexButtonColor').on('input', function() {
-            $('#buttonColor').val(this.value);
-        });
-
-
-        $('#textColorBody').on('input', function() {
-            $('#hexTextColorBody').val(this.value);
-        });
-        $('#hexTextColorBody').on('input', function() {
-            $('#textColorBody').val(this.value);
-        });
-
-
-        // Reviews
-        $('#backgroundColorReviews').on('input', function() {
-            $('#hexBackgroundColorReviews').val(this.value);
-        });
-        $('#hexHeaderColor').on('input', function() {
-            $('#hexBackgroundColorReviews').val(this.value);
-        });
-
-        $('#textColorReivews').on('input', function() {
-            $('#hexTextColorReviews').val(this.value);
-        });
-        $('#hexTextColorReviews').on('input', function() {
-            $('#textColorReivews').val(this.value);
-        });
-
-        
-        
-        $(function() {
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                localStorage.setItem('lastTab', $(this).attr('href'));
-            });
-            var lastTab = localStorage.getItem('lastTab');
-            
-            if (lastTab) {
-                $('[href="' + lastTab + '"]').tab('show');
-            }
-        });
-
-        var loadFile = function(event) {
-            var output = document.getElementById('output');
-            output.src = URL.createObjectURL(event.target.files[0]);
-            output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
-            }
-        };
-        $(document).on('click', '.save-header', function() {
-            $('#loading').modal('toggle');
-
-            let headerColor = $(".header-color").val();
-            let keyHeaderColor = $(".header-color").data("key");
            
-            let textColor = $(".text-color").val();
-            let keyTextColor = $(".text-color").data("key");
-           
-            let file = $("#fileinput").prop('files')[0];
-            let keyFile = $("#fileinput").data("key");
-
-            let additionalMenu = $(".additional-menu").val();
-            let keyadditionalMenu = $(".additional-menu").data("key");
-
-            let linkMenu = $(".link-menu").val();
-            let keyLinkMenu = $(".link-menu").data("key");
-
-            let youtubeHeader = $(".youtube-header").val();
-            let keyYoutubeHeader = $(".youtube-header").data("key");
-
-            // console.log("headerColor: " + headerColor + " keyHeaderColor: " + keyHeaderColor);
-            // console.log("textColor: " + textColor + " keyTextColor: " + keyTextColor);
-            // console.log("additionalMenu: " + additionalMenu + " keyadditionalMenu: " + keyadditionalMenu);
-            // console.log("linkMenu: " + linkMenu + " keyLinkMenu: " + keyLinkMenu);
-            // console.log("youtubeHeader: " + youtubeHeader + " keyYoutubeHeader: " + keyYoutubeHeader);
-
-
-            var data_form = new FormData();
-            data_form.append('keyHeaderColor', keyHeaderColor);
-            data_form.append('keyTextColor', keyTextColor);
-            data_form.append('keyFile', keyFile);
-            data_form.append('keyadditionalMenu', keyadditionalMenu);
-            data_form.append('keyLinkMenu', keyLinkMenu);
-            data_form.append('keyYoutubeHeader', keyYoutubeHeader);
-
-            data_form.append('headerColor', headerColor);
-            data_form.append('textColor', textColor);
-            data_form.append('file', file);
-            data_form.append('additionalMenu', additionalMenu);
-            data_form.append('linkMenu', linkMenu);
-            data_form.append('youtubeHeader', youtubeHeader);
-
-
-            data_form.append('action', 'upload_image')
-            jQuery.ajax({
-                type: "post",
-                url: "./wp-admin/admin-ajax.php",
-                processData: false,
-                contentType: false,
-                data: data_form,
-                beforeSend: function () {
-                
-                },
-                success: function (response) {
-                    localStorage.setItem("isFinish", 1);
-                    location.reload();
-                },
-                error: function (request, status, error) {
-                    console.log(error);
-                },
-            });
-
-            event.preventDefault();
-        });
-
-        var loadFile1 = function(event) {
-            var output = document.getElementById('output1');
-            output.src = URL.createObjectURL(event.target.files[0]);
-            if(output.src != "")
-            {   
-                $(event.currentTarget).parents(".image-welcome").children(".remove-image").css("display", "block");
-            }
-            output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
-            }
-        };
-
-        var loadFile2 = function(event) {
-            var output = document.getElementById('output2');
-            output.src = URL.createObjectURL(event.target.files[0]);
-            if(output.src != "")
-            {   
-                $(event.currentTarget).parents(".image-welcome").children(".remove-image").css("display", "block");
-            }
-            output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
-            }
-        };
-
-        var loadFile3 = function(event) {
-            var output = document.getElementById('output3');
-            output.src = URL.createObjectURL(event.target.files[0]);
-            if(output.src != "")
-            {   
-                $(event.currentTarget).parents(".image-welcome").children(".remove-image").css("display", "block");
-            }
-            output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
-            }
-        };
-
-        var loadFile4 = function(event) {
-            var output = document.getElementById('output4');
-            output.src = URL.createObjectURL(event.target.files[0]);
-            if(output.src != "")
-            {   
-                $(event.currentTarget).parents(".image-welcome").children(".remove-image").css("display", "block");
-            }
-            output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
-            }
-        };
-
-        var loadFile5 = function(event) {
-            var output = document.getElementById('output5');
-            output.src = URL.createObjectURL(event.target.files[0]);
-            if(output.src != "")
-            {   
-                $(event.currentTarget).parents(".image-welcome").children(".remove-image").css("display", "block");
-            }
-            output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
-            }
-        };
-
-        $(document).on('click', '.save-body', function() {
-            $('#loading').modal('toggle');
-
-            let backgroundColor = $(".background-color").val();
-            let keyBackgroundColor = $(".background-color").data("key");
-
-            let buttonColor = $(".button-color").val();
-            let keyButtonColor = $(".button-color").data("key");
-
-            let textColorBody = $(".text-color-body").val();
-            let keyTextColorBody = $(".text-color-body").data("key");
-
-            let titleWelcome = $(".title-welcome").val();
-            let keyTitleWelcome = $(".title-welcome").data("key");
-
-            let contentWelcome = $(".content-welcome").val();
-            let keyContentWelcome = $(".content-welcome").data("key");
-           
-            var data_form = new FormData();
-            data_form.append('backgroundColor', backgroundColor);
-            data_form.append('keyBackgroundColor', keyBackgroundColor);
-
-            data_form.append('buttonColor', buttonColor);
-            data_form.append('keyButtonColor', keyButtonColor);
-
-            data_form.append('textColorBody', textColorBody);
-            data_form.append('keyTextColorBody', keyTextColorBody);
-
-            data_form.append('titleWelcome', titleWelcome);
-            data_form.append('keyTitleWelcome', keyTitleWelcome);
-
-            data_form.append('contentWelcome', contentWelcome);
-            data_form.append('keyContentWelcome', keyContentWelcome);
-
-            for(let i=1; i<= 5; i ++)
-            {
-                let url = "#output" + i;
-                let keyFile = $("#fileinput"+i).data("key");
-
-                if($(url).attr('src') == ''){
-                    data_form.append('keyFile'+i, keyFile);
-                    data_form.append('file'+i, '');
-
-                }
-                else{
-                    let file = $("#fileinput"+i).prop('files')[0];
-
-                    data_form.append('keyFile'+i, keyFile);
-                    data_form.append('file'+i, file);
-                }
-            }
-
-            data_form.append('action', 'body')
-
-            // console.log(titleWelcome + "\n" + keyTitleWelcome);
-            jQuery.ajax({
-                type: "post",
-                url: "./wp-admin/admin-ajax.php",
-                processData: false,
-                contentType: false,
-                data: data_form,
-                beforeSend: function () {
-                
-                },
-                success: function (response) {
-                    localStorage.setItem("isFinish", 1);
-                    location.reload();
-                },
-                error: function (request, status, error) {
-                    console.log(error);
-                },
-            });
-        });
-
-        $(document).on('click', '.save-reviews', function() {
-            $('#loading').modal('toggle');
-
-            let valueBackgroundColorReviews = $("#backgroundColorReviews").val();
-            let keyBackgroundColorReviewss = $("#backgroundColorReviews").data("key");
-
-            let valueTextColorReivews = $("#textColorReivews").val();
-            let keyTextColorReivews = $("#textColorReivews").data("key");
-
-            let valueTitleReviews = $(".title-reviews").val();
-            let keyTitleReviews = $(".title-reviews").data("key");
-
-
-            var data_form = new FormData();
-            data_form.append('keyBackgroundColorReviews', keyBackgroundColorReviewss);
-            data_form.append('backgroundColorReviews', valueBackgroundColorReviews);
-
-            data_form.append('keyTextColorReviews', keyTextColorReivews);
-            data_form.append('textColorReviews', valueTextColorReivews);
-
-            data_form.append('keyTitleReviews', keyTitleReviews);
-            data_form.append('titleReviews', valueTitleReviews);
-            
-            for(let i=1; i<=3; i++)
-            {
-                let classReviews = ".textBodyReviews"+i;
-
-                let key = $(classReviews).data("key");
-                let value = $(classReviews).val();
-
-                data_form.append('keyTextBodyReviews'+i, key);
-                data_form.append('textBodyReviews'+i, value);
-            }
-
-            data_form.append('action', 'reviews')
-
-            jQuery.ajax({
-                type: "post",
-                url: "./wp-admin/admin-ajax.php",
-                processData: false,
-                contentType: false,
-                data: data_form,
-                beforeSend: function () {
-                
-                },
-                success: function (response) {
-                    localStorage.setItem("isFinish", 1);
-                    location.reload();
-                },
-                error: function (request, status, error) {
-                    console.log(error);
-                },
-            });
-        });
-
-        var loadFileGift = function(event) {
-            var output = document.getElementById('outputGift');
-            output.src = URL.createObjectURL(event.target.files[0]);
-            if(output.src != "")
-            {   
-                $(event.currentTarget).parents(".image-welcome").children(".remove-image").css("display", "block");
-            }
-            output.onload = function() {
-            URL.revokeObjectURL(output.src)
-            }
-        };
-
-        $(document).on('click', '.save-gift', function() {
-            $('#loading').modal('toggle');
-
-            let keyTitleGift = $('.title-gift').data("key");
-            let titleGift = $('.title-gift').val();
-
-            let keyContentGift = $('.content-gift').data("key");
-            let contentGift = $('.content-gift').val();
-
-
-            var data_form = new FormData();
-            data_form.append('keyTitleGift', keyTitleGift);
-            data_form.append('titleGift', titleGift);
-
-            data_form.append('keyContentGift', keyContentGift);
-            data_form.append('contentGift', contentGift);
-
-
-            
-            let keyFile = $("#fileinputGift").data("key");
-
-            if($("#outputGift").attr('src') == ''){
-                data_form.append('keyFile', keyFile);
-                data_form.append('file', '');
-            }
-            else{
-                let file = $("#fileinputGift").prop('files')[0];
-
-                data_form.append('keyFile', keyFile);
-                data_form.append('file', file);
-            }
-
-            data_form.append('action', 'gift')
-
-
-            jQuery.ajax({
-                type: "post",
-                url: "./wp-admin/admin-ajax.php",
-                processData: false,
-                contentType: false,
-                data: data_form,
-                beforeSend: function () {
-                
-                },
-                success: function (response) {
-                    localStorage.setItem("isFinish", 1);
-                    location.reload();
-                },
-                error: function (request, status, error) {
-                    console.log(error);
-                },
-            });
         });
         
-
-        $(".remove-image").click(function(){
-            $(this).css("display", "none");
-            $(this).parents(".image-welcome").children(".output-image").attr("src","");
-            $(this).parents(".image-welcome").children(".fileinput").val("");
-        });
-    </script>
-</html>
+    });
+</script>

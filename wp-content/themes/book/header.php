@@ -9,66 +9,7 @@
 </head>
   
 <body style="background-color: <?php the_field('background_color_body', 'options'); ?>">
-    <div class="popup">
-        <div class="box">
-            <div class="box-main">
-                <div class="wrap-box">
-                    <div class="box-title">How satisfied were you with the service overall?</div>
-                    <div class="box-list-icon">
-                        <div class="box-icon">
-                            <div class="box-report-icon">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/1.png" alt="">
-                            </div>
-                        </div>
-                        <div class="box-icon">
-                            <div class="box-report-icon">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/2.png" alt="">
-                            </div>
-                        </div>
-                        <div class="box-icon">
-                            <div class="box-report-icon">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/3.png" alt="">
-                            </div>
-                        </div>
-                        <div class="box-icon">
-                            <div class="box-good-icon">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/4.png" alt="">
-                            </div>
-                        </div>
-                        <div class="box-icon">
-                            <div class="box-good-icon">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/5.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="box box-report">
-            <div class="box-main">
-                <div class="wrap-box">
-                    <div class="box-title">We're sorry. We'd love your feedback!</div>
-                    <div class="box-content">
-                        <textarea cols="10" rows="3"></textarea>
-                    </div>
-                    <div class="box-submit"><button>Submit</button></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="box box-good">
-            <div class="box-main">
-                <div class="wrap-box">
-                    <div class="box-title">Thank you! Leave us a review on Google</div>
-                    <input type="hidden" id="linkgood" value="<?php the_field('popup_body', 'options'); ?>">
-                    <div class="submit-good"><button>Review now</button></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <header>
+   <header>
         <div class="header" style="background-color: <?php the_field('background_color_header', 'options'); ?>">
             <div class="container mobile-container not-showmenu" style="background-color: <?php the_field('background_color_header', 'options'); ?>">
                 <div class="close-menu mobile">

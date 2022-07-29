@@ -453,3 +453,39 @@ function gift_function() {
 
     wp_die(); 
 }
+
+
+add_action("wp_ajax_footer", "footer_function");
+add_action("wp_ajax_nopriv_footer", "footer_function");
+function footer_function() {
+    $option_name = $_POST['keyFooterColor'] ;
+	$new_value = $_POST['footerColor'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    $option_name = $_POST['keyTextColorFooter'] ;
+	$new_value = $_POST['textColorFooter'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
+    $option_name = $_POST['keyContentAboutUs'] ;
+	$new_value = $_POST['contentAboutUs'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+    wp_die(); 
+}
