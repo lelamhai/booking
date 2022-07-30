@@ -578,14 +578,9 @@
                     </div>
 
                     <!-- Website info -->
-
-                    
-
-
                     <div class="tab-pane" id="2a">
                         <section class="menu">
                             <div class="wrap-menu">
-                                <!-- <form id="header-form" method="post" enctype="multipart/form-data"> -->
                                     <div class="head-menu">
                                         <div class="title-menu">Header</div>
                                     </div>
@@ -625,7 +620,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="header-logo image-welcome">
+                                                <div class="header-logo image-welcome upload-image">
                                                     <div class="label-logo">Logo</div>
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
@@ -641,8 +636,8 @@
                                                             <?php
                                                         }
                                                     ?>
-                                                    <img id="output" class="output-image" src="<?php echo $url?>"/>
-                                                    <input type="file" class="fileinput" id="fileinput" accept="image/*" onchange="loadFile(event)" data-key="logo">
+                                                    <img class="output-image preview-image" src="<?php echo $url?>"/>
+                                                    <input type="file" id="fileinput" class="file-input" accept="image/*" data-key="logo">
                                                 </div>
 
                                                 <div class="header-menu">
@@ -691,7 +686,6 @@
                                     </div>
                                     
                                     <button class="save save-header">Save changes</button>
-                                <!-- </form> -->
                             </div>
                         </section>
                         
@@ -780,7 +774,7 @@
 
                                     <div class="wrap-image-welcome">
 
-                                            <div class="image-welcome">
+                                            <div class="image-welcome upload-image">
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
                                                         if(get_option("slider1"))
@@ -795,11 +789,11 @@
                                                             <?php
                                                         }
                                                     ?>
-                                                    <img id="output1" class="output-image" src="<?php echo $url?>"/>
-                                                    <input type="file" class="fileinput" id="fileinput1" accept="image/*" onchange="loadFile1(event)" data-key="slider1">
+                                                    <img id="output1" class="output-image preview-image" src="<?php echo $url?>"/>
+                                                    <input type="file" class="file-input" id="fileinput1" accept="image/*" data-key="slider1">
                                             </div>
 
-                                            <div class="image-welcome">
+                                            <div class="image-welcome upload-image">
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
                                                         if(get_option("slider2"))
@@ -814,12 +808,12 @@
                                                             <?php
                                                         }
                                                     ?>
-                                                    <img id="output2" class="output-image" src="<?php echo $url?>"/>
-                                                    <input type="file" class="fileinput" id="fileinput2" accept="image/*" onchange="loadFile2(event)" data-key="slider2">
+                                                    <img id="output2" class="output-image preview-image" src="<?php echo $url?>"/>
+                                                    <input type="file" class="file-input" id="fileinput2" accept="image/*" data-key="slider2">
                                             </div>
 
 
-                                            <div class="image-welcome">
+                                            <div class="image-welcome upload-image">
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
                                                         if(get_option("slider3"))
@@ -834,12 +828,12 @@
                                                             <?php
                                                         }
                                                     ?>
-                                                    <img id="output3" class="output-image" src="<?php echo $url?>"/>
-                                                    <input type="file" class="fileinput" id="fileinput3" accept="image/*" onchange="loadFile3(event)" data-key="slider3">
+                                                    <img id="output3" class="output-image preview-image" src="<?php echo $url?>"/>
+                                                    <input type="file" class="file-input" id="fileinput3" accept="image/*" data-key="slider3">
                                             </div>
 
 
-                                            <div class="image-welcome">
+                                            <div class="image-welcome upload-image">
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
                                                         if(get_option("slider4"))
@@ -854,12 +848,12 @@
                                                             <?php
                                                         }
                                                     ?>
-                                                    <img id="output4" class="output-image" src="<?php echo $url?>"/>
-                                                    <input type="file" class="fileinput" id="fileinput4" accept="image/*" onchange="loadFile4(event)" data-key="slider4">
+                                                    <img id="output4" class="output-image preview-image" src="<?php echo $url?>"/>
+                                                    <input type="file" class="file-input" id="fileinput4" accept="image/*" data-key="slider4">
                                             </div>
 
 
-                                            <div class="image-welcome">
+                                            <div class="image-welcome upload-image">
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
                                                         if(get_option("slider5"))
@@ -874,8 +868,8 @@
                                                             <?php
                                                         }
                                                     ?>
-                                                    <img id="output5" class="output-image" src="<?php echo $url?>"/>
-                                                    <input type="file" class="fileinput" id="fileinput5" accept="image/*" onchange="loadFile5(event)" data-key="slider5">
+                                                    <img id="output5" class="output-image preview-image" src="<?php echo $url?>"/>
+                                                    <input type="file" class="file-input" id="fileinput5" accept="image/*" data-key="slider5">
                                             </div>
 
                                     </div>
@@ -1004,7 +998,7 @@
                                             <textarea cols="30" rows="5" class="content-welcome content-gift" data-key="contentGift"><?php echo $text?></textarea>
                                         </div>
 
-                                        <div class="image-welcome">
+                                        <div class="image-welcome upload-image">
                                             <?php
                                                 $url = get_template_directory_uri()."/assets/img/image.png";
                                                 if(get_option("gift"))
@@ -1019,8 +1013,8 @@
                                                     <?php
                                                 }
                                             ?>
-                                                <img id="outputGift" class="output-image" src="<?php echo $url?>"/>
-                                                <input type="file" class="fileinput" id="fileinputGift" accept="image/*" onchange="loadFileGift(event)" data-key="gift">
+                                                <img id="outputGift" class="output-image preview-image" src="<?php echo $url?>"/>
+                                                <input type="file" class="file-input" id="fileinputGift" accept="image/*" data-key="gift">
                                         </div>
 
                                         <button class="save save-gift">Save changes</button>
@@ -1143,65 +1137,3 @@
 <?php
     get_footer();
 ?>  
-<script>
-    $(document).ready(function() {
-        $('#footerColor').on('input', function() {
-            $('#hexFooterColor').val(this.value);
-        });
-        $('#hexFooterColor').on('input', function() {
-            $('#footerColor').val(this.value);
-        });
-        
-        $('#textColorFooter').on('input', function() {
-            $('#hexTextColorFooter').val(this.value);
-        });
-        $('#hexTextColorFooter').on('input', function() {
-            $('#textColorFooter').val(this.value);
-        });
-
-        $(document).on('click', '.save-footer', function() {
-            $('#loading').modal('toggle');
-
-            let footerColor = $(".footer-color").val();
-            let keyFooterColor = $(".footer-color").data("key");
-
-            let textColorFooter = $(".text-color-footer").val();
-            let keyTextColorFooter = $(".text-color-footer").data("key");
-
-
-            let textAboutUs = $(".content-about-us").val();
-            let keyTextAboutUs = $(".content-about-us").data("key");
-            
-            var data_form = new FormData();
-            data_form.append('keyFooterColor', keyFooterColor);
-            data_form.append('footerColor', footerColor);
-
-            data_form.append('keyTextColorFooter', keyTextColorFooter);
-            data_form.append('textColorFooter', textColorFooter);
-
-            data_form.append('keyContentAboutUs', keyTextAboutUs);
-            data_form.append('contentAboutUs', textAboutUs);
-
-            data_form.append('action', 'footer');
-            jQuery.ajax({
-                type: "post",
-                url: "./wp-admin/admin-ajax.php",
-                processData: false,
-                contentType: false,
-                data: data_form,
-                beforeSend: function() {
-
-                },
-                success: function(response) {
-                    localStorage.setItem("isFinish", 1);
-                    location.reload();
-                },
-                error: function(request, status, error) {
-                    console.log(error);
-                },
-            });
-           
-        });
-        
-    });
-</script>
