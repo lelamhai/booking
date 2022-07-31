@@ -774,8 +774,8 @@ $(document).ready(function() {
 	
 			},
 			success: function(response) {
-				localStorage.setItem("isFinish", 1);
-				location.reload();
+				// localStorage.setItem("isFinish", 1);
+				// location.reload();
 			},
 			error: function(request, status, error) {
 				console.log(error);
@@ -809,9 +809,11 @@ $(document).ready(function() {
 		let textColorFooter = $(".text-color-footer").val();
 		let keyTextColorFooter = $(".text-color-footer").data("key");
 
-
 		let textAboutUs = $(".content-about-us").val();
 		let keyTextAboutUs = $(".content-about-us").data("key");
+
+		let terms = tinyMCE.get('terms_id').getContent();
+		let privacyPolicy = tinyMCE.get('privacyPolicy_id').getContent();
 		
 		var data_form = new FormData();
 		data_form.append('keyFooterColor', keyFooterColor);
@@ -822,6 +824,12 @@ $(document).ready(function() {
 
 		data_form.append('keyContentAboutUs', keyTextAboutUs);
 		data_form.append('contentAboutUs', textAboutUs);
+
+		data_form.append('terms', terms);
+		data_form.append('termsId', 72);
+		data_form.append('privacyPolicy', privacyPolicy);
+		data_form.append('privacyPolicyId', 184);
+		
 
 		data_form.append('action', 'footer');
 		jQuery.ajax({

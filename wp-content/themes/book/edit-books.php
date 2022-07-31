@@ -1079,8 +1079,10 @@
                                     <div class="wrap-content-page-word">
                                         <div class="title-body">Terms of Service</div>
                                         <?php
-                                            $content = "Terms of Service";
-                                            $editor_id = 'mycustomeditor';
+                                            $postId = get_post(72);
+                                            $content = $postId ->post_content;
+
+                                            $editor_id = 'terms_id';
                                             $settings  = array (
                                                     'wpautop'          => true,   // Whether to use wpautop for adding in paragraphs. Note that the paragraphs are added automatically when wpautop is false.
                                                     'media_buttons'    => false,   // Whether to display media insert/upload buttons
@@ -1104,8 +1106,9 @@
                                     <div class="wrap-content-page-word">
                                         <div class="title-body">Privacy Policy</div>
                                         <?php
-                                            $content = "Privacy Policy";
-                                            $editor_id = 'privacyPolicy';
+                                            $postId = get_post(184);
+                                            $content = $postId ->post_content;
+                                            $editor_id = 'privacyPolicy_id';
                                             $settings  = array (
                                                     'wpautop'          => true,   // Whether to use wpautop for adding in paragraphs. Note that the paragraphs are added automatically when wpautop is false.
                                                     'media_buttons'    => false,   // Whether to display media insert/upload buttons

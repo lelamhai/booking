@@ -487,5 +487,22 @@ function footer_function() {
 		$autoload = 'no';
 		add_option( $option_name, $new_value, $deprecated, $autoload );
 	}
+
+    $contentTermsId =  $_POST['termsId'];
+    $contentTerms =  $_POST['terms'];
+    $my_post_terms = array(
+        'ID'           => $contentTermsId,
+        'post_content' => $contentTerms,
+    );
+    wp_update_post( $my_post_terms );
+
+    $contentTermsId =  $_POST['privacyPolicyId'];
+    $contentTerms =  $_POST['privacyPolicy'];
+    $my_post_terms = array(
+        'ID'           => $contentTermsId,
+        'post_content' => $contentTerms,
+    );
+    wp_update_post( $my_post_terms );
+
     wp_die(); 
 }
