@@ -1,6 +1,15 @@
 $(document).ready(function() {
+    $(".slider-reviews").slick({
+        vertical: true,
+        verticalSwiping: true,
+        speed: 2000,
+        infinite:true,
+        prevArrow:"<button type='button' class='slick-prev pull-left'></button>",
+        nextArrow:"<button type='button' class='slick-next pull-right'></button>"
+    });
+
     $(".slider").slick({
-        dots: true,
+        dots: false,
         arrows: false,
         autoplay: true,
         slidesToShow: 1

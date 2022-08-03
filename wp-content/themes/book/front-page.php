@@ -1,7 +1,7 @@
 <?php
     get_header();
 ?>
-    <div class="popup">
+    <!-- <div class="popup">
         <div class="box">
             <div class="box-main">
                 <div class="wrap-box">
@@ -57,31 +57,16 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
+
+
+
     <main class="main">
-        <section class="banner">
-            <div class="slider">
-                <div class="slider">
-
-                    <?php if( have_rows('slider_body', 'option') ): ?>
-                        <?php while( have_rows('slider_body', 'option') ): the_row(); ?>
-                            <div class="item-slide">
-                                <img src="<?php echo get_sub_field('image1') ?>" alt="">
-                            </div>
-
-                            <div class="item-slide">
-                                <img src="<?php echo get_sub_field('image2') ?>" alt="">
-                            </div>
-
-                            <div class="item-slide">
-                                <img src="<?php echo get_sub_field('image3') ?>" alt="">
-                            </div>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
-
-                </div>
-             </div>
+        <section class="video">
+            <iframe id="video-youtube" width="100%" src="https://www.youtube.com/embed/LKChoK8R4-Q?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
+
         <div class="container">
             <section class="nail">
                 <div class="nail-address">
@@ -108,14 +93,6 @@
                 </div>
             </section>
 
-            <!-- <section class="welcome">
-                <div class="wrap-welcome">
-                    <div class="content-frame">
-                        <?php the_field('content_frame_body', 'options'); ?>
-                    </div>
-                </div>
-            </section> -->
-
             <section class="welcome">
                 <div class="wrap-welcome">
                     <div class="welcome-nail">
@@ -133,25 +110,45 @@
                             </div>
                         </div>
                         <div class="column-right">
-                            <div class="image-welcome-nail">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/img/welcome.jpg" alt="">
+                            <div class="slider">
+                                <?php if( have_rows('slider_body', 'option') ): ?>
+                                    <?php while( have_rows('slider_body', 'option') ): the_row(); ?>
+                                        <div class="item-slide">
+                                            <img src="<?php echo get_sub_field('image1') ?>" alt="">
+                                        </div>
+
+                                        <div class="item-slide">
+                                            <img src="<?php echo get_sub_field('image2') ?>" alt="">
+                                        </div>
+
+                                        <div class="item-slide">
+                                            <img src="<?php echo get_sub_field('image3') ?>" alt="">
+                                        </div>
+                                    <?php endwhile; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- <div class="rating-review">
-                    <div class="wrap-review">
-                       WRITE A REVIEW
-                    </div>
-                </div> -->
-
-                <!-- <div class="star">
-                    <img src="<?php the_field('star_body', 'options'); ?>" alt="">
-                </div> -->
             </section>
-
-            <section class="gift" id="Gift">
+        </div>
+            
+            
+            <section class="list-reviews">
+                <div class="wrap-list-reviews">
+                    <div class="title-reviews title-gift">
+                        Our Client's Reviews
+                    </div>
+                    <div class="slider-reviews">
+                        <div class="item-slider-reviews">1Before calling this company I had a couple estimates done but not one compared to them. Pricing was reasonable and their work turned out amazing. I'll definitely be contacting them in the near future for more work. The best part about it was that all the cement and rocks put in my home was done within a week. Satisfied customer.</div>
+                        <div class="item-slider-reviews">2Thanks for high desert affordable landscapes. Him and he's brother did a very good job and left it really clean and I really recommend them. They have great ideas and they also have great services to.</div>
+                        <div class="item-slider-reviews">3Responsive communication, fair and honest estimate, and work done promptly & professionally. Have no complaints at all and recommend highly to anyone in the area.</div>
+                    </div>
+                </div>
+            </section>
+        
+        <div class="container">                           
+            <section class="gift anim move js-anim" id="Gift">
                 <div class="wrap-gift">
                     <div class="column-left">
                         <div class="image-gift">
@@ -170,26 +167,9 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- <div class="gift-heart1"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/new_heart.png" alt=""></div>
-                <div class="wrap-gift">
-                    <div class="gift-title">Buy gift cards for your beloved ones</div>
-                    <div class="gift-buy">
-                        <div class="wrap-gift-buy">BUY NOW</div>
-                    </div>
-                </div> -->
             </section>
 
-
-            <section class="video">
-                <div class="wrap-video">
-                    <?php the_field('video_body', 'options'); ?>
-                </div>
-            </section>
-
-          
-
-            <section class="menu" id="OurMenu">
+            <section class="menu anim move js-anim" id="OurMenu">
                 <div class="wrap-menu">
                     <div class="menu-column1">Our Menu</div>
                 </div>
@@ -210,7 +190,7 @@
                 </div>
             </section>
 
-            <section class="menu-main">
+            <section class="menu-main anim move js-anim">
                 <div class="menu-main-row">
                     <div class="wrap-menu-title">
                         <div class="menu-label-left">
@@ -275,7 +255,7 @@
                 
             </section>
 
-            <section class="form" id="BookOnline">
+            <section class="form anim move js-anim" id="BookOnline">
                 <div class="wrap-form">
                     <div class="form-top-title">
                         RESERVATION
@@ -305,6 +285,12 @@
 
                         <div class="wrap-input-form wrap-input-email">
                             <div class="label-card">Your email</div>
+                            <input type="email" class="email">
+                            <div class="error red">Error</div>
+                        </div>
+
+                        <div class="wrap-input-form wrap-input-email">
+                            <div class="label-card">Your location</div>
                             <input type="email" class="email">
                             <div class="error red">Error</div>
                         </div>
@@ -352,7 +338,23 @@
                 </div>
             </section>
         </div>
-   
+        
+        <section class="google-map">
+            <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15689.767389861054!2d105.39633022801672!3d10.544555375080055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a14d3db232923%3A0xb99c5080400238a9!2zQ2jhu6MgTeG7m2ksIENo4bujIE3hu5tpIERpc3RyaWN0LCBBbiBHaWFuZywgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1659429583916!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+
+        <div class="social-network">
+            <div class="item-social-network">
+                <a href=""><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_instagram.png"?>" alt=""></a>
+            </div>
+            <div class="item-social-network">
+                <a href=""><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_youtube.png"?>" alt=""></a>
+            </div>
+            <div class="item-social-network">
+                <a href=""><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_facebook.png"?>" alt=""></a>
+            </div>
+        </div>
+
         <section class="contact" id="Opening" style="background-color: <?php the_field('background_color_contact', 'options'); ?>">
             <div class="wrap-contact">
                 <div class="contact-column6">
@@ -386,6 +388,8 @@
                 <?php endif; ?>
            </div>
         </section>
+
+        
     </main>
 <?php
     get_footer();
