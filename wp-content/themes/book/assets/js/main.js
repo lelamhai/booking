@@ -2,6 +2,8 @@ $(document).ready(function() {
     $(".slider-reviews").slick({
         vertical: true,
         verticalSwiping: true,
+        draggable: false,
+        swipe: false,
         speed: 2000,
         infinite:true,
         prevArrow:"<button type='button' class='slick-prev pull-left'></button>",

@@ -5,51 +5,6 @@
 ?>
 <?php
     get_header();
-    $businessName = "business-name";
-    $businessAddress = "business-address";
-    $businessPhoneNumber = "business-phone-number";
-    $businessGoogleMap = "business-google-map";
-    $businessGoogleReview = "business-google-review";
-    $businessFacebook = "business-facebook";
-    $businessInstagram = "business-intergram";
-    $businessYoutube = "business-youtube";
-    $businessOpenHours = "business-open-hours";
-
-    $businessBackgroundColorHeader = "business-backgroundcolor-header";
-    $businessTextColorHeader = "business-text-color-header";
-    $businessLogoHeader = "business-logo-header";
-    $businessAddMenuHeader = "business-addmenu-header";
-    $businessLinkMenuHeader = "business-linkmenu-header";
-    $businessYoutubeVideoBanner = "business-youtubevideo-banner";
-
-    $businessBackgroundColorBody = "business-backgroundcolor-body";
-    $businessBackgroundButtonBody = "business-backgroundbutton-body";
-    $businessTextColorBody = "business-text-color-body";
-
-    $businessTitleWelcome = "business-title-welcome-body";
-    $businessContentWelcome = "business-title-welcome-body";
-    $businessSlider1Welcome = "business-slider1-welcome-body";
-    $businessSlider2Welcome = "business-slider2-welcome-body";
-    $businessSlider3Welcome = "business-slider3-welcome-body";
-    $businessSlider4Welcome = "business-slider4-welcome-body";
-    $businessSlider5Welcome = "business-slider5-welcome-body";
-
-    $businessBackgroundColorReviews = "business-backgroundcolor-reviews-body";
-    $businessTextColorReviews = "business-textcolor-reviews";
-    $businessContent1Reviews = "business-content1-reviews";
-    $businessContent2Reviews = "business-content2-reviews";
-    $businessContent3Reviews = "business-content3-reviews";
-
-    $businessTitleGift = "business-title-gift";
-    $businessContentGift = "business-content-gift";
-    $businessImageGift = "business-image-gift";
-
-    $businessBackgroundColorFooter = "business-backgroundcolor-footer";
-    $businessTextColorFooter = "business-textcolor-footer";
-    $businessAboutUsFooter = "business-aboutus-footer";
-    
-    $termsId = 1;
-    $policyId = 1;
 ?>
 <style>
     header,
@@ -137,13 +92,13 @@
                                         <div class="wrap-business">
                                             <div class="label-business">Business name</div>
                                             <?php
-                                                $businessName = "";
-                                                if(get_option("businessName"))
+                                                $name = "";
+                                                if(get_option($businessName))
                                                 {
-                                                    $businessName = get_option("businessName");
+                                                    $name = get_option($businessName);
                                                 }
                                             ?>
-                                            <input type="text" class="input-business" data-key="businessName" value="<?php echo $businessName; ?>">
+                                            <input type="text" class="input-business" data-key="<?php echo $businessName?>" value="<?php echo $name; ?>">
                                         </div>
                                         <div class="wrap-business">
                                             <div class="label-business">Address</div>
@@ -635,15 +590,15 @@
                                                     <div class="wrap-header-color">
                                                         <div class="label-color">Header Color</div>
                                                         <?php
-                                                            $color = "#000000";
-                                                            if(get_option("headerColor"))
+                                                            $color = "#008037";
+                                                            if(get_option($businessBackgroundColorHeader))
                                                             {
-                                                                $color = get_option("headerColor");
+                                                                $color = get_option($businessBackgroundColorHeader);
                                                             }
                                                         ?>
                                                         
                                                         <div class="group-input-color">
-                                                            <input type="color" id="headerColor" class="header-color" data-key="headerColor" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>"> 
+                                                            <input type="color" id="headerColor" class="header-color" data-key="<?php echo $businessBackgroundColorHeader ?>" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>"> 
                                                             <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>" id="hexHeaderColor" class="hexcolor"></input>
                                                         </div>
                                                     </div>
@@ -651,14 +606,14 @@
                                                     <div class="wrap-text-color">
                                                         <div class="label-color">Text Color</div>
                                                         <?php
-                                                            $colorText = "#000000";
-                                                            if(get_option("textColor"))
+                                                            $colorText = "#ffffff";
+                                                            if(get_option($businessTextColorHeader))
                                                             {
-                                                                $colorText = get_option("textColor");
+                                                                $colorText = get_option($businessTextColorHeader);
                                                             }
                                                         ?>
                                                         <div class="group-input-color">
-                                                            <input type="color" id="textColor" class="text-color" data-key="textColor" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorText?>"> 
+                                                            <input type="color" id="textColor" class="text-color" data-key="<?php echo $businessTextColorHeader?>" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorText?>"> 
                                                             <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorText?>" id="hexTextColor" class="hexcolor"></input>
                                                         </div>
                                                     </div>
@@ -668,9 +623,9 @@
                                                     <div class="label-logo">Logo</div>
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
-                                                        if(get_option("logo"))
+                                                        if(get_option($businessLogoHeader))
                                                         {
-                                                            $url = get_option("logo");
+                                                            $url = get_option($businessLogoHeader);
                                                             ?>
                                                                 <button class="remove-image">x</button> 
                                                             <?php
@@ -681,7 +636,8 @@
                                                         }
                                                     ?>
                                                     <img class="output-image preview-image" src="<?php echo $url?>"/>
-                                                    <input type="file" id="fileinput" class="file-input" accept="image/*" data-key="logo">
+                                                    <input type="file" id="fileinput" class="file-input" accept="image/*" data-key="<?php echo $businessLogoHeader?>">
+                                                    <b>Image (Max size: 400x75)</b>
                                                 </div>
 
                                                 <div class="header-menu">
@@ -693,36 +649,36 @@
                                                         <div class="label-additional-menu">Additional menu</div>
                                                         <?php 
                                                             $additionalMenu = "";
-                                                            if(get_option("additionalMenu"))
+                                                            if(get_option($businessAddMenuHeader))
                                                             {
-                                                                $additionalMenu = get_option("additionalMenu");
+                                                                $additionalMenu = get_option($businessAddMenuHeader);
                                                             }
                                                         ?>
-                                                        <input type="text" value="<?php echo $additionalMenu?>" class="additional-menu" data-key="additionalMenu">
+                                                        <input type="text" value="<?php echo $additionalMenu?>" class="additional-menu" data-key="<?php echo $businessAddMenuHeader?>">
                                                     </div>
 
                                                     <div class="menu-link-menu">
                                                         <div class="label-link-menu">Link</div>
                                                         <?php 
                                                             $linkMenu = "";
-                                                            if(get_option("linkMenu"))
+                                                            if(get_option($businessLinkMenuHeader))
                                                             {
-                                                                $linkMenu = get_option("linkMenu");
+                                                                $linkMenu = get_option($businessLinkMenuHeader);
                                                             }
                                                         ?>
-                                                        <input type="text" value="<?php echo $linkMenu?>" class="link-menu" data-key="linkMenu">
+                                                        <input type="text" value="<?php echo $linkMenu?>" class="link-menu" data-key="<?php echo $businessLinkMenuHeader;?>">
                                                     </div>
 
                                                     <div class="menu-youtube-menu">
                                                         <div class="label-youtube-menu">Youtube video -> share -> embed -> copy the yellow highlight part of that video (see the example below) & paste in here</div>
                                                         <?php 
-                                                            $youtubeHeader = "";
-                                                            if(get_option("youtubeHeader"))
+                                                            $youtubeHeader = "LKChoK8R4-Q";
+                                                            if(get_option($businessYoutubeVideoBanner))
                                                             {
-                                                                $youtubeHeader = get_option("youtubeHeader");
+                                                                $youtubeHeader = get_option($businessYoutubeVideoBanner);
                                                             }
                                                         ?>
-                                                        <input type="text" value="<?php echo $youtubeHeader?>" class="youtube-header" data-key="youtubeHeader">
+                                                        <input type="text" value="<?php echo $youtubeHeader?>" class="youtube-header" data-key="<?php echo $businessYoutubeVideoBanner?>">
                                                         <img src="<?php echo get_template_directory_uri()."/assets/img/TutorialYoutube.png";?>" alt="" style="width: 50%; padding: 15px 0">
                                                     </div>
                                                 </div>

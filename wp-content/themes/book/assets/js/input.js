@@ -511,9 +511,6 @@ $(document).ready(function() {
 		let textColor = $(".text-color").val();
 		let keyTextColor = $(".text-color").data("key");
 
-		let file = $("#fileinput").prop('files')[0];
-		let keyFile = $("#fileinput").data("key");
-
 		let additionalMenu = $(".additional-menu").val();
 		let keyadditionalMenu = $(".additional-menu").data("key");
 
@@ -523,17 +520,27 @@ $(document).ready(function() {
 		let youtubeHeader = $(".youtube-header").val();
 		let keyYoutubeHeader = $(".youtube-header").data("key");
 
+		let keyFile = $("#fileinput").data("key");
+
 		var data_form = new FormData();
+		if ($(".output-image ").attr('src') == '') {
+			console.log("empty");
+			data_form.append('keyFile', keyFile);
+			data_form.append('file', "");
+		} else {
+			let file = $("#fileinput").prop('files')[0];
+			data_form.append('keyFile', keyFile);
+			data_form.append('file', file);
+		}
+
 		data_form.append('keyHeaderColor', keyHeaderColor);
 		data_form.append('keyTextColor', keyTextColor);
-		data_form.append('keyFile', keyFile);
 		data_form.append('keyadditionalMenu', keyadditionalMenu);
 		data_form.append('keyLinkMenu', keyLinkMenu);
 		data_form.append('keyYoutubeHeader', keyYoutubeHeader);
 
 		data_form.append('headerColor', headerColor);
 		data_form.append('textColor', textColor);
-		data_form.append('file', file);
 		data_form.append('additionalMenu', additionalMenu);
 		data_form.append('linkMenu', linkMenu);
 		data_form.append('youtubeHeader', youtubeHeader);
@@ -622,13 +629,14 @@ $(document).ready(function() {
 		for (let i = 1; i <= 5; i++) {
 			let url = "#output" + i;
 			let keyFile = $("#fileinput" + i).data("key");
-	
+			
 			if ($(url).attr('src') == '') {
 				data_form.append('keyFile' + i, keyFile);
 				data_form.append('file' + i, '');
 	
 			} else {
 				let file = $("#fileinput" + i).prop('files')[0];
+
 				data_form.append('keyFile' + i, keyFile);
 				data_form.append('file' + i, file);
 			}
@@ -636,7 +644,6 @@ $(document).ready(function() {
 	
 		data_form.append('action', 'body')
 	
-		// console.log(titleWelcome + "\n" + keyTitleWelcome);
 		jQuery.ajax({
 			type: "post",
 			url: "./wp-admin/admin-ajax.php",
@@ -647,8 +654,9 @@ $(document).ready(function() {
 	
 			},
 			success: function(response) {
-				localStorage.setItem("isFinish", 1);
-				location.reload();
+				console.log(response);
+				// localStorage.setItem("isFinish", 1);
+				// location.reload();
 			},
 			error: function(request, status, error) {
 				console.log(error);

@@ -64,7 +64,14 @@
 
     <main class="main">
         <section class="video">
-            <iframe id="video-youtube" width="100%" src="https://www.youtube.com/embed/LKChoK8R4-Q?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <?php
+                $embed = "LKChoK8R4-Q";
+                if(get_option($businessYoutubeVideoBanner))
+                {
+                    $embed = get_option($businessYoutubeVideoBanner);
+                }
+            ?>
+            <iframe id="video-youtube" width="100%" src="https://www.youtube.com/embed/<?php echo $embed?>?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
 
         <div class="container">

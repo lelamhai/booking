@@ -5,10 +5,56 @@ require get_template_directory() . '/include/query.php';
 require get_template_directory() . '/include/ajax.php';
 require get_template_directory() . '/include/input-ajax.php';
 
+$businessName = "business-name";
+$businessAddress = "business-address";
+$businessPhoneNumber = "business-phone-number";
+$businessGoogleMap = "business-google-map";
+$businessGoogleReview = "business-google-review";
+$businessFacebook = "business-facebook";
+$businessInstagram = "business-intergram";
+$businessYoutube = "business-youtube";
+$businessOpenHours = "business-open-hours";
+
+$businessBackgroundColorHeader = "business-backgroundcolor-header";
+$businessTextColorHeader = "business-text-color-header";
+$businessLogoHeader = "business-logo-header";
+$businessAddMenuHeader = "business-addmenu-header";
+$businessLinkMenuHeader = "business-linkmenu-header";
+$businessYoutubeVideoBanner = "business-youtubevideo-banner";
+
+$businessBackgroundColorBody = "business-backgroundcolor-body";
+$businessBackgroundButtonBody = "business-backgroundbutton-body";
+$businessTextColorBody = "business-text-color-body";
+
+$businessTitleWelcome = "business-title-welcome-body";
+$businessContentWelcome = "business-title-welcome-body";
+$businessSlider1Welcome = "business-slider1-welcome-body";
+$businessSlider2Welcome = "business-slider2-welcome-body";
+$businessSlider3Welcome = "business-slider3-welcome-body";
+$businessSlider4Welcome = "business-slider4-welcome-body";
+$businessSlider5Welcome = "business-slider5-welcome-body";
+
+$businessBackgroundColorReviews = "business-backgroundcolor-reviews-body";
+$businessTextColorReviews = "business-textcolor-reviews";
+$businessContent1Reviews = "business-content1-reviews";
+$businessContent2Reviews = "business-content2-reviews";
+$businessContent3Reviews = "business-content3-reviews";
+
+$businessTitleGift = "business-title-gift";
+$businessContentGift = "business-content-gift";
+$businessImageGift = "business-image-gift";
+
+$businessBackgroundColorFooter = "business-backgroundcolor-footer";
+$businessTextColorFooter = "business-textcolor-footer";
+$businessAboutUsFooter = "business-aboutus-footer";
+    
+$termsId = 1;
+$policyId = 1;
+
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
-    $version = "162";
+    $version = "176";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-bootstrap', get_template_directory_uri() ."/assets/bootstrap/bootstrap.min.css", array(), $version);
@@ -37,5 +83,4 @@ function regsiter_styles()
         wp_enqueue_script('boook-input', get_template_directory_uri() . "/assets/js/input.js", array(), $version, true);
     }
 }
-add_action('wp_enqueue_scripts', 'regsiter_styles');
 ?>

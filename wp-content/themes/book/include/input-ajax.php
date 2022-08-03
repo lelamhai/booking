@@ -164,6 +164,7 @@ function upload_image()
         $uploadedfile = $_FILES['file'];
         $upload_overrides = array('test_form' => false);
         $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
+        
         if($movefile && !isset($movefile['error']))
         {
             $option_name = $_POST['keyFile'] ;
@@ -178,9 +179,11 @@ function upload_image()
         } else {
             echo $movefile['error'];
         }
-    } else if($_POST[$file] == "") {
+    } else if($_POST['file'] == "") {
+
         $option_name = $_POST['keyFile'] ;
-        $new_value = '';
+        $new_value = $_POST['file'];
+
         if ( get_option( $option_name ) != $new_value ) {
             update_option( $option_name, $new_value );
         } else {
@@ -214,6 +217,9 @@ function upload_image()
 
     $option_name = $_POST['keyadditionalMenu'] ;
 	$new_value = $_POST['additionalMenu'] ;
+
+    
+
 	if ( get_option( $option_name ) != $new_value ) {
 		update_option( $option_name, $new_value );
 	} else {
@@ -328,6 +334,7 @@ function body_function() {
         } else if($_POST[$file] == "") {
             $option_name = $_POST[$key] ;
             $new_value = $_POST[$file];
+
             if ( get_option( $option_name ) != $new_value ) {
                 update_option( $option_name, $new_value );
             } else {
