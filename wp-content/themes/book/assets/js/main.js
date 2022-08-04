@@ -31,39 +31,20 @@ $(document).ready(function() {
     });
 
     // Popup reivew
-    $(".wrap-review").click(function(){
-        $(".popup").toggleClass("show-popup");
-    });
-
-    $(".popup").click(function(e){
-        if(e.target == e.currentTarget)
-        {
-            $(".popup").toggleClass("show-popup");
-            $(".box-report").css("display","none");
-            $(".box-good").css("display","none");
-        } else {
-            return;
-        }
-    });
-
     $(".box-report-icon").click(function(){
-        $(".box-report").css("display","block");
+        $('#listIcon').modal('toggle');
     });
 
     $(".box-good-icon").click(function(){
-        $(".box-good").css("display","block");
+        $('#listIcon').modal('toggle');
     });
 
     $(".box-submit button").click(function(){
-        $(".popup").toggleClass("show-popup");
-        $(".box-report").css("display","none");
+        $('#reviewsBad').modal('toggle');
     });
 
     $(".submit-good button").click(function(){
-        $(".popup").toggleClass("show-popup");
-        $(".box-good").css("display","none");
-        let url = $("#linkgood").val();
-        window.open(url);
+        $('#reviewsGood').modal('toggle');
     });
 
     // menu more

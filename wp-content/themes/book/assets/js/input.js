@@ -654,9 +654,8 @@ $(document).ready(function() {
 	
 			},
 			success: function(response) {
-				console.log(response);
-				// localStorage.setItem("isFinish", 1);
-				// location.reload();
+				localStorage.setItem("isFinish", 1);
+				location.reload();
 			},
 			error: function(request, status, error) {
 				console.log(error);
@@ -670,8 +669,8 @@ $(document).ready(function() {
 	$('#backgroundColorReviews').on('input', function() {
 		$('#hexBackgroundColorReviews').val(this.value);
 	});
-	$('#hexHeaderColor').on('input', function() {
-		$('#hexBackgroundColorReviews').val(this.value);
+	$('#hexBackgroundColorReviews').on('input', function() {
+		$('#backgroundColorReviews').val(this.value);
 	});
 	
 	$('#textColorReivews').on('input', function() {
@@ -704,11 +703,12 @@ $(document).ready(function() {
 		data_form.append('keyTitleReviews', keyTitleReviews);
 		data_form.append('titleReviews', valueTitleReviews);
 	
+
 		for (let i = 1; i <= 3; i++) {
 			let classReviews = ".textBodyReviews" + i;
 	
 			let key = $(classReviews).data("key");
-			let value = $(classReviews).val();
+			let value = tinyMCE.get(key).getContent();
 	
 			data_form.append('keyTextBodyReviews' + i, key);
 			data_form.append('textBodyReviews' + i, value);

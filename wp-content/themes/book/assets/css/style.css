@@ -109,6 +109,7 @@ h6 {
     font-family: OpenSans-Medium;
 }
 
+
 .container {
   max-width: 1400px;
   margin: auto;
@@ -120,6 +121,7 @@ h6 {
 
 body {
   background-color: #f6f1ea;
+  padding-right: 0 !important;
 }
 .wrap-header {
   display: flex;
@@ -342,6 +344,7 @@ body {
   height: 100% !important;
   display: flex !important;
   align-items: center !important;
+  justify-content: center !important;
 }
 
 .title-reviews {
@@ -859,7 +862,7 @@ body {
    padding-top: 5px;
 }
 
-.submit-good button {
+.submit-good button a {
    background-color: #39a766;
    color: #fff;
    padding: 10px;

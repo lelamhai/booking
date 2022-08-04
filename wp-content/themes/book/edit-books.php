@@ -104,34 +104,34 @@
                                             <div class="label-business">Address</div>
                                             <?php
                                                 $address = "";
-                                                if(get_option("address"))
+                                                if(get_option($businessAddress))
                                                 {
-                                                    $address = get_option("address");
+                                                    $address = get_option($businessAddress);
                                                 }
                                             ?>
-                                            <input type="text" class="input-business" data-key="address" value="<?php echo $address?>">
+                                            <input type="text" class="input-business" data-key="<?php echo $businessAddress?>" value="<?php echo $address?>">
                                         </div>
                                         <div class="wrap-business">
                                             <div class="label-business">Phone number</div>
                                             <?php
                                                 $phoneNumber = "";
-                                                if(get_option("phoneNumber"))
+                                                if(get_option($businessPhoneNumber))
                                                 {
-                                                    $phoneNumber = get_option("phoneNumber");
+                                                    $phoneNumber = get_option($businessPhoneNumber);
                                                 }
                                             ?>
-                                            <input type="number" class="input-business" data-key="phoneNumber" value="<?php echo $phoneNumber?>">
+                                            <input type="number" class="input-business" data-key="<?php echo $businessPhoneNumber ?>" value="<?php echo $phoneNumber?>">
                                         </div>
                                         <div class="wrap-business">
                                             <div class="label-business">Google maps (link)</div>
                                             <?php
                                                 $googleMaps = "";
-                                                if(get_option("googleMaps"))
+                                                if(get_option($businessGoogleMap))
                                                 {
-                                                    $googleMaps = get_option("googleMaps");
+                                                    $googleMaps = get_option($businessGoogleMap);
                                                 }
                                             ?>
-                                            <input type="url" class="input-business" data-key="googleMaps" value="<?php echo $googleMaps?>">
+                                            <input type="url" class="input-business" data-key="<?php echo $businessGoogleMap?>" value="<?php echo $googleMaps?>">
                                         </div>
                                     </div>
 
@@ -140,12 +140,12 @@
                                             <div class="label-business">Google review (link)</div>
                                             <?php
                                                 $googleReview = "";
-                                                if(get_option("googleReview"))
+                                                if(get_option($businessGoogleReview))
                                                 {
-                                                    $googleReview = get_option("googleReview");
+                                                    $googleReview = get_option($businessGoogleReview);
                                                 }
                                             ?>
-                                            <input type="url" class="input-business" data-key="googleReview" value="<?php echo $googleReview?>">
+                                            <input type="url" class="input-business" data-key="<?php echo $businessGoogleReview?>" value="<?php echo $googleReview?>">
                                         </div>
                                         <div class="wrap-business">
                                             <div class="label-business">Your facebook (link)</div>
@@ -752,34 +752,34 @@
                                             <div class="title-body">Title text</div>
                                             <?php
                                                     $text = "";
-                                                    if(get_option("titleWelcome"))
+                                                    if(get_option($businessTitleWelcome))
                                                     {
-                                                        $text = get_option("titleWelcome");
+                                                        $text = get_option($businessTitleWelcome);
                                                     }
                                             ?>
-                                            <input type="text" class="title-welcome" data-key="titleWelcome" value="<?php echo $text?>">
+                                            <input type="text" class="title-welcome" data-key="<?php echo $businessTitleWelcome ?>" value="<?php echo $text?>">
                                         </div>
                                         <div class="wrap-content-welcome-word">
                                             <div class="title-body">Body text</div>
                                             <?php
                                                 $text = "";
-                                                if(get_option("contentWelcome"))
+                                                if(get_option($businessContentWelcome))
                                                 {
-                                                    $text = get_option("contentWelcome");
+                                                    $text = get_option($businessContentWelcome);
                                                 }
                                             ?>
-                                            <textarea cols="30" rows="5" class="content-welcome" data-key="contentWelcome"><?php echo $text?></textarea>
+                                            <textarea cols="30" rows="5" class="content-welcome" data-key="<?php echo $businessContentWelcome?>"><?php echo $text?></textarea>
                                         </div>
                                     </div>
 
-                                    <div class="wrap-image-welcome">
+                                        <div class="wrap-image-welcome">
 
-                                            <div class="image-welcome upload-image">
+                                                <div class="image-welcome upload-image">
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
-                                                        if(get_option("slider1"))
+                                                        if(get_option($businessSlider1Welcome))
                                                         {
-                                                            $url = get_option("slider1");
+                                                            $url = get_option($businessSlider1Welcome);
                                                             ?>
                                                                 <button class="remove-image">x</button> 
                                                             <?php
@@ -790,15 +790,16 @@
                                                         }
                                                     ?>
                                                     <img id="output1" class="output-image preview-image" src="<?php echo $url?>"/>
-                                                    <input type="file" class="file-input" id="fileinput1" accept="image/*" data-key="slider1">
-                                            </div>
+                                                    <input type="file" class="file-input" id="fileinput1" accept="image/*" data-key="<?php echo $businessSlider1Welcome?>">
+                                                    <b>Image (size: 950x680)</b>
+                                                </div>
 
-                                            <div class="image-welcome upload-image">
+                                                <div class="image-welcome upload-image">
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
-                                                        if(get_option("slider2"))
+                                                        if(get_option($businessSlider2Welcome))
                                                         {
-                                                            $url = get_option("slider2");
+                                                            $url = get_option($businessSlider2Welcome);
                                                             ?>
                                                                 <button class="remove-image">x</button> 
                                                             <?php
@@ -809,16 +810,17 @@
                                                         }
                                                     ?>
                                                     <img id="output2" class="output-image preview-image" src="<?php echo $url?>"/>
-                                                    <input type="file" class="file-input" id="fileinput2" accept="image/*" data-key="slider2">
-                                            </div>
+                                                    <input type="file" class="file-input" id="fileinput2" accept="image/*" data-key="<?php echo $businessSlider2Welcome?>">
+                                                    <b>Image (size: 950x680)</b>
+                                                </div>
 
 
-                                            <div class="image-welcome upload-image">
+                                                <div class="image-welcome upload-image">
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
-                                                        if(get_option("slider3"))
+                                                        if(get_option($businessSlider3Welcome))
                                                         {
-                                                            $url = get_option("slider3");
+                                                            $url = get_option($businessSlider3Welcome);
                                                             ?>
                                                                 <button class="remove-image">x</button> 
                                                             <?php
@@ -829,16 +831,17 @@
                                                         }
                                                     ?>
                                                     <img id="output3" class="output-image preview-image" src="<?php echo $url?>"/>
-                                                    <input type="file" class="file-input" id="fileinput3" accept="image/*" data-key="slider3">
-                                            </div>
+                                                    <input type="file" class="file-input" id="fileinput3" accept="image/*" data-key="<?php echo $businessSlider3Welcome?>">
+                                                    <b>Image (size: 950x680)</b>
+                                                </div>
 
 
-                                            <div class="image-welcome upload-image">
+                                                <div class="image-welcome upload-image">
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
-                                                        if(get_option("slider4"))
+                                                        if(get_option($businessSlider4Welcome))
                                                         {
-                                                            $url = get_option("slider4");
+                                                            $url = get_option($businessSlider4Welcome);
                                                             ?>
                                                                 <button class="remove-image">x</button> 
                                                             <?php
@@ -849,16 +852,17 @@
                                                         }
                                                     ?>
                                                     <img id="output4" class="output-image preview-image" src="<?php echo $url?>"/>
-                                                    <input type="file" class="file-input" id="fileinput4" accept="image/*" data-key="slider4">
-                                            </div>
+                                                    <input type="file" class="file-input" id="fileinput4" accept="image/*" data-key="<?php echo $businessSlider4Welcome?>">
+                                                    <b>Image (size: 950x680)</b>
+                                                </div>
 
 
-                                            <div class="image-welcome upload-image">
+                                                <div class="image-welcome upload-image">
                                                     <?php
                                                         $url = get_template_directory_uri()."/assets/img/image.png";
-                                                        if(get_option("slider5"))
+                                                        if(get_option($businessSlider5Welcome))
                                                         {
-                                                            $url = get_option("slider5");
+                                                            $url = get_option($businessSlider5Welcome);
                                                             ?>
                                                                 <button class="remove-image">x</button> 
                                                             <?php
@@ -869,10 +873,11 @@
                                                         }
                                                     ?>
                                                     <img id="output5" class="output-image preview-image" src="<?php echo $url?>"/>
-                                                    <input type="file" class="file-input" id="fileinput5" accept="image/*" data-key="slider5">
-                                            </div>
+                                                    <input type="file" class="file-input" id="fileinput5" accept="image/*" data-key="<?php echo $businessSlider5Welcome?>">
+                                                    <b>Image (size: 950x680)</b>
+                                                </div>
 
-                                    </div>
+                                        </div>
                                 </div>
                                 <button class="save save-body">Save changes</button>
                             </div>
@@ -888,15 +893,15 @@
                                             <div class="wrap-background-color">
                                                 <div class="label-color">Background Color</div>
                                                     <?php
-                                                        $colorReviews = "#000000";
-                                                        if(get_option("backgroundColorReviews"))
+                                                        $colorReviews = "#eefce8";
+                                                        if(get_option($businessBackgroundColorReviews))
                                                         {
-                                                            $colorReviews = get_option("backgroundColorReviews");
+                                                            $colorReviews = get_option($businessBackgroundColorReviews);
                                                         }
                                                     ?>
                                                             
                                                 <div class="group-input-color">
-                                                    <input type="color" id="backgroundColorReviews" class="background-color-reviews" data-key="backgroundColorReviews" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorReviews?>"> 
+                                                    <input type="color" id="backgroundColorReviews" class="background-color-reviews" data-key="<?php echo $businessBackgroundColorReviews?>" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorReviews?>"> 
                                                     <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorReviews?>" id="hexBackgroundColorReviews" class="hexcolor"></input>
                                                 </div>
                                             </div>
@@ -905,13 +910,13 @@
                                                 <div class="label-color">Text Color</div>
                                                     <?php
                                                         $textColorReviews = "#000000";
-                                                        if(get_option("textColorReviews"))
+                                                        if(get_option($businessTextColorReviews))
                                                         {
-                                                            $textColorReviews = get_option("textColorReviews");
+                                                            $textColorReviews = get_option($businessTextColorReviews);
                                                         }
                                                     ?>
                                                 <div class="group-input-color">
-                                                    <input type="color" id="textColorReivews" class="text-color-reviews" data-key="textColorReviews" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $textColorReviews?>"> 
+                                                    <input type="color" id="textColorReivews" class="text-color-reviews" data-key="<?php echo $businessTextColorReviews?>" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $textColorReviews?>"> 
                                                     <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $textColorReviews?>" id="hexTextColorReviews" class="hexcolor"></input>
                                                 </div>
                                             </div>
@@ -921,45 +926,101 @@
                                             <div class="title-body">Title text</div>
                                             <?php
                                                     $text = "";
-                                                    if(get_option("titleReviews"))
+                                                    if(get_option($businessTitleReviews))
                                                     {
-                                                        $text = get_option("titleReviews");
+                                                        $text = get_option($businessTitleReviews);
                                                     }
                                             ?>
-                                            <input type="text" class="title-welcome title-reviews" data-key="titleReviews" value="<?php echo $text?>">
+                                            <input type="text" class="title-welcome title-reviews" data-key="<?php echo $businessTitleReviews?>" value="<?php echo $text?>">
                                         </div>
                                         <div class="wrap-content-reviews-word">
                                             <div class="title-body">Body text 1</div>
+                                            <input type="hidden" class="textBodyReviews1" data-key="<?php echo $businessContent1Reviews?>">
                                             <?php
-                                                $text = "";
-                                                if(get_option("textBodyReviews1"))
+                                                $content = "";
+                                                if(get_option($businessContent1Reviews))
                                                 {
-                                                    $text = get_option("textBodyReviews1");
+                                                    $content = get_option($businessContent1Reviews);
                                                 }
+                                                    
+                                                $editor_id = $businessContent1Reviews;
+                                                $settings  = array (
+                                                          'wpautop'          => true,   // Whether to use wpautop for adding in paragraphs. Note that the paragraphs are added automatically when wpautop is false.
+                                                          'media_buttons'    => false,   // Whether to display media insert/upload buttons
+                                                          'textarea_name'    => $editor_id,   // The name assigned to the generated textarea and passed parameter when the form is submitted.
+                                                          'textarea_rows'    => get_option( 'default_post_edit_rows', 10 ),  // The number of rows to display for the textarea
+                                                          'tabindex'         => '',     // The tabindex value used for the form field
+                                                          'editor_css'       => '',     // Additional CSS styling applied for both visual and HTML editors buttons, needs to include <style> tags, can use "scoped"
+                                                          'editor_class'     => '',     // Any extra CSS Classes to append to the Editor textarea
+                                                          'teeny'            => false,  // Whether to output the minimal editor configuration used in PressThis
+                                                          'dfw'              => false,  // Whether to replace the default fullscreen editor with DFW (needs specific DOM elements and CSS)
+                                                          'tinymce'          => true,   // Load TinyMCE, can be used to pass settings directly to TinyMCE using an array
+                                                          'quicktags'        => true,   // Load Quicktags, can be used to pass settings directly to Quicktags using an array. Set to false to remove your editor's Visual and Text tabs.
+                                                          'drag_drop_upload' => true    // Enable Drag & Drop Upload Support (since WordPress 3.9)
+                                                );
+                                                  
+                                                // display the editor
+                                                wp_editor($content, $editor_id, $settings );
                                             ?>
-                                            <textarea cols="30" rows="5" class="content-welcome textBodyReviews1" data-key="textBodyReviews1"><?php echo $text?></textarea>
                                         </div>
                                         <div class="wrap-content-reviews-word">
                                             <div class="title-body">Body text 2</div>
+                                            <input type="hidden" class="textBodyReviews2" data-key="<?php echo $businessContent2Reviews?>">
                                             <?php
-                                                $text = "";
-                                                if(get_option("textBodyReviews2"))
+                                                $content = "";
+                                                if(get_option($businessContent2Reviews))
                                                 {
-                                                    $text = get_option("textBodyReviews2");
+                                                    $content = get_option($businessContent2Reviews);
                                                 }
+                                                    
+                                                $editor_id = $businessContent2Reviews;
+                                                $settings  = array (
+                                                          'wpautop'          => true,   // Whether to use wpautop for adding in paragraphs. Note that the paragraphs are added automatically when wpautop is false.
+                                                          'media_buttons'    => false,   // Whether to display media insert/upload buttons
+                                                          'textarea_name'    => $editor_id,   // The name assigned to the generated textarea and passed parameter when the form is submitted.
+                                                          'textarea_rows'    => get_option( 'default_post_edit_rows', 10 ),  // The number of rows to display for the textarea
+                                                          'tabindex'         => '',     // The tabindex value used for the form field
+                                                          'editor_css'       => '',     // Additional CSS styling applied for both visual and HTML editors buttons, needs to include <style> tags, can use "scoped"
+                                                          'editor_class'     => '',     // Any extra CSS Classes to append to the Editor textarea
+                                                          'teeny'            => false,  // Whether to output the minimal editor configuration used in PressThis
+                                                          'dfw'              => false,  // Whether to replace the default fullscreen editor with DFW (needs specific DOM elements and CSS)
+                                                          'tinymce'          => true,   // Load TinyMCE, can be used to pass settings directly to TinyMCE using an array
+                                                          'quicktags'        => true,   // Load Quicktags, can be used to pass settings directly to Quicktags using an array. Set to false to remove your editor's Visual and Text tabs.
+                                                          'drag_drop_upload' => true    // Enable Drag & Drop Upload Support (since WordPress 3.9)
+                                                );
+                                                  
+                                                // display the editor
+                                                wp_editor($content, $editor_id, $settings );
                                             ?>
-                                            <textarea cols="30" rows="5" class="content-welcome textBodyReviews2" data-key="textBodyReviews2"><?php echo $text?></textarea>
                                         </div>
                                         <div class="wrap-content-reviews-word">
                                             <div class="title-body">Body text 3</div>
+                                            <input type="hidden" class="textBodyReviews3" data-key="<?php echo $businessContent3Reviews?>">
                                             <?php
-                                                $text = "";
-                                                if(get_option("textBodyReviews3"))
+                                                $content = "";
+                                                if(get_option($businessContent3Reviews))
                                                 {
-                                                    $text = get_option("textBodyReviews3");
+                                                    $content = get_option($businessContent3Reviews);
                                                 }
+                                                $editor_id = $businessContent3Reviews;
+                                                $settings  = array (
+                                                          'wpautop'          => true,   // Whether to use wpautop for adding in paragraphs. Note that the paragraphs are added automatically when wpautop is false.
+                                                          'media_buttons'    => false,   // Whether to display media insert/upload buttons
+                                                          'textarea_name'    => $editor_id,   // The name assigned to the generated textarea and passed parameter when the form is submitted.
+                                                          'textarea_rows'    => get_option( 'default_post_edit_rows', 10 ),  // The number of rows to display for the textarea
+                                                          'tabindex'         => '',     // The tabindex value used for the form field
+                                                          'editor_css'       => '',     // Additional CSS styling applied for both visual and HTML editors buttons, needs to include <style> tags, can use "scoped"
+                                                          'editor_class'     => '',     // Any extra CSS Classes to append to the Editor textarea
+                                                          'teeny'            => false,  // Whether to output the minimal editor configuration used in PressThis
+                                                          'dfw'              => false,  // Whether to replace the default fullscreen editor with DFW (needs specific DOM elements and CSS)
+                                                          'tinymce'          => true,   // Load TinyMCE, can be used to pass settings directly to TinyMCE using an array
+                                                          'quicktags'        => true,   // Load Quicktags, can be used to pass settings directly to Quicktags using an array. Set to false to remove your editor's Visual and Text tabs.
+                                                          'drag_drop_upload' => true    // Enable Drag & Drop Upload Support (since WordPress 3.9)
+                                                );
+                                                  
+                                                // display the editor
+                                                wp_editor($content, $editor_id, $settings );
                                             ?>
-                                            <textarea cols="30" rows="5" class="content-welcome textBodyReviews3" data-key="textBodyReviews3"><?php echo $text?></textarea>
                                         </div>
 
                                     </div>

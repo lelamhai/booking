@@ -26,16 +26,17 @@ $businessBackgroundColorBody = "business-backgroundcolor-body";
 $businessBackgroundButtonBody = "business-backgroundbutton-body";
 $businessTextColorBody = "business-text-color-body";
 
-$businessTitleWelcome = "business-title-welcome-body";
-$businessContentWelcome = "business-title-welcome-body";
-$businessSlider1Welcome = "business-slider1-welcome-body";
-$businessSlider2Welcome = "business-slider2-welcome-body";
-$businessSlider3Welcome = "business-slider3-welcome-body";
-$businessSlider4Welcome = "business-slider4-welcome-body";
-$businessSlider5Welcome = "business-slider5-welcome-body";
+$businessTitleWelcome = "business-title-welcome";
+$businessContentWelcome = "business-content-welcome";
+$businessSlider1Welcome = "business-slider1-welcome";
+$businessSlider2Welcome = "business-slider2-welcome";
+$businessSlider3Welcome = "business-slider3-welcome";
+$businessSlider4Welcome = "business-slider4-welcome";
+$businessSlider5Welcome = "business-slider5-welcome";
 
-$businessBackgroundColorReviews = "business-backgroundcolor-reviews-body";
+$businessBackgroundColorReviews = "business-backgroundcolor-reviews";
 $businessTextColorReviews = "business-textcolor-reviews";
+$businessTitleReviews = "business-title-reviews";
 $businessContent1Reviews = "business-content1-reviews";
 $businessContent2Reviews = "business-content2-reviews";
 $businessContent3Reviews = "business-content3-reviews";
@@ -54,7 +55,7 @@ $policyId = 1;
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
-    $version = "176";
+    $version = "187";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-bootstrap', get_template_directory_uri() ."/assets/bootstrap/bootstrap.min.css", array(), $version);
@@ -83,4 +84,10 @@ function regsiter_styles()
         wp_enqueue_script('boook-input', get_template_directory_uri() . "/assets/js/input.js", array(), $version, true);
     }
 }
+
+function clean($string) {
+    $string = str_replace(' ', "\'", $string); // Replaces all spaces with hyphens.
+ 
+    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+ }
 ?>

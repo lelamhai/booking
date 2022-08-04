@@ -1,64 +1,78 @@
 <?php
     get_header();
 ?>
-    <!-- <div class="popup">
-        <div class="box">
-            <div class="box-main">
-                <div class="wrap-box">
-                    <div class="box-title">How satisfied were you with the service overall?</div>
-                    <div class="box-list-icon">
-                        <div class="box-icon">
-                            <div class="box-report-icon">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/1.png" alt="">
+        <div class="modal fade" id="listIcon">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="box-title">How satisfied were you with the service overall?</div>
+                        <div class="box-list-icon">
+                            <div class="box-icon">
+                                <div class="box-report-icon" data-toggle="modal" data-target="#reviewsBad">
+                                    <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/1.png">
+                                </div>
                             </div>
-                        </div>
-                        <div class="box-icon">
-                            <div class="box-report-icon">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/2.png" alt="">
+                            <div class="box-icon">
+                                <div class="box-report-icon" data-toggle="modal" data-target="#reviewsBad">
+                                    <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/2.png">
+                                </div>
                             </div>
-                        </div>
-                        <div class="box-icon">
-                            <div class="box-report-icon">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/3.png" alt="">
+                            <div class="box-icon">
+                                <div class="box-report-icon"  data-toggle="modal" data-target="#reviewsBad">
+                                    <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/3.png">
+                                </div>
                             </div>
-                        </div>
-                        <div class="box-icon">
-                            <div class="box-good-icon">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/4.png" alt="">
+                            <div class="box-icon">
+                                <div class="box-good-icon" data-toggle="modal" data-target="#reviewsGood">
+                                    <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/4.png">
+                                </div>
                             </div>
-                        </div>
-                        <div class="box-icon">
-                            <div class="box-good-icon">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/5.png" alt="">
+                            <div class="box-icon">
+                                <div class="box-good-icon" data-toggle="modal" data-target="#reviewsGood">
+                                    <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/5.png">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="box box-report">
-            <div class="box-main">
-                <div class="wrap-box">
-                    <div class="box-title">We're sorry. We'd love your feedback!</div>
-                    <div class="box-content">
-                        <textarea cols="10" rows="3"></textarea>
+
+        <div class="modal fade" id="reviewsGood">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="wrap-box">
+                            <div class="box-title">Thank you! Leave us a review on Google</div>
+                            <?php 
+                                $url = "#";
+                                if(get_option($businessGoogleReview))
+                                {
+                                    $url = get_option($businessGoogleReview);
+                                }
+                            ?>
+                            <div class="submit-good"><button><a href="<?php echo $url ?>" target="_blank">Review now</a></button></div>
+                        </div>
                     </div>
-                    <div class="box-submit"><button>Submit</button></div>
                 </div>
             </div>
         </div>
 
-        <div class="box box-good">
-            <div class="box-main">
-                <div class="wrap-box">
-                    <div class="box-title">Thank you! Leave us a review on Google</div>
-                    <input type="hidden" id="linkgood" value="<?php the_field('popup_body', 'options'); ?>">
-                    <div class="submit-good"><button>Review now</button></div>
+        <div class="modal fade" id="reviewsBad">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="wrap-box">
+                            <div class="box-title">We're sorry. We'd love your feedback!</div>
+                            <div class="box-content">
+                                <textarea cols="10" rows="3"></textarea>
+                            </div>
+                            <div class="box-submit"><button>Submit</button></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div> -->
-
 
 
 
@@ -77,20 +91,41 @@
         <div class="container">
             <section class="nail">
                 <div class="nail-address">
-                    <?php the_field('address_body', 'options'); ?>
+                    <?php
+                        if(get_option($businessAddress))
+                        {
+                            echo get_option($businessAddress);
+                        }
+                    ?>
                 </div>
                 <div class="nail-call">
-                    <a href="tel:<?php the_field('number_phone_body', 'options'); ?>">Tel: <?php the_field('number_phone_body', 'options'); ?></a>
+                    <?php
+                        $phone = "";
+                        if(get_option($businessPhoneNumber))
+                        {
+                            $phone = get_option($businessPhoneNumber);
+                            ?>
+                                <a href="tel:<?php echo $phone ?>">Tel: <?php echo $phone ?></a>
+                            <?php
+                        }
+                    ?>
                 </div>
 
                 <div class="info">
                     <div class="item-info">
-                        <a href="tel: <?php the_field('number_phone_body', 'options'); ?>">
+                        <a href="tel: <?php echo $phone ?>">
                             Call Us
                         </a>
                     </div>
                     <div class="item-info">
-                        <a target="_blank" href="<?php the_field('get_direction_body', 'options'); ?>">
+                        <?php 
+                            $googleMaps = "";
+                            if(get_option($businessGoogleMap))
+                            {
+                                $googleMaps = get_option($businessGoogleMap);
+                            }
+                        ?>
+                        <a target="_blank" href="<?php echo $googleMaps?>">
                             Get Directions
                         </a>
                     </div>
@@ -105,34 +140,83 @@
                     <div class="welcome-nail">
                         <div class="column-left">
                             <div class="title-welcome-nail">
-                                Welcome to Flower Nail & Spa
+                                <?php
+                                    if(get_option($businessTitleWelcome))
+                                    {
+                                        echo get_option($businessTitleWelcome);
+                                    }
+                                ?>
                             </div>
                             <div class="content-welcome-nail">
-                                Add a little bit of body text Add a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit
+                                <?php
+                                    if(get_option($businessContentWelcome))
+                                    {
+                                        echo get_option($businessContentWelcome);
+                                    }
+                                ?>
                             </div>
                             <div class="button-welcome">
-                                <div class="wrap-review">
+                                <div class="wrap-review" data-toggle="modal" data-target="#listIcon">
                                     WRITE A REVIEW
                                 </div>
                             </div>
                         </div>
                         <div class="column-right">
                             <div class="slider">
-                                <?php if( have_rows('slider_body', 'option') ): ?>
-                                    <?php while( have_rows('slider_body', 'option') ): the_row(); ?>
-                                        <div class="item-slide">
-                                            <img src="<?php echo get_sub_field('image1') ?>" alt="">
-                                        </div>
+                                <?php
+                                    $url = "";
+                                    if(get_option($businessSlider1Welcome))
+                                    {
+                                        $url = get_option($businessSlider1Welcome);
+                                    }
+                                ?>
+                                <div class="item-slide">
+                                    <img src="<?php echo $url?>" alt="">
+                                </div>
+                                
+                                <?php
+                                    $url = "";
+                                    if(get_option($businessSlider2Welcome))
+                                    {
+                                        $url = get_option($businessSlider2Welcome);
+                                    }
+                                ?>
+                                <div class="item-slide">
+                                    <img src="<?php echo $url?>" alt="">
+                                </div>
 
-                                        <div class="item-slide">
-                                            <img src="<?php echo get_sub_field('image2') ?>" alt="">
-                                        </div>
+                                <?php
+                                    $url = "";
+                                    if(get_option($businessSlider3Welcome))
+                                    {
+                                        $url = get_option($businessSlider3Welcome);
+                                    }
+                                ?>
+                                <div class="item-slide">
+                                    <img src="<?php echo $url?>" alt="">
+                                </div>
 
-                                        <div class="item-slide">
-                                            <img src="<?php echo get_sub_field('image3') ?>" alt="">
-                                        </div>
-                                    <?php endwhile; ?>
-                                <?php endif; ?>
+                                <?php
+                                    $url = "";
+                                    if(get_option($businessSlider4Welcome))
+                                    {
+                                        $url = get_option($businessSlider4Welcome);
+                                    }
+                                ?>
+                                <div class="item-slide">
+                                    <img src="<?php echo $url?>" alt="">
+                                </div>
+                                
+                                <?php
+                                    $url = "";
+                                    if(get_option($businessSlider5Welcome))
+                                    {
+                                        $url = get_option($businessSlider5Welcome);
+                                    }
+                                ?>
+                                <div class="item-slide">
+                                    <img src="<?php echo $url?>" alt="">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -140,16 +224,63 @@
             </section>
         </div>
             
-            
-            <section class="list-reviews">
-                <div class="wrap-list-reviews">
+            <?php 
+                $bgColor = "";
+                if(get_option($businessBackgroundColorReviews))
+                {
+                    $hex = get_option($businessBackgroundColorReviews);
+                    $bgColor = "style='background-color:$hex'";
+                }
+
+                $color = "";
+                if(get_option($businessTextColorReviews))
+                {
+                    $hex = get_option($businessTextColorReviews);
+                    $color = "style='color:$hex'";
+                }
+            ?>
+
+            <section class="list-reviews" <?php echo $bgColor?>>
+                <div class="wrap-list-reviews" <?php echo $color?>>
                     <div class="title-reviews title-gift">
-                        Our Client's Reviews
+                        <?php 
+                            if(get_option($businessTitleReviews))
+                            {
+                                echo get_option($businessTitleReviews);
+                            }
+                        ?>
                     </div>
                     <div class="slider-reviews">
-                        <div class="item-slider-reviews">1Before calling this company I had a couple estimates done but not one compared to them. Pricing was reasonable and their work turned out amazing. I'll definitely be contacting them in the near future for more work. The best part about it was that all the cement and rocks put in my home was done within a week. Satisfied customer.</div>
-                        <div class="item-slider-reviews">2Thanks for high desert affordable landscapes. Him and he's brother did a very good job and left it really clean and I really recommend them. They have great ideas and they also have great services to.</div>
-                        <div class="item-slider-reviews">3Responsive communication, fair and honest estimate, and work done promptly & professionally. Have no complaints at all and recommend highly to anyone in the area.</div>
+                        <div class="item-slider-reviews">
+                           <?php
+                                $content = "";
+                                if(get_option($businessContent1Reviews))
+                                {
+                                    $content = get_option($businessContent1Reviews);
+                                }
+                                echo $content;
+                           ?>
+                        </div>
+                        <div class="item-slider-reviews">
+                           <?php
+                                $content = "";
+                                if(get_option($businessContent2Reviews))
+                                {
+                                    $content = get_option($businessContent2Reviews);
+                                }
+                                echo $content;
+                           ?>
+                        </div>
+                        <div class="item-slider-reviews">
+                           <?php
+                                $content = "";
+                                if(get_option($businessContent3Reviews))
+                                {
+                                    $content = get_option($businessContent3Reviews);
+                                }
+                                echo $content;
+                           ?>
+                        </div>
                     </div>
                 </div>
             </section>

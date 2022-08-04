@@ -16,6 +16,10 @@
   Responsive CSS Portrait Tablet
   ========================================================================== */
   @media only screen and (min-width: 768px) and (max-width: 959px) {
+    .container {
+        width: 100%;
+    }
+    
     .info-menu-app,
             .menu,
             .menu-main,
