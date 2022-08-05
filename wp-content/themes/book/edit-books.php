@@ -928,7 +928,7 @@
                                                     $text = "";
                                                     if(get_option($businessTitleReviews))
                                                     {
-                                                        $text = get_option($businessTitleReviews);
+                                                        $text = stripslashes(get_option($businessTitleReviews));
                                                     }
                                             ?>
                                             <input type="text" class="title-welcome title-reviews" data-key="<?php echo $businessTitleReviews?>" value="<?php echo $text?>">
@@ -1039,32 +1039,32 @@
                                             <div class="title-body">Title text</div>
                                             <?php
                                                     $text = "";
-                                                    if(get_option("titleGift"))
+                                                    if(get_option($businessTitleGift))
                                                     {
-                                                        $text = get_option("titleGift");
+                                                        $text = get_option($businessTitleGift);
                                                     }
                                             ?>
-                                            <input type="text" class="title-welcome title-gift" data-key="titleGift" value="<?php echo $text?>">
+                                            <input type="text" class="title-welcome title-gift" data-key="<?php echo $businessTitleGift?>" value="<?php echo $text?>">
                                         </div>
 
                                         <div class="wrap-content-welcome-word">
                                             <div class="title-body">Body text</div>
                                             <?php
                                                 $text = "";
-                                                if(get_option("contentGift"))
+                                                if(get_option($businessContentGift))
                                                 {
-                                                    $text = get_option("contentGift");
+                                                    $text = get_option($businessContentGift);
                                                 }
                                             ?>
-                                            <textarea cols="30" rows="5" class="content-welcome content-gift" data-key="contentGift"><?php echo $text?></textarea>
+                                            <textarea cols="30" rows="5" class="content-welcome content-gift" data-key="<?php echo $businessContentGift?>"><?php echo $text?></textarea>
                                         </div>
 
                                         <div class="image-welcome upload-image">
                                             <?php
                                                 $url = get_template_directory_uri()."/assets/img/image.png";
-                                                if(get_option("gift"))
+                                                if(get_option($businessImageGift))
                                                 {
-                                                    $url = get_option("gift");
+                                                    $url = get_option($businessImageGift);
                                                     ?>
                                                         <button class="remove-image">x</button> 
                                                     <?php
@@ -1075,7 +1075,7 @@
                                                 }
                                             ?>
                                                 <img id="outputGift" class="output-image preview-image" src="<?php echo $url?>"/>
-                                                <input type="file" class="file-input" id="fileinputGift" accept="image/*" data-key="gift">
+                                                <input type="file" class="file-input" id="fileinputGift" accept="image/*" data-key="<?php echo $businessImageGift?>">
                                         </div>
 
                                         <button class="save save-gift">Save changes</button>

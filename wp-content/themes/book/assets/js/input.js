@@ -691,7 +691,7 @@ $(document).ready(function() {
 	
 		let valueTitleReviews = $(".title-reviews").val();
 		let keyTitleReviews = $(".title-reviews").data("key");
-	
+		console.log(valueTitleReviews);
 	
 		var data_form = new FormData();
 		data_form.append('keyBackgroundColorReviews', keyBackgroundColorReviewss);
@@ -782,8 +782,8 @@ $(document).ready(function() {
 	
 			},
 			success: function(response) {
-				// localStorage.setItem("isFinish", 1);
-				// location.reload();
+				localStorage.setItem("isFinish", 1);
+				location.reload();
 			},
 			error: function(request, status, error) {
 				console.log(error);

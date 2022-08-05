@@ -85,7 +85,7 @@
                     $embed = get_option($businessYoutubeVideoBanner);
                 }
             ?>
-            <iframe id="video-youtube" width="100%" src="https://www.youtube.com/embed/<?php echo $embed?>?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="video-youtube" width="100%" src="https://www.youtube.com/embed/<?php echo $embed?>?autoplay=1&mute=1&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
 
         <div class="container">
@@ -246,7 +246,7 @@
                         <?php 
                             if(get_option($businessTitleReviews))
                             {
-                                echo get_option($businessTitleReviews);
+                                echo stripslashes(get_option($businessTitleReviews));
                             }
                         ?>
                     </div>
@@ -290,14 +290,37 @@
                 <div class="wrap-gift">
                     <div class="column-left">
                         <div class="image-gift">
-                            <img src="<?php echo get_template_directory_uri()?>/assets/img/gift.jpg" alt="">
+                            <?php
+                                $url = get_template_directory_uri()."/assets/img/gift.jpg";
+                                if(get_option($businessImageGift ))
+                                {
+                                    $url = get_option($businessImageGift);
+                                }
+                            ?>
+                            <img src="<?php echo $url ?>" alt="">
                         </div>
                     </div>
 
                     <div class="column-right">
-                        <div class="title-gift">Gift Cards</div>
+                        <div class="title-gift">
+                            <?php
+                                $text = "Gift Cards";
+                                if(get_option($businessTitleGift))
+                                {
+                                    $text = get_option($businessTitleGift);
+                                }
+                                echo $text;
+                            ?>
+                        </div>
                         <div class="content-gift">
-                            Buy gift cards for your beloved ones Buy gift cards for your beloved ones Buy gift cards for your beloved ones
+                            <?php
+                                $text = "Buy gift cards for your beloved ones Buy gift cards for your beloved ones Buy gift cards for your beloved ones";
+                                if(get_option($businessContentGift))
+                                {
+                                    $text = get_option($businessContentGift);
+                                }
+                                echo $text;
+                            ?>
                         </div>
                         <div class="group-button">
                             <div class="buy-gift">Buy Now</div>
@@ -340,56 +363,68 @@
                     </div>
                 </div>
 
-                <?php if( have_rows('menu', 'option') ): ?>
-                    <?php while( have_rows('menu', 'option') ): the_row(); ?>
-                   
-                    <div class="menu-main-row">
-                        <div class="wrap-menu-parent">
-                            <div class="menu-label-left">
-                                <div class="menu-title-parent">
-                                    <?php echo get_sub_field('title_parent') ?>
-                                </div>
-                                <?php 
-                                    if(get_sub_field('title_parent') != null)
-                                    {
-                                        ?>
-                                             <div class="menu-description-parent">
-                                                <?php echo get_sub_field('description_parent') ?>
-                                            </div>
-                                        <?php
-                                    }
-                                ?>
-                               
-                            </div>
-                            
-                            <div class="menu-label-right">
-                                <div class="menu-right-more">
-                                    More
-                                </div>
-                            </div>
-                        </div>
-                        <div class="content-menu-child menu-hide">
-                            <?php if( have_rows('menu_child') ): ?>
-                                <?php while( have_rows('menu_child') ): the_row(); ?>
-                                    <div class="wrap-menu-main">
+                <?php
+                    if(count(get_data_taxonomy(0))> 0)
+                    {
+                        foreach(get_data_taxonomy(0) as $parent)
+                        {
+                            $childrens = get_data_taxonomy($parent->term_id);
+                            ?>
+                                <div class="menu-main-row">
+                                    <div class="wrap-menu-parent">
                                         <div class="menu-label-left">
-                                            <div class="menu-main-title">
-                                                <?php echo get_sub_field('title')?>
+                                            <div class="menu-title-parent">
+                                                <?php echo $parent->name ?>
                                             </div>
-                                            <div class="meun-main-title">
-                                                <?php echo get_sub_field('description')?>
+                                            <div class="menu-description-parent">
+                                                <?php echo $parent->description ?>
                                             </div>
                                         </div>
+                                       
                                         <div class="menu-label-right">
-                                            <?php echo get_sub_field('price')?>
+                                            <?php
+                                                if(count($childrens) > 0)
+                                                {
+                                                    ?>
+                                                        <div class="menu-right-more">
+                                                            More
+                                                        </div>
+                                                    <?php
+                                                } else {
+                                                    echo "$".get_term_meta( $parent->term_id, 'services-price', true );
+                                                }
+                                            ?>
+                                            
                                         </div>
+
                                     </div>
-                                <?php endwhile; ?>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                    <?php endwhile; ?>
-                <?php endif; ?>
+                                    <div class="content-menu-child menu-hide">
+                                        <?php
+                                            foreach($childrens as $child)
+                                            {
+                                                ?>
+                                                    <div class="wrap-menu-main">
+                                                        <div class="menu-label-left">
+                                                            <div class="menu-main-title">
+                                                                <?php echo $child->name?>
+                                                            </div>
+                                                            <div class="meun-main-title">
+                                                                <?php echo $child->description?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menu-label-right">
+                                                            <?php echo "$".get_term_meta( $child->term_id, 'services-price', true );?>
+                                                        </div>
+                                                    </div>
+                                                <?php
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                            <?php
+                        }
+                    } 
+                ?>
                 
             </section>
 

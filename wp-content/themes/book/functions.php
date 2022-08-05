@@ -55,7 +55,7 @@ $policyId = 1;
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
-    $version = "187";
+    $version = "189";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-bootstrap', get_template_directory_uri() ."/assets/bootstrap/bootstrap.min.css", array(), $version);
