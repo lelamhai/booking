@@ -431,10 +431,6 @@
             <section class="form anim move js-anim" id="BookOnline">
                 <div class="wrap-form">
                     <div class="form-top-title">
-                        RESERVATION
-                    </div>
-
-                    <div class="form-title">
                         MAKE A RESERVATION
                     </div>
 
@@ -464,7 +460,7 @@
 
                         <div class="wrap-input-form wrap-input-email">
                             <div class="label-card">Your location</div>
-                            <input type="email" class="email">
+                            <input type="text" class="location">
                             <div class="error red">Error</div>
                         </div>
 
@@ -489,8 +485,17 @@
                                 <?php 
                                     foreach($terms as $term)
                                     {
+                                        $list = array("AM", "PM");
+                                        $timeExplode = explode('-', $term->name);
+                                        $index = 0;
+                                        if($timeExplode[1] != "")
+                                        {
+                                            $index = $timeExplode[1];
+                                        }
+                                        
+
                                         ?>
-                                            <option value="<?php echo $term->term_id?>"><?php echo $term->name?></option>
+                                            <option value="<?php echo $term->term_id?>"><?php echo $timeExplode[0]." ".$list[$index]?></option>
                                         <?php
                                     }
                                 ?>

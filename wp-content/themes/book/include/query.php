@@ -63,7 +63,7 @@ function services_get_taxonomy($id=0)
 }
 
 
-function books_insert($phone, $fullName, $timeid, $datepicker, $message, $slots, $email, $services)
+function books_insert($phone, $fullName, $timeid, $datepicker, $message, $slots, $email, $location, $services)
 {
     $time = strtotime($datepicker);
     $newformat = date('Y-m-d',$time);
@@ -84,6 +84,7 @@ function books_insert($phone, $fullName, $timeid, $datepicker, $message, $slots,
 	update_post_meta( $id, 'booking_date', sanitize_text_field( $newformat ) );
 	update_post_meta( $id, 'booking_phone', sanitize_text_field( $phone ) );
 	update_post_meta( $id, 'booking_email', sanitize_text_field( $email) );
+    update_post_meta( $id, 'booking_location', sanitize_text_field( $location) );
 	update_post_meta( $id, 'booking_services', sanitize_text_field( $services ) );
     update_post_meta( $id, 'booking_status', sanitize_text_field(1));
     update_post_meta( $id, 'booking_slots', sanitize_text_field($slots ));

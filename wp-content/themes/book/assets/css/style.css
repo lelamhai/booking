@@ -432,7 +432,7 @@ body {
 .wrap-menu {
   display: flex;
   align-content: center;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   max-width: 960px;
   margin: auto;
@@ -557,11 +557,12 @@ body {
   padding-bottom: 5px;
   border-bottom: 2px solid #008037;
   margin-bottom: 30px;
-
+  text-align: center;
 }
 
 .form-content {
   padding-bottom: 30px;
+  text-align: center;
 }
 
 .form-star {
@@ -744,6 +745,7 @@ body {
   margin: auto;
   display: flex;
   padding-top: 30px;
+  justify-content: center;
 }
 
 .menu-column2 .wrap-menu-column2 {
@@ -913,6 +915,10 @@ body {
 
 .wrap-service-parent {
   padding: 10px 0;
+}
+
+.wrap-service-item {
+  margin: 30px 0
 }
 
 /* Hide the browser's default checkbox */

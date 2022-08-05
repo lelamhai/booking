@@ -65,6 +65,7 @@ function books_metabox_callback( $post ) {
 	$status = get_post_meta( $post->ID, 'booking_status', true );
 	$slots = get_post_meta( $post->ID, 'booking_slots', true );
 	$email = get_post_meta( $post->ID, 'booking_email', true );
+	$location = get_post_meta( $post->ID, 'booking_location', true );
 
 	wp_nonce_field( 'bookingnonce', '_softkeymktnonce' );
 
@@ -85,6 +86,10 @@ function books_metabox_callback( $post ) {
 	$metabox .= '<tr>
 			<th><label>Email</label></th>
 			<td><input type="email" name="booking_email" value="' . esc_attr( $email ) . '" class="regular-text"></td>
+			</tr>';
+	$metabox .= '<tr>
+			<th><label>Location</label></th>
+			<td><input type="text" name="booking_location" value="' . esc_attr( $location ) . '" class="regular-text"></td>
 			</tr>';
 	$metabox .= '<tr>
 			<th><label>Status</label></th>
@@ -141,6 +146,12 @@ function softkeymkt_save_meta( $post_id, $post ) {
 		update_post_meta( $post_id, 'booking_email', sanitize_text_field( $_POST[ 'booking_email' ] ) );
 	} else {
 		delete_post_meta( $post_id, 'booking_email' );
+	}
+
+	if( isset( $_POST[ 'booking_location' ] ) ) {
+		update_post_meta( $post_id, 'booking_location', sanitize_text_field( $_POST[ 'booking_location' ] ) );
+	} else {
+		delete_post_meta( $post_id, 'booking_location' );
 	}
 
 	if( isset( $_POST[ 'booking_services' ] ) ) {

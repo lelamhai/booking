@@ -12,9 +12,10 @@
             $message = $_GET['message'];
             $slots = $_GET['slots'];
             $email = $_GET['email'];
+            $location = $_GET['location'];
             $services = $_GET['services'];
 
-            books_insert($phoneNumber, $fullName, $time_id, $datepicker, $message, $slots, $email, $services);
+            books_insert($phoneNumber, $fullName, $time_id, $datepicker, $message, $slots, $email, $location, $services);
         }
         wp_die(); 
     }
@@ -80,13 +81,14 @@
                         {
                             if($first)
                             {
+                                $parents = services_get_taxonomy();
                                 ?>
                                <div class="wrap-service-parent wrap-service-parent-<?php echo $i?>" style="display: block">
                                     <div class="guest-item-title">GUEST <?php echo $i?><span class="red">*</span></div>
                                     <div class="wrap-button-number">
                                         <?php
                                             $index = 1;
-                                            foreach(services_get_taxonomy() as $parent)
+                                            foreach($parents as $parent)
                                             {
                                                 ?>
                                                     <label class="number"><?php  echo $parent->name?>
@@ -101,23 +103,31 @@
                                     <div class="wrap-service-child">
                                         <?php
                                             $index=1;
-                                            foreach(services_get_taxonomy() as $parent)
+                                            foreach($parents as $parent)
                                             {
+                                                $children = services_get_taxonomy($parent->term_id);
                                                 ?>
                                                     <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
-                                                        <div class="service-title"><?php echo $parent->name?></div>
-                                                            <div class="service-content">
-                                                            <select class="basic-single" style="width: 100%">
-                                                                <?php 
-                                                                    foreach(services_get_taxonomy($parent->term_id) as $child)
-                                                                    {
+                                                        <?php
+                                                            if(count($children ) > 0)
+                                                            {
+                                                               ?>
+                                                                <div class="service-title"><?php echo $parent->name?></div>
+                                                                    <div class="service-content">
+                                                                    <select class="basic-single" style="width: 100%">
+                                                                        <?php 
+                                                                            foreach($children as $child)
+                                                                            {
+                                                                                ?>
+                                                                                    <option value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
+                                                                                <?php
+                                                                            }
                                                                         ?>
-                                                                            <option value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
-                                                                        <?php
-                                                                    }
-                                                                ?>
-                                                            </select>
-                                                        </div>
+                                                                    </select>
+                                                                </div>
+                                                               <?php
+                                                            } 
+                                                        ?>
                                                     </div>
                                                 <?php
                                                 $index ++;
@@ -153,21 +163,29 @@
                                                 $index = 1;
                                                 foreach(services_get_taxonomy() as $parent)
                                                 {
+                                                    $children = services_get_taxonomy($parent->term_id);
                                                     ?>
                                                         <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
-                                                            <div class="service-title"><?php echo $parent->name?></div>
-                                                                <div class="service-content">
-                                                                <select class="basic-single" style="width: 100%">
-                                                                    <?php 
-                                                                        foreach(services_get_taxonomy($parent->term_id) as $child)
-                                                                        {
+                                                            <?php
+                                                                if(count($children ) > 0)
+                                                                {
+                                                                ?>
+                                                                    <div class="service-title"><?php echo $parent->name?></div>
+                                                                        <div class="service-content">
+                                                                        <select class="basic-single" style="width: 100%">
+                                                                            <?php 
+                                                                                foreach($children as $child)
+                                                                                {
+                                                                                    ?>
+                                                                                        <option value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
+                                                                                    <?php
+                                                                                }
                                                                             ?>
-                                                                                <option  value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
-                                                                            <?php
-                                                                        }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
+                                                                        </select>
+                                                                    </div>
+                                                                <?php
+                                                                } 
+                                                            ?>
                                                         </div>
                                                     <?php
                                                     $index ++;

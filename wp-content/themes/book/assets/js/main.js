@@ -243,6 +243,7 @@ $(document).ready(function() {
             let fullName = $(".full-name").val();
             let phoneNumber = $(".phone-number").val();
             let email = $(".email").val();
+            let location = $(".location").val();
             let datepicker = $( "#datepicker" ).datepicker({dateFormat: 'DD-MM-YYYY HH:mm:ss' }).val();
             let message = $(".message").val();
             let time_id = $("#single-main").find(':selected').val();
@@ -259,6 +260,7 @@ $(document).ready(function() {
                     phoneNumber: phoneNumber,
                     datepicker: datepicker,
                     email: email,
+                    location: location,
                     message: message,
                     slots: slots,
                     services: services,
