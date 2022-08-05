@@ -151,34 +151,34 @@
                                             <div class="label-business">Your facebook (link)</div>
                                             <?php
                                                 $facebook = "";
-                                                if(get_option("facebook"))
+                                                if(get_option($businessFacebook))
                                                 {
-                                                    $facebook = get_option("facebook");
+                                                    $facebook = get_option($businessFacebook);
                                                 }
                                             ?>
-                                            <input type="url" class="input-business" data-key="facebook" value="<?php echo $facebook?>">
+                                            <input type="url" class="input-business" data-key="<?php echo $businessFacebook?>" value="<?php echo $facebook?>">
                                         </div>
                                         <div class="wrap-business">
                                             <div class="label-business">Your instagram (link)</div>
                                             <?php
                                                 $instagram = "";
-                                                if(get_option("instagram"))
+                                                if(get_option($businessInstagram))
                                                 {
-                                                    $instagram = get_option("instagram");
+                                                    $instagram = get_option($businessInstagram);
                                                 }
                                             ?>
-                                            <input type="url" class="input-business" data-key="instagram" value="<?php echo $instagram?>">
+                                            <input type="url" class="input-business" data-key="<?php echo $businessInstagram?>" value="<?php echo $instagram?>">
                                         </div>
                                         <div class="wrap-business">
                                             <div class="label-business">Your youtube channel (link)</div>
                                             <?php
                                                 $youtube = "";
-                                                if(get_option("youtube"))
+                                                if(get_option($businessYoutube))
                                                 {
-                                                    $youtube = get_option("youtube");
+                                                    $youtube = get_option($businessYoutube);
                                                 }
                                             ?>
-                                            <input type="url" class="input-business" data-key="youtube" value="<?php echo $youtube?>">
+                                            <input type="url" class="input-business" data-key="<?php echo $businessYoutube?>" value="<?php echo $youtube?>">
                                         </div>
                                     </div>
                                 </div>
@@ -1095,15 +1095,15 @@
                                         <div class="wrap-footer-color">
                                             <div class="label-color">Footer Color</div>
                                             <?php
-                                                $color = "#000000";
-                                                if(get_option("footerColor"))
+                                                $color = "#7c756c";
+                                                if(get_option($businessBackgroundColorFooter))
                                                 {
-                                                    $color = get_option("footerColor");
+                                                    $color = get_option($businessBackgroundColorFooter);
                                                 }
                                             ?>
                                                         
                                             <div class="group-input-color">
-                                                <input type="color" id="footerColor" class="footer-color" data-key="footerColor" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>"> 
+                                                <input type="color" id="footerColor" class="footer-color" data-key="<?php echo $businessBackgroundColorFooter?>" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>"> 
                                                 <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>" id="hexFooterColor" class="hexcolor"></input>
                                             </div>
                                         </div>
@@ -1111,14 +1111,14 @@
                                         <div class="wrap-text-color wrap-button-color">
                                             <div class="label-color">Text Color</div>
                                             <?php
-                                                $colorText = "#000000";
-                                                if(get_option("textColorFooter"))
+                                                $colorText = "#ffffff";
+                                                if(get_option($businessTextColorFooter ))
                                                 {
-                                                    $colorText = get_option("textColorFooter");
+                                                    $colorText = get_option($businessTextColorFooter );
                                                 }
                                             ?>
                                             <div class="group-input-color">
-                                                <input type="color" id="textColorFooter" class="text-color-footer" data-key="textColorFooter" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorText?>"> 
+                                                <input type="color" id="textColorFooter" class="text-color-footer" data-key="<?php echo $businessTextColorFooter?>" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorText?>"> 
                                                 <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorText?>" id="hexTextColorFooter" class="hexcolor"></input>
                                             </div>
                                         </div>
@@ -1128,12 +1128,12 @@
                                         <div class="title-body">About Us</div>
                                         <?php
                                             $text = "";
-                                            if(get_option("contentAboutUs"))
+                                            if(get_option($businessAboutUsFooter))
                                             {
-                                                $text = get_option("contentAboutUs");
+                                                $text = get_option($businessAboutUsFooter);
                                             }
                                         ?>
-                                        <textarea cols="30" rows="15" class="content-welcome content-about-us" data-key="contentAboutUs"><?php echo $text?></textarea>
+                                        <textarea cols="30" rows="15" class="content-welcome content-about-us" data-key="<?php echo $businessAboutUsFooter?>"><?php echo $text?></textarea>
                                     </div>
 
                                    

@@ -523,28 +523,68 @@
 
         <div class="social-network">
             <div class="item-social-network">
-                <a href=""><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_instagram.png"?>" alt=""></a>
+                <?php
+                    $url = "#";
+                    if(get_option($businessInstagram))
+                    {
+                        $url = get_option($businessInstagram);
+                    }
+                ?>
+                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_instagram.png"?>" alt=""></a>
             </div>
             <div class="item-social-network">
-                <a href=""><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_youtube.png"?>" alt=""></a>
+                <?php
+                    $url = "#";
+                    if(get_option($businessYoutube))
+                    {
+                        $url = get_option($businessYoutube);
+                    }
+                ?>
+                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_youtube.png"?>" alt=""></a>
             </div>
             <div class="item-social-network">
-                <a href=""><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_facebook.png"?>" alt=""></a>
+                <?php
+                    $url = "#";
+                    if(get_option($businessFacebook))
+                    {
+                        $url = get_option($businessFacebook);
+                    }
+                ?>
+                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_facebook.png"?>" alt=""></a>
             </div>
         </div>
+        <?php
+            $bgColor = "#7c756c";
+            if(get_option($businessBackgroundColorFooter))
+            {
+                $bgColor = get_option($businessBackgroundColorFooter);
+            }
 
-        <section class="contact" id="Opening" style="background-color: <?php the_field('background_color_contact', 'options'); ?>">
+            $color = "#ffffff";
+            if(get_option($businessTextColorFooter ))
+            {
+                $color = get_option($businessTextColorFooter );
+            }
+            $colorFooter = "color: $color";
+
+        ?>
+        <section class="contact" id="Opening" style="background-color: <?php echo $bgColor?>; color: <?php echo  $color?> !important">
             <div class="wrap-contact">
                 <div class="contact-column6">
-                    <div class="title-contact">About Us</div>
-                    <div class="content-contact">
-                    Add a little bit of body text Add a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body textAdd a little bit of body text
+                    <div class="title-contact" style="<?php echo $colorFooter?>">About Us</div>
+                    <div class="content-contact" style="<?php echo $colorFooter?>">
+                        <?php
+                            if(get_option($businessAboutUsFooter ))
+                            {
+                                echo get_option($businessAboutUsFooter );
+                            }
+                        ?>
                     </div>
                 </div>
                 <div class="contact-column4">
                     <div class="wrap-contact-time">
-                        <div class="contact-time">
-                            <b>Opening Hours</b>
+                        <div class="contact-time" >
+                            <b style="<?php echo $colorFooter?>">Opening Hours</b>
                             <div class="list-time">
                                 <?php if( have_rows('open_time_body', 'option') ): ?>
                                     <?php while( have_rows('open_time_body', 'option') ): the_row(); ?>
