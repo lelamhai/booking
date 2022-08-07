@@ -356,7 +356,7 @@
                                 $content = "";
                                 if(get_option($businessContent1Reviews))
                                 {
-                                    $content = get_option($businessContent1Reviews);
+                                    $content = stripslashes(get_option($businessContent1Reviews));
                                 }
                                 echo $content;
                            ?>
@@ -366,7 +366,7 @@
                                 $content = "";
                                 if(get_option($businessContent2Reviews))
                                 {
-                                    $content = get_option($businessContent2Reviews);
+                                    $content = stripslashes(get_option($businessContent2Reviews));
                                 }
                                 echo $content;
                            ?>
@@ -376,7 +376,7 @@
                                 $content = "";
                                 if(get_option($businessContent3Reviews))
                                 {
-                                    $content = get_option($businessContent3Reviews);
+                                    $content = stripslashes(get_option($businessContent3Reviews));
                                 }
                                 echo $content;
                            ?>

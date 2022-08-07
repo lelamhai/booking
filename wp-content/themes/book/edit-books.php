@@ -783,7 +783,7 @@
                                                 $text = "";
                                                 if(get_option($businessContentWelcome))
                                                 {
-                                                    $text = get_option($businessContentWelcome);
+                                                    $text = stripslashes(get_option($businessContentWelcome));
                                                 }
                                             ?>
                                             <textarea cols="30" rows="5" class="content-welcome" data-key="<?php echo $businessContentWelcome?>"><?php echo $text?></textarea>
@@ -988,7 +988,7 @@
                                                 $content = "";
                                                 if(get_option($businessContent2Reviews))
                                                 {
-                                                    $content = get_option($businessContent2Reviews);
+                                                    $content = stripslashes(get_option($businessContent2Reviews));
                                                 }
                                                     
                                                 $editor_id = $businessContent2Reviews;
@@ -1018,7 +1018,7 @@
                                                 $content = "";
                                                 if(get_option($businessContent3Reviews))
                                                 {
-                                                    $content = get_option($businessContent3Reviews);
+                                                    $content = stripslashes(get_option($businessContent3Reviews));
                                                 }
                                                 $editor_id = $businessContent3Reviews;
                                                 $settings  = array (
