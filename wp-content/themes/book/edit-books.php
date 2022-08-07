@@ -6,11 +6,14 @@
 <?php
     get_header();
 ?>
+
+
 <style>
     header,
     footer {
         display: none;
     }
+    
 </style>
 <main>
         <div class="modal fade" id="deleteModal">
@@ -300,8 +303,6 @@
                                                 $arr = explode('-', $value);
                                             }
 
-                                            // var_dump($arr);
-
                                             if($i == 0)
                                             {
                                                 ?>
@@ -587,7 +588,7 @@
                                     <div class="body-menu">
                                             <div class="wrap-header-edit">
                                                 <div class="group-color">
-                                                    <div class="wrap-header-color">
+                                                    <div class="wrap-body-text-color">
                                                         <div class="label-color">Header Color</div>
                                                         <?php
                                                             $color = "#008037";
@@ -603,7 +604,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="wrap-text-color">
+                                                    <div class="wrap-body-text-color">
                                                         <div class="label-color">Text Color</div>
                                                         <?php
                                                             $colorText = "#ffffff";
@@ -699,34 +700,19 @@
 
                                 <div class="body-menu">
                                     <div class="group-color">
-                                        <div class="wrap-background-color">
+                                        <div class="wrap-body-text-color">
                                             <div class="label-color">Background Color</div>
                                                 <?php
-                                                    $color = "#000000";
-                                                    if(get_option("backgroundColor"))
+                                                    $color = "#f6f1ea";
+                                                    if(get_option($businessBackgroundColorBody))
                                                     {
-                                                        $color = get_option("backgroundColor");
+                                                        $color = get_option($businessBackgroundColorBody);
                                                     }
                                                 ?>
                                                         
                                             <div class="group-input-color">
-                                                <input type="color" id="backgroundColor" class="background-color" data-key="backgroundColor" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>"> 
+                                                <input type="color" id="backgroundColor" class="background-color" data-key="<?php echo $businessBackgroundColorBody?>" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>"> 
                                                 <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $color?>" id="hexBackgroundColor" class="hexcolor"></input>
-                                            </div>
-                                        </div>
-
-                                        <div class="wrap-button-color">
-                                            <div class="label-color">Button Color</div>
-                                                <?php
-                                                    $colorButton = "#000000";
-                                                    if(get_option("buttonColor"))
-                                                    {
-                                                        $colorButton = get_option("buttonColor");
-                                                    }
-                                                ?>
-                                            <div class="group-input-color">
-                                                <input type="color" id="buttonColor" class="button-color" data-key="buttonColor" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorButton?>"> 
-                                                <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorButton?>" id="hexButtonColor" class="hexcolor"></input>
                                             </div>
                                         </div>
 
@@ -734,16 +720,48 @@
                                             <div class="label-color">Text Color</div>
                                                 <?php
                                                     $textColorBody = "#000000";
-                                                    if(get_option("textColorBody"))
+                                                    if(get_option($businessTextColorBody))
                                                     {
-                                                        $textColorBody = get_option("textColorBody");
+                                                        $textColorBody = get_option($businessTextColorBody);
                                                     }
                                                 ?>
                                             <div class="group-input-color">
-                                                <input type="color" id="textColorBody" class="text-color-body" data-key="textColorBody" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $textColorBody?>"> 
+                                                <input type="color" id="textColorBody" class="text-color-body" data-key="<?php echo $businessTextColorBody?>" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $textColorBody?>"> 
                                                 <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $textColorBody?>" id="hexTextColorBody" class="hexcolor"></input>
                                             </div>
                                         </div>
+
+                                        <div class="wrap-body-text-color">
+                                            <div class="label-color">Button and Line Color</div>
+                                                <?php
+                                                    $colorButton = "#000000";
+                                                    if(get_option($businessBackgroundButtonBody))
+                                                    {
+                                                        $colorButton = get_option($businessBackgroundButtonBody);
+                                                    }
+                                                ?>
+                                            <div class="group-input-color">
+                                                <input type="color" id="buttonColor" class="button-color" data-key="<?php echo $businessBackgroundButtonBody?>" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorButton?>"> 
+                                                <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $colorButton?>" id="hexButtonColor" class="hexcolor"></input>
+                                            </div>
+                                        </div>
+
+                                        <div class="wrap-body-text-color">
+                                            <div class="label-color">Text Color Button</div>
+                                                <?php
+                                                    $textColorBody = "#000000";
+                                                    if(get_option($businessTextColorButtonBody))
+                                                    {
+                                                        $textColorBody = get_option($businessTextColorButtonBody);
+                                                    }
+                                                ?>
+                                            <div class="group-input-color">
+                                                <input type="color" id="textColorButtonBody" class="text-color-button-body" data-key="<?php echo $businessTextColorButtonBody?>" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $textColorBody?>"> 
+                                                <input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="<?php echo $textColorBody?>" id="hexTextColorButtonBody" class="hexcolor"></input>
+                                            </div>
+                                        </div>
+
+                                      
                                     </div>
 
                                     <div class="welcome-word">
@@ -940,7 +958,7 @@
                                                 $content = "";
                                                 if(get_option($businessContent1Reviews))
                                                 {
-                                                    $content = get_option($businessContent1Reviews);
+                                                    $content = stripslashes(get_option($businessContent1Reviews));
                                                 }
                                                     
                                                 $editor_id = $businessContent1Reviews;
@@ -1086,6 +1104,29 @@
 
                         <section class="menu">
                             <div class="wrap-menu">
+                                <div class="body-menu">
+                                    <div class="wrap-map">
+                                        <div class="name-body">Google Map</div>
+                                    </div>
+                                    <div class="wrap-map">
+                                        <div class="title-body">Google map -> Share -> Embed a map -> Copy html</div>
+                                        <?php
+                                            $text = "";
+                                            if(get_option($businessMapIframe))
+                                            {
+                                                $text = stripslashes(get_option($businessMapIframe));
+                                            }
+                                        ?>
+                                        
+                                        <textarea name="" class="map-iframe" data-key="<?php echo $businessMapIframe?>" id="" cols="30" rows="10"><?php echo $text?></textarea>
+                                    </div>
+                                </div>
+                                <button class="save save-map">Save changes</button>
+                            </div>
+                        </section>
+
+                        <section class="menu">
+                            <div class="wrap-menu">
                                 <div class="head-menu">
                                     <div class="title-menu">Footer</div>
                                 </div>
@@ -1139,8 +1180,9 @@
                                    
                                     <div class="wrap-content-page-word">
                                         <div class="title-body">Terms of Service</div>
+                                        <input type="hidden" id="terms" data-key="<?php echo $termsId?>">
                                         <?php
-                                            $postId = get_post(72);
+                                            $postId = get_post($termsId);
                                             $content = $postId ->post_content;
 
                                             $editor_id = 'terms_id';
@@ -1166,8 +1208,9 @@
 
                                     <div class="wrap-content-page-word">
                                         <div class="title-body">Privacy Policy</div>
+                                        <input type="hidden" id="policy" data-key="<?php echo $policyId?>">
                                         <?php
-                                            $postId = get_post(184);
+                                            $postId = get_post($policyId);
                                             $content = $postId ->post_content;
                                             $editor_id = 'privacyPolicy_id';
                                             $settings  = array (

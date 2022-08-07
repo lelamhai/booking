@@ -231,11 +231,6 @@
         padding-top: 20px
     }
 
-    .wrap-menu {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
     .menu-column1,
     .menu-column2,
     .menu-column3 {

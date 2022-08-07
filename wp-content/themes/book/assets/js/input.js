@@ -576,6 +576,12 @@ $(document).ready(function() {
 		$('#backgroundColor').val(this.value);
 	});
 	
+	$('#textColorBody').on('input', function() {
+		$('#hexTextColorBody').val(this.value);
+	});
+	$('#hexTextColorBody').on('input', function() {
+		$('#textColorBody').val(this.value);
+	});
 	
 	$('#buttonColor').on('input', function() {
 		$('#hexButtonColor').val(this.value);
@@ -584,12 +590,11 @@ $(document).ready(function() {
 		$('#buttonColor').val(this.value);
 	});
 	
-	
-	$('#textColorBody').on('input', function() {
-		$('#hexTextColorBody').val(this.value);
+	$('#textColorButtonBody').on('input', function() {
+		$('#hexTextColorButtonBody').val(this.value);
 	});
-	$('#hexTextColorBody').on('input', function() {
-		$('#textColorBody').val(this.value);
+	$('#hexTextColorButtonBody').on('input', function() {
+		$('#textColorButtonBody').val(this.value);
 	});
 
 	$(document).on('click', '.save-body', function() {
@@ -597,12 +602,15 @@ $(document).ready(function() {
 	
 		let backgroundColor = $(".background-color").val();
 		let keyBackgroundColor = $(".background-color").data("key");
-	
-		let buttonColor = $(".button-color").val();
-		let keyButtonColor = $(".button-color").data("key");
-	
+		
 		let textColorBody = $(".text-color-body").val();
 		let keyTextColorBody = $(".text-color-body").data("key");
+
+		let buttonColor = $(".button-color").val();
+		let keyButtonColor = $(".button-color").data("key");
+		
+		let textColorButtonBody = $(".text-color-button-body").val();
+		let keyTextColorButtonBody = $(".text-color-button-body").data("key");
 	
 		let titleWelcome = $(".title-welcome").val();
 		let keyTitleWelcome = $(".title-welcome").data("key");
@@ -613,12 +621,15 @@ $(document).ready(function() {
 		var data_form = new FormData();
 		data_form.append('backgroundColor', backgroundColor);
 		data_form.append('keyBackgroundColor', keyBackgroundColor);
+
+		data_form.append('textColorBody', textColorBody);
+		data_form.append('keyTextColorBody', keyTextColorBody);
 	
 		data_form.append('buttonColor', buttonColor);
 		data_form.append('keyButtonColor', keyButtonColor);
 	
-		data_form.append('textColorBody', textColorBody);
-		data_form.append('keyTextColorBody', keyTextColorBody);
+		data_form.append('textColorButtonBody', textColorButtonBody);
+		data_form.append('keyTextColorButtonBody', keyTextColorButtonBody);
 	
 		data_form.append('titleWelcome', titleWelcome);
 		data_form.append('keyTitleWelcome', keyTitleWelcome);
@@ -642,7 +653,7 @@ $(document).ready(function() {
 			}
 		}
 	
-		data_form.append('action', 'body')
+		data_form.append('action', 'body');
 	
 		jQuery.ajax({
 			type: "post",
@@ -792,6 +803,36 @@ $(document).ready(function() {
 	});
 });
 
+$(document).ready(function() {
+	$(document).on('click', '.save-map', function() {
+		$('#loading').modal('toggle');
+		let value = $(".map-iframe").val();
+		let key = $(".map-iframe").data("key");
+		var data_form = new FormData();
+		data_form.append('keyMap', key);
+		data_form.append('map', value);
+		data_form.append('action', 'map');
+
+		jQuery.ajax({
+			type: "post",
+			url: "./wp-admin/admin-ajax.php",
+			processData: false,
+			contentType: false,
+			data: data_form,
+			beforeSend: function() {
+
+			},
+			success: function(response) {
+				localStorage.setItem("isFinish", 1);
+				location.reload();
+			},
+			error: function(request, status, error) {
+				console.log(error);
+			},
+		});
+	});
+});
+
 // Footer
 $(document).ready(function() {
 	$('#footerColor').on('input', function() {
@@ -821,7 +862,9 @@ $(document).ready(function() {
 		let keyTextAboutUs = $(".content-about-us").data("key");
 
 		let terms = tinyMCE.get('terms_id').getContent();
+		let keyTerm = $("#terms").data("key");
 		let privacyPolicy = tinyMCE.get('privacyPolicy_id').getContent();
+		let keyPolicy= $("#policy").data("key");
 		
 		var data_form = new FormData();
 		data_form.append('keyFooterColor', keyFooterColor);
@@ -834,9 +877,9 @@ $(document).ready(function() {
 		data_form.append('contentAboutUs', textAboutUs);
 
 		data_form.append('terms', terms);
-		data_form.append('termsId', 72);
+		data_form.append('termsId', keyTerm);
 		data_form.append('privacyPolicy', privacyPolicy);
-		data_form.append('privacyPolicyId', 184);
+		data_form.append('privacyPolicyId', keyPolicy);
 		
 
 		data_form.append('action', 'footer');

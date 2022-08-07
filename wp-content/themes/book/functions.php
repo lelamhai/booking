@@ -13,7 +13,7 @@ $businessGoogleReview = "business-google-review";
 $businessFacebook = "business-facebook";
 $businessInstagram = "business-intergram";
 $businessYoutube = "business-youtube";
-$businessOpenHours = "business-open-hours";
+// $businessOpenHours = "business-open-hours";
 
 $businessBackgroundColorHeader = "business-backgroundcolor-header";
 $businessTextColorHeader = "business-text-color-header";
@@ -23,8 +23,9 @@ $businessLinkMenuHeader = "business-linkmenu-header";
 $businessYoutubeVideoBanner = "business-youtubevideo-banner";
 
 $businessBackgroundColorBody = "business-backgroundcolor-body";
-$businessBackgroundButtonBody = "business-backgroundbutton-body";
 $businessTextColorBody = "business-text-color-body";
+$businessBackgroundButtonBody = "business-backgroundbutton-body";
+$businessTextColorButtonBody = "business-text-colorbutton-body";
 
 $businessTitleWelcome = "business-title-welcome";
 $businessContentWelcome = "business-content-welcome";
@@ -45,17 +46,19 @@ $businessTitleGift = "business-title-gift";
 $businessContentGift = "business-content-gift";
 $businessImageGift = "business-image-gift";
 
+$businessMapIframe = "business-map-iframe";
+
 $businessBackgroundColorFooter = "business-backgroundcolor-footer";
 $businessTextColorFooter = "business-textcolor-footer";
 $businessAboutUsFooter = "business-aboutus-footer";
     
-$termsId = 1;
-$policyId = 1;
+$termsId = 72;
+$policyId = 184;
 
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
-    $version = "194";
+    $version = "207";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-bootstrap', get_template_directory_uri() ."/assets/bootstrap/bootstrap.min.css", array(), $version);
@@ -64,8 +67,11 @@ function regsiter_styles()
     wp_enqueue_script('book-jquery-3.6.0.min', get_template_directory_uri() . "/assets/js/jquery-3.6.0.min.js", array(), $version, true);
     wp_enqueue_script('boook-bootstrap', get_template_directory_uri() . "/assets/bootstrap/bootstrap.min.js", array(), $version, true);
     wp_enqueue_script('boook-animation', get_template_directory_uri() . "/assets/js/animation.js", array(), $version, true);
-    if ( is_front_page() )
+    if(is_page_template("edit-books.php"))
     {
+        wp_enqueue_style('book-input',   get_template_directory_uri() ."/assets/css/input.css", array(), $version);
+        wp_enqueue_script('boook-input', get_template_directory_uri() . "/assets/js/input.js", array(), $version, true);
+    } else {
         wp_enqueue_style('book-style',   get_template_directory_uri() ."/assets/css/style.css", array(), $version);
         wp_enqueue_style('book-responsive',   get_template_directory_uri() ."/assets/css/responsive.css", array(), $version);
         wp_enqueue_style('book-slick',   get_template_directory_uri() ."/assets/slick/slick.css", array(), $version);
@@ -77,17 +83,6 @@ function regsiter_styles()
         wp_enqueue_script('book-jquery-ui', get_template_directory_uri() . "/assets/datetimepicker/jquery-ui.js", array(), $version, true);
         wp_enqueue_script('boook-slick', get_template_directory_uri() . "/assets/slick/slick.js", array(), $version, true);
         wp_enqueue_script('boook-main', get_template_directory_uri() . "/assets/js/main.js", array(), $version, true);
-        
-    } else if(is_page_template("edit-books.php"))
-    {
-        wp_enqueue_style('book-input',   get_template_directory_uri() ."/assets/css/input.css", array(), $version);
-        wp_enqueue_script('boook-input', get_template_directory_uri() . "/assets/js/input.js", array(), $version, true);
     }
 }
-
-function clean($string) {
-    $string = str_replace(' ', "\'", $string); // Replaces all spaces with hyphens.
- 
-    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
- }
 ?>

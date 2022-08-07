@@ -264,6 +264,16 @@ function body_function() {
 		add_option( $option_name, $new_value, $deprecated, $autoload );
 	}
 
+    $option_name = $_POST['keyTextColorBody'] ;
+	$new_value = $_POST['textColorBody'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
+
     $option_name = $_POST['keyButtonColor'] ;
 	$new_value = $_POST['buttonColor'] ;
 	if ( get_option( $option_name ) != $new_value ) {
@@ -274,8 +284,8 @@ function body_function() {
 		add_option( $option_name, $new_value, $deprecated, $autoload );
 	}
 
-    $option_name = $_POST['keyTextColorBody'] ;
-	$new_value = $_POST['textColorBody'] ;
+    $option_name = $_POST['keyTextColorButtonBody'] ;
+	$new_value = $_POST['textColorButtonBody'] ;
 	if ( get_option( $option_name ) != $new_value ) {
 		update_option( $option_name, $new_value );
 	} else {
@@ -458,6 +468,21 @@ function gift_function() {
         }
     }
 
+    wp_die(); 
+}
+
+add_action("wp_ajax_map", "map_function");
+add_action("wp_ajax_nopriv_map", "map_function");
+function map_function() {
+    $option_name = $_POST['keyMap'] ;
+	$new_value = $_POST['map'] ;
+	if ( get_option( $option_name ) != $new_value ) {
+		update_option( $option_name, $new_value );
+	} else {
+		$deprecated = ' ';
+		$autoload = 'no';
+		add_option( $option_name, $new_value, $deprecated, $autoload );
+	}
     wp_die(); 
 }
 
