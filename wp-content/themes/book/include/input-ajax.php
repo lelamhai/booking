@@ -153,17 +153,37 @@ function updateTime_function() {
 }
 
 // ===================== tab2 ===============\\
-add_action("wp_ajax_upload_image", "upload_image");
-add_action("wp_ajax_nopriv_upload_image", "upload_image");
-function upload_image()
+add_action("wp_ajax_header", "header_function");
+add_action("wp_ajax_nopriv_header", "header_function");
+function header_function()
 {
     if (isset($_FILES['file']['name'])) { 
         if(! function_exists('wp_handle_upload')){
             require_once(ABSPATH.'wp-admin/includes/file.php');
+            require_once(ABSPATH . 'wp-admin/includes/image.php');
+
         }
         $uploadedfile = $_FILES['file'];
         $upload_overrides = array('test_form' => false);
         $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
+
+
+        $wp_upload_dir    = wp_upload_dir();
+	    $file_name        = basename( $_FILES['file']['name'] );
+        $file = $wp_upload_dir['path'] . '/' . $file_name;
+        $attachment = array (
+            'guid'           => $wp_upload_dir['url'] . '/' . $file_name,
+            'post_mime_type' => $movefile[ 'type' ],
+            'post_title'     =>  $_FILES['file']['name'],
+            'post_content'   => '',
+            'post_type' => 'listing_type',
+            'post_status'    => 'inherit',
+        );
+        $attach_id = wp_insert_attachment($attachment, $file);
+        $attach_data = wp_generate_attachment_metadata($attach_id, $file);
+
+
+
         
         if($movefile && !isset($movefile['error']))
         {
@@ -327,6 +347,22 @@ function body_function() {
             $uploadedfile = $_FILES[$file];
             $upload_overrides = array('test_form' => false);
             $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
+
+            $wp_upload_dir    = wp_upload_dir();
+            $file_name        = basename( $_FILES[$file]['name'] );
+            $filePath = $wp_upload_dir['path'] . '/' . $file_name;
+            $attachment = array (
+                'guid'           => $wp_upload_dir['url'] . '/' . $file_name,
+                'post_mime_type' => $movefile[ 'type' ],
+                'post_title'     =>  $_FILES[$file]['name'],
+                'post_content'   => '',
+                'post_type' => 'listing_type',
+                'post_status'    => 'inherit',
+            );
+            $attach_id = wp_insert_attachment($attachment, $filePath);
+            $attach_data = wp_generate_attachment_metadata($attach_id, $filePath);
+
+
             if($movefile && !isset($movefile['error']))
             {
                 $option_name = $_POST[$key] ;
@@ -442,6 +478,21 @@ function gift_function() {
         $uploadedfile = $_FILES['file'];
         $upload_overrides = array('test_form' => false);
         $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
+
+        $wp_upload_dir    = wp_upload_dir();
+	    $file_name        = basename( $_FILES['file']['name'] );
+        $file = $wp_upload_dir['path'] . '/' . $file_name;
+        $attachment = array (
+            'guid'           => $wp_upload_dir['url'] . '/' . $file_name,
+            'post_mime_type' => $movefile[ 'type' ],
+            'post_title'     => $_FILES['file']['name'] ,
+            'post_content'   => '',
+            'post_type' => 'listing_type',
+            'post_status'    => 'inherit',
+        );
+        $attach_id = wp_insert_attachment($attachment, $file);
+        $attach_data = wp_generate_attachment_metadata($attach_id, $file);
+
         if($movefile && !isset($movefile['error']))
         {
             $option_name = $_POST['keyFile'] ;

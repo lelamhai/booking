@@ -546,7 +546,7 @@ $(document).ready(function() {
 		data_form.append('youtubeHeader', youtubeHeader);
 
 
-		data_form.append('action', 'upload_image')
+		data_form.append('action', 'header');
 		jQuery.ajax({
 			type: "post",
 			url: "./wp-admin/admin-ajax.php",
