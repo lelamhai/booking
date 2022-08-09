@@ -131,7 +131,7 @@ body {
 }
 
 .header-login a {
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .wrap-header {
@@ -149,7 +149,7 @@ body {
 }
 
 .header-logo a img {
-  width: 200px;
+  width: 280px;
   height: auto;
 } 
 
@@ -161,7 +161,7 @@ body {
   padding: 0 15px;
 }
 .header-list-menu li a {
-  font-size: 20px;
+  font-size: 24px;
 }
 
 /* body */
@@ -814,6 +814,10 @@ body {
    justify-content: center;
 }
 
+.wrap-box label {
+	margin-left: 15px;
+}
+
 .box-report {
    display: none;
 }
@@ -831,10 +835,12 @@ body {
    padding: 0 15px;
 }
 
+.box-content input,
 .box-content textarea {
    width: 100%;
    border: 1px solid #991113;
    padding: 5px;
+	margin-bottom:30px;
 }
 
 .box-submit {
@@ -842,7 +848,7 @@ body {
    padding-top: 5px;
 }
 
-.box-submit button {
+.box-submit input {
    background-color: #991113;
    color: #fff;
    padding: 10px;

@@ -180,15 +180,16 @@
                     <div class="modal-body">
                         <div class="wrap-box">
                             <div class="box-title">We're sorry. We'd love your feedback!</div>
-                            <div class="box-content">
-                                <textarea cols="10" rows="3"></textarea>
-                            </div>
-                            <div class="box-submit"><button>Submit</button></div>
+							<?php
+								echo do_shortcode( '[contact-form-7 id="107" title="Feedback"]' ); 
+							?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
 
     <main class="main BackgroundColorBody">
         <section class="video">
