@@ -117,6 +117,8 @@
 
 </style>
 
+
+
         <div class="modal fade" id="listIcon">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -189,6 +191,167 @@
             </div>
         </div>
 
+
+        <div class="modal fade" id="modalPhone">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Please enter your booking phone number</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-phone-popup">
+                            <input type="tel" class="modal-input-phone">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="modal-button-phone">Enter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            button[disabled], 
+            html input[disabled] {
+                background-color: #00803775;
+            }
+
+            .modal-dialog .modal-header .close span {
+                font-size: 40px
+            }
+
+            .wrap-book-title {
+                display: flex;
+                margin-top: 30px;
+                margin-bottom: 10px;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .wrap-book-item {
+                display: flex;
+                margin-bottom: 30px;
+            }
+
+            .book-name {
+                width: 25%;
+            }
+
+            .book-date {
+                width: 15%;
+            }
+
+            .book-time {
+                width: 15%;
+            }
+
+            .book-serivces {
+                width:25%;
+            }
+
+            .book-control {
+                width:20%;
+            }
+
+            .book-control {
+                display: flex;
+            }
+
+            .book-control button {
+                margin: 0 5px;
+                padding: 5px;
+                color: #fff;
+            }
+
+            .button-confirm-books {
+                background-color: #008037;
+            }
+
+            .button-cancel-books {
+                background-color: #ff5757;
+            }
+
+            #modalBooks .modal-dialog {
+                width: 760px;
+            }
+        </style>
+
+        <div class="modal fade" id="modalBooks">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Your appointment</h5>
+                    </div>
+
+                    <div class="modal-body" id="ajax-book">
+                        <div class="wrap-book-title">
+                            <div class="book-name">Name</div>
+                            <div class="book-date">Date</div>
+                            <div class="book-time">Time</div>
+                            <div class="book-serivces">Services</div>
+                            <div class="book-control"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="modalComfirm">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Your appointment has been comfirmed</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="modalCancel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Do you want to cancel this appointment?</h5>
+                        <input type="hidden" id="idBooks" value="">
+                        <input type="hidden" id="statusBooks" value="">
+                    </div>
+                   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary yes-cancel-books">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="modalCancelYes">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Your appointment has been cancelled</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
 
 
     <main class="main BackgroundColorBody">
@@ -444,10 +607,8 @@
                         </div>
                     </div>
                     <div class="menu-column3">
-                        <div class="wrap-menu-column3">
-                            <a href="tel:0969999999" class="BackgroundButtonBody TextColorButtonBody">
-                                CANCEL APPT
-                            </a>
+                        <div class="wrap-menu-column3 BackgroundButtonBody TextColorButtonBody"  data-toggle="modal" data-target="#modalPhone">
+                            CANCEL APPT
                         </div>
                     </div>
                 </div>

@@ -279,7 +279,117 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('#modal-button-phone').click(function(){
+        let phone = $('.modal-input-phone').val();
+        loadBooks(phone, 0);
+    });
+
+    $(document).on('click', '.button-status-booking', function() {
+        let status = $(this).data("status");
+        let id = $(this).parent().data("id");
+
+        if(status == 0)
+        {
+            $('#modalCancel').modal('toggle');
+            $('#idBooks').val(id);
+            $('#statusBooks').val(status);
+            return false;
+        } 
+        changeStatusBooks(id, status);
+        
+    });
+
+    $(document).on('click', '.yes-cancel-books', function() {
+        let id = $('#idBooks').val();
+        let status = $('#statusBooks').val();
+        changeStatusBooks(id, status);
+    });
+    
+    
 });
+
+function loadBooks(phone, flag = 1)
+{
+    $.ajax({
+        type : "GET", 
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        url : "./wp-admin/admin-ajax.php",
+        data : {
+            action: "get_data_books",
+            phone: phone
+        },
+        beforeSend: function(){
+            $(".wrap-book-item").remove();
+        },
+        success: function(response) {
+            if(flag == 0)
+            {
+                $('#modalBooks').modal('toggle');
+            }
+            let data = response.data;
+            console.log(data);
+            let html = "";
+            for(let i=0; i<data.postType.length; i++)
+            {
+                let id = data.postType[i].ID;
+                let title = data.postType[i].post_title; 
+                let listDate = data.customField[i].bookingDate.split('-');
+                let date = listDate[1]+"/"+listDate[2]+"/"+listDate[0];
+                let listTime = data.customField[i].bookingTime.split('-');
+                let time = listTime[0]+" "+listTime[1];
+                if(data.customField[i].bookingStatus == 1)
+                {
+                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+data.customField[i].bookingServices+"</div><div class='book-control' data-id="+id+"><button class='button-confirm-books button-status-booking' data-status='2'>Confirm</button><button class='button-cancel-books button-status-booking' data-status='0'>Cancel</button></div></div>";
+                } else {
+                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+data.customField[i].bookingServices+"</div><div class='book-control'><button class='button-confirm-books' disabled>Confirm</button></div></div>";
+                }
+            }
+
+           
+            $("#ajax-book").append(html);
+
+            
+        },
+        error: function( jqXHR, textStatus, errorThrown ){
+
+        }
+    });
+}
+
+function changeStatusBooks(id, status)
+{
+    $.ajax({
+        type : "GET", 
+        dataType: 'html',
+        contentType: "application/json; charset=utf-8",
+        url : "./wp-admin/admin-ajax.php",
+        data : {
+            action: "change_status_books",
+            id: id,
+            status: status
+        },
+        beforeSend: function(){
+            // $(".wrap-book-item").remove();
+        },
+        success: function(response) {
+            if(status == 2)
+            {
+                $('#modalComfirm').modal('toggle');
+            } else {
+                $('#modalCancel').modal('toggle');
+                $('#modalCancelYes').modal('toggle');
+            }
+
+            let phone = $('.modal-input-phone').val();
+            loadBooks(phone);
+        },
+        error: function( jqXHR, textStatus, errorThrown ){
+
+        }
+    });
+}
 
 
 function loadData(date,time_id)
@@ -347,4 +457,3 @@ function isVietnamesePhoneNumber(number) {
     }
     return false;
 }
-

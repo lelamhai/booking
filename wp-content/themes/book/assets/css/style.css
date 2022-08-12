@@ -456,13 +456,14 @@ body {
   font-family: OpenSans-Bold;
 }
 
-.menu-column3 .wrap-menu-column3 a {
+.menu-column3 .wrap-menu-column3 {
   color: #fff;
   padding: 10px;
   font-size: 20px;
   background-color: #008037;
   border-radius: 5px;
   font-family: OpenSans-Bold;
+  cursor: pointer;
 }
 
 .menu-main-row {
@@ -740,6 +741,7 @@ body {
   display: flex;
   padding-top: 30px;
   justify-content: center;
+  align-items: center;
 }
 
 .menu-column2 .wrap-menu-column2 {
@@ -816,6 +818,22 @@ body {
 
 .wrap-box label {
 	margin-left: 15px;
+}
+
+.modal-footer,
+.modal-header {
+  text-align: center;
+  border: 0;
+}
+
+.modal-title,
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.input-phone-popup input {
+  width: 100%;
 }
 
 .box-report {

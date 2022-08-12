@@ -219,4 +219,27 @@
 
         wp_die(); 
     }
+
+
+    add_action('wp_ajax_get_data_books', 'get_data_books_function');
+    add_action('wp_ajax_nopriv_get_data_books', 'get_data_books_function');
+    function get_data_books_function() {
+        if(!empty($_GET["phone"]))
+        {
+            wp_send_json_success(get_data_books($_GET["phone"]) );
+        }
+        wp_die(); 
+    }
+
+    add_action('wp_ajax_change_status_books', 'change_status_books_function');
+    add_action('wp_ajax_nopriv_change_status_books', 'change_status_books_function');
+    function change_status_books_function() {
+        if(!empty($_GET["id"]))
+        {
+            change_status_booking($_GET["id"], $_GET["status"]);
+        }
+        wp_die(); 
+    }
+
+
 ?>

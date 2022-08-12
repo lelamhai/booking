@@ -124,4 +124,64 @@ function times_get_data_taxonomy()
     return $taxonomies;
 }
 
+function get_data_books($phone)
+{
+    $json = array();
+    $args = array(  
+        'post_type'		    => 'books',
+        'posts_per_page'    => -1,
+        'meta_query'	    => array(
+            'relation'		=> 'AND',
+            array(
+                'key'	 	=> 'booking_status',
+                'value'	  	=>  array(1,2),
+                'compare' 	=> 'IN',
+                
+            ),
+            array(
+                'key' => 'booking_date',
+                'value' => date('Y-m-d'),
+                'type' => 'date',
+                'compare' => '>',
+            ),
+            array(
+                'key' => 'booking_phone',
+                'value' => $phone,
+                'compare' => '=',
+            )
+        ),
+    );
+
+    $listBooks = get_posts($args);
+    $json['postType'] = $listBooks;
+
+    $customField = array();
+    foreach ( $listBooks as $post ) {
+        $arrayTemp = array();
+
+        $date = get_post_meta( $post->ID, 'booking_date', true );
+        $services = get_post_meta( $post->ID, 'booking_services', true );
+        $status = get_post_meta( $post->ID, 'booking_status', true );
+        $time = get_the_terms( $post->ID, 'times' );
+
+        $arrayTemp["bookingDate"] = $date;
+        $arrayTemp["bookingTime"] = $time[0]->name;
+        $arrayTemp["bookingServices"] = $services;
+        $arrayTemp["bookingStatus"] = $status;
+
+        array_push($customField, $arrayTemp);
+    }
+
+    $json['customField'] = $customField;
+
+    // $listBooks = get_posts($args);
+
+    return $json;
+}
+
+function change_status_booking($id, $status)
+{
+    update_post_meta( $id, 'booking_status', $status );
+}
+
 ?>
