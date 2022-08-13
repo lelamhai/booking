@@ -5,6 +5,7 @@
 ?>
 <?php
     get_header();
+    $list = array("AM", "PM");
 ?>
 
 
@@ -362,7 +363,6 @@
                                                     ?>
                                                     <input type="text" class="time-from" value="<?php echo $valueFrom?>">
                                                     <?php 
-                                                        $list = array("AM", "PM");
                                                         $index = 1;
                                                         if(count($arr) > 0)
                                                         {
@@ -531,7 +531,7 @@
                                                         <div class="time">
 
                                                             <?php
-                                                                $timeExplode = explode('-', $time->name);
+                                                                $timeExplode = explode(' ', $time->name);
                                                                 $index = 0;
                                                                 if($timeExplode[1] != "")
                                                                 {
@@ -544,14 +544,14 @@
                                                                 <?php
                                                                     for($j=0; $j<count($list); $j++)
                                                                     {
-                                                                        if($index == $j)
+                                                                        if($index == $list[$j])
                                                                         {
                                                                             ?>
-                                                                                <option value="<?php echo $j?>" selected><?php echo $list[$j]?></option>
+                                                                                <option value="<?php echo $list[$j]?>" selected><?php echo $list[$j]?></option>
                                                                             <?php
                                                                         } else {
                                                                             ?>
-                                                                                <option value="<?php echo $j?>"><?php echo $list[$j]?></option>
+                                                                                <option value="<?php echo $list[$j]?>"><?php echo $list[$j]?></option>
                                                                             <?php
                                                                         }
                                                                         

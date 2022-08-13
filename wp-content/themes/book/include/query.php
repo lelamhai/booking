@@ -171,11 +171,7 @@ function get_data_books($phone)
 
         array_push($customField, $arrayTemp);
     }
-
     $json['customField'] = $customField;
-
-    // $listBooks = get_posts($args);
-
     return $json;
 }
 

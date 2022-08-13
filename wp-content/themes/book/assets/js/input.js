@@ -372,7 +372,7 @@ $(document).ready(function() {
 			let time = $(this).children(".time").children(".input-time").val();
 			let timeOption = $(this).children(".time").children(".time-option").val();
 			let slots = $(this).children(".seats").children().val();
-			strTime = time + "-" + timeOption;
+			strTime = time + " " + timeOption;
 			if (id != 0) {
 				$.ajax({
 					type: "GET",

@@ -190,6 +190,16 @@
                 </div>
             </div>
         </div>
+        
+        <style>
+            .not-data-books {
+                color: red;
+            }
+
+            .not-data-books {
+                opacity: 0;
+            }
+        </style>
 
 
         <div class="modal fade" id="modalPhone">
@@ -205,6 +215,9 @@
                         <div class="input-phone-popup">
                             <input type="tel" class="modal-input-phone">
                         </div>
+                        
+                        <div class="not-data-books">There is no appointment with this phone number</div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="modal-button-phone">Enter</button>
@@ -350,8 +363,6 @@
                 </div>
             </div>
         </div>
-
-        
 
 
     <main class="main BackgroundColorBody">
@@ -607,7 +618,7 @@
                         </div>
                     </div>
                     <div class="menu-column3">
-                        <div class="wrap-menu-column3 BackgroundButtonBody TextColorButtonBody"  data-toggle="modal" data-target="#modalPhone">
+                        <div class="wrap-menu-column3 BackgroundButtonBody TextColorButtonBody"  data-toggle="modal" data-target="#modalPhone" data-backdrop="static" data-keyboard="false">
                             CANCEL APPT
                         </div>
                     </div>

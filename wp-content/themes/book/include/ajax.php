@@ -35,7 +35,7 @@
             $slots= booking_get_slots($dateNew, $_GET["time_id"]);
 
             ?>
-                   <div class="wrap-guest">
+                <div class="wrap-guest">
                     <div class="wrap-number-of-guest">
                         <div class="guest-title TextColorBody">NUMBER OF GUEST<span class="red">*</span></div>
                         <div class="select-nember over-hide">
@@ -211,8 +211,6 @@
                             <?php
                         }
                     ?>
-                        
-                    
                 </div>
             <?php
         }
