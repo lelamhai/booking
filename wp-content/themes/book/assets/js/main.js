@@ -89,6 +89,30 @@ $(document).ready(function() {
         loadData(date,time_id);
     });
 
+    $(document).on('click', '.checkbox-budget', function() {
+        let slots = $(this).val();
+        if(slots > 0)
+        {
+            $(".wrap-service-parent").css("display","none");
+            for(let i=1; i<=slots; i++)
+            {
+                $(".wrap-service-parent-"+i).css("display","block");
+            }
+        }
+    });
+
+
+    $(document).on('click', '.checkbox-menu', function() {
+        let index = $(this).val();
+        if(this.checked)
+        {
+            $(this).parent().parent().parent().children(".wrap-service-child").children(".wrap-service-item-"+index).removeClass("hidden");
+        } else {
+            $(this).parent().parent().parent().children(".wrap-service-child").children(".wrap-service-item-"+index).addClass("hidden");
+        }
+    });
+
+
     // submit
     $('.submit').click(function(){
         let isFullname = false;
@@ -192,35 +216,42 @@ $(document).ready(function() {
         
         let totalSlots = 0;
         
-        let service = Array();
+        let json = Array();
         for(let k=1; k<=slots; k++)
         {   
+            let service = new Object();
+
             let checked = 0;
             let countChecked = 0;
+
+            let serviceParent = Array();
             // parent
             $(".wrap-service-parent-"+k+">.wrap-button-number>.number>.checkbox-menu").each(function (index, obj) {
                 if (this.checked) {
-                    // let parentId = $(this).data("id");
-                    // let parentName = $(this).data("name");
+                    let id = $(this).data("id");
+                    
+                    serviceParent.push(id);
                     checked = 1;
                     countChecked ++;
                 } 
             });
 
-            let arrChildren = Array();
+            let serviceChild = Array();
             // children
             $(".wrap-service-parent-"+k+">.wrap-service-child>.wrap-service-item").each(function (index, obj) {
                 if(!$(this).hasClass('hidden'))
                 {
                     let id = $(this).children(".service-content").children(".basic-single").find(':selected').val();
                     let name = $(this).children(".service-content").children(".basic-single").find(':selected').text();
-                    
-                    arrChildren.push(name);
+
+                    serviceChild.push(parseInt(id));
                 }
             });
 
-            service.push(arrChildren);
+            service.parent = serviceParent;
+            service.children = serviceChild;
 
+            json.push(service);
             if(checked > 0)
             {
                 totalSlots ++;
@@ -233,8 +264,6 @@ $(document).ready(function() {
                 $(".wrap-service-parent-"+k+">.wrap-service-child>.error-checkbox").css("opacity", 0);
             }
         }
-        
-
        
 
         if(isFullname && isPhoneNumber &&  isEmail && isDatepicker && isSelect2 && totalSlots==slots && slots!=0)
@@ -247,8 +276,8 @@ $(document).ready(function() {
             let message = $(".message").val();
             let time_id = $("#single-main").find(':selected').val();
 
-            var services = JSON.stringify(service);
-
+            var services = JSON.stringify(json);
+            console.log(services);
             $.ajax({
                 type : "GET", 
                 dataType: 'html',
@@ -269,9 +298,7 @@ $(document).ready(function() {
                    
                 },
                 success: function(response) {
-                    alert(response);
-                    // alert("Booking finish");
-                    location.reload();
+                    console.log(response);
                 },
                 error: function( jqXHR, textStatus, errorThrown ){
                 }
@@ -362,14 +389,16 @@ function loadBooks(phone, flag = 1)
                 let listDate = data.customField[i].bookingDate.split('-');
                 let date = listDate[1]+"/"+listDate[2]+"/"+listDate[0];
                 let time = data.customField[i].bookingTime;
+                let services = data.customField[i].bookingServices;
+
                 if(data.customField[i].bookingStatus == 1)
                 {
-                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+data.customField[i].bookingServices+"</div><div class='book-control' data-id="+id+"><button class='button-confirm-books button-status-booking' data-status='2'>Confirm</button><button class='button-cancel-books button-status-booking' data-status='0'>Cancel</button></div></div>";
+                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+services+"</div><div class='book-control' data-id="+id+"><button class='button-confirm-books button-status-booking' data-status='2'>Confirm</button><button class='button-cancel-books button-status-booking' data-status='0'>Cancel</button></div></div>";
                 } else {
-                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+data.customField[i].bookingServices+"</div><div class='book-control'><button class='button-confirm-books' disabled>Confirm</button></div></div>";
+                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+services+"</div><div class='book-control'><button class='button-confirm-books' disabled>Confirm</button></div></div>";
                 }
             }
-            $("#ajax-book").append(html);
+            $("#ajax-books").append(html);
         },
         error: function( jqXHR, textStatus, errorThrown ){
 
@@ -438,30 +467,6 @@ function loadData(date,time_id)
 
         }
     });
-}
-
-function onChangeRadio(e)
-{
-    let slots = $(e).val();
-    if(slots > 0)
-    {
-        $(".wrap-service-parent").css("display","none");
-        for(let i=1; i<=slots; i++)
-        {
-            $(".wrap-service-parent-"+i).css("display","block");
-        }
-    }
-}
-
-function onChangeCheckbox(e)
-{
-    let index = $(e).val();
-    if(e.checked)
-    {
-        $(e).parent().parent().parent().children(".wrap-service-child").children(".wrap-service-item-"+index).removeClass("hidden");
-    } else {
-        $(e).parent().parent().parent().children(".wrap-service-child").children(".wrap-service-item-"+index).addClass("hidden");
-    }
 }
 
 function validateEmail(email) {

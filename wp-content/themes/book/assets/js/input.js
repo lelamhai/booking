@@ -358,7 +358,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 	let tempId = 1;
 	$(document).on('click', '.create-time', function() {
-		let html = "<div class='wrap-times-row' data-id='0' data-taxonomy='times' data-tempid='" + tempId + "'><div class='time'><input type='text'  class='input-time' value=''><select class='time-option'><option value='0' selected>AM</option><option value='1'>PM</option></select></div><div class='seats'><input type='number' class='input-slots' value=''></div><div class='group-button'><div class='button-menu'><button class='create-time'>Add</button></div><div class='delete-level'><button class='delete-time' data-toggle='modal' data-target='#deleteTimes'>Delete</button></div></div></div>";
+		let html = "<div class='wrap-times-row' data-id='0' data-taxonomy='times' data-tempid='" + tempId + "'><div class='time'><input type='text'  class='input-time' value=''><select class='time-option'><option value='AM' selected>AM</option><option value='PM'>PM</option></select></div><div class='seats'><input type='number' class='input-slots' value=''></div><div class='group-button'><div class='button-menu'><button class='create-time'>Add</button></div><div class='delete-level'><button class='delete-time' data-toggle='modal' data-target='#deleteTimes'>Delete</button></div></div></div>";
 		$(this).parents(".wrap-times-row").after(html);
 		tempId++;
 	});
@@ -371,8 +371,9 @@ $(document).ready(function() {
 			let taxonomy = $(this).data("taxonomy");
 			let time = $(this).children(".time").children(".input-time").val();
 			let timeOption = $(this).children(".time").children(".time-option").val();
+
 			let slots = $(this).children(".seats").children().val();
-			strTime = time + " " + timeOption;
+			let strTime = time + " " + timeOption;
 			if (id != 0) {
 				$.ajax({
 					type: "GET",

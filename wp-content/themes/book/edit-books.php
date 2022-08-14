@@ -509,7 +509,7 @@
                                                                 for($j=0; $j<count($list); $j++)
                                                                 {
                                                                     ?>
-                                                                        <option value="<?php echo $j?>"><?php echo $list[$j]?></option>
+                                                                        <option value="<?php echo $list[$j]?>"><?php echo $list[$j]?></option>
                                                                     <?php
                                                                 }
                                                             ?>
@@ -529,7 +529,6 @@
                                                 ?>
                                                     <div class="wrap-times-row" data-id="<?php echo $time->term_id?>" data-taxonomy="times">
                                                         <div class="time">
-
                                                             <?php
                                                                 $timeExplode = explode(' ', $time->name);
                                                                 $index = 0;

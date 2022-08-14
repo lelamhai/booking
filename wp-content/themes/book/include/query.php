@@ -142,7 +142,7 @@ function get_data_books($phone)
                 'key' => 'booking_date',
                 'value' => date('Y-m-d'),
                 'type' => 'date',
-                'compare' => '>',
+                'compare' => '>=',
             ),
             array(
                 'key' => 'booking_phone',

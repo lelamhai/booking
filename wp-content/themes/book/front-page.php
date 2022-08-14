@@ -271,6 +271,7 @@
 
             .book-control {
                 display: flex;
+                align-items: flex-start;
             }
 
             .book-control button {
@@ -302,7 +303,7 @@
                         <h5 class="modal-title">Your appointment</h5>
                     </div>
 
-                    <div class="modal-body" id="ajax-book">
+                    <div class="modal-body" id="ajax-books">
                         <div class="wrap-book-title">
                             <div class="book-name">Name</div>
                             <div class="book-date">Date</div>
@@ -363,7 +364,6 @@
                 </div>
             </div>
         </div>
-
 
     <main class="main BackgroundColorBody">
         <section class="video">
@@ -757,21 +757,13 @@
                                     'hide_empty' => false,
                                 ) );
                             ?>
+
                             <select id="single-main" class="single-main" style="width: 100%">
                                 <?php 
                                     foreach($terms as $term)
                                     {
-                                        $list = array("AM", "PM");
-                                        $timeExplode = explode('-', $term->name);
-                                        $index = 0;
-                                        if($timeExplode[1] != "")
-                                        {
-                                            $index = $timeExplode[1];
-                                        }
-                                        
-
                                         ?>
-                                            <option value="<?php echo $term->term_id?>"><?php echo $timeExplode[0]." ".$list[$index]?></option>
+                                            <option value="<?php echo $term->term_id?>"><?php echo $term->name?></option>
                                         <?php
                                     }
                                 ?>

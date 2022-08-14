@@ -49,7 +49,7 @@
                                         {
                                             ?>
                                                 <div class="item-slot">
-                                                    <input class="checkbox-budget" type="radio" onchange="onChangeRadio(this)" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>" checked>
+                                                    <input class="checkbox-budget" type="radio" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>" checked>
                                                     <label class="for-checkbox-budget TextColorBody" for="budget-<?php echo $i?>">
                                                         <span data-hover="<?php echo $i?>"><?php echo $i?></span>
                                                     </label>
@@ -58,7 +58,7 @@
                                             } else {
                                             ?>
                                                 <div class="item-slot">
-                                                    <input class="checkbox-budget" type="radio"  onchange="onChangeRadio(this)" name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>">
+                                                    <input class="checkbox-budget" type="radio"  name="budget" id="budget-<?php echo $i?>" value="<?php echo $i?>">
                                                         <label class="for-checkbox-budget TextColorBody" for="budget-<?php echo $i?>">
                                                         <span data-hover="<?php echo $i?>"><?php echo $i?></span>
                                                     </label>
@@ -92,7 +92,7 @@
                                             {
                                                 ?>
                                                     <label class="number TextColorBody"><?php  echo $parent->name?>
-                                                        <input type="checkbox" class="checkbox-menu" onchange="onChangeCheckbox(this)" data-id="<?php echo $parent->term_id?>" data-name="<?php echo $parent->name?>" value="<?php echo $index?>">
+                                                        <input type="checkbox" class="checkbox-menu" data-id="<?php echo $parent->term_id?>" data-name="<?php echo $parent->name?>" value="<?php echo $index?>">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 <?php
@@ -107,11 +107,12 @@
                                             {
                                                 $children = services_get_taxonomy($parent->term_id);
                                                 ?>
-                                                    <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
                                                         <?php
                                                             if(count($children ) > 0)
                                                             {
                                                                ?>
+                                                             <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
+
                                                                 <div class="service-title TextColorBody"><?php echo $parent->name?></div>
                                                                     <div class="service-content">
                                                                     <select class="basic-single" style="width: 100%">
@@ -125,10 +126,11 @@
                                                                         ?>
                                                                     </select>
                                                                 </div>
+                                                            </div>
+                                                            
                                                                <?php
                                                             } 
                                                         ?>
-                                                    </div>
                                                 <?php
                                                 $index ++;
                                             }
@@ -150,7 +152,7 @@
                                                 {
                                                     ?>
                                                         <label class="number TextColorBody"><?php  echo $parent->name?>
-                                                            <input type="checkbox" class="checkbox-menu" onchange="onChangeCheckbox(this)" data-id="<?php echo $parent->term_id?>" data-name="<?php echo $parent->name?>" value="<?php echo $index?>">
+                                                            <input type="checkbox" class="checkbox-menu" data-id="<?php echo $parent->term_id?>" data-name="<?php echo $parent->name?>" value="<?php echo $index?>">
                                                             <span class="checkmark"></span>
                                                         </label>
                                                     <?php
@@ -165,11 +167,12 @@
                                                 {
                                                     $children = services_get_taxonomy($parent->term_id);
                                                     ?>
-                                                        <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
                                                             <?php
                                                                 if(count($children ) > 0)
                                                                 {
                                                                 ?>
+                                                                <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
+
                                                                     <div class="service-title TextColorBody"><?php echo $parent->name?></div>
                                                                         <div class="service-content">
                                                                         <select class="basic-single" style="width: 100%">
@@ -183,10 +186,10 @@
                                                                             ?>
                                                                         </select>
                                                                     </div>
+                                                                </div>
                                                                 <?php
                                                                 } 
                                                             ?>
-                                                        </div>
                                                     <?php
                                                     $index ++;
                                                 }
