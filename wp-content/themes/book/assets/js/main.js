@@ -243,12 +243,14 @@ $(document).ready(function() {
                 {
                     let id = $(this).children(".service-content").children(".basic-single").find(':selected').val();
                     let name = $(this).children(".service-content").children(".basic-single").find(':selected').text();
-
-                    serviceChild.push(parseInt(id));
+                    let parent = $(this).children(".service-content").children(".basic-single").find(':selected').data("parent");
+                    
+                    let services = parent+"-"+name; 
+                    serviceChild.push(services);
                 }
             });
 
-            service.parent = serviceParent;
+            // service.parent = serviceParent;
             service.children = serviceChild;
 
             json.push(service);
@@ -265,6 +267,9 @@ $(document).ready(function() {
             }
         }
        
+        var services = JSON.stringify(json);
+        // console.log(services);
+        // return false;
 
         if(isFullname && isPhoneNumber &&  isEmail && isDatepicker && isSelect2 && totalSlots==slots && slots!=0)
         {
@@ -299,6 +304,8 @@ $(document).ready(function() {
                 },
                 success: function(response) {
                     console.log(response);
+                    alert("Booking finish");
+                    window.location.reload(true)
                 },
                 error: function( jqXHR, textStatus, errorThrown ){
                 }
@@ -391,11 +398,28 @@ function loadBooks(phone, flag = 1)
                 let time = data.customField[i].bookingTime;
                 let services = data.customField[i].bookingServices;
 
+                let obj = JSON.parse(services);
+                
+                let name = "";
+                for(let s=0; s < obj.length; s++)
+                {
+                    let id = s + 1;
+                    let slot = "* Seat" + id + "<br>";
+                    for(let c=0; c < obj[s].children.length; c++)
+                    {
+                        let list = obj[s].children[c].split('-');
+                        slot = slot + "- "+ list[0] + "->" + list[1] + "<br>";
+                    }
+                    name = name + slot + "<br><br>";
+                }
+
+                console.log(name);
+
                 if(data.customField[i].bookingStatus == 1)
                 {
-                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+services+"</div><div class='book-control' data-id="+id+"><button class='button-confirm-books button-status-booking' data-status='2'>Confirm</button><button class='button-cancel-books button-status-booking' data-status='0'>Cancel</button></div></div>";
+                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+name+"</div><div class='book-control' data-id="+id+"><button class='button-confirm-books button-status-booking' data-status='2'>Confirm</button><button class='button-cancel-books button-status-booking' data-status='0'>Cancel</button></div></div>";
                 } else {
-                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+services+"</div><div class='book-control'><button class='button-confirm-books' disabled>Confirm</button></div></div>";
+                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+name+"</div><div class='book-control'><button class='button-confirm-books' disabled>Confirm</button></div></div>";
                 }
             }
             $("#ajax-books").append(html);

@@ -111,23 +111,22 @@
                                                             if(count($children ) > 0)
                                                             {
                                                                ?>
-                                                             <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
+                                                                <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
 
-                                                                <div class="service-title TextColorBody"><?php echo $parent->name?></div>
+                                                                    <div class="service-title TextColorBody" data=""><?php echo $parent->name?></div>
                                                                     <div class="service-content">
-                                                                    <select class="basic-single" style="width: 100%">
-                                                                        <?php 
-                                                                            foreach($children as $child)
-                                                                            {
-                                                                                ?>
-                                                                                    <option value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
-                                                                                <?php
-                                                                            }
-                                                                        ?>
-                                                                    </select>
+                                                                        <select class="basic-single" style="width: 100%">
+                                                                            <?php 
+                                                                                foreach($children as $child)
+                                                                                {
+                                                                                    ?>
+                                                                                        <option data-parent="<?php echo $parent->name?>" value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
+                                                                                    <?php
+                                                                                }
+                                                                            ?>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            
                                                                <?php
                                                             } 
                                                         ?>
@@ -180,7 +179,7 @@
                                                                                 foreach($children as $child)
                                                                                 {
                                                                                     ?>
-                                                                                        <option value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
+                                                                                        <option data-parent="<?php echo $parent->name?>" value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
                                                                                     <?php
                                                                                 }
                                                                             ?>
