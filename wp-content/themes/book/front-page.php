@@ -117,8 +117,6 @@
 
 </style>
 
-
-
         <div class="modal fade" id="listIcon">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -250,7 +248,7 @@
             }
 
             .book-name {
-                width: 25%;
+                width: 20%;
             }
 
             .book-date {
@@ -266,7 +264,7 @@
             }
 
             .book-control {
-                width:20%;
+                width:25%;
             }
 
             .book-control {

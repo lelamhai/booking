@@ -58,7 +58,7 @@ $policyId = 184;
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
-    $version = "334";
+    $version = "335";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-bootstrap', get_template_directory_uri() ."/assets/bootstrap/bootstrap.min.css", array(), $version);
@@ -85,4 +85,28 @@ function regsiter_styles()
         wp_enqueue_script('boook-main', get_template_directory_uri() . "/assets/js/main.js", array(), $version, true);
     }
 }
+
+add_filter( 'login_redirect', 'themeprefix_login_redirect', 10, 3 );
+function themeprefix_login_redirect( $redirect_to, $request, $user ){
+    //is there a user to check?
+    if ( isset( $user->roles ) && is_array( $user->roles ) ) {
+        //check for admins
+        if ( in_array( 'subscriber', $user->roles ) ) {
+            $redirect_to = './edit-web/'; // Your redirect URL
+        }
+    }
+    return $redirect_to;
+}
+
+
+function admin_redirects() {
+    $user = wp_get_current_user()->roles[0];
+    if($user == 'subscriber')
+    {
+        $url = home_url() . "/edit-web";
+        wp_redirect($url);
+    } 
+}
+add_action('admin_init', 'admin_redirects');
+
 ?>

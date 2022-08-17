@@ -4,6 +4,13 @@
 */
 ?>
 <?php
+    $user = wp_get_current_user()->roles[0];
+    if($user == NULL)
+    {
+        $url = home_url() . "/wp-admin";
+        wp_redirect($url);
+    } 
+
     get_header();
     $list = array("AM", "PM");
 ?>

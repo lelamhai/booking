@@ -413,15 +413,14 @@ function loadBooks(phone, flag = 1)
                     name = name + slot + "<br><br>";
                 }
 
-                console.log(name);
-
                 if(data.customField[i].bookingStatus == 1)
                 {
                     html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+name+"</div><div class='book-control' data-id="+id+"><button class='button-confirm-books button-status-booking' data-status='2'>Confirm</button><button class='button-cancel-books button-status-booking' data-status='0'>Cancel</button></div></div>";
                 } else {
-                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+name+"</div><div class='book-control'><button class='button-confirm-books' disabled>Confirm</button></div></div>";
+                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+name+"</div><div class='book-control'  data-id="+id+"><button class='button-confirm-books' disabled>Confirmed</button><button class='button-cancel-books button-status-booking' data-status='0'>Cancel</button></div></div>";
                 }
             }
+            $('#modalPhone').modal('toggle');
             $("#ajax-books").append(html);
         },
         error: function( jqXHR, textStatus, errorThrown ){
