@@ -1,0 +1,16 @@
+#wp-admin-bar-wp-logo {
+    display: none;
+}
+
+#wp-admin-bar-site-name {
+    display: none;
+}
+
+#wp-admin-bar-wp-logo {
+    display: none;
+}
+
+#wpadminbar #wp-admin-bar-wpbeginner .ab-icon:before {
+    content: "\f102"; 
+    top: 3px;
+}

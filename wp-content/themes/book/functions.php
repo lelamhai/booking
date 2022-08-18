@@ -1,4 +1,5 @@
 <?php
+require get_template_directory() . '/include/hook.php';
 require get_template_directory() . '/include/taxonomies.php';
 require get_template_directory() . '/include/post-types.php';
 require get_template_directory() . '/include/query.php';
@@ -86,27 +87,13 @@ function regsiter_styles()
     }
 }
 
-add_filter( 'login_redirect', 'themeprefix_login_redirect', 10, 3 );
-function themeprefix_login_redirect( $redirect_to, $request, $user ){
-    //is there a user to check?
-    if ( isset( $user->roles ) && is_array( $user->roles ) ) {
-        //check for admins
-        if ( in_array( 'subscriber', $user->roles ) ) {
-            $redirect_to = './edit-web/'; // Your redirect URL
-        }
-    }
-    return $redirect_to;
-}
-
-
-function admin_redirects() {
-    $user = wp_get_current_user()->roles[0];
-    if($user == 'subscriber')
-    {
-        $url = home_url() . "/edit-web";
-        wp_redirect($url);
+add_action( 'admin_enqueue_scripts', 'wpdocs_selectively_enqueue_admin_script' );
+function wpdocs_selectively_enqueue_admin_script( $hook ) {
+    $version = "9";
+    $user = wp_get_current_user();
+    $allowed_roles = array('subscriber');
+    if( array_intersect($allowed_roles, $user->roles ) ) { 
+        wp_enqueue_style('admin-style',   get_template_directory_uri() ."/assets/admin/style.css", array(), $version);
     } 
 }
-add_action('admin_init', 'admin_redirects');
-
 ?>
