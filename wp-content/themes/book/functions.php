@@ -1,5 +1,4 @@
 <?php
-require get_template_directory() . '/include/hook.php';
 require get_template_directory() . '/include/taxonomies.php';
 require get_template_directory() . '/include/post-types.php';
 require get_template_directory() . '/include/query.php';
@@ -59,7 +58,7 @@ $policyId = 184;
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
-    $version = "335";
+    $version = "339";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-bootstrap', get_template_directory_uri() ."/assets/bootstrap/bootstrap.min.css", array(), $version);
@@ -85,15 +84,99 @@ function regsiter_styles()
         wp_enqueue_script('boook-slick', get_template_directory_uri() . "/assets/slick/slick.js", array(), $version, true);
         wp_enqueue_script('boook-main', get_template_directory_uri() . "/assets/js/main.js", array(), $version, true);
     }
+
+    $user = wp_get_current_user();
+    $allowed_roles = array('subscriber');
+    if( array_intersect($allowed_roles, $user->roles ) ) { 
+        wp_enqueue_style('book-subscriber',   get_template_directory_uri() ."/assets/css/subscriber.css", array(), $version);
+    } 
 }
 
 add_action( 'admin_enqueue_scripts', 'wpdocs_selectively_enqueue_admin_script' );
 function wpdocs_selectively_enqueue_admin_script( $hook ) {
-    $version = "9";
+    $version = "12";
     $user = wp_get_current_user();
     $allowed_roles = array('subscriber');
     if( array_intersect($allowed_roles, $user->roles ) ) { 
         wp_enqueue_style('admin-style',   get_template_directory_uri() ."/assets/admin/style.css", array(), $version);
     } 
 }
+
+$user = wp_get_current_user();
+$allowed_roles = array('subscriber');
+if( array_intersect($allowed_roles, $user->roles ) ) { 
+    require get_template_directory() . '/include/hook.php';
+} 
+
+// hook common 
+add_action( 'wp_before_admin_bar_render', 'example_admin_bar_remove_logo', 0 );
+function example_admin_bar_remove_logo() {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu( 'wp-logo' );
+}
+
+
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+function my_login_logo_url() {
+    return home_url();
+}
+if(get_option("business-logo-header"))
+{
+    add_action( 'login_enqueue_scripts', 'my_login_logo_one' );
+    function my_login_logo_one() { 
+        ?> 
+            <style type="text/css"> 
+                body.login div#login h1 a {
+                    background-image: url(<?php echo get_option("business-logo-header")?>);
+                    background-size: 130px;
+                    width: 135px;
+                } 
+            </style>
+         <?php 
+    } 
+} else {
+    add_filter( 'login_headertext', 'wpdoc_customize_login_headertext' );
+    function wpdoc_customize_login_headertext( $headertext ) {
+        ?>
+            <style type="text/css"> 
+                body.login div#login h1 a {
+                    display: contents;
+                } 
+            </style>
+        <?php
+        $name = get_option("business-name");
+        $headertext = esc_html__($name, 'plugin-textdomain' );
+        return $headertext;
+    }
+}
+
+/**
+ * Register a custom menu page.
+ */
+function wpdocs_register_edit_web() {
+    add_menu_page(
+        __( 'Custom Menu Title', 'textdomain' ),
+        'Edit web',
+        'read',
+        '../edit-web',
+        '',
+        'dashicons-welcome-write-blog',
+        99
+    );
+}
+add_action( 'admin_menu', 'wpdocs_register_edit_web' );
+
+
+function wpdocs_register_my_custom_menu_page() {
+    add_menu_page(
+        __( 'Custom Menu Title', 'textdomain' ),
+        'Manage',
+        'read',
+        '../#',
+        '',
+        'dashicons-calendar-alt',
+        99
+    );
+}
+add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
 ?>
