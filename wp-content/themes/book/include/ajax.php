@@ -120,7 +120,7 @@
                                                                                 foreach($children as $child)
                                                                                 {
                                                                                     ?>
-                                                                                        <option data-parent="<?php echo $parent->name?>" value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
+                                                                                        <option data-parent="<?php echo $parent->term_id?>" value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
                                                                                     <?php
                                                                                 }
                                                                             ?>
@@ -128,7 +128,18 @@
                                                                     </div>
                                                                 </div>
                                                                <?php
-                                                            } 
+                                                            } else {
+                                                                ?>
+                                                                    <div class="wrap-service-item hidden hidden-child wrap-service-item-<?php echo $index?>">
+                                                                        <div class="service-title TextColorBody" data=""><?php echo $parent->name?></div>
+                                                                        <div class="service-content">
+                                                                            <select class="basic-single" style="width: 100%">
+                                                                                <option data-parent="<?php echo $parent->term_id?>" value="0">NULL</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php
+                                                            }
                                                         ?>
                                                 <?php
                                                 $index ++;
@@ -167,28 +178,39 @@
                                                     $children = services_get_taxonomy($parent->term_id);
                                                     ?>
                                                             <?php
-                                                                if(count($children ) > 0)
-                                                                {
-                                                                ?>
+                                                            if(count($children ) > 0)
+                                                            {
+                                                               ?>
                                                                 <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
 
-                                                                    <div class="service-title TextColorBody"><?php echo $parent->name?></div>
-                                                                        <div class="service-content">
+                                                                    <div class="service-title TextColorBody" data=""><?php echo $parent->name?></div>
+                                                                    <div class="service-content">
                                                                         <select class="basic-single" style="width: 100%">
                                                                             <?php 
                                                                                 foreach($children as $child)
                                                                                 {
                                                                                     ?>
-                                                                                        <option data-parent="<?php echo $parent->name?>" value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
+                                                                                        <option data-parent="<?php echo $parent->term_id?>" value="<?php echo $child->term_id?>"><?php echo $child->name?></option>
                                                                                     <?php
                                                                                 }
                                                                             ?>
                                                                         </select>
                                                                     </div>
                                                                 </div>
+                                                               <?php
+                                                            } else {
+                                                                ?>
+                                                                    <div class="wrap-service-item hidden hidden-child wrap-service-item-<?php echo $index?>">
+                                                                        <div class="service-title TextColorBody" data=""><?php echo $parent->name?></div>
+                                                                        <div class="service-content">
+                                                                            <select class="basic-single" style="width: 100%">
+                                                                                <option data-parent="<?php echo $parent->term_id?>" value="0">NULL</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
                                                                 <?php
-                                                                } 
-                                                            ?>
+                                                            }
+                                                        ?>
                                                     <?php
                                                     $index ++;
                                                 }

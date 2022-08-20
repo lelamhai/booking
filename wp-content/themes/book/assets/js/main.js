@@ -241,11 +241,10 @@ $(document).ready(function() {
             $(".wrap-service-parent-"+k+">.wrap-service-child>.wrap-service-item").each(function (index, obj) {
                 if(!$(this).hasClass('hidden'))
                 {
-                    let id = $(this).children(".service-content").children(".basic-single").find(':selected').val();
-                    let name = $(this).children(".service-content").children(".basic-single").find(':selected').text();
+                    let child = $(this).children(".service-content").children(".basic-single").find(':selected').val();
                     let parent = $(this).children(".service-content").children(".basic-single").find(':selected').data("parent");
                     
-                    let services = parent+"-"+name; 
+                    let services = parent+"-"+child; 
                     serviceChild.push(services);
                 }
             });
@@ -405,10 +404,15 @@ function loadBooks(phone, flag = 1)
                 {
                     let id = s + 1;
                     let slot = "* Seat" + id + "<br>";
-                    for(let c=0; c < obj[s].children.length; c++)
+                    for(let c=0; c < obj[s].length; c++)
                     {
-                        let list = obj[s].children[c].split('-');
-                        slot = slot + "- "+ list[0] + "->" + list[1] + "<br>";
+                        let list = obj[s][c].split('-');
+                        if(list[1] != '')
+                        {
+                            slot = slot + "- "+ list[0] + "->" + list[1] + "<br>";
+                        } else {
+                            slot = slot + "- "+ list[0] + "<br>";
+                        }
                     }
                     name = name + slot + "<br><br>";
                 }

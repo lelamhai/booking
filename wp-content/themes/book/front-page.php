@@ -95,6 +95,14 @@
         border: 1px solid <?php echo $BackgroundButtonBody?>;
     }
 
+    .number input:checked ~ .checkmark {
+        background-color: <?php echo $BackgroundButtonBody?>
+    }
+
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color: <?php echo $BackgroundButtonBody?> !important;
+    }
+
     .TextColorButtonBody {
         color: <?php echo $TextColorButtonBody?> !important;
     }
@@ -114,9 +122,7 @@
     .TextColorFooter {
         color: <?php echo $TextColorFooter?> !important;
     }
-
 </style>
-
         <div class="modal fade" id="listIcon">
             <div class="modal-dialog">
                 <div class="modal-content">

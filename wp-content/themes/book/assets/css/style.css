@@ -523,7 +523,8 @@ body {
   font-size: 18px;
 }
 
-.wrap-menu-parent .menu-label-right {
+.hidden-child {
+  display: none;
 }
 
 .wrap-menu-main {

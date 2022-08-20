@@ -164,11 +164,35 @@ function get_data_books($phone)
         $status = get_post_meta( $post->ID, 'booking_status', true );
         $time = get_the_terms( $post->ID, 'times' );
 
+        $jsonData = json_decode($services);
+        $arrServices = array();
+        for($j=0 ; $j<count($jsonData); $j++)
+        {
+            $arrSlot = array();
+            $data = $jsonData[$j]->children;
+            for($i=0; $i<count($data); $i++)
+            {
+                $arr = explode('-', $data[$i]);
+                $parent = get_term($arr[0])->name;
+                $child = get_term($arr[1])->name;
+                if($child != NULL)
+                {
+                    $temp = $parent."-".$child;
+                } else {
+                    $temp = $parent;
+                }
+                var_dump($temp);echo"<br><br>";
+
+                array_push($arrSlot,$temp);
+
+            }
+            array_push($arrServices,$arrSlot);
+        }
+        $services = json_encode($arrServices);
+        $arrayTemp["bookingServices"] = $services;
         $arrayTemp["bookingDate"] = $date;
         $arrayTemp["bookingTime"] = $time[0]->name;
-        $arrayTemp["bookingServices"] = $services;
         $arrayTemp["bookingStatus"] = $status;
-
         array_push($customField, $arrayTemp);
     }
     $json['customField'] = $customField;
