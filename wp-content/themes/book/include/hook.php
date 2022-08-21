@@ -1,22 +1,43 @@
 <?php
-function dashboard_redirect(){
-    wp_redirect(admin_url('profile.php'));
+add_action( 'wp_before_admin_bar_render', 'example_admin_bar_remove_logo', 0 );
+function example_admin_bar_remove_logo() {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu( 'wp-logo' );
 }
-add_action('load-index.php','dashboard_redirect');
 
-function login_redirect( $redirect_to, $request, $user ){
-    return admin_url('profile.php');
+
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+function my_login_logo_url() {
+    return home_url();
 }
-add_filter('login_redirect','login_redirect',10,3);
-
-function remove_menus () {
-    global $menu;
-    $restricted = array(__('Dashboard'));
-    //$restricted = array(__('Dashboard'), __('Posts'), __('Media'), __('Links'), __('Pages'), __('Appearance'), __('Tools'), __('Users'), __('Settings'), __('Comments'), __('Plugins'));
-    end($menu);
-    while(prev($menu)){
-        $value = explode(' ',$menu[key($menu)][0]);
-        if(in_array($value[0]!= NULL?$value[0]:'',$restricted)){unset($menu[key($menu)]);}
+if(get_option("business-logo-header"))
+{
+    add_action( 'login_enqueue_scripts', 'my_login_logo_one' );
+    function my_login_logo_one() { 
+        ?> 
+            <style type="text/css"> 
+                body.login div#login h1 a {
+                    background-image: url(<?php echo get_option("business-logo-header")?>);
+                    background-size: 90%;
+                    width: 100%;
+                    margin: 0;
+                } 
+            </style>
+         <?php 
+    } 
+} else {
+    add_filter( 'login_headertext', 'wpdoc_customize_login_headertext' );
+    function wpdoc_customize_login_headertext( $headertext ) {
+        ?>
+            <style type="text/css"> 
+                body.login div#login h1 a {
+                    display: contents;
+                } 
+            </style>
+        <?php
+        $name = get_option("business-name");
+        $headertext = esc_html__($name, 'plugin-textdomain' );
+        return $headertext;
     }
 }
-add_action('admin_menu','remove_menus');
+?>

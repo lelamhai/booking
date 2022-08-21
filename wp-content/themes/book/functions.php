@@ -58,7 +58,7 @@ $policyId = 184;
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
-    $version = "339";
+    $version = "357";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-bootstrap', get_template_directory_uri() ."/assets/bootstrap/bootstrap.min.css", array(), $version);
@@ -105,49 +105,9 @@ function wpdocs_selectively_enqueue_admin_script( $hook ) {
 $user = wp_get_current_user();
 $allowed_roles = array('subscriber');
 if( array_intersect($allowed_roles, $user->roles ) ) { 
-    require get_template_directory() . '/include/hook.php';
-} 
-
-// hook common 
-add_action( 'wp_before_admin_bar_render', 'example_admin_bar_remove_logo', 0 );
-function example_admin_bar_remove_logo() {
-    global $wp_admin_bar;
-    $wp_admin_bar->remove_menu( 'wp-logo' );
-}
-
-
-add_filter( 'login_headerurl', 'my_login_logo_url' );
-function my_login_logo_url() {
-    return home_url();
-}
-if(get_option("business-logo-header"))
-{
-    add_action( 'login_enqueue_scripts', 'my_login_logo_one' );
-    function my_login_logo_one() { 
-        ?> 
-            <style type="text/css"> 
-                body.login div#login h1 a {
-                    background-image: url(<?php echo get_option("business-logo-header")?>);
-                    background-size: 130px;
-                    width: 135px;
-                } 
-            </style>
-         <?php 
-    } 
+    require get_template_directory() . '/include/hook-subscriber.php';
 } else {
-    add_filter( 'login_headertext', 'wpdoc_customize_login_headertext' );
-    function wpdoc_customize_login_headertext( $headertext ) {
-        ?>
-            <style type="text/css"> 
-                body.login div#login h1 a {
-                    display: contents;
-                } 
-            </style>
-        <?php
-        $name = get_option("business-name");
-        $headertext = esc_html__($name, 'plugin-textdomain' );
-        return $headertext;
-    }
+    require get_template_directory() . '/include/hook.php';
 }
 
 /**
@@ -179,4 +139,3 @@ function wpdocs_register_my_custom_menu_page() {
     );
 }
 add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
-?>

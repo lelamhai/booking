@@ -119,10 +119,14 @@ h6 {
     display: none;
 }
 
+body { padding-right: 0 !important } 
+.modal { padding-right: 0 !important }
+.modal-open {overflow-y: scroll !important;} 
+
 body {
   background-color: #f6f1ea;
-  /* padding-right: 0 !important; */
 }
+
 .wrap-header {
   display: flex;
   align-content: center;
@@ -755,9 +759,9 @@ body {
   border-radius: 10px;
 }
 
-body {
+/* body {
   position: relative;
-}
+} */
 
 .popup {
    background: #000;

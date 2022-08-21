@@ -122,7 +122,12 @@
     .TextColorFooter {
         color: <?php echo $TextColorFooter?> !important;
     }
+
+    body { padding-right: 0 !important } 
+    .modal { padding-right: 0 !important }
+    .modal-open {overflow-y: scroll !important;} 
 </style>
+
         <div class="modal fade" id="listIcon">
             <div class="modal-dialog">
                 <div class="modal-content">
