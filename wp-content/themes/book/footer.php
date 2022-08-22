@@ -7,11 +7,4 @@
     <?php
       wp_footer();
     ?>
-
-    <script>
-        $(document).ready(function() {
-           
-           
-        });
-    </script>
 </body></html>

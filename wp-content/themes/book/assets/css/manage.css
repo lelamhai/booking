@@ -1,0 +1,11 @@
+.ui-datepicker-prev span {
+    background-image:  url("../../assets/img/icon/white-left-arrow.png") !important;
+    background-position: 0px 0px !important;
+    background-size: 15px 15px;
+}
+
+.ui-datepicker-next span {
+    background-image: url("../../assets/img/icon/white-right-arrow.png") !important;
+    background-position: 0px 0px !important;
+    background-size: 15px 15px;
+}

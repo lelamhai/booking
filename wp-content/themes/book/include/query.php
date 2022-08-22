@@ -181,10 +181,7 @@ function get_data_books($phone)
                 } else {
                     $temp = $parent;
                 }
-                var_dump($temp);echo"<br><br>";
-
                 array_push($arrSlot,$temp);
-
             }
             array_push($arrServices,$arrSlot);
         }

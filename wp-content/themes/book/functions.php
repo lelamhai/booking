@@ -1,4 +1,5 @@
 <?php
+require get_template_directory() . '/include/hook.php';
 require get_template_directory() . '/include/taxonomies.php';
 require get_template_directory() . '/include/post-types.php';
 require get_template_directory() . '/include/query.php';
@@ -58,31 +59,41 @@ $policyId = 184;
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
-    $version = "357";
+    $version = "380";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
+    wp_enqueue_style('book-base',   get_template_directory_uri() ."/assets/css/base.css", array(), $version);
     wp_enqueue_style('book-bootstrap', get_template_directory_uri() ."/assets/bootstrap/bootstrap.min.css", array(), $version);
     wp_enqueue_style('book-animation', get_template_directory_uri() ."/assets/css/animation.css", array(), $version);
+    wp_enqueue_style('book-jquery-ui',   get_template_directory_uri() ."/assets/datetimepicker/jquery-ui.css", array(), $version);
     
+
     wp_enqueue_script('book-jquery-3.6.0.min', get_template_directory_uri() . "/assets/js/jquery-3.6.0.min.js", array(), $version, true);
     wp_enqueue_script('boook-bootstrap', get_template_directory_uri() . "/assets/bootstrap/bootstrap.min.js", array(), $version, true);
     wp_enqueue_script('boook-animation', get_template_directory_uri() . "/assets/js/animation.js", array(), $version, true);
+    wp_enqueue_script('book-jquery-ui', get_template_directory_uri() . "/assets/datetimepicker/jquery-ui.js", array(), $version, true);
+   
     if(is_page_template("edit-books.php"))
     {
         wp_enqueue_style('book-input',   get_template_directory_uri() ."/assets/css/input.css", array(), $version);
         wp_enqueue_script('boook-input', get_template_directory_uri() . "/assets/js/input.js", array(), $version, true);
     } else {
-        wp_enqueue_style('book-style',   get_template_directory_uri() ."/assets/css/style.css", array(), $version);
-        wp_enqueue_style('book-responsive',   get_template_directory_uri() ."/assets/css/responsive.css", array(), $version);
-        wp_enqueue_style('book-slick',   get_template_directory_uri() ."/assets/slick/slick.css", array(), $version);
-        wp_enqueue_style('book-slick-theme',   get_template_directory_uri() ."/assets/slick/slick-theme.css", array(), $version);
-        wp_enqueue_style('book-jquery-ui',   get_template_directory_uri() ."/assets/datetimepicker/jquery-ui.css", array(), $version);
-        wp_enqueue_style('book-select2.min',   get_template_directory_uri() ."/assets/css/select2.min.css", array(), $version);
-        
-        wp_enqueue_script('book-select2.min', get_template_directory_uri() . "/assets/js/select2.min.js", array(), $version, true);
-        wp_enqueue_script('book-jquery-ui', get_template_directory_uri() . "/assets/datetimepicker/jquery-ui.js", array(), $version, true);
-        wp_enqueue_script('boook-slick', get_template_directory_uri() . "/assets/slick/slick.js", array(), $version, true);
-        wp_enqueue_script('boook-main', get_template_directory_uri() . "/assets/js/main.js", array(), $version, true);
+        if(is_page_template("manage.php"))
+        {
+            wp_enqueue_style('book-manage',   get_template_directory_uri() ."/assets/css/manage.css", array(), $version);
+            wp_enqueue_script('boook-manage', get_template_directory_uri() . "/assets/js/manage.js", array(), $version, true);
+        } else {
+            wp_enqueue_style('book-style',   get_template_directory_uri() ."/assets/css/style.css", array(), $version);
+            wp_enqueue_style('book-responsive',   get_template_directory_uri() ."/assets/css/responsive.css", array(), $version);
+            wp_enqueue_style('book-slick',   get_template_directory_uri() ."/assets/slick/slick.css", array(), $version);
+            wp_enqueue_style('book-slick-theme',   get_template_directory_uri() ."/assets/slick/slick-theme.css", array(), $version);
+            wp_enqueue_style('book-select2.min',   get_template_directory_uri() ."/assets/css/select2.min.css", array(), $version);
+            
+            wp_enqueue_script('book-select2.min', get_template_directory_uri() . "/assets/js/select2.min.js", array(), $version, true);
+            wp_enqueue_script('boook-slick', get_template_directory_uri() . "/assets/slick/slick.js", array(), $version, true);
+            wp_enqueue_script('boook-main', get_template_directory_uri() . "/assets/js/main.js", array(), $version, true);
+        }
+       
     }
 
     $user = wp_get_current_user();
@@ -106,9 +117,8 @@ $user = wp_get_current_user();
 $allowed_roles = array('subscriber');
 if( array_intersect($allowed_roles, $user->roles ) ) { 
     require get_template_directory() . '/include/hook-subscriber.php';
-} else {
-    require get_template_directory() . '/include/hook.php';
-}
+} 
+
 
 /**
  * Register a custom menu page.
@@ -132,7 +142,7 @@ function wpdocs_register_my_custom_menu_page() {
         __( 'Custom Menu Title', 'textdomain' ),
         'Manage',
         'read',
-        '../#',
+        '../manage',
         '',
         'dashicons-calendar-alt',
         99

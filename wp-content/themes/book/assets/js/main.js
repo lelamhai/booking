@@ -314,7 +314,6 @@ $(document).ready(function() {
 
     $('#modal-button-phone').click(function(){
         let phoneNumber = $('.modal-input-phone').val();
-
         if(phoneNumber.length == 0)
         {
             $('.not-data-books').css("opacity", 1);
@@ -360,10 +359,10 @@ $(document).ready(function() {
 
 function loadBooks(phone, flag = 1)
 {
+    console.log(phone);
     $.ajax({
         type : "GET", 
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
+        dataType: "json",
         url : "./wp-admin/admin-ajax.php",
         data : {
             action: "get_data_books",
@@ -407,7 +406,7 @@ function loadBooks(phone, flag = 1)
                     for(let c=0; c < obj[s].length; c++)
                     {
                         let list = obj[s][c].split('-');
-                        if(list[1] != '')
+                        if(list[1])
                         {
                             slot = slot + "- "+ list[0] + "->" + list[1] + "<br>";
                         } else {

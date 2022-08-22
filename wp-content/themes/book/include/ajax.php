@@ -248,8 +248,10 @@
     function get_data_books_function() {
         if(!empty($_GET["phone"]))
         {
-            wp_send_json_success(get_data_books($_GET["phone"]) );
+            wp_send_json_success(get_data_books($_GET["phone"]));
         }
+        
+
         wp_die(); 
     }
 

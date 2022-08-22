@@ -1,4 +1,11 @@
 <?php
+add_filter( 'login_redirect', 'themeprefix_login_redirect', 10, 3 );
+function themeprefix_login_redirect( $redirect_to, $request, $user ){
+    $redirect_to = './manage';
+    return $redirect_to;
+}
+
+
 add_action( 'wp_before_admin_bar_render', 'example_admin_bar_remove_logo', 0 );
 function example_admin_bar_remove_logo() {
     global $wp_admin_bar;
