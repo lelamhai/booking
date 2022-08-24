@@ -175,7 +175,7 @@ if (!function_exists('add_custom_link_in_my_account_admin_bar_menu')) {
             'parent' => $parent,
             'id' => 'edit-web',
             /* Translators: "switch off" means to temporarily log out */
-            'title' => esc_html__('Edit Web', 'textdomain'),
+            'title' => esc_html__('Edit Website', 'textdomain'),
             'href' => get_site_url() . '/edit-web',
         ));
     }
