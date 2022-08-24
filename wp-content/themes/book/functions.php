@@ -110,15 +110,16 @@ function wpdocs_selectively_enqueue_admin_script( $hook ) {
     $allowed_roles = array('subscriber');
     if( array_intersect($allowed_roles, $user->roles ) ) { 
         wp_enqueue_style('admin-style',   get_template_directory_uri() ."/assets/admin/style.css", array(), $version);
-    } 
+    }
+
+    wp_enqueue_script('custom-admin', get_template_directory_uri().'/assets/js/custom-admin.js');
 }
 
 $user = wp_get_current_user();
 $allowed_roles = array('subscriber');
 if( array_intersect($allowed_roles, $user->roles ) ) { 
     require get_template_directory() . '/include/hook-subscriber.php';
-} 
-
+}
 
 /**
  * Register a custom menu page.
@@ -149,3 +150,34 @@ function wpdocs_register_my_custom_menu_page() {
     );
 }
 add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
+
+
+// add links cho my account admin bar in /wp-admin/
+if (!function_exists('add_custom_link_in_my_account_admin_bar_menu')) {
+    function add_custom_link_in_my_account_admin_bar_menu($wp_admin_bar)
+    {
+
+        if ($wp_admin_bar->get_node('user-actions')) {
+            $parent = 'user-actions';
+        } else {
+            return;
+        }
+
+        $wp_admin_bar->add_node(array(
+            'parent' => $parent,
+            'id' => 'manage-appts',
+            /* Translators: "switch off" means to temporarily log out */
+            'title' => esc_html__('Manage Appts', 'textdomain'),
+            'href' => get_site_url() . '/manage',
+        ));
+
+        $wp_admin_bar->add_node(array(
+            'parent' => $parent,
+            'id' => 'edit-web',
+            /* Translators: "switch off" means to temporarily log out */
+            'title' => esc_html__('Edit Web', 'textdomain'),
+            'href' => get_site_url() . '/edit-web',
+        ));
+    }
+}
+add_action( 'admin_bar_menu', 'add_custom_link_in_my_account_admin_bar_menu', 11 );
