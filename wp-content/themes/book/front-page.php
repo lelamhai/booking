@@ -56,9 +56,6 @@
     }
 ?>
 
-      
-
-
 <style>
     /* header */
     .BackgroundColorHeader {
@@ -374,83 +371,86 @@
             </div>
         </div>
 
-    <main class="main BackgroundColorBody">
+    <div class="main">
         <section class="video">
             <?php
-                $embed = "LKChoK8R4-Q";
-                if(get_option($businessYoutubeVideoBanner))
-                {
-                    $embed = get_option($businessYoutubeVideoBanner);
-                }
+            $embed = "LKChoK8R4-Q";
+            if(get_option($businessYoutubeVideoBanner))
+            {
+                $embed = get_option($businessYoutubeVideoBanner);
+            }
             ?>
             <iframe id="video-youtube" width="100%" src="https://www.youtube.com/embed/<?php echo $embed?>?autoplay=1&mute=1&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
 
-        <div class="container">
-            <section class="nail">
-                <div class="nail-address TextColorBody">
-                    <?php
+        <section class="container nail">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nail-address TextColorBody">
+                        <?php
                         if(get_option($businessAddress))
                         {
                             echo get_option($businessAddress);
                         }
-                    ?>
-                </div>
-                <div class="nail-call">
-                    <?php
+                        ?>
+                    </div>
+                    <div class="nail-call">
+                        <?php
                         $phone = "";
                         if(get_option($businessPhoneNumber))
                         {
                             $phone = get_option($businessPhoneNumber);
                             ?>
-                                <a class ="TextColorBody" href="tel:<?php echo $phone ?>">Tel: <?php echo $phone ?></a>
+                            <a class ="TextColorBody" href="tel:<?php echo $phone ?>">Tel: <?php echo $phone ?></a>
                             <?php
                         }
-                    ?>
-                </div>
-
-                <div class="info">
-                    <div class="item-info bgColorButtonBody BackgroundButtonBody">
-                        <a href="tel: <?php echo $phone ?>" class="TextColorButtonBody">
-                            Call Us
-                        </a>
+                        ?>
                     </div>
-                    <div class="item-info bgColorButtonBody BackgroundButtonBody">
-                        <?php 
+                    <div class="info">
+                        <div class="item-info bgColorButtonBody BackgroundButtonBody">
+                            <a href="tel: <?php echo $phone ?>" class="TextColorButtonBody">
+                                Call Us
+                            </a>
+                        </div>
+                        <div class="item-info bgColorButtonBody BackgroundButtonBody">
+                            <?php
                             $googleMaps = "";
                             if(get_option($businessGoogleMap))
                             {
                                 $googleMaps = get_option($businessGoogleMap);
                             }
-                        ?>
-                        <a target="_blank" href="<?php echo $googleMaps?>" class="TextColorButtonBody">
-                            Get Directions
-                        </a>
+                            ?>
+                            <a target="_blank" href="<?php echo $googleMaps?>" class="TextColorButtonBody">
+                                Get Directions
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nail-open-time">
+                        <a href="#Opening" class="TextColorBody">Our opening hours &gt;&gt;</a>
                     </div>
                 </div>
-                <div class="nail-open-time">
-                    <a href="#Opening" class="TextColorBody">Our opening hours &gt;&gt;</a>
-                </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="welcome">
-                <div class="wrap-welcome">
+        <section class="container welcome">
+            <div class="row">
+                <div class="col-md-12 wrap-welcome">
                     <div class="welcome-nail">
                         <div class="column-left">
                             <div class="title-welcome-nail TextColorBody">
                                 <?php
-                                    if(get_option($businessTitleWelcome))
-                                    {
-                                        echo get_option($businessTitleWelcome);
-                                    }
+                                if(get_option($businessTitleWelcome))
+                                {
+                                    echo get_option($businessTitleWelcome);
+                                }
                                 ?>
                             </div>
                             <div class="content-welcome-nail TextColorBody">
                                 <?php
-                                    if(get_option($businessContentWelcome))
-                                    {
-                                        echo get_option($businessContentWelcome);
-                                    }
+                                if(get_option($businessContentWelcome))
+                                {
+                                    echo get_option($businessContentWelcome);
+                                }
                                 ?>
                             </div>
                             <div class="button-welcome">
@@ -462,55 +462,55 @@
                         <div class="column-right">
                             <div class="slider">
                                 <?php
-                                    $url = "";
-                                    if(get_option($businessSlider1Welcome))
-                                    {
-                                        $url = get_option($businessSlider1Welcome);
-                                    }
-                                ?>
-                                <div class="item-slide">
-                                    <img src="<?php echo $url?>" alt="">
-                                </div>
-                                
-                                <?php
-                                    $url = "";
-                                    if(get_option($businessSlider2Welcome))
-                                    {
-                                        $url = get_option($businessSlider2Welcome);
-                                    }
+                                $url = "";
+                                if(get_option($businessSlider1Welcome))
+                                {
+                                    $url = get_option($businessSlider1Welcome);
+                                }
                                 ?>
                                 <div class="item-slide">
                                     <img src="<?php echo $url?>" alt="">
                                 </div>
 
                                 <?php
-                                    $url = "";
-                                    if(get_option($businessSlider3Welcome))
-                                    {
-                                        $url = get_option($businessSlider3Welcome);
-                                    }
+                                $url = "";
+                                if(get_option($businessSlider2Welcome))
+                                {
+                                    $url = get_option($businessSlider2Welcome);
+                                }
                                 ?>
                                 <div class="item-slide">
                                     <img src="<?php echo $url?>" alt="">
                                 </div>
 
                                 <?php
-                                    $url = "";
-                                    if(get_option($businessSlider4Welcome))
-                                    {
-                                        $url = get_option($businessSlider4Welcome);
-                                    }
+                                $url = "";
+                                if(get_option($businessSlider3Welcome))
+                                {
+                                    $url = get_option($businessSlider3Welcome);
+                                }
                                 ?>
                                 <div class="item-slide">
                                     <img src="<?php echo $url?>" alt="">
                                 </div>
-                                
+
                                 <?php
-                                    $url = "";
-                                    if(get_option($businessSlider5Welcome))
-                                    {
-                                        $url = get_option($businessSlider5Welcome);
-                                    }
+                                $url = "";
+                                if(get_option($businessSlider4Welcome))
+                                {
+                                    $url = get_option($businessSlider4Welcome);
+                                }
+                                ?>
+                                <div class="item-slide">
+                                    <img src="<?php echo $url?>" alt="">
+                                </div>
+
+                                <?php
+                                $url = "";
+                                if(get_option($businessSlider5Welcome))
+                                {
+                                    $url = get_option($businessSlider5Welcome);
+                                }
                                 ?>
                                 <div class="item-slide">
                                     <img src="<?php echo $url?>" alt="">
@@ -519,140 +519,148 @@
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
-            
-          
+            </div>
+        </section>
 
-            <section class="list-reviews BackgroundColorReviews">
-                <div class="wrap-list-reviews TextColorReviews">
-                    <div class="title-reviews title-gift">
-                        <?php 
+        <section class="list-reviews">
+            <div class="container wrap-list-reviews TextColorReviews">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-reviews title-gift">
+                            <?php
                             if(get_option($businessTitleReviews))
                             {
                                 echo stripslashes(get_option($businessTitleReviews));
                             }
-                        ?>
-                    </div>
-                    <div class="slider-reviews">
-                        <div class="item-slider-reviews">
-                           <?php
+                            ?>
+                        </div>
+                        <div class="slider-reviews">
+                            <div class="item-slider-reviews">
+                                <?php
                                 $content = "";
                                 if(get_option($businessContent1Reviews))
                                 {
                                     $content = stripslashes(get_option($businessContent1Reviews));
                                 }
                                 echo $content;
-                           ?>
-                        </div>
-                        <div class="item-slider-reviews">
-                           <?php
+                                ?>
+                            </div>
+                            <div class="item-slider-reviews">
+                                <?php
                                 $content = "";
                                 if(get_option($businessContent2Reviews))
                                 {
                                     $content = stripslashes(get_option($businessContent2Reviews));
                                 }
                                 echo $content;
-                           ?>
-                        </div>
-                        <div class="item-slider-reviews">
-                           <?php
+                                ?>
+                            </div>
+                            <div class="item-slider-reviews">
+                                <?php
                                 $content = "";
                                 if(get_option($businessContent3Reviews))
                                 {
                                     $content = stripslashes(get_option($businessContent3Reviews));
                                 }
                                 echo $content;
-                           ?>
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        
-        <div class="container">                           
-            <section class="gift anim move js-anim" id="Gift">
-                <div class="wrap-gift">
-                    <div class="column-left">
-                        <div class="image-gift">
-                            <?php
-                                $url = get_template_directory_uri()."/assets/img/gift.jpg";
-                                if(get_option($businessImageGift ))
-                                {
-                                    $url = get_option($businessImageGift);
-                                }
-                            ?>
-                            <img src="<?php echo $url ?>" alt="">
-                        </div>
-                    </div>
+            </div>
+        </section>
 
-                    <div class="column-right">
-                        <div class="title-gift TextColorBody">
-                            <?php
-                                $text = "Gift Cards";
-                                if(get_option($businessTitleGift))
-                                {
-                                    $text = get_option($businessTitleGift);
-                                }
-                                echo $text;
-                            ?>
-                        </div>
-                        <div class="content-gift TextColorBody">
-                            <?php
-                                $text = "Buy gift cards for your beloved ones Buy gift cards for your beloved ones Buy gift cards for your beloved ones";
-                                if(get_option($businessContentGift))
-                                {
-                                    $text = get_option($businessContentGift);
-                                }
-                                echo $text;
-                            ?>
-                        </div>
-                        <div class="group-button">
-                            <div class="buy-gift BackgroundButtonBody TextColorButtonBody">Buy Now</div>
-                            <div class="Check-gift BackgroundButtonBody TextColorButtonBody">Check Balance</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="menu anim move js-anim" id="OurMenu">
-                <div class="wrap-menu">
-                    <div class="menu-column1 TextColorBody">Our Menu</div>
-                    <div class="form-hr BackgroundButtonBody"></div>
-                </div>
-
-                <div class="info-menu-app">
-                    <div class="menu-column2">
-                        <div class="wrap-menu-column2">
-                            <a href="#BookOnline" class="BackgroundButtonBody TextColorButtonBody">BOOK ONLINE</a>
-                        </div>
-                    </div>
-                    <div class="menu-column3">
-                        <div class="wrap-menu-column3 BackgroundButtonBody TextColorButtonBody"  data-toggle="modal" data-target="#modalPhone" data-backdrop="static" data-keyboard="false">
-                            CANCEL APPT
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="menu-main anim move js-anim">
-                <div class="menu-main-row">
-                    <div class="wrap-menu-title">
-                        <div class="menu-label-left">
-                            <!-- NAME -->
-                        </div>
-                        <div class="menu-label-right TextColorBody">
-                            PRICE
-                        </div>
-                    </div>
-                </div>
-
-                <?php
-                    if(count(get_data_taxonomy(0))> 0)
-                    {
-                        foreach(get_data_taxonomy(0) as $parent)
+        <section class="container gift anim move js-anim" id="Gift">
+            <div class="row wrap-gift">
+                <div class="col-md-6">
+                    <div class="title-gift TextColorBody">
+                        <?php
+                        $text = "Gift Cards";
+                        if(get_option($businessTitleGift))
                         {
-                            $childrens = get_data_taxonomy($parent->term_id);
-                            ?>
+                            $text = get_option($businessTitleGift);
+                        }
+                        echo $text;
+                        ?>
+                    </div>
+                    <div class="content-gift TextColorBody">
+                        <?php
+                        $text = "Buy gift cards for your beloved ones Buy gift cards for your beloved ones Buy gift cards for your beloved ones";
+                        if(get_option($businessContentGift))
+                        {
+                            $text = get_option($businessContentGift);
+                        }
+                        echo $text;
+                        ?>
+                    </div>
+                    <div class="group-button">
+                        <div class="buy-gift BackgroundButtonBody TextColorButtonBody">Buy Now</div>
+                        <div class="Check-gift BackgroundButtonBody TextColorButtonBody">Check Balance</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="image-gift">
+                        <?php
+                        $url = get_template_directory_uri()."/assets/img/gift.jpg";
+                        if(get_option($businessImageGift ))
+                        {
+                            $url = get_option($businessImageGift);
+                        }
+                        ?>
+                        <img src="<?php echo $url ?>" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!--        <section class="container menu anim move js-anim" id="OurMenu">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--                    <div class="wrap-menu">-->
+<!--                        <div class="menu-column1 TextColorBody">Our Menu</div>-->
+<!--                        <div class="form-hr BackgroundButtonBody"></div>-->
+<!--                    </div>-->
+<!--                    <div class="info-menu-app">-->
+<!--                        <div class="menu-column2">-->
+<!--                            <div class="wrap-menu-column2">-->
+<!--                                <a href="#BookOnline" class="BackgroundButtonBody TextColorButtonBody">BOOK ONLINE</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="menu-column3">-->
+<!--                            <div class="wrap-menu-column3 BackgroundButtonBody TextColorButtonBody"  data-toggle="modal" data-target="#modalPhone" data-backdrop="static" data-keyboard="false">-->
+<!--                                CANCEL APPT-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+
+        <section class="menu-main anim move js-anim">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="menu-main-row">
+                            <div class="menu-main-row">
+                                <h3>our services</h3>
+                            </div>
+                            <div class="wrap-menu-title">
+                                <div class="menu-label-left">
+                                    <!-- NAME -->
+                                </div>
+                                <div class="menu-label-right TextColorBody">
+                                    PRICE
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                        if(count(get_data_taxonomy(0))> 0)
+                        {
+                            foreach(get_data_taxonomy(0) as $parent)
+                            {
+                                $childrens = get_data_taxonomy($parent->term_id);
+                                ?>
                                 <div class="menu-main-row">
                                     <div class="wrap-menu-parent">
                                         <div class="menu-label-left">
@@ -663,56 +671,59 @@
                                                 <?php echo $parent->description ?>
                                             </div>
                                         </div>
-                                       
+
                                         <div class="menu-label-right TextColorBody">
                                             <?php
-                                                if(count($childrens) > 0)
-                                                {
-                                                    ?>
-                                                        <div class="menu-right-more">
-                                                            More
-                                                        </div>
-                                                    <?php
-                                                } else {
-                                                    echo "$".get_term_meta( $parent->term_id, 'services-price', true );
-                                                }
+                                            if(count($childrens) > 0)
+                                            {
+                                                ?>
+                                                <div class="menu-right-more">
+                                                    More
+                                                </div>
+                                                <?php
+                                            } else {
+                                                echo "$".get_term_meta( $parent->term_id, 'services-price', true );
+                                            }
                                             ?>
-                                            
+
                                         </div>
 
                                     </div>
                                     <div class="content-menu-child menu-hide">
                                         <?php
-                                            foreach($childrens as $child)
-                                            {
-                                                ?>
-                                                    <div class="wrap-menu-main">
-                                                        <div class="menu-label-left">
-                                                            <div class="menu-main-title TextColorBody">
-                                                                <?php echo $child->name?>
-                                                            </div>
-                                                            <div class="meun-main-title TextColorBody">
-                                                                <?php echo $child->description?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="menu-label-right TextColorBody">
-                                                            <?php echo "$".get_term_meta( $child->term_id, 'services-price', true );?>
-                                                        </div>
+                                        foreach($childrens as $child)
+                                        {
+                                            ?>
+                                            <div class="wrap-menu-main">
+                                                <div class="menu-label-left">
+                                                    <div class="menu-main-title TextColorBody">
+                                                        <?php echo $child->name?>
                                                     </div>
-                                                <?php
-                                            }
+                                                    <div class="meun-main-title TextColorBody">
+                                                        <?php echo $child->description?>
+                                                    </div>
+                                                </div>
+                                                <div class="menu-label-right TextColorBody">
+                                                    <?php echo "$".get_term_meta( $child->term_id, 'services-price', true );?>
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
                                         ?>
                                     </div>
                                 </div>
-                            <?php
+                                <?php
+                            }
                         }
-                    } 
-                ?>
-                
-            </section>
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <section class="form anim move js-anim" id="BookOnline">
-                <div class="wrap-form">
+        <section class="container form anim move js-anim" id="BookOnline">
+            <div class="row">
+                <div class="col-md-12 wrap-form">
                     <div class="form-top-title TextColorBody">
                         MAKE A RESERVATION
                     </div>
@@ -759,29 +770,29 @@
                         <div class="wrap-input-form wrap-input-single-main">
                             <div class="label-card TextColorBody">Pick a preferred time<span class="red">*</span></div>
                             <?php
-                                 $terms = get_terms( array(
-                                    'taxonomy' => 'times',
-                                    'orderby'  => 'id',
-                                    'order'    => 'ASC',
-                                    'hide_empty' => false,
-                                ) );
+                            $terms = get_terms( array(
+                                'taxonomy' => 'times',
+                                'orderby'  => 'id',
+                                'order'    => 'ASC',
+                                'hide_empty' => false,
+                            ) );
                             ?>
 
                             <select id="single-main" class="single-main" style="width: 100%">
-                                <?php 
-                                    foreach($terms as $term)
-                                    {
-                                        ?>
-                                            <option value="<?php echo $term->term_id?>"><?php echo $term->name?></option>
-                                        <?php
-                                    }
+                                <?php
+                                foreach($terms as $term)
+                                {
+                                    ?>
+                                    <option value="<?php echo $term->term_id?>"><?php echo $term->name?></option>
+                                    <?php
+                                }
                                 ?>
                             </select>
                             <div class="error red">Error</div>
                         </div>
-                        
+
                         <div class="form-hr BackgroundButtonBody"></div>
-                        
+
                         <div class="wrap-data-ajax">
                             <!-- load ajax -->
                         </div>
@@ -791,184 +802,197 @@
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
-        
-        <section class="google-map">
-            <?php
-                if(get_option($businessMapIframe))
-                {
-                    echo stripslashes(get_option($businessMapIframe));
-                } else {
-                    ?>
-                        <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15689.767389861054!2d105.39633022801672!3d10.544555375080055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a14d3db232923%3A0xb99c5080400238a9!2zQ2jhu6MgTeG7m2ksIENo4bujIE3hu5tpIERpc3RyaWN0LCBBbiBHaWFuZywgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1659429583916!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <?php
-                }
-            ?>
+            </div>
         </section>
 
-        <div class="social-network">
-            <div class="item-social-network">
-                <?php
-                    $url = "#";
-                    if(get_option($businessInstagram))
-                    {
-                        $url = get_option($businessInstagram);
-                    }
-                ?>
-                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_instagram.png"?>" alt=""></a>
-            </div>
-            <div class="item-social-network">
-                <?php
-                    $url = "#";
-                    if(get_option($businessYoutube))
-                    {
-                        $url = get_option($businessYoutube);
-                    }
-                ?>
-                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_youtube.png"?>" alt=""></a>
-            </div>
-            <div class="item-social-network">
-                <?php
-                    $url = "#";
-                    if(get_option($businessFacebook))
-                    {
-                        $url = get_option($businessFacebook);
-                    }
-                ?>
-                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_facebook.png"?>" alt=""></a>
-            </div>
-        </div>
-       
-        <section class="contact BackgroundColorFooter" id="Opening">
-            <div class="wrap-contact">
-                <div class="contact-column6">
-                    <div class="title-contact TextColorFooter">About Us</div>
-                    <div class="content-contact TextColorFooter">
-                        <?php
-                            if(get_option($businessAboutUsFooter ))
-                            {
-                                echo get_option($businessAboutUsFooter );
-                            }
-                        ?>
-                    </div>
-                </div>
-                <div class="contact-column4">
-                    <div class="wrap-contact-time">
-                        <div class="contact-time" >
-                            <b class="TextColorFooter">Opening Hours</b>
-                            <div class="list-time">
-                                <?php
-                                    for($i=0; $i<7; $i++)
-                                    {
-                                        $key = "week".($i+2);
-                                        $value = "";
-                                        if(get_option($key))
-                                        {
-                                            $value = get_option($key);
-                                            $arr = explode('-', $value);
-                                        }
-                                        $list = array("AM", "PM");
-                                        if($i == 0)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                                <p class="TextColorFooter"><span>Mon: <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-
-                                        if($i == 1)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                                <p class="TextColorFooter"><span>Tue: <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-
-                                        if($i == 2)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                                <p class="TextColorFooter"><span>Wed: <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-
-                                        if($i == 3)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                                <p class="TextColorFooter"><span>Thu: <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-
-                                        if($i == 4)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                                <p class="TextColorFooter"><span>Fri: <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-
-                                        if($i == 5)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                                <p class="TextColorFooter"><span>Sat: <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-
-                                        if($i == 6)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                                <p class="TextColorFooter"><span>Sun: <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-                                    }
-                                
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="footer-row1">
-                <div class="footer-service"><a class="TextColorFooter" href="<?php echo esc_url( get_page_link( $policyId ) ); ?>" style="<?php echo $colorFooter?>"><?php echo get_the_title( $policyId ) ?></a></div>
-                <div class="footer-service"><a class="TextColorFooter" href="<?php echo esc_url( get_page_link( $termsId ) ); ?>" style="<?php echo $colorFooter?>"><?php  echo get_the_title( $termsId ) ?></a></div>
+        <section class="container google-map">
+           <div class="row">
+               <div class="col-md-12">
+                   <?php
+                   if(get_option($businessMapIframe))
+                   {
+                       echo stripslashes(get_option($businessMapIframe));
+                   } else {
+                       ?>
+                       <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15689.767389861054!2d105.39633022801672!3d10.544555375080055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a14d3db232923%3A0xb99c5080400238a9!2zQ2jhu6MgTeG7m2ksIENo4bujIE3hu5tpIERpc3RyaWN0LCBBbiBHaWFuZywgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1659429583916!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                       <?php
+                   }
+                   ?>
+               </div>
            </div>
         </section>
 
-        
-    </main>
+        <section class="contact BackgroundColorFooter" id="Opening">
+            <div class="container wrap-contact">
+                <div class="row">
+                    <div class="col-md-4 contact-about">
+                            <div class="title-contact TextColorFooter">About Us</div>
+                            <div class="content-contact TextColorFooter">
+                                <?php
+                                if(get_option($businessAboutUsFooter ))
+                                {
+                                    echo get_option($businessAboutUsFooter );
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    <div class="col-md-4 contact-menu">
+
+                    </div>
+                    <div class="col-md-4 contact-hours">
+                            <div class="wrap-contact-time">
+                                <div class="contact-time" >
+                                    <b class="TextColorFooter">Opening Hours</b>
+                                    <div class="list-time">
+                                        <?php
+                                        for($i=0; $i<7; $i++)
+                                        {
+                                            $key = "week".($i+2);
+                                            $value = "";
+                                            if(get_option($key))
+                                            {
+                                                $value = get_option($key);
+                                                $arr = explode('-', $value);
+                                            }
+                                            $list = array("AM", "PM");
+                                            if($i == 0)
+                                            {
+                                                $time = "Closed";
+                                                if($arr[4] != 0)
+                                                {
+                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                                }
+                                                ?>
+                                                <p class="TextColorFooter"><span>Mon: <?php echo $time; ?></span></p>
+                                                <?php
+                                            }
+
+                                            if($i == 1)
+                                            {
+                                                $time = "Closed";
+                                                if($arr[4] != 0)
+                                                {
+                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                                }
+                                                ?>
+                                                <p class="TextColorFooter"><span>Tue: <?php echo $time; ?></span></p>
+                                                <?php
+                                            }
+
+                                            if($i == 2)
+                                            {
+                                                $time = "Closed";
+                                                if($arr[4] != 0)
+                                                {
+                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                                }
+                                                ?>
+                                                <p class="TextColorFooter"><span>Wed: <?php echo $time; ?></span></p>
+                                                <?php
+                                            }
+
+                                            if($i == 3)
+                                            {
+                                                $time = "Closed";
+                                                if($arr[4] != 0)
+                                                {
+                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                                }
+                                                ?>
+                                                <p class="TextColorFooter"><span>Thu: <?php echo $time; ?></span></p>
+                                                <?php
+                                            }
+
+                                            if($i == 4)
+                                            {
+                                                $time = "Closed";
+                                                if($arr[4] != 0)
+                                                {
+                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                                }
+                                                ?>
+                                                <p class="TextColorFooter"><span>Fri: <?php echo $time; ?></span></p>
+                                                <?php
+                                            }
+
+                                            if($i == 5)
+                                            {
+                                                $time = "Closed";
+                                                if($arr[4] != 0)
+                                                {
+                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                                }
+                                                ?>
+                                                <p class="TextColorFooter"><span>Sat: <?php echo $time; ?></span></p>
+                                                <?php
+                                            }
+
+                                            if($i == 6)
+                                            {
+                                                $time = "Closed";
+                                                if($arr[4] != 0)
+                                                {
+                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                                }
+                                                ?>
+                                                <p class="TextColorFooter"><span>Sun: <?php echo $time; ?></span></p>
+                                                <?php
+                                            }
+                                        }
+
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <div class="row">
+                    <div class="col-md-12 footer-row-1">
+                        <div class="social-network">
+                            <div class="item-social-network">
+                                <?php
+                                $url = "#";
+                                if(get_option($businessInstagram))
+                                {
+                                    $url = get_option($businessInstagram);
+                                }
+                                ?>
+                                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_instagram.png"?>" alt=""></a>
+                            </div>
+                            <div class="item-social-network">
+                                <?php
+                                $url = "#";
+                                if(get_option($businessYoutube))
+                                {
+                                    $url = get_option($businessYoutube);
+                                }
+                                ?>
+                                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_youtube.png"?>" alt=""></a>
+                            </div>
+                            <div class="item-social-network">
+                                <?php
+                                $url = "#";
+                                if(get_option($businessFacebook))
+                                {
+                                    $url = get_option($businessFacebook);
+                                }
+                                ?>
+                                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_facebook.png"?>" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="footer-phone">
+                            Tel:
+                        </div>
+                    </div>
+                    <div class="col-md-12 footer-row-2">
+                        <div class="footer-service"><a class="TextColorFooter" href="<?php echo esc_url( get_page_link( $policyId ) ); ?>" style="<?php echo $colorFooter?>"><?php echo get_the_title( $policyId ) ?></a></div>
+                        <div class="footer-service"><a class="TextColorFooter" href="<?php echo esc_url( get_page_link( $termsId ) ); ?>" style="<?php echo $colorFooter?>"><?php  echo get_the_title( $termsId ) ?></a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 <?php
-    get_footer();
-?>      
+get_footer();

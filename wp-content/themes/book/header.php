@@ -9,7 +9,7 @@
 </head>
   
 
-<body>
+<body class="BackgroundColorBody">
    <header>
         <div class="header BackgroundColorHeader">
             <div class="container mobile-container not-showmenu BackgroundColorHeader">

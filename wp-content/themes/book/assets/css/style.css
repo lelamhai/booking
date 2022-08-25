@@ -4,6 +4,7 @@
 .container {
   max-width: 1400px;
   margin: auto;
+  width: 100%;
 }
 
 .mobile {
@@ -12,11 +13,7 @@
 
 body { padding-right: 0 !important } 
 .modal { padding-right: 0 !important }
-.modal-open {overflow-y: scroll !important;} 
-
-body {
-  background-color: #f6f1ea;
-}
+.modal-open {overflow-y: scroll !important;}
 
 p:last-child {
   margin-bottom: 0;
@@ -39,6 +36,10 @@ p:last-child {
 
 .wrap-header  a {
   color: #fff;
+}
+
+.main {
+  background: #F9F7EA;
 }
 
 .header-logo a {
@@ -165,13 +166,6 @@ p:last-child {
   text-decoration: underline;
 }
 
-.wrap-welcome {
-  position: relative;
-  max-width: 960px;
-  margin: auto;
-  margin-bottom: 30px;
-}
-
 .content-frame {
   text-align: center;
 }
@@ -227,12 +221,10 @@ p:last-child {
 
 /* reviews */
 .list-reviews {
-  background-color: #eefce8;
+  background-color: #e5e2d6;
   margin-bottom: 30px;
 }
 .wrap-list-reviews {
-  max-width: 960px;
-  margin: auto;
   text-align: center;
   padding: 100px 0;
 }
@@ -290,8 +282,6 @@ p:last-child {
 
 
 .gift {
-  max-width: 960px;
-  margin: auto;
   padding-bottom: 100px;
 }
 
@@ -366,8 +356,6 @@ p:last-child {
 }
 
 .menu-main-row {
-  max-width: 960px;
-  margin: auto;
   margin-bottom: 15px
 }
 
@@ -440,12 +428,7 @@ p:last-child {
   font-size: 18px;
 }
 
-.meun-main-title {
-}
-
 .wrap-form {
-  max-width: 960px;
-  margin: auto;
   padding-bottom: 70px;
 }
 
@@ -544,23 +527,13 @@ p:last-child {
 }
 
 .contact {
-  background-color: #fce4de;
+  background-color: #e5e2d6;
 }
 
 .wrap-contact {
-  max-width: 960px;
-  margin: auto;
   display: flex;
   justify-content: space-between;
-  padding: 70px 0;
-}
-
-.contact-column6 {
-  width: 60%;
-}
-
-.contact-column4 {
-  width: 40%;
+  padding-top: 70px;
 }
 
 .contact-call,
@@ -1049,21 +1022,8 @@ p:last-child {
   margin-bottom: 30px;
 }
 
-.wrap-welcome {
-  max-width: 960px;
-  margin: auto;
-}
-
 .welcome-nail {
   display: flex;
-}
-
-.column-left {
-  width: 50%;
-  padding-right: 15px;
-
-  display: flex;
-  flex-direction: column;
 }
 
 .title-welcome-nail {
@@ -1075,13 +1035,6 @@ p:last-child {
 .content-welcome-nail {
   padding-bottom: 30px;
   font-size: 18px;
-}
-
-.column-right {
-  width: 50%;
-  padding-left: 15px;
-  display: flex;
-  flex-direction: column;
 }
 
 .wrap-gift {
@@ -1114,6 +1067,7 @@ p:last-child {
 }
 
 .menu-main {
+  background: #e5e2d6;
   margin-bottom: 100px;
 }
 
@@ -1133,9 +1087,13 @@ p:last-child {
   color: #fff;
 }
 
+.google-map {
+  margin-bottom: 90px;
+}
+
 .google-map iframe {
   width: 100%;
-  height: 466px;
+  height: 800px;
 }
 
 /* footer */
@@ -1145,17 +1103,24 @@ footer {
 }
 
 .wrap-footer {
-  padding: 30px 0;
-}
-
-.footer-row1 {
+  min-height: 100px;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.footer-row-1,
+.footer-row-2 {
+  display: flex;
   padding-bottom: 30px;
 }
 
-.footer-row2 {
-   text-align: center;
+.footer-row-1 {
+  justify-content: space-between;
+}
+
+.footer-row-2 {
+  justify-content: center;
 }
 
 .footer-service {
