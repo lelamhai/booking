@@ -353,8 +353,9 @@ $(document).ready(function() {
         let status = $('#statusBooks').val();
         changeStatusBooks(id, status);
     });
-    
-    
+
+    $("#wp-admin-bar-my-account li:eq(1)").before($("#wp-admin-bar-my-account li:eq(3)"));
+    $("#wp-admin-bar-my-account li:eq(2)").before($("#wp-admin-bar-my-account li:eq(4)"));
 });
 
 function loadBooks(phone, flag = 1)

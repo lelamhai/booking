@@ -150,34 +150,3 @@ function wpdocs_register_my_custom_menu_page() {
     );
 }
 add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
-
-
-// add links cho my account admin bar in /wp-admin/
-if (!function_exists('add_custom_link_in_my_account_admin_bar_menu')) {
-    function add_custom_link_in_my_account_admin_bar_menu($wp_admin_bar)
-    {
-
-        if ($wp_admin_bar->get_node('user-actions')) {
-            $parent = 'user-actions';
-        } else {
-            return;
-        }
-
-        $wp_admin_bar->add_node(array(
-            'parent' => $parent,
-            'id' => 'manage-appts',
-            /* Translators: "switch off" means to temporarily log out */
-            'title' => esc_html__('Manage Appts', 'textdomain'),
-            'href' => get_site_url() . '/manage',
-        ));
-
-        $wp_admin_bar->add_node(array(
-            'parent' => $parent,
-            'id' => 'edit-web',
-            /* Translators: "switch off" means to temporarily log out */
-            'title' => esc_html__('Edit Website', 'textdomain'),
-            'href' => get_site_url() . '/edit-web',
-        ));
-    }
-}
-add_action( 'admin_bar_menu', 'add_custom_link_in_my_account_admin_bar_menu', 11 );
