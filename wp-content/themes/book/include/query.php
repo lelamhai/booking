@@ -124,6 +124,16 @@ function times_get_data_taxonomy()
     return $taxonomies;
 }
 
+function books_get_data()
+{
+    $args = array(  
+        'post_type'		    => 'books',
+        'posts_per_page'    => -1
+    );
+    $listBooks = get_posts($args);
+    return $listBooks;
+}
+
 function get_data_books($phone)
 {
     $json = array();

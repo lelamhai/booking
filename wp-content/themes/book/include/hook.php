@@ -5,6 +5,32 @@ function themeprefix_login_redirect( $redirect_to, $request, $user ){
     return $redirect_to;
 }
 
+add_action( 'admin_menu', 'wpdocs_register_edit_web' );
+function wpdocs_register_edit_web() {
+    add_menu_page(
+        __( 'Custom Menu Title', 'textdomain' ),
+        'Edit Website',
+        'read',
+        '../edit-web',
+        '',
+        'dashicons-welcome-write-blog',
+        99
+    );
+}
+
+add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
+function wpdocs_register_my_custom_menu_page() {
+    add_menu_page(
+        __( 'Custom Menu Title', 'textdomain' ),
+        'Manage Appts',
+        'read',
+        '../manage',
+        '',
+        'dashicons-calendar-alt',
+        98
+    );
+}
+
 
 add_action( 'wp_before_admin_bar_render', 'example_admin_bar_remove_logo', 0 );
 function example_admin_bar_remove_logo() {
