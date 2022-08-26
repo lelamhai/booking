@@ -4,8 +4,9 @@ $(document).ready(function() {
         verticalSwiping: true,
         draggable: false,
         swipe: false,
-        speed: 2000,
+        speed: 1300,
         infinite:true,
+        slidesToShow: 1,
         prevArrow:"<button type='button' class='slick-prev pull-left'></button>",
         nextArrow:"<button type='button' class='slick-next pull-right'></button>"
     });

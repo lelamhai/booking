@@ -385,7 +385,8 @@
 
         <section class="container nail">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
                     <div class="nail-address TextColorBody">
                         <?php
                         if(get_option($businessAddress))
@@ -405,117 +406,112 @@
                             <?php
                         }
                         ?>
+                        <a href="#Opening" class="TextColorBody">Opening hours &gt;&gt;</a>
                     </div>
-                    <div class="info">
-                        <div class="item-info bgColorButtonBody BackgroundButtonBody">
-                            <a href="tel: <?php echo $phone ?>" class="TextColorButtonBody">
-                                Call Us
-                            </a>
-                        </div>
-                        <div class="item-info bgColorButtonBody BackgroundButtonBody">
-                            <?php
-                            $googleMaps = "";
-                            if(get_option($businessGoogleMap))
-                            {
-                                $googleMaps = get_option($businessGoogleMap);
-                            }
-                            ?>
-                            <a target="_blank" href="<?php echo $googleMaps?>" class="TextColorButtonBody">
-                                Get Directions
-                            </a>
-                        </div>
-                    </div>
-                    <div class="nail-open-time">
-                        <a href="#Opening" class="TextColorBody">Our opening hours &gt;&gt;</a>
-                    </div>
+<!--                    <div class="info">-->
+<!--                        <div class="item-info bgColorButtonBody BackgroundButtonBody">-->
+<!--                            <a href="tel: --><?php //echo $phone ?><!--" class="TextColorButtonBody">-->
+<!--                                Call Us-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div class="item-info bgColorButtonBody BackgroundButtonBody">-->
+<!--                            --><?php
+//                            $googleMaps = "";
+//                            if(get_option($businessGoogleMap))
+//                            {
+//                                $googleMaps = get_option($businessGoogleMap);
+//                            }
+//                            ?>
+<!--                            <a target="_blank" href="--><?php //echo $googleMaps?><!--" class="TextColorButtonBody">-->
+<!--                                Get Directions-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
+                <div class="col-md-2"></div>
             </div>
         </section>
 
         <section class="container welcome">
             <div class="row">
-                <div class="col-md-12 wrap-welcome">
-                    <div class="welcome-nail">
-                        <div class="column-left">
-                            <div class="title-welcome-nail TextColorBody">
-                                <?php
-                                if(get_option($businessTitleWelcome))
-                                {
-                                    echo get_option($businessTitleWelcome);
-                                }
-                                ?>
-                            </div>
-                            <div class="content-welcome-nail TextColorBody">
-                                <?php
-                                if(get_option($businessContentWelcome))
-                                {
-                                    echo get_option($businessContentWelcome);
-                                }
-                                ?>
-                            </div>
-                            <div class="button-welcome">
-                                <div class="wrap-review BackgroundButtonBody TextColorButtonBody" data-toggle="modal" data-target="#listIcon">
-                                    WRITE A REVIEW
-                                </div>
-                            </div>
+                <div class="col-md-4 column-left">
+                    <div class="title-welcome-nail TextColorBody">
+                        <?php
+                        if(get_option($businessTitleWelcome))
+                        {
+                            echo get_option($businessTitleWelcome);
+                        }
+                        ?>
+                    </div>
+                    <div class="content-welcome-nail TextColorBody">
+                        <?php
+                        if(get_option($businessContentWelcome))
+                        {
+                            echo get_option($businessContentWelcome);
+                        }
+                        ?>
+                    </div>
+                    <div class="button-welcome">
+                        <div class="wrap-review BackgroundButtonBody TextColorButtonBody" data-toggle="modal" data-target="#listIcon">
+                            WRITE A REVIEW
                         </div>
-                        <div class="column-right">
-                            <div class="slider">
-                                <?php
-                                $url = "";
-                                if(get_option($businessSlider1Welcome))
-                                {
-                                    $url = get_option($businessSlider1Welcome);
-                                }
-                                ?>
-                                <div class="item-slide">
-                                    <img src="<?php echo $url?>" alt="">
-                                </div>
+                    </div>
+                </div>
+                <div class="col-md-8 column-right">
+                    <div class="slider">
+                        <?php
+                        $url = "";
+                        if(get_option($businessSlider1Welcome))
+                        {
+                            $url = get_option($businessSlider1Welcome);
+                        }
+                        ?>
+                        <div class="item-slide">
+                            <img src="<?php echo $url?>" alt="">
+                        </div>
 
-                                <?php
-                                $url = "";
-                                if(get_option($businessSlider2Welcome))
-                                {
-                                    $url = get_option($businessSlider2Welcome);
-                                }
-                                ?>
-                                <div class="item-slide">
-                                    <img src="<?php echo $url?>" alt="">
-                                </div>
+                        <?php
+                        $url = "";
+                        if(get_option($businessSlider2Welcome))
+                        {
+                            $url = get_option($businessSlider2Welcome);
+                        }
+                        ?>
+                        <div class="item-slide">
+                            <img src="<?php echo $url?>" alt="">
+                        </div>
 
-                                <?php
-                                $url = "";
-                                if(get_option($businessSlider3Welcome))
-                                {
-                                    $url = get_option($businessSlider3Welcome);
-                                }
-                                ?>
-                                <div class="item-slide">
-                                    <img src="<?php echo $url?>" alt="">
-                                </div>
+                        <?php
+                        $url = "";
+                        if(get_option($businessSlider3Welcome))
+                        {
+                            $url = get_option($businessSlider3Welcome);
+                        }
+                        ?>
+                        <div class="item-slide">
+                            <img src="<?php echo $url?>" alt="">
+                        </div>
 
-                                <?php
-                                $url = "";
-                                if(get_option($businessSlider4Welcome))
-                                {
-                                    $url = get_option($businessSlider4Welcome);
-                                }
-                                ?>
-                                <div class="item-slide">
-                                    <img src="<?php echo $url?>" alt="">
-                                </div>
+                        <?php
+                        $url = "";
+                        if(get_option($businessSlider4Welcome))
+                        {
+                            $url = get_option($businessSlider4Welcome);
+                        }
+                        ?>
+                        <div class="item-slide">
+                            <img src="<?php echo $url?>" alt="">
+                        </div>
 
-                                <?php
-                                $url = "";
-                                if(get_option($businessSlider5Welcome))
-                                {
-                                    $url = get_option($businessSlider5Welcome);
-                                }
-                                ?>
-                                <div class="item-slide">
-                                    <img src="<?php echo $url?>" alt="">
-                                </div>
-                            </div>
+                        <?php
+                        $url = "";
+                        if(get_option($businessSlider5Welcome))
+                        {
+                            $url = get_option($businessSlider5Welcome);
+                        }
+                        ?>
+                        <div class="item-slide">
+                            <img src="<?php echo $url?>" alt="">
                         </div>
                     </div>
                 </div>
@@ -536,6 +532,7 @@
                         </div>
                         <div class="slider-reviews">
                             <div class="item-slider-reviews">
+                                <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                                 <?php
                                 $content = "";
                                 if(get_option($businessContent1Reviews))
@@ -544,8 +541,10 @@
                                 }
                                 echo $content;
                                 ?>
+                                <svg class="icon-client-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                             </div>
                             <div class="item-slider-reviews">
+                                <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                                 <?php
                                 $content = "";
                                 if(get_option($businessContent2Reviews))
@@ -554,8 +553,10 @@
                                 }
                                 echo $content;
                                 ?>
+                                <svg class="icon-client-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                             </div>
                             <div class="item-slider-reviews">
+                                <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                                 <?php
                                 $content = "";
                                 if(get_option($businessContent3Reviews))
@@ -564,6 +565,7 @@
                                 }
                                 echo $content;
                                 ?>
+                                <svg class="icon-client-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                             </div>
                         </div>
                     </div>
@@ -573,7 +575,7 @@
 
         <section class="container gift anim move js-anim" id="Gift">
             <div class="row wrap-gift">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="title-gift TextColorBody">
                         <?php
                         $text = "Gift Cards";
@@ -594,12 +596,10 @@
                         echo $text;
                         ?>
                     </div>
-                    <div class="group-button">
-                        <div class="buy-gift BackgroundButtonBody TextColorButtonBody">Buy Now</div>
-                        <div class="Check-gift BackgroundButtonBody TextColorButtonBody">Check Balance</div>
-                    </div>
+                    <div class="buy-gift BackgroundButtonBody TextColorButtonBody">Buy Now</div>
+                    <div class="Check-gift BackgroundButtonBody TextColorButtonBody">Check Balance</div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <div class="image-gift">
                         <?php
                         $url = get_template_directory_uri()."/assets/img/gift.jpg";
@@ -791,8 +791,6 @@
                             <div class="error red">Error</div>
                         </div>
 
-                        <div class="form-hr BackgroundButtonBody"></div>
-
                         <div class="wrap-data-ajax">
                             <!-- load ajax -->
                         </div>
@@ -983,7 +981,16 @@
                             </div>
                         </div>
                         <div class="footer-phone">
-                            Tel:
+                        <?php
+                        $phone = "";
+                        if(get_option($businessPhoneNumber))
+                        {
+                        $phone = get_option($businessPhoneNumber);
+                        ?>
+                        <a class ="TextColorBody" href="tel:<?php echo $phone ?>">Tel: <?php echo $phone ?></a>
+                        <?php
+                        }
+                        ?>
                         </div>
                     </div>
                     <div class="col-md-12 footer-row-2">
