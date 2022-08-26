@@ -145,6 +145,19 @@
         align-items: center;
         justify-content: space-between;
     }
+
+    .table-data-books {
+        border-collapse: separate;
+        border-spacing: 0 10px;
+        width: 100%;
+    }
+
+    .calendar-book {
+        text-align: center;
+    }
+
+    .table-data-books tbody tr:nth-child(odd) {background: #CCC}
+    .table-data-books tbody tr:nth-child(even) {background: #FFF}
 </style>
 
 
@@ -164,6 +177,29 @@
 // $date = date('Y-m-d', strtotime("+6 day", strtotime($monday)));
 // var_dump($date);
 
+
+
+// $args = array(  
+//     'post_type'		    => 'books',
+//     'posts_per_page'    => -1,
+//     'tax_query'         => array(
+//         array(
+//             'taxonomy'  => 'times',
+//             'field'     => 'term_id',
+//             'terms'     => 154,
+//         )
+//     ),
+//     'meta_query'	    => array(
+//         array(
+//             'key' => 'booking_date',
+//             'value' => '2022-08-25',
+//             'type' => 'date',
+//             'compare' => '=',
+//         )
+//     )
+// );
+// $listBooks = get_posts($args);
+// var_dump($listBooks);
 
 ?>
 
@@ -198,21 +234,23 @@
     </div>
     <div id="manage-content-wrap" class="margin-content">
         <div class="wrap-container">
-            <div class="header-bar">
-                <div class="filter-control">
-                    <button>Today</button>
-                    <button>Week</button>
-                </div>
-
-                <div class="add-appointment">+ Add appointment</div>
-
-                <div class="search-phone">
-                    Search
-                </div>
-            </div>
+           
             <div class="tab-content clearfix">
                 <div class="tab-pane active" id="appointments">
-                    <div class="">
+                    <div class="header-bar">
+                        <div class="filter-control">
+                            <button>Today</button>
+                            <button>Week</button>
+                        </div>
+
+                        <div class="add-appointment">+ Add appointment</div>
+
+                        <div class="search-phone">
+                            Search
+                        </div>
+                    </div>
+                    <div class="calendar-book">
+                        <span><button><img src="http://localhost/booking/wp-content/themes/book/assets/img/icon/white-left-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
                         <?php
                             $monday = "";
                             if(date('D')!='Mon')
@@ -225,11 +263,12 @@
                             $sunday = date('F j', strtotime("+6 day", strtotime($monday)));
                             echo $monday . " - " .$sunday;
                         ?>
+                        <span><button><img src="http://localhost/booking/wp-content/themes/book/assets/img/icon/white-right-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
                     </div>
 
                     <div class="list-calendar">
-                        <table>
-                            <tr>
+                        <table class="table-data-books">
+                            <thead>
                                 <th></th>
                                 <?php
                                     for($i=0; $i<7; $i++)
@@ -240,35 +279,45 @@
                                         <?php
                                     }
                                 ?>
-                            </tr>
-                            <?php
-                                foreach(get_data_times() as $time )
-                                {
-                                    ?>
-                                        <tr>
-                                            <td><?php echo $time->name?></td>
-                                            <?php 
-                                                foreach(get_list_books() as $item)
-                                                {
-                                                    $terms = get_the_terms( $item->ID, 'times' );
-                                                    if($time->term_id == $terms[0]->term_id)
+                            </thead>
+                            <tbody>
+                                <?php
+                                    foreach(get_data_times() as $time )
+                                    { 
+                                        ?>
+                                            <tr class="item-time">
+                                                <td><?php echo $time->name?></td>
+                                                <?php
+                                                    for($i=0; $i<7; $i++)
                                                     {
-                                                        ?>
-                                                            <td>
-                                                                <?php echo $item->post_title?>
-                                                            </td>
-                                                        <?php
-                                                    } else {
-                                                        ?>
-                                                            <td>Null</td>
-                                                        <?php
+                                                        $date = date('Y-m-d', strtotime($i." day", strtotime($monday)));
+                                                        $books = get_list_books($date,$time->term_id );
+                                                        if(count($books)>0)
+                                                        {
+                                                            ?>
+                                                                <td>
+                                                                    <?php
+                                                                        foreach($books as $book)
+                                                                        {
+                                                                            ?>
+                                                                                <div><?php echo $book->post_title?></div>
+                                                                            <?php
+                                                                        }
+                                                                    ?>
+                                                                </td>
+                                                            <?php
+                                                        } else {
+                                                            ?><td><?php echo "NULL"?></td><?php
+                                                        }
+                                                        
                                                     }
-                                                }
-                                            ?>
-                                        </tr>
-                                    <?php
-                                }
-                            ?>
+                                                ?>
+                                            </tr>
+                                        <?php
+                                    }
+    
+                                ?>
+                            </tbody>
                         </table> 
                     </div>
                 </div>

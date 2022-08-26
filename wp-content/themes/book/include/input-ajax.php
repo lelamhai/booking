@@ -9,9 +9,9 @@ function get_data_times()
     return times_get_data_taxonomy();
 }
 
-function get_list_books() 
+function get_list_books($date, $id) 
 {
-    return books_get_data();
+    return books_get_data($date, $id);
 }
 
 add_action('wp_ajax_addOption', 'addOption_function');
