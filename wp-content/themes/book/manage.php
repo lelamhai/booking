@@ -152,7 +152,7 @@
         width: 100%;
     }
 
-    .calendar-book {
+    .calendar-books {
         text-align: center;
     }
 
@@ -249,76 +249,10 @@
                             Search
                         </div>
                     </div>
-                    <div class="calendar-book">
-                        <span><button><img src="http://localhost/booking/wp-content/themes/book/assets/img/icon/white-left-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
-                        <?php
-                            $monday = "";
-                            if(date('D')!='Mon')
-                            {    
-                                $monday = date('F j',strtotime('last Monday'));    
-                            
-                            }else{
-                                $monday = date('Y-m-d');   
-                            }
-                            $sunday = date('F j', strtotime("+6 day", strtotime($monday)));
-                            echo $monday . " - " .$sunday;
-                        ?>
-                        <span><button><img src="http://localhost/booking/wp-content/themes/book/assets/img/icon/white-right-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
-                    </div>
-
-                    <div class="list-calendar">
-                        <table class="table-data-books">
-                            <thead>
-                                <th></th>
-                                <?php
-                                    for($i=0; $i<7; $i++)
-                                    {
-                                        $date = date('D M j', strtotime($i." day", strtotime($monday)));
-                                        ?>
-                                            <th><?php echo $date?></th>
-                                        <?php
-                                    }
-                                ?>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    foreach(get_data_times() as $time )
-                                    { 
-                                        ?>
-                                            <tr class="item-time">
-                                                <td><?php echo $time->name?></td>
-                                                <?php
-                                                    for($i=0; $i<7; $i++)
-                                                    {
-                                                        $date = date('Y-m-d', strtotime($i." day", strtotime($monday)));
-                                                        $books = get_list_books($date,$time->term_id );
-                                                        if(count($books)>0)
-                                                        {
-                                                            ?>
-                                                                <td>
-                                                                    <?php
-                                                                        foreach($books as $book)
-                                                                        {
-                                                                            ?>
-                                                                                <div><?php echo $book->post_title?></div>
-                                                                            <?php
-                                                                        }
-                                                                    ?>
-                                                                </td>
-                                                            <?php
-                                                        } else {
-                                                            ?><td><?php echo "NULL"?></td><?php
-                                                        }
-                                                        
-                                                    }
-                                                ?>
-                                            </tr>
-                                        <?php
-                                    }
-    
-                                ?>
-                            </tbody>
-                        </table> 
+                    <div class="content-books">
+                        <div class="ajax-books">
+                        
+                        </div>
                     </div>
                 </div>
                 <div class="tab-pane" id="clients">Client List</div>
