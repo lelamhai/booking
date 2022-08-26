@@ -110,42 +110,13 @@ function wpdocs_selectively_enqueue_admin_script( $hook ) {
     $allowed_roles = array('subscriber');
     if( array_intersect($allowed_roles, $user->roles ) ) { 
         wp_enqueue_style('admin-style',   get_template_directory_uri() ."/assets/admin/style.css", array(), $version);
-    } 
+    }
+
+    wp_enqueue_script('custom-admin', get_template_directory_uri().'/assets/js/custom-admin.js');
 }
 
 $user = wp_get_current_user();
 $allowed_roles = array('subscriber');
 if( array_intersect($allowed_roles, $user->roles ) ) { 
     require get_template_directory() . '/include/hook-subscriber.php';
-} 
-
-
-/**
- * Register a custom menu page.
- */
-function wpdocs_register_edit_web() {
-    add_menu_page(
-        __( 'Custom Menu Title', 'textdomain' ),
-        'Edit web',
-        'read',
-        '../edit-web',
-        '',
-        'dashicons-welcome-write-blog',
-        99
-    );
 }
-add_action( 'admin_menu', 'wpdocs_register_edit_web' );
-
-
-function wpdocs_register_my_custom_menu_page() {
-    add_menu_page(
-        __( 'Custom Menu Title', 'textdomain' ),
-        'Manage',
-        'read',
-        '../manage',
-        '',
-        'dashicons-calendar-alt',
-        99
-    );
-}
-add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );

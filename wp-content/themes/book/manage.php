@@ -18,26 +18,58 @@
         display: none;
     }
 
+    /* animation */
+    .sidebar-menu {
+        transform: translateX(-100%);
+    }
+
+    .collapse180 {
+        transform: rotate(180deg);
+    }
+
+    .margin-content {
+        margin-left: 240px;
+    }
+
     #manage {
         display: flex;
         width: 100%;
-        height: calc(100vh - 32px);;
     }
 
     #manage-menu-wrap {
-        width: 260px;
+        position: fixed;
+        width: 240px;
         height: 100%;
+        height: calc(100vh - 32px);
         background-color: #1d5f9b;
         display: flex;
         align-items: stretch;
         flex-direction: column;
         justify-content: space-between;
+        transition: transform 500ms ease-in-out 25ms;
     }
 
+    
     #manage-content-wrap {
-        width: calc(100% - 260px);
+        width: 100%;
         overflow-y: scroll;
+        /* transition: transform 500ms ease-in-out 25ms; */
+        transition: margin 500ms ease-in-out 25ms;
     }
+
+    .first-menu-manage {
+        position: relative;
+        padding: 0 15px;
+    }
+
+    .last-menu-manage {
+
+    }
+
+    .wrap-container {
+        padding: 0 30px;
+    }
+
 
     .site-title {
         text-align: center;
@@ -92,32 +124,205 @@
         color: #000;
         text-decoration: none;
     }
+
+    .control-collapse {
+        background-color: #1d5f9b;
+        position: absolute;
+        right: -30px;
+        padding: 5px;
+        display: flex;
+        cursor: pointer;
+        transition: transform 500ms ease-in-out 25ms;
+    }
+
+    .control-collapse img {
+        width: 20px;
+        height: auto;
+    }
+
+    .header-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .table-data-books {
+        border-collapse: separate;
+        border-spacing: 0 10px;
+        width: 100%;
+    }
+
+    .calendar-book {
+        text-align: center;
+    }
+
+    .table-data-books tbody tr:nth-child(odd) {background: #CCC}
+    .table-data-books tbody tr:nth-child(even) {background: #FFF}
 </style>
+
+
+
+<?php
+  
+// $monday = "";
+// if(date('D')!='Mon')
+// {    
+//   $monday = date('Y-m-d',strtotime('last Monday'));    
+
+// }else{
+//     $monday = date('Y-m-d');   
+// }
+// var_dump($monday);
+
+// $date = date('Y-m-d', strtotime("+6 day", strtotime($monday)));
+// var_dump($date);
+
+
+
+// $args = array(  
+//     'post_type'		    => 'books',
+//     'posts_per_page'    => -1,
+//     'tax_query'         => array(
+//         array(
+//             'taxonomy'  => 'times',
+//             'field'     => 'term_id',
+//             'terms'     => 154,
+//         )
+//     ),
+//     'meta_query'	    => array(
+//         array(
+//             'key' => 'booking_date',
+//             'value' => '2022-08-25',
+//             'type' => 'date',
+//             'compare' => '=',
+//         )
+//     )
+// );
+// $listBooks = get_posts($args);
+// var_dump($listBooks);
+
+?>
+
+
+
+
 <main id="manage">
     <div id="manage-menu-wrap">
         <div class="first-menu-manage">
-            <!-- <div class="site-title"><a href="./"><?php echo get_bloginfo()?></a></div> -->
+            <div class="control-collapse "><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/white-left-arrow.png" alt=""></div>
+
             <div class="item-menu-manage datepicker">
                 <div id="datepicker"></div>
             </div>
-            <ul class="item-menu-manage">
-                <li>a</li>
-                <li>b</li>
-                <li>c</li>
+            <ul  class="nav nav-pills">
+                <li class="active">
+                    <a  href="#appointments" data-toggle="tab">Appointments</a>
+                </li>
+                <li>
+                    <a href="#clients" data-toggle="tab">Client List</a>
+                </li>
             </ul>
         </div>
 
         <div class="last-menu-manage">
             <ul class="list-item-footer">
-                <li><a href="./edit-web">Edit web</a></li>
+                <li><a href="./edit-web">Edit Website</a></li>
                 <li><a href="<?php echo wp_logout_url(); ?>">Logout</a></li>
             </ul>
             <div class="site-title"><a href="./"><?php echo get_bloginfo()?></a></div>
         </div>
     </div>
-    <div id="manage-content-wrap">
+    <div id="manage-content-wrap" class="margin-content">
         <div class="wrap-container">
-            content
+           
+            <div class="tab-content clearfix">
+                <div class="tab-pane active" id="appointments">
+                    <div class="header-bar">
+                        <div class="filter-control">
+                            <button>Today</button>
+                            <button>Week</button>
+                        </div>
+
+                        <div class="add-appointment">+ Add appointment</div>
+
+                        <div class="search-phone">
+                            Search
+                        </div>
+                    </div>
+                    <div class="calendar-book">
+                        <span><button><img src="http://localhost/booking/wp-content/themes/book/assets/img/icon/white-left-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
+                        <?php
+                            $monday = "";
+                            if(date('D')!='Mon')
+                            {    
+                                $monday = date('F j',strtotime('last Monday'));    
+                            
+                            }else{
+                                $monday = date('Y-m-d');   
+                            }
+                            $sunday = date('F j', strtotime("+6 day", strtotime($monday)));
+                            echo $monday . " - " .$sunday;
+                        ?>
+                        <span><button><img src="http://localhost/booking/wp-content/themes/book/assets/img/icon/white-right-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
+                    </div>
+
+                    <div class="list-calendar">
+                        <table class="table-data-books">
+                            <thead>
+                                <th></th>
+                                <?php
+                                    for($i=0; $i<7; $i++)
+                                    {
+                                        $date = date('D M j', strtotime($i." day", strtotime($monday)));
+                                        ?>
+                                            <th><?php echo $date?></th>
+                                        <?php
+                                    }
+                                ?>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    foreach(get_data_times() as $time )
+                                    { 
+                                        ?>
+                                            <tr class="item-time">
+                                                <td><?php echo $time->name?></td>
+                                                <?php
+                                                    for($i=0; $i<7; $i++)
+                                                    {
+                                                        $date = date('Y-m-d', strtotime($i." day", strtotime($monday)));
+                                                        $books = get_list_books($date,$time->term_id );
+                                                        if(count($books)>0)
+                                                        {
+                                                            ?>
+                                                                <td>
+                                                                    <?php
+                                                                        foreach($books as $book)
+                                                                        {
+                                                                            ?>
+                                                                                <div><?php echo $book->post_title?></div>
+                                                                            <?php
+                                                                        }
+                                                                    ?>
+                                                                </td>
+                                                            <?php
+                                                        } else {
+                                                            ?><td><?php echo "NULL"?></td><?php
+                                                        }
+                                                        
+                                                    }
+                                                ?>
+                                            </tr>
+                                        <?php
+                                    }
+    
+                                ?>
+                            </tbody>
+                        </table> 
+                    </div>
+                </div>
+                <div class="tab-pane" id="clients">Client List</div>
+            </div>
         </div>
     </div>
 </main>

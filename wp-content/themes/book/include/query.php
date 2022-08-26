@@ -124,6 +124,31 @@ function times_get_data_taxonomy()
     return $taxonomies;
 }
 
+function books_get_data($date, $termId)
+{
+    $args = array(  
+        'post_type'		    => 'books',
+        'posts_per_page'    => -1,
+        'tax_query'         => array(
+            array(
+                'taxonomy'  => 'times',
+                'field'     => 'term_id',
+                'terms'     => $termId,
+            )
+        ),
+        'meta_query'	    => array(
+            array(
+                'key' => 'booking_date',
+                'value' => $date,
+                'type' => 'date',
+                'compare' => '=',
+            )
+        )
+    );
+    $listBooks = get_posts($args);
+    return $listBooks;
+}
+
 function get_data_books($phone)
 {
     $json = array();
