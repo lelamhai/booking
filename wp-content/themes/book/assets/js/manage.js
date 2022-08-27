@@ -2,12 +2,7 @@ $(document).ready(function() {
     let date = new Date();
     let startDate = new Date(date.getFullYear(), date.getMonth(), (date.getDate() - date.getDay())+1);
     let endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 7);
-
-    var selectCurrentWeek = function() {
-        window.setTimeout(function () {
-            $('#datepicker').find('.ui-datepicker-current-day a').addClass('ui-state-active')
-        }, 1);
-    };
+   
 
     $( "#datepicker" ).datepicker( {
         firstDay: 1,
@@ -17,9 +12,6 @@ $(document).ready(function() {
                 cssClass = 'ui-datepicker-current-day';
             return [true, cssClass];
         },
-        onChangeMonthYear: function(year, month, inst) {
-            selectCurrentWeek();
-        }
     });
 
     $(".control-collapse").click(function(){
@@ -51,6 +43,7 @@ $(document).ready(function() {
         let monthS   = endDate.getMonth()+1;
         let dayS     = endDate.getDate();
         let newEndDate = yrS + '-' + monthS + '-' + dayS;
+        
 
         let startDate    = new Date(end);
         startDate.setDate(startDate.getDate() - 7);
@@ -58,7 +51,20 @@ $(document).ready(function() {
         let monthE   = startDate.getMonth()+1;
         let dayE     = startDate.getDate();
         let newStartDate = yrE + '-' + monthE + '-' + dayE;
+        
+        $('#datepicker').datepicker(
+            'setDate', new Date(startDate)
+        );
 
+        $('#datepicker').datepicker('option', {
+            beforeShowDay: function(date) {
+                var cssClass = '';
+                if(date >= new Date(newStartDate) && date <= new Date(newEndDate))
+                    cssClass = 'ui-datepicker-current-day';
+                return [true, cssClass];
+            },
+        });
+        $("#datepicker").focus();
         loadBooks(newStartDate, newEndDate);
     });
 
@@ -78,7 +84,19 @@ $(document).ready(function() {
         let monthE   = endDate.getMonth()+1;
         let dayE     = endDate.getDate();
         let newEndDate = yrE + '-' + monthE + '-' + dayE;
+        
+        $('#datepicker').datepicker(
+            'setDate', new Date(newEndDate)
+        );
 
+        $('#datepicker').datepicker('option', {
+            beforeShowDay: function(date) {
+                var cssClass = '';
+                if(date >= new Date(newStartDate) && date <= new Date(newEndDate))
+                    cssClass = 'ui-datepicker-current-day';
+                return [true, cssClass];
+            },
+        });
         loadBooks(newStartDate, newEndDate);
     });
 

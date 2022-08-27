@@ -13,16 +13,16 @@ function get_data_books_date_function() {
             <div class="list-data-books">
                 <div class="calendar-books">
                     <?php
-                            $start = date('Y-m-d', strtotime("0 day", strtotime($_GET["startDate"])));
-                            $end = date('Y-m-d', strtotime("0 day", strtotime($_GET["endDate"])));
-                            ?>
-                            <span><button class="previous-books" data-date="<?php echo  $start?>"><img src="http://localhost/booking/wp-content/themes/book/assets/img/icon/white-left-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
-                            <?php
-                                $monday = date('F j', strtotime("0 day", strtotime($start)));
-                                $sunday = date('F j', strtotime("0 day", strtotime($end)));
-                                echo $monday . " - " .$sunday;
-                            ?>
-                            <span><button class="next-books" data-date="<?php echo  $end?>"><img src="http://localhost/booking/wp-content/themes/book/assets/img/icon/white-right-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
+                        $start = date('Y-m-d', strtotime("0 day", strtotime($_GET["startDate"])));
+                        $end = date('Y-m-d', strtotime("0 day", strtotime($_GET["endDate"])));
+                        ?>
+                            <span><button class="previous-books" data-date="<?php echo  $start?>"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/white-left-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
+                        <?php
+                            $monday = date('F j', strtotime("0 day", strtotime($start)));
+                            $sunday = date('F j', strtotime("0 day", strtotime($end)));
+                            echo $monday . " - " .$sunday;
+                        ?>
+                            <span><button class="next-books" data-date="<?php echo  $end?>"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/white-right-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
                 </div>
                 <div class="list-calendar">
                     <table class="table-data-books">

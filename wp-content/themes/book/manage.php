@@ -101,13 +101,19 @@
         color: #fff;
     }
 
-    .ui-state-default {
+    /* .ui-state-default {
         background-color: transparent!important;
+        color: #fff !important; 
+        border: 0 !important;
+    } */
+    
+    .ui-datepicker-calendar td a {
+        background-color: transparent !important;
         color: #fff !important; 
         border: 0 !important;
     }
 
-    .ui-datepicker-current-day a {
+    .ui-datepicker-calendar .ui-datepicker-current-day a {
         background-color: #fff !important;
         color: #000 !important;
     }
