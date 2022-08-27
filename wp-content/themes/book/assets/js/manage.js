@@ -6,6 +6,25 @@ $(document).ready(function() {
 
     $( "#datepicker" ).datepicker( {
         firstDay: 1,
+        onSelect: function(dateText, inst) {
+            date = new Date(dateText);
+            startDate = new Date(date.getFullYear(), date.getMonth(), (date.getDate() - date.getDay())+1);
+            endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 7);
+            
+            startDate    = new Date(startDate);
+            let yrS      = startDate.getFullYear();
+            let monthS   = startDate.getMonth()+1;
+            let dayS     = startDate.getDate();
+            let newStartDate = yrS + '-' + monthS + '-' + dayS;
+
+            endDate    = new Date(endDate);
+            let yrE      = endDate.getFullYear();
+            let monthE   = endDate.getMonth()+1;
+            let dayE     = endDate.getDate();
+            let newEndDate = yrE + '-' + monthE + '-' + dayE;
+
+            loadBooks(newStartDate, newEndDate);
+        },
         beforeShowDay: function(date) {
             var cssClass = '';
             if(date >= startDate && date <= endDate)
@@ -14,11 +33,7 @@ $(document).ready(function() {
         },
     });
 
-    $(".control-collapse").click(function(){
-        $( this ).toggleClass( "collapse180" );
-        $("#manage-menu-wrap").toggleClass("sidebar-menu");
-        $("#manage-content-wrap").toggleClass("margin-content");
-    });
+    
     startDate    = new Date(startDate);
     let yrS      = startDate.getFullYear();
     let monthS   = startDate.getMonth()+1;
@@ -64,7 +79,6 @@ $(document).ready(function() {
                 return [true, cssClass];
             },
         });
-        $("#datepicker").focus();
         loadBooks(newStartDate, newEndDate);
     });
 
@@ -100,6 +114,11 @@ $(document).ready(function() {
         loadBooks(newStartDate, newEndDate);
     });
 
+    $(".control-collapse").click(function(){
+        $( this ).toggleClass( "collapse180" );
+        $("#manage-menu-wrap").toggleClass("sidebar-menu");
+        $("#manage-content-wrap").toggleClass("margin-content");
+    });
 });
 
 function loadBooks(startDate, endDate)
