@@ -79,8 +79,7 @@
         background-color: <?php echo $BackgroundButtonBody?> !important;
     }
 
-    .checkbox-budget:checked + label::before,
-    .checkbox-budget:not(:checked) + label::before {
+    .checkbox-budget:checked + label::before {
         background-color: <?php echo $BackgroundButtonBody?>;
     }
 
@@ -88,11 +87,15 @@
         background-color: <?php echo $BackgroundButtonBody?>;
     }
 
-    .checkbox-budget:checked + label, .checkbox-budget:not(:checked) + label {
+    .checkbox-budget:checked + label,
+    .checkbox-budget:not(:checked) + label:hover,
+    .number input:checked ~ .checkmark,
+    .number:hover input ~ .checkmark{
         border: 1px solid <?php echo $BackgroundButtonBody?>;
     }
 
-    .number input:checked ~ .checkmark {
+    .number input:checked ~ .checkmark,
+    .number:hover input ~ .checkmark {
         background-color: <?php echo $BackgroundButtonBody?>
     }
 
@@ -388,6 +391,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <div class="nail-address TextColorBody">
+                        <img src="<?php echo get_template_directory_uri() ."/assets/img/icon-theme/icon-location.png"?>" alt="">
                         <?php
                         if(get_option($businessAddress))
                         {
@@ -402,7 +406,10 @@
                         {
                             $phone = get_option($businessPhoneNumber);
                             ?>
-                            <a class ="TextColorBody" href="tel:<?php echo $phone ?>">Tel: <?php echo $phone ?></a>
+                            <div class="nail-call-small">
+                                <img src="<?php echo get_template_directory_uri() ."/assets/img/icon-theme/icon-phone.png"?>" alt="">
+                                <a class ="TextColorBody" href="tel:<?php echo $phone ?>">Tel: <?php echo $phone ?></a>
+                            </div>
                             <?php
                         }
                         ?>
@@ -434,15 +441,19 @@
 
         <section class="container welcome">
             <div class="row">
-                <div class="col-md-4 column-left">
-                    <div class="title-welcome-nail TextColorBody">
+                <div class="col-md-12">
+                    <h3 class="title-welcome-nail TextColorBody">
                         <?php
                         if(get_option($businessTitleWelcome))
                         {
                             echo get_option($businessTitleWelcome);
                         }
                         ?>
-                    </div>
+                    </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 column-left">
                     <div class="content-welcome-nail TextColorBody">
                         <?php
                         if(get_option($businessContentWelcome))
@@ -452,12 +463,12 @@
                         ?>
                     </div>
                     <div class="button-welcome">
-                        <div class="wrap-review BackgroundButtonBody TextColorButtonBody" data-toggle="modal" data-target="#listIcon">
-                            WRITE A REVIEW
-                        </div>
+                        <button class="wrap-review BackgroundButtonBody TextColorButtonBody" data-toggle="modal" data-target="#listIcon">
+                            Write a Review
+                        </button>
                     </div>
                 </div>
-                <div class="col-md-8 column-right">
+                <div class="col-md-9 column-right">
                     <div class="slider">
                         <?php
                         $url = "";
@@ -522,14 +533,14 @@
             <div class="container wrap-list-reviews TextColorReviews">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="title-reviews title-gift">
+                        <h3 class="title-reviews title-gift">
                             <?php
                             if(get_option($businessTitleReviews))
                             {
                                 echo stripslashes(get_option($businessTitleReviews));
                             }
                             ?>
-                        </div>
+                        </h3>
                         <div class="slider-reviews">
                             <div class="item-slider-reviews">
                                 <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
@@ -643,7 +654,7 @@
                     <div class="col-md-12">
                         <div class="menu-main-row">
                             <div class="menu-main-row">
-                                <h3>our services</h3>
+                                <h3>Our services</h3>
                             </div>
                             <div class="wrap-menu-title">
                                 <div class="menu-label-left">
@@ -725,7 +736,7 @@
             <div class="row">
                 <div class="col-md-12 wrap-form">
                     <div class="form-top-title TextColorBody">
-                        MAKE A RESERVATION
+                        Make a reservation
                     </div>
 
                     <div class="form-hr BackgroundButtonBody"></div>

@@ -324,8 +324,8 @@ function body_function() {
 		add_option( $option_name, $new_value, $deprecated, $autoload );
 	}
 
-    $option_name = $_POST['keyContentWelcome'] ;
-	$new_value = $_POST['contentWelcome'] ;
+    $option_name = $_POST['keyTextBodyContent'] ;
+	$new_value = $_POST['textBodyContent'] ;
 	if ( get_option( $option_name ) != $new_value ) {
 		update_option( $option_name, $new_value );
 	} else {

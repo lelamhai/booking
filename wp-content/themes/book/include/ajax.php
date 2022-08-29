@@ -37,7 +37,7 @@
             ?>
                 <div class="wrap-guest">
                     <div class="wrap-number-of-guest">
-                        <div class="guest-title TextColorBody">NUMBER OF GUEST<span class="red">*</span></div>
+                        <div class="guest-title TextColorBody">Number of guest<span class="red">*</span></div>
                         <div class="select-nember over-hide">
                             <?php
                                 if($slots > 0)
