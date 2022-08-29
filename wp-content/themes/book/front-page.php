@@ -395,7 +395,7 @@
                         <?php
                         if(get_option($businessAddress))
                         {
-                            echo get_option($businessAddress);
+                            echo '<span>'.get_option($businessAddress).'</span>';
                         }
                         ?>
                     </div>
@@ -408,7 +408,7 @@
                             ?>
                             <div class="nail-call-small">
                                 <img src="<?php echo get_template_directory_uri() ."/assets/img/icon-theme/icon-phone.png"?>" alt="">
-                                <a class ="TextColorBody" href="tel:<?php echo $phone ?>">Tel: <?php echo $phone ?></a>
+                                <a class ="telephone TextColorBody" href="tel:<?php echo $phone ?>">Tel: <?php echo $phone ?></a>
                             </div>
                             <?php
                         }
@@ -442,7 +442,7 @@
         <section class="container welcome">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="title-welcome-nail TextColorBody">
+                    <h3 class="title-welcome-nail">
                         <?php
                         if(get_option($businessTitleWelcome))
                         {
@@ -543,7 +543,7 @@
                         </h3>
                         <div class="slider-reviews">
                             <div class="item-slider-reviews">
-                                <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
+                                <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                                 <?php
                                 $content = "";
                                 if(get_option($businessContent1Reviews))
@@ -552,10 +552,10 @@
                                 }
                                 echo $content;
                                 ?>
-                                <svg class="icon-client-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
+                                <svg class="icon-client-2" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                             </div>
                             <div class="item-slider-reviews">
-                                <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
+                                <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                                 <?php
                                 $content = "";
                                 if(get_option($businessContent2Reviews))
@@ -564,10 +564,10 @@
                                 }
                                 echo $content;
                                 ?>
-                                <svg class="icon-client-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
+                                <svg class="icon-client-2" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                             </div>
                             <div class="item-slider-reviews">
-                                <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
+                                <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                                 <?php
                                 $content = "";
                                 if(get_option($businessContent3Reviews))
@@ -576,7 +576,7 @@
                                 }
                                 echo $content;
                                 ?>
-                                <svg class="icon-client-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
+                                <svg class="icon-client-2" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                             </div>
                         </div>
                     </div>
@@ -587,14 +587,14 @@
         <section class="container gift anim move js-anim" id="Gift">
             <div class="row wrap-gift">
                 <div class="col-md-3">
-                    <div class="title-gift TextColorBody">
+                    <div class="title-gift">
                         <?php
                         $text = "Gift Cards";
                         if(get_option($businessTitleGift))
                         {
                             $text = get_option($businessTitleGift);
                         }
-                        echo $text;
+                        echo '<h3>'.$text.'</h3>';
                         ?>
                     </div>
                     <div class="content-gift TextColorBody">
@@ -675,9 +675,9 @@
                                 <div class="menu-main-row">
                                     <div class="wrap-menu-parent">
                                         <div class="menu-label-left">
-                                            <div class="menu-title-parent TextColorBody">
+                                            <h4 class="menu-title-parent TextColorBody">
                                                 <?php echo $parent->name ?>
-                                            </div>
+                                            </h4>
                                             <div class="menu-description-parent TextColorBody">
                                                 <?php echo $parent->description ?>
                                             </div>
@@ -688,9 +688,9 @@
                                             if(count($childrens) > 0)
                                             {
                                                 ?>
-                                                <div class="menu-right-more">
-                                                    More
-                                                </div>
+                                                <h4 class="menu-right-more">
+                                                    See More
+                                                </h4>
                                                 <?php
                                             } else {
                                                 echo "$".get_term_meta( $parent->term_id, 'services-price', true );
@@ -714,9 +714,9 @@
                                                         <?php echo $child->description?>
                                                     </div>
                                                 </div>
-                                                <div class="menu-label-right TextColorBody">
+                                                <h4 class="menu-label-right TextColorBody">
                                                     <?php echo "$".get_term_meta( $child->term_id, 'services-price', true );?>
-                                                </div>
+                                                </h4>
                                             </div>
                                             <?php
                                         }
@@ -735,11 +735,11 @@
         <section class="container form anim move js-anim" id="BookOnline">
             <div class="row">
                 <div class="col-md-12 wrap-form">
-                    <div class="form-top-title TextColorBody">
+                    <div class="form-top-title">
                         Make a reservation
                     </div>
 
-                    <div class="form-hr BackgroundButtonBody"></div>
+                    <div class="form-hr"></div>
 
                     <div class="form-content TextColorBody">
                         Book online, chat with us or you can always call us during our business hours.<br>

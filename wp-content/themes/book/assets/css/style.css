@@ -101,9 +101,14 @@ p:last-child {
 
 .nail-address {
   font-size: 34px;
-  padding-bottom: 10px;
+  padding-bottom: 33px;
   position: relative;
   z-index: 1;
+}
+
+.nail-address span {
+  font-size: 34px;
+  position: relative;
 }
 
 .nail-call {
@@ -116,11 +121,15 @@ p:last-child {
 }
 .nail-call .nail-call-small a {
   font-size: 34px;
+  line-height: 34px;
   transform: translateY(5px);
   display: inline-block;
+  text-decoration: unset;
+  position: relative;
 }
 .nail-call > a {
   font-size: 30px;
+  transform: translate(22px, 5px);
 }
 
 .social-network {
@@ -236,12 +245,12 @@ p:last-child {
 }
 .wrap-list-reviews {
   text-align: center;
-  padding: 100px 0;
+  padding: 142px 0 135px;
 }
 
 .slider-reviews {
   padding: 0 60px;
-  max-width: 1140px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
@@ -260,17 +269,21 @@ p:last-child {
   margin: 10px 0;
 }
 
+.slider-reviews .item-slider-reviews h3 em{
+  font-size: 22px;
+}
+
 .slider-reviews .item-slider-reviews .icon-client-1 {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 10px;
 }
 
 .slider-reviews .item-slider-reviews .icon-client-2 {
   position: absolute;
   transform: rotateY(180deg);
   bottom: 0px;
-  right: 0;
+  right: 8px;
 }
 
 .slick-track {
@@ -641,8 +654,8 @@ p:last-child {
 
 .nail {
   position: relative;
-  margin-top: 70px;
-  margin-bottom: 100px;
+  margin-top: 78px;
+  margin-bottom: 45px;
 }
 
 .nail-heart {
@@ -1063,7 +1076,7 @@ p:last-child {
 
 
 .welcome {
-  margin-bottom: 30px;
+  margin-bottom: 75px;
 }
 
 .welcome .col-md-3 {
@@ -1101,7 +1114,14 @@ p:last-child {
 
 .title-gift {
   font-size: 60px;
-  padding-bottom: 30px;
+  padding-bottom: 48px;
+}
+
+.title-gift,
+.title-welcome-nail,
+.menu-main-row h3,
+.form-top-title {
+  color: #275050;
 }
 
 .content-gift {
@@ -1119,6 +1139,7 @@ p:last-child {
 
 .menu-main {
   background: #e5e2d6;
+  padding-top: 33px;
   margin-bottom: 100px;
 }
 
@@ -1195,6 +1216,17 @@ footer {
   max-width: 32px;
   margin-right: 10px;
   transform: translateY(-3px);
+}
+
+.nail-address span:before,
+.nail-call-small .telephone:before{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: url("../../assets/img/icon-theme/line-1.png");
+  bottom: -10px;
+  left: 0;
 }
 
 .nail-call .nail-call-small img {
