@@ -15,14 +15,11 @@ function get_data_books_date_function() {
                     <?php
                         $start = date('Y-m-d', strtotime("0 day", strtotime($_GET["startDate"])));
                         $end = date('Y-m-d', strtotime("0 day", strtotime($_GET["endDate"])));
-                        ?>
-                            <span><button class="previous-books" data-date="<?php echo  $start?>"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/white-left-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
-                        <?php
-                            $monday = date('F j', strtotime("0 day", strtotime($start)));
-                            $sunday = date('F j', strtotime("0 day", strtotime($end)));
-                            echo $monday . " - " .$sunday;
-                        ?>
-                            <span><button class="next-books" data-date="<?php echo  $end?>"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/white-right-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
+                        
+                        $monday = date('F j', strtotime("0 day", strtotime($start)));
+                        $sunday = date('F j', strtotime("0 day", strtotime($end)));
+                        echo $monday . " - " .$sunday;
+                    ?>
                 </div>
                 <div class="list-calendar">
                     <table class="table-data-books">
@@ -65,7 +62,7 @@ function get_data_books_date_function() {
                                                             </td>
                                                         <?php
                                                     } else {
-                                                        ?><td><?php echo "NULL"?></td><?php
+                                                        ?><td><?php echo ""?></td><?php
                                                     }
                                                                 
                                                 }

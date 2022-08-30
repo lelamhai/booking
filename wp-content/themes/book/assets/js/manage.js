@@ -1,125 +1,57 @@
 $(document).ready(function() {
     let date = new Date();
-    let startDate = new Date(date.getFullYear(), date.getMonth(), (date.getDate() - date.getDay())+1);
-    let endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 7);
-   
-
-    $( "#datepicker" ).datepicker( {
+    let begin = getMonday(date);
+    let end = getSunday(date);
+    
+    loadBooks(formatDate(begin), formatDate(end));
+    $('#datepicker').datepicker({
         firstDay: 1,
         onSelect: function(dateText, inst) {
             date = new Date(dateText);
-            startDate = new Date(date.getFullYear(), date.getMonth(), (date.getDate() - date.getDay())+1);
-            endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 7);
-            
-            startDate    = new Date(startDate);
-            let yrS      = startDate.getFullYear();
-            let monthS   = startDate.getMonth()+1;
-            let dayS     = startDate.getDate();
-            let newStartDate = yrS + '-' + monthS + '-' + dayS;
-
-            endDate    = new Date(endDate);
-            let yrE      = endDate.getFullYear();
-            let monthE   = endDate.getMonth()+1;
-            let dayE     = endDate.getDate();
-            let newEndDate = yrE + '-' + monthE + '-' + dayE;
-
-            loadBooks(newStartDate, newEndDate);
+            begin = getMonday(date);
+            end = getSunday(date);
+            loadBooks(formatDate(begin), formatDate(end));
         },
-        beforeShowDay: function(date) {
+        beforeShowDay: function(listDate) {
+            let currentDate = new Date(formatDate(listDate));
+            let startDate = new Date(formatDate(begin));
+            let endDate = new Date(formatDate(end));
+            
             var cssClass = '';
-            if(date >= startDate && date <= endDate)
+             if(currentDate >= startDate && currentDate <= endDate)
                 cssClass = 'ui-datepicker-current-day';
             return [true, cssClass];
         },
     });
-
-    
-    startDate    = new Date(startDate);
-    let yrS      = startDate.getFullYear();
-    let monthS   = startDate.getMonth()+1;
-    let dayS     = startDate.getDate();
-    let newStartDate = yrS + '-' + monthS + '-' + dayS;
-    
-    endDate    = new Date(endDate);
-    let yrE      = endDate.getFullYear();
-    let monthE   = endDate.getMonth()+1;
-    let dayE     = endDate.getDate();
-    let newEndDate = yrE + '-' + monthE + '-' + dayE;
-    
-
-    loadBooks(newStartDate, newEndDate);
-    
-    $(document).on('click', '.previous-books', function() {
-        let end = $(this).data("date");
-
-        let endDate    = new Date(end);
-        endDate.setDate(endDate.getDate() - 1);
-        let yrS      = endDate.getFullYear();
-        let monthS   = endDate.getMonth()+1;
-        let dayS     = endDate.getDate();
-        let newEndDate = yrS + '-' + monthS + '-' + dayS;
-        
-
-        let startDate    = new Date(end);
-        startDate.setDate(startDate.getDate() - 7);
-        let yrE      = startDate.getFullYear();
-        let monthE   = startDate.getMonth()+1;
-        let dayE     = startDate.getDate();
-        let newStartDate = yrE + '-' + monthE + '-' + dayE;
-        
-        $('#datepicker').datepicker(
-            'setDate', new Date(startDate)
-        );
-
-        $('#datepicker').datepicker('option', {
-            beforeShowDay: function(date) {
-                var cssClass = '';
-                if(date >= new Date(newStartDate) && date <= new Date(newEndDate))
-                    cssClass = 'ui-datepicker-current-day';
-                return [true, cssClass];
-            },
-        });
-        loadBooks(newStartDate, newEndDate);
-    });
-
-    $(document).on('click', '.next-books', function() {
-        let start = $(this).data("date");
-
-        let startDate    = new Date(start);
-        startDate.setDate(startDate.getDate() + 1);
-        let yrS      = startDate.getFullYear();
-        let monthS   = startDate.getMonth()+1;
-        let dayS     = startDate.getDate();
-        let newStartDate = yrS + '-' + monthS + '-' + dayS;
-
-        let endDate    = new Date(start);
-        endDate.setDate(endDate.getDate() + 7);
-        let yrE      = endDate.getFullYear();
-        let monthE   = endDate.getMonth()+1;
-        let dayE     = endDate.getDate();
-        let newEndDate = yrE + '-' + monthE + '-' + dayE;
-        
-        $('#datepicker').datepicker(
-            'setDate', new Date(newEndDate)
-        );
-
-        $('#datepicker').datepicker('option', {
-            beforeShowDay: function(date) {
-                var cssClass = '';
-                if(date >= new Date(newStartDate) && date <= new Date(newEndDate))
-                    cssClass = 'ui-datepicker-current-day';
-                return [true, cssClass];
-            },
-        });
-        loadBooks(newStartDate, newEndDate);
-    });
-
-    $(".control-collapse").click(function(){
-        $( this ).toggleClass( "collapse180" );
-        $("#manage-menu-wrap").toggleClass("sidebar-menu");
-        $("#manage-content-wrap").toggleClass("margin-content");
-    });
 });
+
+function formatDate(date)
+{
+    let dateFormat = new Date(date);
+    let year = dateFormat.getFullYear();
+    let month   = dateFormat.getMonth()+1;
+    let day     = dateFormat.getDate();
+    return  year + '-' + month + '-' + day;
+}
+
+function getMonday(d) {
+    var day = d.getDay(),
+        diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+    return new Date(d.setDate(diff));
+}
+
+function getSunday(d) {
+    let day = new Date(d);
+    day.setDate(day.getDate() + 6);
+    return day;
+}
+
+function getCalculator(date, numberDay)
+{
+    let currentDate = new Date(date);
+    currentDate.setDate(currentDate.getDate() + numberDay);
+    return currentDate;
+}
 
 function loadBooks(startDate, endDate)
 {
