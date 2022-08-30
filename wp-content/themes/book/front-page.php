@@ -79,25 +79,25 @@
         background-color: <?php echo $BackgroundButtonBody?> !important;
     }
 
-    .checkbox-budget:checked + label::before {
-        background-color: <?php echo $BackgroundButtonBody?>;
-    }
+    /*.checkbox-budget:checked + label::before {*/
+    /*    background-color: */<?php //echo $BackgroundButtonBody?>/*;*/
+    /*}*/
 
-    .checkbox-budget:not(:checked) + label:hover {
-        background-color: <?php echo $BackgroundButtonBody?>;
-    }
+    /*.checkbox-budget:not(:checked) + label:hover {*/
+    /*    background-color: */<?php //echo $BackgroundButtonBody?>/*;*/
+    /*}*/
 
-    .checkbox-budget:checked + label,
-    .checkbox-budget:not(:checked) + label:hover,
-    .number input:checked ~ .checkmark,
-    .number:hover input ~ .checkmark{
-        border: 1px solid <?php echo $BackgroundButtonBody?>;
-    }
+    /*.checkbox-budget:checked + label,*/
+    /*.checkbox-budget:not(:checked) + label:hover,*/
+    /*.number input:checked ~ .checkmark,*/
+    /*.number:hover input ~ .checkmark{*/
+    /*    border: 1px solid */<?php //echo $BackgroundButtonBody?>/*;*/
+    /*}*/
 
-    .number input:checked ~ .checkmark,
-    .number:hover input ~ .checkmark {
-        background-color: <?php echo $BackgroundButtonBody?>
-    }
+    /*.number input:checked ~ .checkmark,*/
+    /*.number:hover input ~ .checkmark {*/
+    /*    background-color: */<?php //echo $BackgroundButtonBody?>
+    /*}*/
 
     .select2-container--default .select2-results__option--highlighted[aria-selected] {
         background-color: <?php echo $BackgroundButtonBody?> !important;
@@ -463,7 +463,7 @@
                         ?>
                     </div>
                     <div class="button-welcome">
-                        <button class="wrap-review BackgroundButtonBody TextColorButtonBody" data-toggle="modal" data-target="#listIcon">
+                        <button class="wrap-review" data-toggle="modal" data-target="#listIcon">
                             Write a Review
                         </button>
                     </div>
@@ -586,20 +586,20 @@
 
         <section class="container gift anim move js-anim" id="Gift">
             <div class="row wrap-gift">
-                <div class="col-md-3">
-                    <div class="title-gift">
+                <div class="col-md-4">
+                    <h3 class="title-gift-card">
                         <?php
-                        $text = "Gift Cards";
+                        $text = "Buy gift cards";
                         if(get_option($businessTitleGift))
                         {
                             $text = get_option($businessTitleGift);
                         }
-                        echo '<h3>'.$text.'</h3>';
+                        echo $text;
                         ?>
-                    </div>
+                    </h3>
                     <div class="content-gift TextColorBody">
                         <?php
-                        $text = "Buy gift cards for your beloved ones Buy gift cards for your beloved ones Buy gift cards for your beloved ones";
+                        $text = "Buy gift cards for your beloved ones";
                         if(get_option($businessContentGift))
                         {
                             $text = get_option($businessContentGift);
@@ -607,10 +607,10 @@
                         echo $text;
                         ?>
                     </div>
-                    <div class="buy-gift BackgroundButtonBody TextColorButtonBody">Buy Now</div>
-                    <div class="Check-gift BackgroundButtonBody TextColorButtonBody">Check Balance</div>
+                    <button class="buy-gift">Buy Now</button>
+                    <button class="check-gift">Check Balance</button>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <div class="image-gift">
                         <?php
                         $url = get_template_directory_uri()."/assets/img/gift.jpg";
@@ -660,9 +660,7 @@
                                 <div class="menu-label-left">
                                     <!-- NAME -->
                                 </div>
-                                <div class="menu-label-right TextColorBody">
-                                    PRICE
-                                </div>
+                                <div class="menu-label-right">Price</div>
                             </div>
                         </div>
                         <?php
@@ -683,21 +681,17 @@
                                             </div>
                                         </div>
 
-                                        <div class="menu-label-right TextColorBody">
-                                            <?php
-                                            if(count($childrens) > 0)
-                                            {
-                                                ?>
-                                                <h4 class="menu-right-more">
-                                                    See More
-                                                </h4>
-                                                <?php
-                                            } else {
-                                                echo "$".get_term_meta( $parent->term_id, 'services-price', true );
-                                            }
+                                        <?php
+                                        if(count($childrens) > 0)
+                                        {
                                             ?>
+                                            <div class="menu-label-right menu-right-more TextColorBody">See More</div>
+                                            <?php
+                                        } else {
+                                            echo "$".get_term_meta( $parent->term_id, 'services-price', true );
+                                        }
+                                        ?>
 
-                                        </div>
 
                                     </div>
                                     <div class="content-menu-child menu-hide">
@@ -710,13 +704,13 @@
                                                     <div class="menu-main-title TextColorBody">
                                                         <?php echo $child->name?>
                                                     </div>
-                                                    <div class="meun-main-title TextColorBody">
+                                                    <div class="menu-main-desc TextColorBody">
                                                         <?php echo $child->description?>
                                                     </div>
                                                 </div>
-                                                <h4 class="menu-label-right TextColorBody">
+                                                <div class="menu-label-right TextColorBody">
                                                     <?php echo "$".get_term_meta( $child->term_id, 'services-price', true );?>
-                                                </h4>
+                                                </div>
                                             </div>
                                             <?php
                                         }
@@ -735,9 +729,9 @@
         <section class="container form anim move js-anim" id="BookOnline">
             <div class="row">
                 <div class="col-md-12 wrap-form">
-                    <div class="form-top-title">
+                    <h3 class="form-top-title">
                         Make a reservation
-                    </div>
+                    </h3>
 
                     <div class="form-hr"></div>
 

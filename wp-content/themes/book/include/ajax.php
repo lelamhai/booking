@@ -229,7 +229,7 @@
                         {
                             ?>
                                 <div class="wrap-input-form wrap-input-message choose-person">
-                                    <div class="label-card TextColorBody">Your message</div>
+                                    <div class="label-card">Your message</div>
                                     <textarea class="message" name="message" rows="6" cols="50" placeholder="Message"></textarea>
                                 </div>
                             <?php

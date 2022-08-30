@@ -50,7 +50,7 @@ $(document).ready(function() {
 
     // menu more
     $('.menu-right-more').click(function(){
-        $(this).parent().parent().parent().children(".content-menu-child").toggle("menu-hide");
+        $(this).parent().parent().children(".content-menu-child").toggle("menu-hide");
     });
 
     

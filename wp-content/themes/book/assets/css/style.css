@@ -199,7 +199,13 @@ p:last-child {
   margin-bottom: 30px;
 }
 
-.wrap-review {
+.gift .col-md-4{
+  padding: 0 130px 0 45px;
+}
+
+.wrap-review,
+.buy-gift,
+.check-gift{
   width: 100%;
   height: 60px;
   display: flex;
@@ -207,10 +213,25 @@ p:last-child {
   justify-content: center;
   cursor: pointer;
   text-align: center;
-  background-color: #008037;
-  color: #fff;
-  border-radius: 15px;
+  background: url('../../assets/img/icon-theme/bg-btn.png') no-repeat center center;
+  background-size: cover;
+  color: #cfa560;
+  border-radius: 18px;
   font-size: 25px;
+}
+
+.wrap-review {
+  font-size: 25px;
+}
+
+.buy-gift,
+.check-gift {
+  font-size: 30px;
+}
+
+.buy-gift {
+  margin-top: 25px;
+  margin-bottom: 40px;
 }
 
 .wrap-video {
@@ -328,7 +349,8 @@ p:last-child {
 }
 
 .gift {
-  padding-bottom: 100px;
+  padding-top: 135px;
+  padding-bottom: 180px;
 }
 
 .gift-heart1 img {
@@ -403,20 +425,20 @@ p:last-child {
   cursor: pointer;
 }
 
-.menu-main-row {
-  margin-bottom: 15px
-}
-
 .menu-main-row h3,
 .form-top-title {
   text-align: center;
   font-size: 60px;
 }
 
+.form-top-title {
+  margin-left: 18px;
+}
+
 .wrap-menu-title {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 
 .wrap-menu-main-parent {
@@ -442,22 +464,43 @@ p:last-child {
   font-weight: bold;
 }
 
-.wrap-menu-title  .menu-label-right {
-  font-size: 20px;
-  font-weight: bold;
+.wrap-menu-title .menu-label-right {
+  font-size: 45px;
+  font-family: 'Playfair Display', serif;
+  color: #0e274c;
+  transform: translate(-38px, -15px);
+  font-weight: 300;
 }
-
 
 .wrap-menu-parent {
   display: flex;
   justify-content: space-between;
   padding-right: 5px;
-  padding-bottom: 15px;
+  padding-bottom: 45px;
+}
+
+.wrap-menu-parent .menu-label-left {
+  flex: 0 1 75%;
+}
+
+.wrap-menu-parent .menu-label-right  {
+  font-size: 30px;
+  font-weight: 400;
+  flex: 0 1 25%;
+  margin-top: 5px;
+  cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  display: flex;
+  justify-content: flex-end;
+  font-style: italic;
+  text-transform: lowercase;
+  margin-right: 14px;
 }
 
 .wrap-menu-parent .menu-label-left .menu-title-parent {
-  font-weight: bold;
-  font-size: 22px;
+  font-weight: 300;
+  font-size: 45px;
+  margin: 0;
 }
 
 .wrap-menu-parent .menu-label-left .menu-description-parent {
@@ -469,26 +512,42 @@ p:last-child {
 }
 
 .wrap-menu-main {
-  max-width: 960px;
   margin: auto;
   display: flex;
   justify-content: space-between;
-  padding:0  15px;
-  padding-bottom: 15px;
+  padding: 0 60px;
+  padding-bottom: 38px;
 }
 
-.menu-main-title {
-  font-weight: bold;
-  font-size: 18px;
+.wrap-menu-main .menu-label-right {
+  transform: translateX(55px);
+}
+
+.menu-main-title,
+.menu-label-right {
+  font-size: 35px;
+}
+
+.menu-main-desc {
+  font-size: 22px;
+  margin-left: 50px;
+  margin-top: 3px;
 }
 
 .wrap-form {
+  padding-top: 102px;
   padding-bottom: 70px;
 }
 
+.menu-main-row .content-menu-child {
+  margin-top: -3px;
+}
+
 .form-content {
-  padding-bottom: 30px;
+  padding-bottom: 48px;
   text-align: center;
+  font-size: 20px;
+  line-height: 39px;
 }
 
 .form-star {
@@ -508,27 +567,32 @@ p:last-child {
 .red {
   color: red;
   font-size: 30px;
-  transform: translate(7px,-7px);
+  transform: translate(3px,2px);
   display: inline-block;
 }
 
 .form-hr {
   width: 100%;
   max-width: 400px;
-  margin: 0 auto;
-  height: 2px;
-  background-color: #008037;
-  margin-bottom: 30px;
+  margin: 28px auto 56px;
+  height: 3px;
+  transform: translateX(10px);
+  background: url("../../assets/img/icon-theme/line-2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .wrap-input-form {
   width: 100%;
   margin-bottom: 15px;
+  transform: translateX(-8px);
 }
 
 .label-card {
-  padding-bottom: 10px;
+  padding-bottom: 11.5px;
   font-size: 30px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
 }
 
 .wrap-input-form input {
@@ -537,6 +601,12 @@ p:last-child {
   height: 50px;
   padding: 0 15px;
   background-color: transparent;
+  font-size: 25px;
+  color: black;
+}
+input:focus-visible,
+.wrap-input-message textarea:focus-visible{
+  outline: 0;
 }
 
 .wrap-input-form select {
@@ -551,6 +621,7 @@ p:last-child {
   width: 100%;
   max-height: 140px;
   background: transparent;
+  font-size: 25px;
 }
 
 .choose-number {
@@ -561,6 +632,7 @@ p:last-child {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 30px;
+  transform: translateX(-5px);
 }
 
 .choose-person {
@@ -829,18 +901,26 @@ p:last-child {
   position: relative;
   padding-left: 80px;
   margin-right: 130px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   cursor: pointer;
   font-size: 45px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
 }
 
 .guest-item-title {
   padding-bottom: 10px;
   font-size: 30px;
+  transform: translateX(-5px);
+  font-family: 'Playfair Display', serif;
+}
+
+.guest-item-title .red {
+  font-size: 42px;
 }
 
 .wrap-slots {
@@ -868,7 +948,7 @@ p:last-child {
 }
 
 .wrap-service-item {
-  margin: 0 0 30px;
+  margin: 36px 0 30px;
 }
 
 /* Hide the browser's default checkbox */
@@ -957,11 +1037,12 @@ p:last-child {
 }
 
 .checkbox-budget:not(:checked) + label:hover {
-  background-color: #008037;
+  background-image: url('../../assets/img/icon-theme/bg-btn.png');
+  background-size: cover;
 }
 
 .checkbox-budget:not(:checked) + label:hover span {
-  color: #fff;
+  color: #dbad65;
 }
 
 .checkbox-budget:checked + label::before,
@@ -1027,6 +1108,8 @@ p:last-child {
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
   line-height: 50px !important;
+  font-size: 25px;
+  color: black !important;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
@@ -1051,6 +1134,7 @@ p:last-child {
 .select-nember {
   display: flex;
   flex-wrap: wrap;
+  transform: translateX(-5px);
 }
 
 .select-nember .item-slot:last-child .checkbox-budget:checked + label,
@@ -1122,25 +1206,27 @@ p:last-child {
 .menu-main-row h3,
 .form-top-title {
   color: #275050;
+  font-weight: 400;
+}
+
+.title-gift-card {
+  font-size: 45px;
+  color: #275050;
+  font-weight: 400;
+  padding-left: 10px;
 }
 
 .content-gift {
   padding-bottom: 30px;
-  font-size: 18px;
-}
-
-.Check-gift,
-.buy-gift {
-  background-color: #008037;
-  padding: 15px 30px;
-  color: #fff;
-  border-radius: 5px;
+  font-size: 25px;
+  padding-left: 15px;
+  letter-spacing: 0.6px;
 }
 
 .menu-main {
   background: #e5e2d6;
   padding-top: 33px;
-  margin-bottom: 100px;
+  padding-bottom: 64px;
 }
 
 .menu-right-more {
@@ -1170,7 +1256,8 @@ p:last-child {
 
 /* footer */
 footer {
-  background-color: #000;
+  background: url('../../assets/img/icon-theme/bg-footer.png') no-repeat center center;
+  background-size: cover;
   color: #fff;
 }
 
@@ -1179,6 +1266,18 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 15px;
+}
+
+.footer-row2 {
+  font-size: 21px;
+  margin-left: 18px;
+  margin-bottom: 16px;
+  letter-spacing: 0.1px;
+}
+
+.footer-row2 a {
+  font-size: 21px;
 }
 
 .footer-row-1,
@@ -1200,12 +1299,29 @@ footer {
 }
 
 .wrap-number-of-guest {
-  margin-bottom: 10px;
+  margin-bottom: 3px;
 }
 
 .wrap-number-of-guest .guest-title {
+  font-size: 40px;
+  padding-bottom: 29px;
+  font-weight: 400;
+  font-family: 'Playfair Display', serif;
+}
+
+.service-title {
   font-size: 30px;
-  padding-bottom: 25px;
+  margin-bottom: 10px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+}
+
+.wrap-number-of-guest .guest-title .red {
+  font-size: 42px;
+}
+
+.wrap-data-ajax {
+  margin-top: -10px;
 }
 
 .wrap-service-parent .wrap-service-child .error-checkbox {
@@ -1233,6 +1349,19 @@ footer {
   max-width: 42px;
   margin-right: 9px;
   transform: translateY(-2px);
+}
+
+.wrap-input-message .label-card {
+  color: #275050;
+}
+
+.checkbox-budget:checked + label::before {
+  background: url('../../assets/img/icon-theme/bg-btn.png') no-repeat center center;
+  background-size: cover;
+}
+
+.checkbox-budget:checked + label span::before {
+  color: #dbad65;
 }
 
 @media (min-width: 1550px) {
