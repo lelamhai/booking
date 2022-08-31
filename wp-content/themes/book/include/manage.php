@@ -4,11 +4,13 @@ function get_list_books($date, $id)
     return books_get_data($date, $id);
 }
 
+
 add_action('wp_ajax_get_data_books_date', 'get_data_books_date_function');
 add_action('wp_ajax_nopriv_get_data_books_date', 'get_data_books_date_function');
 function get_data_books_date_function() {
     if($_GET["startDate"] != "" && $_GET["endDate"] != "")
     {
+        $countDatePoint = count(books_get_count_book_date($_GET["startDate"], $_GET["endDate"]));
         ?>
             <div class="list-data-books">
                 <div class="calendar-books">
@@ -21,6 +23,7 @@ function get_data_books_date_function() {
                         echo $monday . " - " .$sunday;
                     ?>
                 </div>
+                <div class="count-books" style="text-align: center;" ><?php echo $countDatePoint?> Appointments</div>
                 <div class="list-calendar">
                     <table class="table-data-books">
                         <thead>
