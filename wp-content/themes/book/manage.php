@@ -166,52 +166,6 @@
     .table-data-books tbody tr:nth-child(even) {background: #FFF}
 </style>
 
-
-
-<?php
-  
-// $monday = "";
-// if(date('D')!='Mon')
-// {    
-//   $monday = date('Y-m-d',strtotime('last Monday'));    
-
-// }else{
-//     $monday = date('Y-m-d');   
-// }
-// var_dump($monday);
-
-// $date = date('Y-m-d', strtotime("+6 day", strtotime($monday)));
-// var_dump($date);
-
-
-
-// $args = array(  
-//     'post_type'		    => 'books',
-//     'posts_per_page'    => -1,
-//     'tax_query'         => array(
-//         array(
-//             'taxonomy'  => 'times',
-//             'field'     => 'term_id',
-//             'terms'     => 154,
-//         )
-//     ),
-//     'meta_query'	    => array(
-//         array(
-//             'key' => 'booking_date',
-//             'value' => '2022-08-25',
-//             'type' => 'date',
-//             'compare' => '=',
-//         )
-//     )
-// );
-// $listBooks = get_posts($args);
-// var_dump($listBooks);
-
-?>
-
-
-
-
 <main id="manage">
     <div id="manage-menu-wrap">
         <div class="first-menu-manage">
@@ -252,7 +206,8 @@
                         <div class="add-appointment">+ Add appointment</div>
 
                         <div class="search-phone">
-                            Search
+                            <input type="tel" class="input-search-books">
+                            <button class="button-search-books">Search</button>
                         </div>
                     </div>
                     <div class="content-books">

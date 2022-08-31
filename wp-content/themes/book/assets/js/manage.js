@@ -23,6 +23,30 @@ $(document).ready(function() {
             return [true, cssClass];
         },
     });
+    $(document).on('click', '.button-search-books', function() {
+        let phone = $.trim($('.input-search-books').val());
+
+        $.ajax({
+            type : "GET", 
+            dataType: 'html',
+            url : "./wp-admin/admin-ajax.php",
+            data : {
+                action: "search_phone_books",
+                phone: phone,
+            },
+            beforeSend: function(){
+               $(".list-data-books").remove();
+            },
+            success: function(response) {
+                // console.log(response);
+                $(".ajax-books").append(response);
+                $('.input-search-books').val("");
+            },
+            error: function( jqXHR, textStatus, errorThrown ){
+            }
+        });
+    });
+
 });
 
 function formatDate(date)
