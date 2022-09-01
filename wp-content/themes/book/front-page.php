@@ -478,7 +478,8 @@
                         }
                         ?>
                         <div class="item-slide">
-                            <img src="<?php echo $url?>" alt="">
+<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
+                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
                         </div>
 
                         <?php
@@ -489,7 +490,8 @@
                         }
                         ?>
                         <div class="item-slide">
-                            <img src="<?php echo $url?>" alt="">
+<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
+                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
                         </div>
 
                         <?php
@@ -500,7 +502,8 @@
                         }
                         ?>
                         <div class="item-slide">
-                            <img src="<?php echo $url?>" alt="">
+<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
+                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
                         </div>
 
                         <?php
@@ -511,7 +514,8 @@
                         }
                         ?>
                         <div class="item-slide">
-                            <img src="<?php echo $url?>" alt="">
+<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
+                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
                         </div>
 
                         <?php
@@ -522,7 +526,8 @@
                         }
                         ?>
                         <div class="item-slide">
-                            <img src="<?php echo $url?>" alt="">
+<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
+                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
                         </div>
                     </div>
                 </div>
@@ -619,7 +624,8 @@
                             $url = get_option($businessImageGift);
                         }
                         ?>
-                        <img src="<?php echo $url ?>" alt="">
+<!--                        <img src="--><?php //echo $url ?><!--" alt="">-->
+                        <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/example.png" ?>" alt="">
                     </div>
                 </div>
             </div>
@@ -688,11 +694,9 @@
                                             <div class="menu-label-right menu-right-more TextColorBody">See More</div>
                                             <?php
                                         } else {
-                                            echo "$".get_term_meta( $parent->term_id, 'services-price', true );
+                                            echo "<span>$".get_term_meta( $parent->term_id, 'services-price', true ).'</span>';
                                         }
                                         ?>
-
-
                                     </div>
                                     <div class="content-menu-child menu-hide">
                                         <?php
@@ -768,7 +772,7 @@
                         <div class="wrap-input-form wrap-input-datepicker">
                             <div class="label-card TextColorBody">Pick a day<span class="red">*</span></div>
                             <input type="text" id="datepicker" class="datepicker">
-                            <img src="<?php echo get_template_directory_uri()?>/assets/img/icon/calendar.png" alt="" class="calendar">
+                            <img src="<?php echo get_template_directory_uri()?>/assets/img/icon-theme/icon-time.png" alt="" class="calendar">
                             <div class="error red">Error</div>
                         </div>
 
@@ -801,7 +805,7 @@
                         </div>
 
                         <div class="wrap-button submit ">
-                            <button class="BackgroundButtonBody TextColorButtonBody">Submit</button>
+                            <button>Submit</button>
                         </div>
                     </div>
                 </div>
@@ -829,124 +833,132 @@
             <div class="container wrap-contact">
                 <div class="row">
                     <div class="col-md-4 contact-about">
-                            <div class="title-contact TextColorFooter">About Us</div>
-                            <div class="content-contact TextColorFooter">
-                                <?php
-                                if(get_option($businessAboutUsFooter ))
-                                {
-                                    echo get_option($businessAboutUsFooter );
-                                }
-                                ?>
-                            </div>
+                        <div class="title-contact TextColorFooter">About Us</div>
+                        <div class="content-contact TextColorFooter">
+                            <?php
+                            if(get_option($businessAboutUsFooter ))
+                            {
+                                echo get_option($businessAboutUsFooter );
+                            }
+                            ?>
                         </div>
-                    <div class="col-md-4 contact-menu">
-
+                    </div>
+                    <div class="col-md-4 footer-menu">
+                        <div class="title-menu-footer TextColorFooter">Explore</div>
+                        <div class="content-menu-footer">
+                            <ul>
+                                <li><a class="TextColorFooter" href="#">OUR MENU</a></li>
+                                <li><a class="TextColorFooter" href="#">PRODUCTS</a></li>
+                                <li><a class="TextColorFooter" href="#">BOOK ONLINE</a></li>
+                                <li><a class="TextColorFooter" href="#">BUY GIFT CARDS</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="col-md-4 contact-hours">
-                            <div class="wrap-contact-time">
-                                <div class="contact-time" >
-                                    <b class="TextColorFooter">Opening Hours</b>
-                                    <div class="list-time">
-                                        <?php
-                                        for($i=0; $i<7; $i++)
+                        <div class="wrap-contact-time">
+                            <div class="contact-time" >
+                                <b class="TextColorFooter">Opening Hours</b>
+                                <div class="list-time">
+                                    <?php
+                                    for($i=0; $i<7; $i++)
+                                    {
+                                        $key = "week".($i+2);
+                                        $value = "";
+                                        if(get_option($key))
                                         {
-                                            $key = "week".($i+2);
-                                            $value = "";
-                                            if(get_option($key))
+                                            $value = get_option($key);
+                                            $arr = explode('-', $value);
+                                        }
+                                        $list = array("AM", "PM");
+                                        if($i == 0)
+                                        {
+                                            $time = "Closed";
+                                            if($arr[4] != 0)
                                             {
-                                                $value = get_option($key);
-                                                $arr = explode('-', $value);
+                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
                                             }
-                                            $list = array("AM", "PM");
-                                            if($i == 0)
-                                            {
-                                                $time = "Closed";
-                                                if($arr[4] != 0)
-                                                {
-                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                                }
-                                                ?>
-                                                <p class="TextColorFooter"><span>Mon: <?php echo $time; ?></span></p>
-                                                <?php
-                                            }
-
-                                            if($i == 1)
-                                            {
-                                                $time = "Closed";
-                                                if($arr[4] != 0)
-                                                {
-                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                                }
-                                                ?>
-                                                <p class="TextColorFooter"><span>Tue: <?php echo $time; ?></span></p>
-                                                <?php
-                                            }
-
-                                            if($i == 2)
-                                            {
-                                                $time = "Closed";
-                                                if($arr[4] != 0)
-                                                {
-                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                                }
-                                                ?>
-                                                <p class="TextColorFooter"><span>Wed: <?php echo $time; ?></span></p>
-                                                <?php
-                                            }
-
-                                            if($i == 3)
-                                            {
-                                                $time = "Closed";
-                                                if($arr[4] != 0)
-                                                {
-                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                                }
-                                                ?>
-                                                <p class="TextColorFooter"><span>Thu: <?php echo $time; ?></span></p>
-                                                <?php
-                                            }
-
-                                            if($i == 4)
-                                            {
-                                                $time = "Closed";
-                                                if($arr[4] != 0)
-                                                {
-                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                                }
-                                                ?>
-                                                <p class="TextColorFooter"><span>Fri: <?php echo $time; ?></span></p>
-                                                <?php
-                                            }
-
-                                            if($i == 5)
-                                            {
-                                                $time = "Closed";
-                                                if($arr[4] != 0)
-                                                {
-                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                                }
-                                                ?>
-                                                <p class="TextColorFooter"><span>Sat: <?php echo $time; ?></span></p>
-                                                <?php
-                                            }
-
-                                            if($i == 6)
-                                            {
-                                                $time = "Closed";
-                                                if($arr[4] != 0)
-                                                {
-                                                    $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                                }
-                                                ?>
-                                                <p class="TextColorFooter"><span>Sun: <?php echo $time; ?></span></p>
-                                                <?php
-                                            }
+                                            ?>
+                                            <p class="TextColorFooter">Mon:<span> <?php echo $time; ?></span></p>
+                                            <?php
                                         }
 
-                                        ?>
-                                    </div>
+                                        if($i == 1)
+                                        {
+                                            $time = "Closed";
+                                            if($arr[4] != 0)
+                                            {
+                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                            }
+                                            ?>
+                                            <p class="TextColorFooter">Tue:<span> <?php echo $time; ?></span></p>
+                                            <?php
+                                        }
+
+                                        if($i == 2)
+                                        {
+                                            $time = "Closed";
+                                            if($arr[4] != 0)
+                                            {
+                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                            }
+                                            ?>
+                                            <p class="TextColorFooter">Wed:<span> <?php echo $time; ?></span></p>
+                                            <?php
+                                        }
+
+                                        if($i == 3)
+                                        {
+                                            $time = "Closed";
+                                            if($arr[4] != 0)
+                                            {
+                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                            }
+                                            ?>
+                                            <p class="TextColorFooter">Thu:<span> <?php echo $time; ?></span></p>
+                                            <?php
+                                        }
+
+                                        if($i == 4)
+                                        {
+                                            $time = "Closed";
+                                            if($arr[4] != 0)
+                                            {
+                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                            }
+                                            ?>
+                                            <p class="TextColorFooter">Fri:<span> <?php echo $time; ?></span></p>
+                                            <?php
+                                        }
+
+                                        if($i == 5)
+                                        {
+                                            $time = "Closed";
+                                            if($arr[4] != 0)
+                                            {
+                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                            }
+                                            ?>
+                                            <p class="TextColorFooter">Sat:<span> <?php echo $time; ?></span></p>
+                                            <?php
+                                        }
+
+                                        if($i == 6)
+                                        {
+                                            $time = "Closed";
+                                            if($arr[4] != 0)
+                                            {
+                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
+                                            }
+                                            ?>
+                                            <p class="TextColorFooter">Sun:<span> <?php echo $time; ?></span></p>
+                                            <?php
+                                        }
+                                    }
+
+                                    ?>
                                 </div>
                             </div>
+                        </div>
                         </div>
                 </div>
             </div>
@@ -962,7 +974,7 @@
                                     $url = get_option($businessInstagram);
                                 }
                                 ?>
-                                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_instagram.png"?>" alt=""></a>
+                                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon-theme/icon-insta.png"?>" alt=""></a>
                             </div>
                             <div class="item-social-network">
                                 <?php
@@ -972,7 +984,7 @@
                                     $url = get_option($businessYoutube);
                                 }
                                 ?>
-                                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_youtube.png"?>" alt=""></a>
+                                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon-theme/icon-youtube.png"?>" alt=""></a>
                             </div>
                             <div class="item-social-network">
                                 <?php
@@ -982,7 +994,7 @@
                                     $url = get_option($businessFacebook);
                                 }
                                 ?>
-                                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon/icon_facebook.png"?>" alt=""></a>
+                                <a href="<?php echo $url?>"><img src="<?php echo get_template_directory_uri() ."/assets/img/icon-theme/icon-facebook.png"?>" alt=""></a>
                             </div>
                         </div>
                         <div class="footer-phone">
@@ -992,6 +1004,7 @@
                         {
                         $phone = get_option($businessPhoneNumber);
                         ?>
+                        <img src="<?php echo get_template_directory_uri() ."/assets/img/icon-theme/icon-phone.png"?>" alt="">
                         <a class ="TextColorBody" href="tel:<?php echo $phone ?>">Tel: <?php echo $phone ?></a>
                         <?php
                         }
