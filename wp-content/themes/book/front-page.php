@@ -478,8 +478,8 @@
                         }
                         ?>
                         <div class="item-slide">
-                            <img src="<?php echo $url ?>" alt="">
-<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?><!--" alt="">-->
+<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
+                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
                         </div>
 
                         <?php
@@ -490,8 +490,8 @@
                         }
                         ?>
                         <div class="item-slide">
-                            <img src="<?php echo $url ?>" alt="">
-<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?><!--" alt="">-->
+<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
+                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
                         </div>
 
                         <?php
@@ -502,8 +502,8 @@
                         }
                         ?>
                         <div class="item-slide">
-                            <img src="<?php echo $url ?>" alt="">
-<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?><!--" alt="">-->
+<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
+                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
                         </div>
 
                         <?php
@@ -514,8 +514,8 @@
                         }
                         ?>
                         <div class="item-slide">
-                            <img src="<?php echo $url ?>" alt="">
-<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?><!--" alt="">-->
+<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
+                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
                         </div>
 
                         <?php
@@ -526,8 +526,8 @@
                         }
                         ?>
                         <div class="item-slide">
-                            <img src="<?php echo $url ?>" alt="">
-<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?><!--" alt="">-->
+<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
+                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
                         </div>
                     </div>
                 </div>
@@ -624,8 +624,8 @@
                             $url = get_option($businessImageGift);
                         }
                         ?>
-                        <img src="<?php echo $url ?>" alt="">
-<!--                        <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/example.png" ?><!--" alt="">-->
+<!--                        <img src="--><?php //echo $url ?><!--" alt="">-->
+                        <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/example.png" ?>" alt="">
                     </div>
                 </div>
             </div>

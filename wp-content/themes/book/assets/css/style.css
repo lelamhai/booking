@@ -1536,6 +1536,14 @@ footer {
   .nail-call > a {
     transform: translate(0px, 5px);
   }
+
+  .wrap-menu-parent .menu-label-right:before {
+    right: -27px;
+  }
+
+  .wrap-menu-parent .menu-label-right:after {
+    right: -20px;
+  }
 }
 
 @media only screen and (max-width: 1199px) {
@@ -1576,7 +1584,7 @@ footer {
   }
 
   .wrap-list-reviews {
-    padding: 40px 0 55px;
+    padding: 40px 15px 55px;
   }
 
   .title-gift {
@@ -1682,5 +1690,62 @@ footer {
 
   .title-gift, .title-welcome-nail, .menu-main-row h3, .form-top-title {
     font-size: 44px;
+  }
+
+  .contact-time .list-time p span {
+    left: 75px;
+    right: auto;
+  }
+
+  .footer-row2 {
+    margin-left: 0;
+  }
+
+  .wrap-contact .contact-hours,
+  .wrap-contact .footer-menu {
+    padding-left: 15px;
+  }
+
+  .content-contact {
+    padding-bottom: 30px;
+  }
+
+  .wrap-contact {
+    padding-top: 60px;
+  }
+
+  .footer-row-1 .footer-phone img {
+    margin-right: 10px;
+  }
+
+  .footer-row-1 .footer-phone a {
+    transform: none;
+  }
+}
+
+@media only screen and (max-width: 959px) {
+  .slick-prev, .slick-next {
+    top: 100% !important;
+  }
+
+  .slick-prev, .slick-next {
+    transform: none !important;
+  }
+
+  .slick-prev {
+    left: 50% !important;
+  }
+  .slick-next {
+    right: 50% !important;
+  }
+  .select-nember,
+  .wrap-button-number,
+  .guest-item-title {
+    transform: none;
+  }
+
+  .nail {
+    margin-top: 45px;
+    margin-bottom: 30px;
   }
 }
