@@ -149,6 +149,31 @@ function books_get_data($date, $termId)
     return $listBooks;
 }
 
+function books_get_count_book_date($begin, $end)
+{
+    $args = array(  
+        'post_type'		    => 'books',
+        'posts_per_page'    => -1,
+        'meta_query'	    => array(
+            'relation'		=> 'AND',
+            array(
+                'key' => 'booking_date',
+                'value' => $begin,
+                'type' => 'date',
+                'compare' => '>=',
+            ),
+            array(
+                'key' => 'booking_date',
+                'value' => $end,
+                'type' => 'date',
+                'compare' => '<=',
+            )
+        )
+    );
+    $listBooks = get_posts($args);
+    return $listBooks;
+}
+
 function get_data_books($phone)
 {
     $json = array();
