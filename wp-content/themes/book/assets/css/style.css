@@ -543,7 +543,9 @@ p:last-child {
 }
 
 .wrap-menu-parent .menu-label-left .menu-description-parent {
-  font-size: 18px;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-left: 50px;
 }
 
 .hidden-child {
@@ -1677,6 +1679,12 @@ footer {
     line-height: 30px;
   }
 
+  .wrap-menu-parent .menu-label-left .menu-description-parent {
+    font-size: 18px;
+    margin-left: 35px;
+    line-height: 30px;
+  }
+
   .wrap-form {
     padding-top: 55px;
     padding-bottom: 70px;
@@ -1904,6 +1912,10 @@ footer {
 }
 
 @media only screen and (max-width: 480px) {
+  .wrap-menu-parent .menu-label-left .menu-description-parent {
+    font-size: 16px;
+    margin-left: 15px;
+  }
   .slider-reviews .item-slider-reviews .icon-client-1,
   .slider-reviews .item-slider-reviews .icon-client-2 {
     display: none;
