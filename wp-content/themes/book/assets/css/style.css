@@ -300,14 +300,14 @@ p:last-child {
 .slider-reviews .item-slider-reviews .icon-client-1 {
   position: absolute;
   top: 0px;
-  left: 10px;
+  left: 00px;
 }
 
 .slider-reviews .item-slider-reviews .icon-client-2 {
   position: absolute;
   transform: rotateY(180deg);
   bottom: 0px;
-  right: 8px;
+  right: 0px;
 }
 
 .slick-track {
@@ -1522,12 +1522,6 @@ footer {
 @media only screen and (max-width: 1350px) {
   .slider-reviews {
     max-width: 850px;
-  }
-  .slider-reviews .item-slider-reviews .icon-client-1 {
-    left: 0;
-  }
-  .slider-reviews .item-slider-reviews .icon-client-2 {
-    right: 0;
   }
 
   .nail-address span,
