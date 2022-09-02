@@ -8,7 +8,6 @@ function get_data_times()
 {
     return times_get_data_taxonomy();
 }
-
 add_action('wp_ajax_addOption', 'addOption_function');
 add_action('wp_ajax_nopriv_addOption', 'addOption_function');
 function addOption_function() {

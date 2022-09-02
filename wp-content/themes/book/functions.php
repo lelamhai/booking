@@ -5,6 +5,7 @@ require get_template_directory() . '/include/post-types.php';
 require get_template_directory() . '/include/query.php';
 require get_template_directory() . '/include/ajax.php';
 require get_template_directory() . '/include/input-ajax.php';
+require get_template_directory() . '/include/manage.php';
 
 $businessName = "business-name";
 $businessAddress = "business-address";
@@ -59,7 +60,7 @@ $policyId = 184;
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
-    $version = "380";
+    $version = "381";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-base',   get_template_directory_uri() ."/assets/css/base.css", array(), $version);
@@ -110,42 +111,13 @@ function wpdocs_selectively_enqueue_admin_script( $hook ) {
     $allowed_roles = array('subscriber');
     if( array_intersect($allowed_roles, $user->roles ) ) { 
         wp_enqueue_style('admin-style',   get_template_directory_uri() ."/assets/admin/style.css", array(), $version);
-    } 
+    }
+
+    wp_enqueue_script('custom-admin', get_template_directory_uri().'/assets/js/custom-admin.js');
 }
 
 $user = wp_get_current_user();
 $allowed_roles = array('subscriber');
 if( array_intersect($allowed_roles, $user->roles ) ) { 
     require get_template_directory() . '/include/hook-subscriber.php';
-} 
-
-
-/**
- * Register a custom menu page.
- */
-function wpdocs_register_edit_web() {
-    add_menu_page(
-        __( 'Custom Menu Title', 'textdomain' ),
-        'Edit web',
-        'read',
-        '../edit-web',
-        '',
-        'dashicons-welcome-write-blog',
-        99
-    );
 }
-add_action( 'admin_menu', 'wpdocs_register_edit_web' );
-
-
-function wpdocs_register_my_custom_menu_page() {
-    add_menu_page(
-        __( 'Custom Menu Title', 'textdomain' ),
-        'Manage',
-        'read',
-        '../manage',
-        '',
-        'dashicons-calendar-alt',
-        99
-    );
-}
-add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
