@@ -59,7 +59,7 @@
 <style>
     /* header */
     .BackgroundColorHeader {
-        background-color: <?php echo $BackgroundColorHeader?>;
+        background: <?php echo $BackgroundColorHeader?>;
     }
 
     .TextColorHeader {
@@ -76,28 +76,28 @@
     }
 
     .BackgroundButtonBody {
-        background-color: <?php echo $BackgroundButtonBody?> !important;
+        background: <?php echo $BackgroundButtonBody?> !important;
     }
 
-    /*.checkbox-budget:checked + label::before {*/
-    /*    background-color: */<?php //echo $BackgroundButtonBody?>/*;*/
-    /*}*/
+    .checkbox-budget:checked + label::before {
+        background: <?php echo $BackgroundButtonBody?>;
+    }
 
-    /*.checkbox-budget:not(:checked) + label:hover {*/
-    /*    background-color: */<?php //echo $BackgroundButtonBody?>/*;*/
-    /*}*/
+    .checkbox-budget:not(:checked) + label:hover {
+        background: <?php echo $BackgroundButtonBody?>;
+    }
 
-    /*.checkbox-budget:checked + label,*/
-    /*.checkbox-budget:not(:checked) + label:hover,*/
-    /*.number input:checked ~ .checkmark,*/
-    /*.number:hover input ~ .checkmark{*/
-    /*    border: 1px solid */<?php //echo $BackgroundButtonBody?>/*;*/
-    /*}*/
+    .checkbox-budget:checked + label,
+    .checkbox-budget:not(:checked) + label:hover,
+    .number input:checked ~ .checkmark,
+    .number:hover input ~ .checkmark{
+        border: 1px solid <?php echo $BackgroundButtonBody?>;
+    }
 
-    /*.number input:checked ~ .checkmark,*/
-    /*.number:hover input ~ .checkmark {*/
-    /*    background-color: */<?php //echo $BackgroundButtonBody?>
-    /*}*/
+    .number input:checked ~ .checkmark,
+    .number:hover input ~ .checkmark {
+        background: <?php echo $BackgroundButtonBody?>
+    }
 
     .select2-container--default .select2-results__option--highlighted[aria-selected] {
         background-color: <?php echo $BackgroundButtonBody?> !important;
@@ -121,6 +121,10 @@
 
     .TextColorFooter {
         color: <?php echo $TextColorFooter?> !important;
+    }
+
+    .mobile-container {
+        background: <?php echo $BackgroundColorHeader?>;
     }
 
     body { padding-right: 0 !important } 
@@ -388,8 +392,8 @@
 
         <section class="container nail">
             <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
                     <div class="nail-address TextColorBody">
                         <img src="<?php echo get_template_directory_uri() ."/assets/img/icon-theme/icon-location.png"?>" alt="">
                         <?php
@@ -435,14 +439,14 @@
 <!--                        </div>-->
 <!--                    </div>-->
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-1"></div>
             </div>
         </section>
 
         <section class="container welcome">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="title-welcome-nail">
+                    <h3 class="title-welcome-nail TextColorBody">
                         <?php
                         if(get_option($businessTitleWelcome))
                         {
@@ -463,7 +467,7 @@
                         ?>
                     </div>
                     <div class="button-welcome">
-                        <button class="wrap-review" data-toggle="modal" data-target="#listIcon">
+                        <button class="wrap-review BackgroundButtonBody TextColorButtonBody" data-toggle="modal" data-target="#listIcon">
                             Write a Review
                         </button>
                     </div>
@@ -534,11 +538,11 @@
             </div>
         </section>
 
-        <section class="list-reviews">
+        <section class="list-reviews BackgroundColorReviews">
             <div class="container wrap-list-reviews TextColorReviews">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="title-reviews title-gift">
+                        <h3 class="TextColorReviews title-gift">
                             <?php
                             if(get_option($businessTitleReviews))
                             {
@@ -592,7 +596,7 @@
         <section class="container gift anim move js-anim" id="Gift">
             <div class="row wrap-gift">
                 <div class="col-md-4">
-                    <h3 class="title-gift-card">
+                    <h3 class="title-gift-card TextColorBody">
                         <?php
                         $text = "Buy gift cards";
                         if(get_option($businessTitleGift))
@@ -612,8 +616,8 @@
                         echo $text;
                         ?>
                     </div>
-                    <button class="buy-gift">Buy Now</button>
-                    <button class="check-gift">Check Balance</button>
+                    <button class="buy-gift BackgroundButtonBody TextColorButtonBody">Buy Now</button>
+                    <button class="check-gift BackgroundButtonBody TextColorButtonBody">Check Balance</button>
                 </div>
                 <div class="col-md-8">
                     <div class="image-gift">
@@ -631,36 +635,21 @@
             </div>
         </section>
 
-<!--        <section class="container menu anim move js-anim" id="OurMenu">-->
-<!--            <div class="row">-->
-<!--                <div class="col-md-12">-->
-<!--                    <div class="wrap-menu">-->
-<!--                        <div class="menu-column1 TextColorBody">Our Menu</div>-->
-<!--                        <div class="form-hr BackgroundButtonBody"></div>-->
-<!--                    </div>-->
-<!--                    <div class="info-menu-app">-->
-<!--                        <div class="menu-column2">-->
-<!--                            <div class="wrap-menu-column2">-->
-<!--                                <a href="#BookOnline" class="BackgroundButtonBody TextColorButtonBody">BOOK ONLINE</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="menu-column3">-->
-<!--                            <div class="wrap-menu-column3 BackgroundButtonBody TextColorButtonBody"  data-toggle="modal" data-target="#modalPhone" data-backdrop="static" data-keyboard="false">-->
-<!--                                CANCEL APPT-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
+        <div class="info-menu-app">
+            <a href="#BookOnline" class="wrap-menu-column2 BackgroundButtonBody TextColorButtonBody">Book Online</a>
+            <div class="wrap-menu-column3 BackgroundButtonBody TextColorButtonBody"  data-toggle="modal" data-target="#modalPhone" data-backdrop="static" data-keyboard="false">
+                Confirm/ Cancel
+            </div>
+            <a href="#header" class="scrollToTop">pagetotop</a>
+        </div>
 
-        <section class="menu-main anim move js-anim">
+        <section class="menu-main anim move js-anim BackgroundColorReviews">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="menu-main-row">
                             <div class="menu-main-row">
-                                <h3>Our services</h3>
+                                <h3 class="TextColorBody">Our services</h3>
                             </div>
                             <div class="wrap-menu-title">
                                 <div class="menu-label-left">
@@ -733,7 +722,7 @@
         <section class="container form anim move js-anim" id="BookOnline">
             <div class="row">
                 <div class="col-md-12 wrap-form">
-                    <h3 class="form-top-title">
+                    <h3 class="form-top-title TextColorBody">
                         Make a reservation
                     </h3>
 
@@ -805,7 +794,7 @@
                         </div>
 
                         <div class="wrap-button submit ">
-                            <button>Submit</button>
+                            <button class="BackgroundButtonBody TextColorButtonBody">Submit</button>
                         </div>
                     </div>
                 </div>

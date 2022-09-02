@@ -33,11 +33,11 @@
 
     .wrap-header a,
     .header-list-menu li a {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     #video-youtube {
-        height: 350px;
+        height: 480px;
     }
 
     #google-map {
@@ -73,6 +73,15 @@
   Responsive CSS Mobile
   ========================================================================== */
   @media only screen and (min-width: 100px) and (max-width: 767px) {
+      html #wpadminbar {
+          position: fixed;
+      }
+      .header-logo {
+          padding: 75px 0 12px;
+      }
+      .header-list-menu li a {
+          font-weight: 900;
+      }
     .mobile {
         display: block;
     }
@@ -82,14 +91,14 @@
     }
 
     .main {
-        padding-top: 67px;
+        padding-top: 81px;
     }
 
     .mobile-container {
         position: fixed;
         width: 100%;
         height: 100vh;
-        z-index: 2;
+        z-index: 9999;
         background-color: #991113;
         transition: transform 500ms ease-in-out 25ms;
     }
@@ -106,7 +115,7 @@
     }
 
     .menu-mobile img {
-        width: 32px;
+        max-width: 140px;
         height: auto;
     }
 
@@ -115,6 +124,10 @@
         font-size: 32px;
         font-weight: bold;
     }
+
+      .logo a:hover {
+          text-decoration: none;
+      }
 
     .wrap-header {
         flex-direction: column;
@@ -125,9 +138,11 @@
     .header-list-menu{
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
     .header-list-menu li {
         padding: 15px 0;
+        text-align: center;
     }
 
     .header-login {
@@ -141,10 +156,19 @@
     .menu-close {
         float: right;
         padding: 15px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: transparent;
     }
-    .menu-close img {
-        width: 32px;
+
+    .menu-close svg {
+        font-size: 36px;
     }
+
+      .menu-close svg path {
+          fill: #ffffff;
+      }
 
     .nail-title {
         font-size: 38px;
@@ -160,13 +184,8 @@
         margin-right: 15px;
     } */
 
-    .wrap-contact {
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-
     #video-youtube {
-        height: 150px;
+        height: 380px;
     }
 
     #google-map{
@@ -177,19 +196,6 @@
     .wrap-gift,
     .welcome-nail  {
         flex-direction: column;
-    }
-
-    .contact-column6,
-    .column-left {
-        width: 100% !important;
-        padding-right:0 !important;
-        padding-bottom: 30px!important;
-    }
-
-    .contact-column4,
-    .column-right {
-        width: 100% !important;
-        padding-left: 0 !important;
     }
 
     .wrap-contact {
@@ -274,18 +280,6 @@
         height: 250px;
     }
 
-    .wrap-list-reviews {
-        padding: 30px 0;
-    }
-    
-    .slick-next {
-        right: 0 !important;
-    }
-
-    .slick-prev {
-        left: 0 !important;
-    }
-
     .title-reviews {
         padding: 0 15px;
     }
@@ -294,20 +288,16 @@
         padding: 0 30px;
     }
 
-    .wrap-list-reviews {
-        text-align: left;
+    .menu-open {
+        background: transparent;
     }
 
-    .contact-time b:first-child,
-    .title-contact,
-    .menu-column1,
-    .form-top-title,
-    .title-gift,
-    .title-welcome-nail {
-        font-size: 28px;
-    }
+      .menu-open svg {
+          font-size: 30px;
+      }
 
-    .form-top-title {
-        font-size: 24px;
-    }
+      .menu-open svg path {
+          fill: #ffffff;
+      }
   }
+

@@ -2,11 +2,11 @@
 <html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.2/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v6.1.2/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
     <title><?php echo get_bloginfo()?></title>
     <?php
         wp_head();
@@ -16,10 +16,13 @@
 
 <body class="BackgroundColorBody">
    <header>
-        <div class="header">
-            <div class="container mobile-container not-showmenu">
+        <div id="header" class="header BackgroundColorHeader">
+            <div class="mobile-container not-showmenu">
                 <div class="close-menu mobile">
-                    <button class="menu-close"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/icon_close.png" alt=""></button>
+                    <button class="menu-close">
+<!--                        <img src="--><?php //echo get_template_directory_uri()?><!--/assets/img/icon/icon_close.png" alt="">-->
+                        <i class="fas fa-times"></i>
+                    </button>
                  </div>
                 <div class="header-logo">
                     <a href="./" class="TextColorHeader">
@@ -77,18 +80,28 @@
                 <div class="logo-mobile anim left-right js-anim">
                    <div class="logo">
                         <a href="./" class="TextColorHeader">
-                            <?php
-                                $name = "Softkeymarketing";
-                                if(get_option("business-name"))
-                                {
-                                    $name = get_option("business-name");
-                                }
-                                echo $name;
+<!--                            --><?php
+//                                $name = "Softkeymarketing";
+//                                if(get_option("business-name"))
+//                                {
+//                                    $name = get_option("business-name");
+//                                }
+//                                echo $name;
+//                            ?>
+                        <?php
+                        if(get_option("business-logo-header"))
+                        {
                             ?>
+<!--                            <img src="--><?php //echo get_option("business-logo-header")?><!--" alt="">-->
+                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/name.png" ?>" alt="">
+                        <?php }?>
                         </a>
                    </div>
                 </div>
-                <button class="menu-open anim right-left js-anim"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/icon_menu.png" alt=""></button>
+                <button class="menu-open anim right-left js-anim">
+<!--                    <img src="--><?php //echo get_template_directory_uri()?><!--/assets/img/icon/icon_menu.png" alt="">-->
+                    <i class="fas fa-bars"></i>
+                </button>
              </div>
         </div>
 
