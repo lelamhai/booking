@@ -1,6 +1,9 @@
 // ======================================== Tab1 ======================================== \\
 // Business info
 $(document).ready(function() {
+	$("#wp-admin-bar-my-account li:eq(1)").before($("#wp-admin-bar-my-account li:eq(3)"));
+	$("#wp-admin-bar-my-account li:eq(2)").before($("#wp-admin-bar-my-account li:eq(4)"));
+
 	$('.save-business').click(function() {
 		$('#loading').modal('toggle');
 
