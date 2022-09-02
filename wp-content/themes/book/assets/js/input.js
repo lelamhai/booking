@@ -615,10 +615,10 @@ $(document).ready(function() {
 	
 		let titleWelcome = $(".title-welcome").val();
 		let keyTitleWelcome = $(".title-welcome").data("key");
-	
-		let contentWelcome = $(".content-welcome").val();
-		let keyContentWelcome = $(".content-welcome").data("key");
-	
+
+		let key = $('.textBodyContent').data("key");
+		let value = tinyMCE.get(key).getContent();
+
 		var data_form = new FormData();
 		data_form.append('backgroundColor', backgroundColor);
 		data_form.append('keyBackgroundColor', keyBackgroundColor);
@@ -634,9 +634,9 @@ $(document).ready(function() {
 	
 		data_form.append('titleWelcome', titleWelcome);
 		data_form.append('keyTitleWelcome', keyTitleWelcome);
-	
-		data_form.append('contentWelcome', contentWelcome);
-		data_form.append('keyContentWelcome', keyContentWelcome);
+
+		data_form.append('keyTextBodyContent', key);
+		data_form.append('textBodyContent', value);
 	
 		for (let i = 1; i <= 5; i++) {
 			let url = "#output" + i;

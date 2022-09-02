@@ -37,7 +37,7 @@
             ?>
                 <div class="wrap-guest">
                     <div class="wrap-number-of-guest">
-                        <div class="guest-title TextColorBody">NUMBER OF GUEST<span class="red">*</span></div>
+                        <div class="guest-title TextColorBody">Number of guest<span class="red">*</span></div>
                         <div class="select-nember over-hide">
                             <?php
                                 if($slots > 0)
@@ -229,7 +229,7 @@
                         {
                             ?>
                                 <div class="wrap-input-form wrap-input-message choose-person">
-                                    <div class="label-card TextColorBody">Your message</div>
+                                    <div class="label-card">Your message</div>
                                     <textarea class="message" name="message" rows="6" cols="50" placeholder="Message"></textarea>
                                 </div>
                             <?php

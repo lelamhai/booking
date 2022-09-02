@@ -5,6 +5,7 @@ require get_template_directory() . '/include/post-types.php';
 require get_template_directory() . '/include/query.php';
 require get_template_directory() . '/include/ajax.php';
 require get_template_directory() . '/include/input-ajax.php';
+require get_template_directory() . '/include/manage.php';
 
 $businessName = "business-name";
 $businessAddress = "business-address";
@@ -59,7 +60,7 @@ $policyId = 184;
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
-    $version = "380";
+    $version = "381";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-base',   get_template_directory_uri() ."/assets/css/base.css", array(), $version);
