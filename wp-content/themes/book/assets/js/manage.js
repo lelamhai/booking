@@ -50,7 +50,159 @@ $(document).ready(function() {
         });
     });
 
+    $('#modal-button-phone').click(function(){
+        let phoneNumber = $('.modal-input-phone').val();
+        if(phoneNumber.length == 0)
+        {
+            $('.not-data-books').css("opacity", 1);
+            $('.not-data-books').text('Field with * is required.');
+            return false;
+        } else if(!isVietnamesePhoneNumber(phoneNumber)) {
+            $('.not-data-books').css("opacity", 1);
+            $('.not-data-books').text('Please enter your phone number');
+            return false;
+        }
+        searchLoadBooks(phoneNumber, 0);
+    });
+
+    $(document).on('click', '.button-status-booking', function() {
+        let status = $(this).data("status");
+        let id = $(this).parent().data("id");
+
+        if(status == 0)
+        {
+            $('#modalCancel').modal('toggle');
+            $('#idBooks').val(id);
+            $('#statusBooks').val(status);
+            return false;
+        } 
+        changeStatusBooks(id, status);
+        
+    });
+
+    $(document).on('click', '.yes-cancel-books', function() {
+        let id = $('#idBooks').val();
+        let status = $('#statusBooks').val();
+        changeStatusBooks(id, status);
+    });
+
+
 });
+
+function changeStatusBooks(id, status)
+{
+    $.ajax({
+        type : "GET", 
+        dataType: 'html',
+        contentType: "application/json; charset=utf-8",
+        url : "./wp-admin/admin-ajax.php",
+        data : {
+            action: "change_status_books",
+            id: id,
+            status: status
+        },
+        beforeSend: function(){
+            // $(".wrap-book-item").remove();
+        },
+        success: function(response) {
+            if(status == 2)
+            {
+                $('#modalComfirm').modal('toggle');
+            } else {
+                $('#modalCancel').modal('toggle');
+                $('#modalCancelYes').modal('toggle');
+            }
+
+            let phone = $('.modal-input-phone').val();
+            searchLoadBooks(phone);
+        },
+        error: function( jqXHR, textStatus, errorThrown ){
+
+        }
+    });
+}
+
+function searchLoadBooks(phone, flag = 1)
+{
+    $.ajax({
+        type : "GET", 
+        dataType: "json",
+        url : "./wp-admin/admin-ajax.php",
+        data : {
+            action: "get_data_books",
+            phone: phone
+        },
+        beforeSend: function(){
+            $(".wrap-book-item").remove();
+        },
+        success: function(response) {
+            let data = response.data;
+            if(data.postType.length <= 0)
+            {
+                $('.not-data-books').css("opacity", 1);
+                $('.not-data-books').text('There is no appointment with this phone number');
+                return false;
+            }
+
+            $('.not-data-books').css("opacity", 0);
+
+            if(flag == 0)
+            {
+                $('#modalBooks').modal('toggle');
+            }
+            let html = "";
+            for(let i=0; i<data.postType.length; i++)
+            {
+                let id = data.postType[i].ID;
+                let title = data.postType[i].post_title; 
+                let listDate = data.customField[i].bookingDate.split('-');
+                let date = listDate[1]+"/"+listDate[2]+"/"+listDate[0];
+                let time = data.customField[i].bookingTime;
+                let services = data.customField[i].bookingServices;
+
+                let obj = JSON.parse(services);
+                
+                let name = "";
+                for(let s=0; s < obj.length; s++)
+                {
+                    let id = s + 1;
+                    let slot = "* Seat" + id + "<br>";
+                    for(let c=0; c < obj[s].length; c++)
+                    {
+                        let list = obj[s][c].split('-');
+                        if(list[1])
+                        {
+                            slot = slot + "- "+ list[0] + "->" + list[1] + "<br>";
+                        } else {
+                            slot = slot + "- "+ list[0] + "<br>";
+                        }
+                    }
+                    name = name + slot + "<br><br>";
+                }
+
+                if(data.customField[i].bookingStatus == 1)
+                {
+                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+name+"</div><div class='book-control' data-id="+id+"><button class='button-confirm-books button-status-booking' data-status='2'>Confirm</button><button class='button-cancel-books button-status-booking' data-status='0'>Cancel</button></div></div>";
+                } else {
+                    html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+name+"</div><div class='book-control'  data-id="+id+"><button class='button-confirm-books' disabled>Confirmed</button><button class='button-cancel-books button-status-booking' data-status='0'>Cancel</button></div></div>";
+                }
+            }
+            $('#modalPhone').modal('toggle');
+            $("#ajax-books").append(html);
+        },
+        error: function( jqXHR, textStatus, errorThrown ){
+
+        }
+    });
+}
+
+function isVietnamesePhoneNumber(number) {
+    if(number.length >= 10 && $.isNumeric(number))
+    {
+        return true;
+    }
+    return false;
+}
 
 function formatDate(date)
 {
