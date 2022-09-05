@@ -84,7 +84,7 @@
                                 $parents = services_get_taxonomy();
                                 ?>
                                <div class="wrap-service-parent wrap-service-parent-<?php echo $i?>" style="display: block">
-                                    <div class="guest-item-title TextColorBody">GUEST <?php echo $i?><span class="red">*</span></div>
+                                    <div class="guest-item-title TextColorBody">GUEST <span class="guest-item-number"><?php echo $i?></span><span class="red">*</span></div>
                                     <div class="wrap-button-number">
                                         <?php
                                             $index = 1;
@@ -154,7 +154,7 @@
                             } else {
                                 ?>
                                 <div class="wrap-service-parent wrap-service-parent-<?php echo $i?>">
-                                        <div class="guest-item-title TextColorBody">GUEST <?php echo $i?><span class="red">*</span></div>
+                                        <div class="guest-item-title TextColorBody">GUEST <span class="guest-item-number"><?php echo $i?></span><span class="red">*</span></div>
                                         <div class="wrap-button-number">
                                             <?php
                                                 $index = 1;

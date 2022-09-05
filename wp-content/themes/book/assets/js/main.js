@@ -123,12 +123,14 @@ $(document).ready(function() {
         let isFullname = false;
         let isPhoneNumber = false;
         let isEmail = false;
+        let isLocation = false;
         let isDatepicker = false;
         let isSelect2 = false;
 
         let fullname = $('.full-name').val();
         let phoneNumber = $('.phone-number').val();
         let email = $('.email').val();
+        let location = $('.location').val();
         let datepicker = $('.datepicker').val();
         let select2 = $('.single-main').val();
 
@@ -177,14 +179,19 @@ $(document).ready(function() {
             }
         }
 
-        if(validateEmail(email)) { 
-            $('.wrap-input-email .error').css("opacity", 0);
-            $('.wrap-input-email .error').text('Error');
-            isEmail = true;
+        if(location.length == 0)
+        {
+            isLocation = true;
         } else {
-            $('.wrap-input-email .error').css("opacity", 1);
-            $('.wrap-input-email .error').text('Please enter your email');
-            isEmail = false;
+            if(validateLocation(location)) {
+                $('.wrap-input-location .error').css("opacity", 0);
+                $('.wrap-input-location .error').text('Error');
+                isLocation = true;
+            } else {
+                $('.wrap-input-location .error').css("opacity", 1);
+                $('.wrap-input-location .error').text('Please enter your location');
+                isLocation = false;
+            }
         }
 
         if(datepicker.length == 0)
@@ -503,6 +510,11 @@ function loadData(date,time_id)
 function validateEmail(email) {
     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     return emailReg.test( email );
+}
+
+function validateLocation(location) {
+    var locationReg = /\d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*\$/;
+    return locationReg.test( location );
 }
 
 function isVietnamesePhoneNumber(number) {

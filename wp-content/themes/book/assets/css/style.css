@@ -43,6 +43,8 @@ p:last-child {
 
 .header-logo {
   padding: 20px 0 12px;
+  display: flex;
+  justify-content: center;
 }
 
 .wrap-header {
@@ -65,8 +67,7 @@ p:last-child {
 
 .header-logo a {
   font-size: 36px;
-  display: flex;
-  justify-content: center;
+  display: inline-block;
 }
 
 .header-logo a img {
@@ -897,6 +898,12 @@ input:focus-visible,
 	margin-left: 15px;
 }
 
+.modal {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -45%);
+}
+
 .modal-footer,
 .modal-header {
   text-align: center;
@@ -989,7 +996,13 @@ input:focus-visible,
 
 .guest-item-title {
   padding-bottom: 10px;
-  font-size: 28px;
+  font-size: 30px;
+  font-family: 'Playfair Display', serif;
+}
+
+.guest-item-title .guest-item-number {
+  font-size: 45px;
+  font-weight: 400;
   font-family: 'Playfair Display', serif;
 }
 
@@ -1399,7 +1412,7 @@ footer {
 
 .footer-row-1 .footer-phone img {
   max-width: 36px;
-  transform: translateY(-5px);
+  transform: translateY(-8px);
 }
 
 .footer-row-2 {

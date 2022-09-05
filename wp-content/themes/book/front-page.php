@@ -753,7 +753,7 @@
                             <div class="error red">Error</div>
                         </div>
 
-                        <div class="wrap-input-form wrap-input-email">
+                        <div class="wrap-input-form wrap-input-location">
                             <div class="label-card TextColorBody">Your location</div>
                             <input type="text" class="location">
                             <div class="error red">Error</div>
