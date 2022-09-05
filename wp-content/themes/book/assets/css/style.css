@@ -114,9 +114,14 @@ p:last-child {
   z-index: 1;
 }
 
-.nail-address span {
+.nail-address a {
   font-size: 32px;
   position: relative;
+}
+
+.nail-address a:hover,
+.nail-address a:focus{
+  text-decoration: none;
 }
 
 .nail-call {
@@ -1226,6 +1231,7 @@ input:focus-visible,
 
 .welcome {
   margin-bottom: 75px;
+  padding-top: 35px;
 }
 
 .welcome .col-md-3 {
@@ -1237,8 +1243,9 @@ input:focus-visible,
 }
 
 .title-welcome-nail {
-  padding-bottom: 55px;
+  padding-bottom: 20px;
   text-align: center;
+  margin-top: 0;
 }
 
 .content-welcome-nail {
@@ -1253,7 +1260,7 @@ input:focus-visible,
 }
 
 .content-welcome-nail p:last-child {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .wrap-gift {
@@ -1327,6 +1334,7 @@ input:focus-visible,
 
 .content-menu-footer a{
   font-size: 26px;
+  text-transform: uppercase;
 }
 
 .content-contact {
@@ -1444,7 +1452,7 @@ footer {
   transform: translateY(-3px);
 }
 
-.nail-address span:before,
+.nail-address a:before,
 .nail-call-small .telephone:before{
   position: absolute;
   content: '';
@@ -1524,7 +1532,7 @@ footer {
     max-width: 850px;
   }
 
-  .nail-address span,
+  .nail-address a,
   .nail-call .nail-call-small a {
     font-size: 28px;
   }
@@ -1710,7 +1718,7 @@ footer {
     font-size: 18px;
   }
 
-  .nail-address span,
+  .nail-address a,
   .nail-call .nail-call-small a,
   .nail-call > a {
     font-size: 24px;

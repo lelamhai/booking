@@ -399,7 +399,12 @@
                         <?php
                         if(get_option($businessAddress))
                         {
-                            echo '<span>'.get_option($businessAddress).'</span>';
+                            if (get_option($businessGoogleMap)) {
+                                $google_map_link = get_option($businessGoogleMap);
+                            } else {
+                                $google_map_link = '#';
+                            }
+                            echo '<a class="TextColorBody" href="'.$google_map_link.'" target="_blank">'.get_option($businessAddress).'</a>';
                         }
                         ?>
                     </div>
@@ -445,7 +450,7 @@
 
         <section class="container welcome">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-3 column-left">
                     <h3 class="title-welcome-nail TextColorBody">
                         <?php
                         if(get_option($businessTitleWelcome))
@@ -454,10 +459,6 @@
                         }
                         ?>
                     </h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 column-left">
                     <div class="content-welcome-nail TextColorBody">
                         <?php
                         if(get_option($businessContentWelcome))
@@ -643,7 +644,7 @@
             <a href="#header" class="scrollToTop">pagetotop</a>
         </div>
 
-        <section class="menu-main anim move js-anim BackgroundColorReviews">
+        <section class="menu-main anim move js-anim BackgroundColorReviews" id="OurServices">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -836,10 +837,19 @@
                         <div class="title-menu-footer TextColorFooter">Explore</div>
                         <div class="content-menu-footer">
                             <ul>
-                                <li><a class="TextColorFooter" href="#">OUR MENU</a></li>
-                                <li><a class="TextColorFooter" href="#">PRODUCTS</a></li>
-                                <li><a class="TextColorFooter" href="#">BOOK ONLINE</a></li>
-                                <li><a class="TextColorFooter" href="#">BUY GIFT CARDS</a></li>
+                                <li><a class="TextColorFooter" href="#OurServices">OUR MENU</a></li>
+                                <?php
+                                if(get_option("business-addmenu-header") && get_option("business-linkmenu-header"))
+                                {
+                                    ?>
+                                    <li>
+                                        <a  class="TextColorFooter" href="<?php echo get_option("business-linkmenu-header")?>"><?php echo get_option("business-addmenu-header")?></a>
+                                    </li>
+                                    <?php
+                                }
+                                ?>
+                                <li><a class="TextColorFooter" href="#BookOnline">BOOK ONLINE</a></li>
+                                <li><a class="TextColorFooter" href="#Gift">BUY GIFT CARDS</a></li>
                             </ul>
                         </div>
                     </div>

@@ -20,7 +20,6 @@
             <div class="mobile-container not-showmenu">
                 <div class="close-menu mobile">
                     <button class="menu-close">
-<!--                        <img src="--><?php //echo get_template_directory_uri()?><!--/assets/img/icon/icon_close.png" alt="">-->
                         <i class="fas fa-times"></i>
                     </button>
                  </div>
@@ -30,8 +29,7 @@
                         if(get_option("business-logo-header"))
                         {
                             ?>
-<!--                            <img src="--><?php //echo get_option("business-logo-header")?><!--" alt="">-->
-                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/name.png" ?>" alt="">
+                            <img src="<?php echo get_option("business-logo-header")?>" alt="">
                             <?php
                         } else if(get_option("business-name")){
                             $name = "Softkeymarketing";
@@ -47,7 +45,7 @@
                 <section class="wrap-header">
                     <ul class="header-list-menu">
                         <li>
-                            <a href="#OurMenu" class="TextColorHeader">Our menu</a>
+                            <a href="#OurServices" class="TextColorHeader">Our menu</a>
                         </li>
 
                         <?php
@@ -80,26 +78,25 @@
                 <div class="logo-mobile anim left-right js-anim">
                    <div class="logo">
                         <a href="./" class="TextColorHeader">
-<!--                            --><?php
-//                                $name = "Softkeymarketing";
-//                                if(get_option("business-name"))
-//                                {
-//                                    $name = get_option("business-name");
-//                                }
-//                                echo $name;
-//                            ?>
-                        <?php
-                        if(get_option("business-logo-header"))
-                        {
+                            <?php
+                            if(get_option("business-logo-header"))
+                            {
+                                ?>
+                                <img src="<?php echo get_option("business-logo-header")?>" alt="">
+                                <?php
+                            } else if(get_option("business-name")){
+                                $name = "Softkeymarketing";
+                                if(get_option("business-name"))
+                                {
+                                    $name = get_option("business-name");
+                                }
+                                echo $name;
+                            }
                             ?>
-<!--                            <img src="--><?php //echo get_option("business-logo-header")?><!--" alt="">-->
-                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/name.png" ?>" alt="">
-                        <?php }?>
                         </a>
                    </div>
                 </div>
                 <button class="menu-open anim right-left js-anim">
-<!--                    <img src="--><?php //echo get_template_directory_uri()?><!--/assets/img/icon/icon_menu.png" alt="">-->
                     <i class="fas fa-bars"></i>
                 </button>
              </div>
