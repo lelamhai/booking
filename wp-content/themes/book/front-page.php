@@ -483,8 +483,8 @@
                         }
                         ?>
                         <div class="item-slide">
-<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
-                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
+                            <img src="<?php echo $url ?>" alt="">
+<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?><!--" alt="">-->
                         </div>
 
                         <?php
@@ -495,8 +495,8 @@
                         }
                         ?>
                         <div class="item-slide">
-<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
-                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
+                            <img src="<?php echo $url ?>" alt="">
+<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?><!--" alt="">-->
                         </div>
 
                         <?php
@@ -507,8 +507,8 @@
                         }
                         ?>
                         <div class="item-slide">
-<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
-                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
+                            <img src="<?php echo $url ?>" alt="">
+<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?><!--" alt="">-->
                         </div>
 
                         <?php
@@ -519,8 +519,8 @@
                         }
                         ?>
                         <div class="item-slide">
-<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
-                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
+                            <img src="<?php echo $url ?>" alt="">
+<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?><!--" alt="">-->
                         </div>
 
                         <?php
@@ -531,8 +531,8 @@
                         }
                         ?>
                         <div class="item-slide">
-<!--                            <img src="--><?php //echo $url ?><!--" alt="">-->
-                            <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?>" alt="">
+                            <img src="<?php echo $url ?>" alt="">
+<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/hinhhoa.png" ?><!--" alt="">-->
                         </div>
                     </div>
                 </div>
@@ -629,8 +629,8 @@
                             $url = get_option($businessImageGift);
                         }
                         ?>
-<!--                        <img src="--><?php //echo $url ?><!--" alt="">-->
-                        <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/example.png" ?>" alt="">
+                        <img src="<?php echo $url ?>" alt="">
+<!--                        <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/example.png" ?><!--" alt="">-->
                     </div>
                 </div>
             </div>
@@ -726,8 +726,6 @@
                     <h3 class="form-top-title TextColorBody">
                         Make a reservation
                     </h3>
-
-                    <div class="form-hr"></div>
 
                     <div class="form-content TextColorBody">
                         Book online, chat with us or you can always call us during our business hours.<br>

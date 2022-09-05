@@ -52,8 +52,9 @@ $(document).ready(function() {
         $('#reviewsGood').modal('toggle');
     });
 
-    // menu more
     $('.menu-right-more').click(function(){
+        $('.menu-right-more.active').removeClass('active');
+        $(this).addClass('active');
         $(this).parent().parent().children(".content-menu-child").toggle("menu-hide");
     });
 

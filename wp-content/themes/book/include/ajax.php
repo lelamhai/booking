@@ -120,7 +120,7 @@
                                                                                 foreach($children as $child)
                                                                                 {
                                                                                     ?>
-                                                                                        <option data-parent="<?php echo $parent->term_id?>" value="<?php echo $child->term_id?>"><?php echo $child->name;?>&nbsp&nbsp - &nbsp&nbsp<?php echo "$".get_term_meta( $child->term_id, 'services-price', true );?></option>
+                                                                                        <option data-parent="<?php echo $parent->term_id?>" value="<?php echo $child->term_id?>"><?php echo $child->name;?></option>
                                                                                     <?php
                                                                                 }
                                                                             ?>
@@ -190,7 +190,7 @@
                                                                                 foreach($children as $child)
                                                                                 {
                                                                                     ?>
-                                                                                        <option data-parent="<?php echo $parent->term_id?>" value="<?php echo $child->term_id?>"><?php echo $child->name;?>&nbsp&nbsp - &nbsp&nbsp<?php echo "$".get_term_meta( $child->term_id, 'services-price', true );?></option>
+                                                                                        <option data-parent="<?php echo $parent->term_id?>" value="<?php echo $child->term_id?>"><?php echo $child->name;?></option>
                                                                                     <?php
                                                                                 }
                                                                             ?>
