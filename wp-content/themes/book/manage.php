@@ -52,6 +52,7 @@
     
     #manage-content-wrap {
         width: 100%;
+        height: calc(100vh - 32px);
         overflow-y: scroll;
         /* transition: transform 500ms ease-in-out 25ms; */
         transition: margin 500ms ease-in-out 25ms;
@@ -164,7 +165,106 @@
 
     .table-data-books tbody tr:nth-child(odd) {background: #CCC}
     .table-data-books tbody tr:nth-child(even) {background: #FFF}
+
+    .not-data-books {
+        color: red;
+        opacity: 0;
+    }
 </style>
+
+
+        <div class="modal fade" id="modalPhone">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Enter Client's phone number</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-phone-popup">
+                            <input type="tel" class="modal-input-phone">
+                        </div>
+                        
+                        <div class="not-data-books">There is no appointment with this phone number</div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="modal-button-phone">Enter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalBooks">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Your appointment</h5>
+                    </div>
+
+                    <div class="modal-body" id="ajax-books">
+                        <div class="wrap-book-title">
+                            <div class="book-name">Name</div>
+                            <div class="book-date">Date</div>
+                            <div class="book-time">Time</div>
+                            <div class="book-serivces">Services</div>
+                            <div class="book-control"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalComfirm">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Your appointment has been comfirmed</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalCancel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Do you want to cancel this appointment?</h5>
+                        <input type="text" id="idBooks" value="">
+                        <input type="text" id="statusBooks" value="">
+                    </div>
+                   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary yes-cancel-books">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalCancelYes">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Your appointment has been cancelled</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 <main id="manage">
     <div id="manage-menu-wrap">
@@ -206,8 +306,7 @@
                         <div class="add-appointment">+ Add appointment</div>
 
                         <div class="search-phone">
-                            <input type="tel" class="input-search-books">
-                            <button class="button-search-books">Search</button>
+                            <button class="button-search-books" data-toggle="modal" data-target="#modalPhone" data-backdrop="static" data-keyboard="false">Search</button>
                         </div>
                     </div>
                     <div class="content-books">
