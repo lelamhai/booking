@@ -1004,7 +1004,7 @@
                         $phone = get_option($businessPhoneNumber);
                         ?>
                         <img src="<?php echo get_template_directory_uri() ."/assets/img/icon-theme/icon-phone.png"?>" alt="">
-                        <a class ="TextColorBody" href="tel:<?php echo $phone ?>">Tel: <?php echo $phone ?></a>
+                        <a class ="TextColorFooter" href="tel:<?php echo $phone ?>">Tel: <?php echo $phone ?></a>
                         <?php
                         }
                         ?>
