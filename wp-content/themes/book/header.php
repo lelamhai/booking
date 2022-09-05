@@ -45,7 +45,7 @@
                 <section class="wrap-header">
                     <ul class="header-list-menu">
                         <li>
-                            <a href="#OurServices" class="TextColorHeader">Our menu</a>
+                            <a href="<?php echo get_home_url() ?>/#OurMenu" class="TextColorHeader">Our menu</a>
                         </li>
 
                         <?php

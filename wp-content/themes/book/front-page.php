@@ -644,7 +644,7 @@
             <a href="#header" class="scrollToTop">pagetotop</a>
         </div>
 
-        <section class="menu-main anim move js-anim BackgroundColorReviews" id="OurServices">
+        <section class="menu-main anim move js-anim BackgroundColorReviews">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -837,7 +837,7 @@
                         <div class="title-menu-footer TextColorFooter">Explore</div>
                         <div class="content-menu-footer">
                             <ul>
-                                <li><a class="TextColorFooter" href="#OurServices">OUR MENU</a></li>
+                                <li><a class="TextColorFooter" href="<?php echo get_home_url() ?>/#OurMenu">OUR MENU</a></li>
                                 <?php
                                 if(get_option("business-addmenu-header") && get_option("business-linkmenu-header"))
                                 {
