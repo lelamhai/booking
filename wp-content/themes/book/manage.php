@@ -170,6 +170,81 @@
         color: red;
         opacity: 0;
     }
+
+
+    .wrap-book-title {
+        display: flex;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .wrap-book-item {
+        display: flex;
+        margin-bottom: 30px;
+    }
+
+    .book-control {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .book-name {
+        width: 20%;
+    }
+
+    .book-time {
+        width: 15%;
+    }
+
+    .book-date {
+        width: 15%;
+    }
+
+    .book-serivces {
+        width: 25%;
+    }
+
+    .book-control button {
+        margin: 0 5px;
+        padding: 5px;
+        color: #fff;
+    }
+
+    .button-confirm-books {
+        background-color: #008037;
+    }
+
+    .button-cancel-books {
+        background-color: #ff5757;
+    }
+
+    button[disabled], html input[disabled] {
+        background-color: #00803775;
+    }
+
+
+    /* modal */
+    .modal-title {
+        text-align: center;
+        font-size: 28px;
+    }
+
+    .input-phone-popup input {
+        width: 100%;
+    }
+
+    .modal-header {
+        border-bottom: 0;
+    }
+
+    .modal-footer {
+        border-top: 0;
+        text-align: center;
+    }
+
+
 </style>
 
 
@@ -241,8 +316,8 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                         <h5 class="modal-title">Do you want to cancel this appointment?</h5>
-                        <input type="text" id="idBooks" value="">
-                        <input type="text" id="statusBooks" value="">
+                        <input type="hidden" id="idBooks" value="">
+                        <input type="hidden" id="statusBooks" value="">
                     </div>
                    
                     <div class="modal-footer">
@@ -306,7 +381,7 @@
                         <div class="add-appointment">+ Add appointment</div>
 
                         <div class="search-phone">
-                            <button class="button-search-books" data-toggle="modal" data-target="#modalPhone" data-backdrop="static" data-keyboard="false">Search</button>
+                            <button class="button-search-books" data-toggle="modal" data-target="#modalPhone" data-backdrop="static" data-keyboard="false">Confirm/Cancel Appointments</button>
                         </div>
                     </div>
                     <div class="content-books">
