@@ -218,14 +218,45 @@ p:last-child {
 }
 
 .gift .col-md-4{
-  padding: 87px 15px 0;
-  text-align: center;
+  padding: 28px 15px 0;
+}
+
+.wrap-review {
+  width: 100%;
+}
+
+.buy-gift,
+.check-gift {
+  width: calc(100% - 75px);
+}
+
+.slick-dots li button:before {
+  opacity: .75 !important;
+  color: transparent !important;
+  background: black !important;
+  border-radius: 50%;
+  width: 25px !important;
+  height: 25px !important;
+}
+
+.slick-dots li button {
+  width: 25px !important;
+  height: 25px !important;
+}
+
+.slick-dots li {
+  width: 25px !important;
+  height: 25px !important;
+  margin: 0 10px !important;
+}
+
+.slider .slick-dots {
+  bottom: 39px !important;
 }
 
 .wrap-review,
 .buy-gift,
 .check-gift{
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -235,8 +266,8 @@ p:last-child {
   background-size: cover;
   color: #cfa560;
   border-radius: 18px;
-  font-size: 25px;
-  padding: 12px 0;
+  font-size: 29px;
+  padding: 9px 0;
 }
 
 .buy-gift {
@@ -417,9 +448,9 @@ p:last-child {
 .wrap-menu-column2,
 .wrap-menu-column3 {
   display: block;
-  padding: 10px 29px;
-  font-size: 26px;
-  border-radius: 10px;
+  padding: 10px 34px;
+  font-size: 28px;
+  border-radius: 12px;
   cursor: pointer;
   letter-spacing: 2px;
 }
@@ -548,6 +579,13 @@ p:last-child {
   background: black;
   top: 15px;
   right: -34px;
+  transition: all .3s;
+  transform: rotate(180deg);
+}
+
+.wrap-menu-parent .menu-label-right.active:after {
+  transition: all .3s;
+  transform: rotate(90deg);
 }
 
 .wrap-menu-parent .menu-label-left .menu-title-parent {
@@ -1183,6 +1221,15 @@ input:focus-visible,
   font-weight: bold;
 }
 
+.service-content {
+  padding-bottom: 14px;
+}
+
+.wrap-service-parent .wrap-service-child .error-checkbox {
+  margin-top: -30px;
+  margin-bottom: 20px;
+}
+
 .select2-container--default .select2-selection--single {
   height: 50px !important;
 }
@@ -1279,10 +1326,11 @@ input:focus-visible,
 
 .wrap-gift .image-gift {
   text-align: center;
+  padding: 0 105px 0 95px;
 }
 
 .wrap-gift .image-gift img {
-  max-width: 780px;
+  min-height: 385px;
   border-radius: 36px;
 }
 
@@ -1301,18 +1349,22 @@ input:focus-visible,
 }
 
 .title-gift-card {
-  font-size: 40px;
+  font-size: 43px;
   color: #275050;
   font-weight: 400;
+  margin-left: 5px;
+  letter-spacing: 2px;
+  margin-top: 15px;
 }
 
 .content-gift {
   padding-bottom: 15px;
-  font-size: 22px;
-  letter-spacing: 0.6px;
+  font-size: 24px;
   position: relative;
   display: inline-block;
-  margin-bottom: 15px;
+  margin-bottom: 13px;
+  letter-spacing: 3px;
+  margin-left: 5px;
 }
 
 .content-gift:before {

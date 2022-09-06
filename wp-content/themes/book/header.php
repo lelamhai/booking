@@ -30,6 +30,7 @@
                         {
                             ?>
                             <img src="<?php echo get_option("business-logo-header")?>" alt="">
+<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/name.png" ?><!--" alt="">-->
                             <?php
                         } else if(get_option("business-name")){
                             $name = "Softkeymarketing";

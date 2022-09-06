@@ -71,6 +71,15 @@
         background-color: <?php echo $BackgroundColorBody?> !important;
     }
 
+    .slick-dots li.slick-active button:before {
+        background-color: <?php echo $BackgroundButtonBody?> !important;
+        opacity: 1 !important;
+    }
+
+    .slick-dots li button:before {
+        background-color: <?php echo $TextColorBody?> !important;
+    }
+
     .TextColorBody {
         color: <?php echo $TextColorBody?> !important;
     }
@@ -596,6 +605,19 @@
 
         <section class="container gift anim move js-anim" id="Gift">
             <div class="row wrap-gift">
+                <div class="col-md-8">
+                    <div class="image-gift">
+                        <?php
+                        $url = get_template_directory_uri()."/assets/img/gift.jpg";
+                        if(get_option($businessImageGift ))
+                        {
+                            $url = get_option($businessImageGift);
+                        }
+                        ?>
+                        <img src="<?php echo $url ?>" alt="">
+<!--                        <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/example.png" ?><!--" alt="">-->
+                    </div>
+                </div>
                 <div class="col-md-4">
                     <h3 class="title-gift-card TextColorBody">
                         <?php
@@ -619,19 +641,6 @@
                     </div>
                     <button class="buy-gift BackgroundButtonBody TextColorButtonBody">Buy Now</button>
                     <button class="check-gift BackgroundButtonBody TextColorButtonBody">Check Balance</button>
-                </div>
-                <div class="col-md-8">
-                    <div class="image-gift">
-                        <?php
-                        $url = get_template_directory_uri()."/assets/img/gift.jpg";
-                        if(get_option($businessImageGift ))
-                        {
-                            $url = get_option($businessImageGift);
-                        }
-                        ?>
-                        <img src="<?php echo $url ?>" alt="">
-<!--                        <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/example.png" ?><!--" alt="">-->
-                    </div>
                 </div>
             </div>
         </section>
