@@ -347,9 +347,13 @@ p:last-child {
   right: 0px;
 }
 
-/*.slick-track {*/
-/*  height: 100% !important;*/
-/*}*/
+.slick-track {
+  height: 100% !important;
+}
+
+.slick-slide {
+  max-height: 597px !important;
+}
 
 .title-reviews {
   padding-bottom: 60px;
