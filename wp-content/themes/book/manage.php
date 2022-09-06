@@ -282,7 +282,7 @@
                         <h5 class="modal-title">Your appointment</h5>
                     </div>
 
-                    <div class="modal-body" id="ajax-books">
+                    <div class="modal-body" id="ajax-searchbooks">
                         <div class="wrap-book-title">
                             <div class="book-name">Name</div>
                             <div class="book-date">Date</div>
@@ -341,6 +341,17 @@
             </div>
         </div>
 
+<style>
+    #manage {
+        position: relative;
+    }
+
+    .design {
+        position: absolute;
+        opacity: 0.5;
+    }
+</style>
+
 <main id="manage">
     <div id="manage-menu-wrap">
         <div class="first-menu-manage">
@@ -394,6 +405,9 @@
             </div>
         </div>
     </div>
+    <!-- <div class="design">
+        <img src="<?php echo get_template_directory_uri()?>/assets/img/Manage.png" alt="">
+    </div> -->
 </main>
 <?php
     get_footer();

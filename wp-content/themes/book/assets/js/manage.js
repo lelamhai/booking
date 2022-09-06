@@ -26,28 +26,10 @@ $(document).ready(function() {
             return [true, cssClass];
         },
     });
-    $(document).on('click', '.button-search-books', function() {
-        let phone = $.trim($('.input-search-books').val());
-
-        $.ajax({
-            type : "GET", 
-            dataType: 'html',
-            url : "./wp-admin/admin-ajax.php",
-            data : {
-                action: "search_phone_books",
-                phone: phone,
-            },
-            beforeSend: function(){
-               $(".list-data-books").remove();
-            },
-            success: function(response) {
-                // console.log(response);
-                $(".ajax-books").append(response);
-                $('.input-search-books').val("");
-            },
-            error: function( jqXHR, textStatus, errorThrown ){
-            }
-        });
+    
+    $(document).on('click', '.close ', function() { 
+        $('.modal-input-phone').val(" ");
+        $('.not-data-books').css("opacity", 0);
     });
 
     $('#modal-button-phone').click(function(){
@@ -62,6 +44,7 @@ $(document).ready(function() {
             $('.not-data-books').text('Please enter your phone number');
             return false;
         }
+        $('#modalPhone').modal('toggle');
         searchLoadBooks(phoneNumber, 0);
     });
 
@@ -141,10 +124,15 @@ function searchLoadBooks(phone, flag = 1)
             {
                 $('.not-data-books').css("opacity", 1);
                 $('.not-data-books').text('There is no appointment with this phone number');
+
+                $('.wrap-book-title').css("display","none");
+                let html = "<div>No Appointment</div>";
+                $("#ajax-searchbooks").append(html);
                 return false;
             }
 
             $('.not-data-books').css("opacity", 0);
+            $('.wrap-book-title').css("display","flex");
 
             if(flag == 0)
             {
@@ -187,8 +175,7 @@ function searchLoadBooks(phone, flag = 1)
                     html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+name+"</div><div class='book-control'  data-id="+id+"><button class='button-confirm-books' disabled>Confirmed</button><button class='button-cancel-books button-status-booking' data-status='0'>Cancel</button></div></div>";
                 }
             }
-            $('#modalPhone').modal('toggle');
-            $("#ajax-books").append(html);
+            $("#ajax-searchbooks").append(html);
         },
         error: function( jqXHR, textStatus, errorThrown ){
 
