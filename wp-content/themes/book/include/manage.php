@@ -10,6 +10,7 @@ add_action('wp_ajax_nopriv_get_data_books_date', 'get_data_books_date_function')
 function get_data_books_date_function() {
     if($_GET["startDate"] != "" && $_GET["endDate"] != "")
     {
+        $amount = $_GET["amount"];
         $countDatePoint = count(books_get_count_book_date($_GET["startDate"], $_GET["endDate"]));
         ?>
             <div class="list-data-books">
@@ -20,7 +21,13 @@ function get_data_books_date_function() {
                         
                         $monday = date('F j', strtotime("0 day", strtotime($start)));
                         $sunday = date('F j', strtotime("0 day", strtotime($end)));
-                        echo $monday . " - " .$sunday;
+                        
+                        if($amount == 1)
+                        {
+                            echo $monday;
+                        } else {
+                            echo $monday . " - " .$sunday;
+                        }
                     ?>
                 </div>
                 <div class="count-books" style="text-align: center;" ><?php echo $countDatePoint?> Appointments</div>
@@ -29,7 +36,7 @@ function get_data_books_date_function() {
                         <thead>
                                         <th></th>
                                         <?php
-                                            for($i=0; $i<7; $i++)
+                                            for($i=0; $i<$amount; $i++)
                                             {
                                                 $date = date('D M j', strtotime($i." day", strtotime($monday)));
                                                 ?>
@@ -46,7 +53,7 @@ function get_data_books_date_function() {
                                         <tr class="item-time">
                                             <td><?php echo $time->name?></td>
                                             <?php
-                                                for($i=0; $i<7; $i++)
+                                                for($i=0; $i<$amount; $i++)
                                                 {
                                                     $date = date('Y-m-d', strtotime($i." day", strtotime($monday)));
                                                     $books = get_list_books($date,$time->term_id );

@@ -114,7 +114,7 @@
         border: 0 !important;
     }
 
-    .ui-datepicker-calendar .ui-datepicker-current-day a {
+    .ui-datepicker-calendar .custom-ui-datepicker-current-day a {
         background-color: #fff !important;
         color: #000 !important;
     }
@@ -222,6 +222,10 @@
 
     button[disabled], html input[disabled] {
         background-color: #00803775;
+    }
+
+    .option-active {
+        background-color: red;
     }
 
 
@@ -385,8 +389,8 @@
                 <div class="tab-pane active" id="appointments">
                     <div class="header-bar">
                         <div class="filter-control">
-                            <button>Today</button>
-                            <button>Week</button>
+                            <button class="option-select" data-option="1">Today</button>
+                            <button class="option-select option-active" data-option="7">Week</button>
                         </div>
 
                         <div class="add-appointment">+ Add appointment</div>

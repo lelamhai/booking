@@ -2,18 +2,25 @@ $(document).ready(function() {
     $("#wp-admin-bar-my-account li:eq(1)").before($("#wp-admin-bar-my-account li:eq(3)"));
     $("#wp-admin-bar-my-account li:eq(2)").before($("#wp-admin-bar-my-account li:eq(4)"));
 
+    let option = 7;
     let date = new Date();
     let begin = getMonday(date);
     let end = getSunday(date);
     
-    loadBooks(formatDate(begin), formatDate(end));
+    loadBooks(formatDate(begin), formatDate(end), option);
     $('#datepicker').datepicker({
         firstDay: 1,
         onSelect: function(dateText, inst) {
             date = new Date(dateText);
-            begin = getMonday(date);
-            end = getSunday(date);
-            loadBooks(formatDate(begin), formatDate(end));
+            if(option == 7)
+            {
+                begin = getMonday(date);
+                end = getSunday(date);
+            } else {
+                begin = getCalculator(date, 0);
+                end = getCalculator(date, 0);
+            }
+            loadBooks(formatDate(begin), formatDate(end), option);
         },
         beforeShowDay: function(listDate) {
             let currentDate = new Date(formatDate(listDate));
@@ -22,9 +29,50 @@ $(document).ready(function() {
             
             var cssClass = '';
              if(currentDate >= startDate && currentDate <= endDate)
-                cssClass = 'ui-datepicker-current-day';
+                cssClass = 'custom-ui-datepicker-current-day';
             return [true, cssClass];
         },
+    });
+
+    $('.option-select').click(function(){
+        $(".option-select").removeClass("option-active");
+        $(this).addClass("option-active");
+        option = $(this).data("option");
+
+        date = new Date();
+        if(option == 7)
+        {
+            begin = getMonday(date);
+            end = getSunday(date);
+
+            $('#datepicker').datepicker('option', {
+                beforeShowDay: function(listDate) {
+                    let currentDate = new Date(formatDate(listDate));
+                    let startDate = new Date(formatDate(begin));
+                    let endDate = new Date(formatDate(end));
+                    var cssClass = '';
+                    if(currentDate >= startDate && currentDate <= endDate)
+                       cssClass = 'custom-ui-datepicker-current-day';
+                   return [true, cssClass];
+                },
+            });
+        } else {
+            begin = getCalculator(date, 0);
+            end = getCalculator(date, 0);
+
+            $('#datepicker').datepicker('option', {
+                beforeShowDay: function(listDate) {
+                    let currentDate = new Date(formatDate(listDate));
+                    let startDate = new Date(formatDate(begin));
+                    let endDate = new Date(formatDate(end));
+                    var cssClass = '';
+                    if(currentDate >= startDate && currentDate <= endDate)
+                       cssClass = 'custom-ui-datepicker-current-day';
+                   return [true, cssClass];
+                },
+            });
+        }
+        loadBooks(formatDate(begin), formatDate(end), option);
     });
     
     $(document).on('click', '.close ', function() { 
@@ -62,6 +110,9 @@ $(document).ready(function() {
         changeStatusBooks(id, status);
         
     });
+
+  
+   
 
     $(document).on('click', '.yes-cancel-books', function() {
         let id = $('#idBooks').val();
@@ -219,7 +270,7 @@ function getCalculator(date, numberDay)
     return currentDate;
 }
 
-function loadBooks(startDate, endDate)
+function loadBooks(startDate, endDate, amount)
 {
     $.ajax({
         type : "GET", 
@@ -228,7 +279,8 @@ function loadBooks(startDate, endDate)
         data : {
             action: "get_data_books_date",
             startDate: startDate,
-            endDate: endDate
+            endDate: endDate,
+            amount: amount
            
         },
         beforeSend: function(){
