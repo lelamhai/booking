@@ -53,7 +53,6 @@
     #manage-content-wrap {
         width: 100%;
         height: calc(100vh - 32px);
-        overflow-y: scroll;
         /* transition: transform 500ms ease-in-out 25ms; */
         transition: margin 500ms ease-in-out 25ms;
     }
@@ -159,11 +158,24 @@
         justify-content: space-between;
     }
 
+    .item-boook {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .list-calendar {
+       
+    }
+
     .table-data-books {
         border-collapse: separate;
         border-spacing: 0 10px;
         width: 100%;
     }
+
+    /* .table-data-books tr td {
+        width: 500px;
+    } */
 
     .table-data-books tbody tr:nth-child(odd) {background: #CCC}
     .table-data-books tbody tr:nth-child(even) {background: #FFF}
