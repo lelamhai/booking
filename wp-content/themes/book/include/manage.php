@@ -10,26 +10,37 @@ add_action('wp_ajax_nopriv_get_data_books_date', 'get_data_books_date_function')
 function get_data_books_date_function() {
     if($_GET["startDate"] != "" && $_GET["endDate"] != "")
     {
+        $amount = $_GET["amount"];
         $countDatePoint = count(books_get_count_book_date($_GET["startDate"], $_GET["endDate"]));
+        $start = date('Y-m-d', strtotime("0 day", strtotime($_GET["startDate"])));
+        $end = date('Y-m-d', strtotime("0 day", strtotime($_GET["endDate"])));
+        
+        $monday = date('F j', strtotime("0 day", strtotime($start)));
+        $sunday = date('F j', strtotime("0 day", strtotime($end)));
         ?>
             <div class="list-data-books">
-                <div class="calendar-books">
-                    <?php
-                        $start = date('Y-m-d', strtotime("0 day", strtotime($_GET["startDate"])));
-                        $end = date('Y-m-d', strtotime("0 day", strtotime($_GET["endDate"])));
-                        
-                        $monday = date('F j', strtotime("0 day", strtotime($start)));
-                        $sunday = date('F j', strtotime("0 day", strtotime($end)));
-                        echo $monday . " - " .$sunday;
-                    ?>
+                <div class="group-calendar">
+                    <span><button class="previous-books" data-date="<?php echo  $start?>"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/white-left-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
+                    <div class="calendar-books">
+                        <?php
+                            if($amount == 1)
+                            {
+                                echo $monday;
+                            } else {
+                                echo $monday . " - " .$sunday;
+                            }
+                        ?>
+                    </div>
+                    <span><button class="next-books" data-date="<?php echo  $end?>"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/white-right-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
                 </div>
+               
                 <div class="count-books" style="text-align: center;" ><?php echo $countDatePoint?> Appointments</div>
                 <div class="list-calendar">
                     <table class="table-data-books">
                         <thead>
                                         <th></th>
                                         <?php
-                                            for($i=0; $i<7; $i++)
+                                            for($i=0; $i<$amount; $i++)
                                             {
                                                 $date = date('D M j', strtotime($i." day", strtotime($monday)));
                                                 ?>
@@ -46,7 +57,7 @@ function get_data_books_date_function() {
                                         <tr class="item-time">
                                             <td><?php echo $time->name?></td>
                                             <?php
-                                                for($i=0; $i<7; $i++)
+                                                for($i=0; $i<$amount; $i++)
                                                 {
                                                     $date = date('Y-m-d', strtotime($i." day", strtotime($monday)));
                                                     $books = get_list_books($date,$time->term_id );

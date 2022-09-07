@@ -86,6 +86,12 @@
         text-decoration: none;
     }
 
+    .group-calendar {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
     .ui-datepicker-inline {
         width: 100%;
         background-color: transparent;
@@ -114,7 +120,7 @@
         border: 0 !important;
     }
 
-    .ui-datepicker-calendar .ui-datepicker-current-day a {
+    .ui-datepicker-calendar .custom-ui-datepicker-current-day a {
         background-color: #fff !important;
         color: #000 !important;
     }
@@ -157,10 +163,6 @@
         border-collapse: separate;
         border-spacing: 0 10px;
         width: 100%;
-    }
-
-    .calendar-books {
-        text-align: center;
     }
 
     .table-data-books tbody tr:nth-child(odd) {background: #CCC}
@@ -224,6 +226,10 @@
         background-color: #00803775;
     }
 
+    .option-active {
+        background-color: red;
+    }
+
 
     /* modal */
     .modal-title {
@@ -282,7 +288,7 @@
                         <h5 class="modal-title">Your appointment</h5>
                     </div>
 
-                    <div class="modal-body" id="ajax-books">
+                    <div class="modal-body" id="ajax-searchbooks">
                         <div class="wrap-book-title">
                             <div class="book-name">Name</div>
                             <div class="book-date">Date</div>
@@ -341,6 +347,17 @@
             </div>
         </div>
 
+<style>
+    #manage {
+        position: relative;
+    }
+
+    .design {
+        position: absolute;
+        opacity: 0.5;
+    }
+</style>
+
 <main id="manage">
     <div id="manage-menu-wrap">
         <div class="first-menu-manage">
@@ -374,8 +391,8 @@
                 <div class="tab-pane active" id="appointments">
                     <div class="header-bar">
                         <div class="filter-control">
-                            <button>Today</button>
-                            <button>Week</button>
+                            <button class="option-select" data-option="1">Today</button>
+                            <button class="option-select option-active" data-option="7">Week</button>
                         </div>
 
                         <div class="add-appointment">+ Add appointment</div>
@@ -394,6 +411,9 @@
             </div>
         </div>
     </div>
+    <!-- <div class="design">
+        <img src="<?php echo get_template_directory_uri()?>/assets/img/Manage.png" alt="">
+    </div> -->
 </main>
 <?php
     get_footer();

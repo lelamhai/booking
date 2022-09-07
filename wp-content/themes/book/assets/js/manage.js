@@ -2,18 +2,25 @@ $(document).ready(function() {
     $("#wp-admin-bar-my-account li:eq(1)").before($("#wp-admin-bar-my-account li:eq(3)"));
     $("#wp-admin-bar-my-account li:eq(2)").before($("#wp-admin-bar-my-account li:eq(4)"));
 
+    let option = 7;
     let date = new Date();
     let begin = getMonday(date);
     let end = getSunday(date);
     
-    loadBooks(formatDate(begin), formatDate(end));
+    loadBooks(formatDate(begin), formatDate(end), option);
     $('#datepicker').datepicker({
         firstDay: 1,
         onSelect: function(dateText, inst) {
             date = new Date(dateText);
-            begin = getMonday(date);
-            end = getSunday(date);
-            loadBooks(formatDate(begin), formatDate(end));
+            if(option == 7)
+            {
+                begin = getMonday(date);
+                end = getSunday(date);
+            } else {
+                begin = getCalculator(date, 0);
+                end = getCalculator(date, 0);
+            }
+            loadBooks(formatDate(begin), formatDate(end), option);
         },
         beforeShowDay: function(listDate) {
             let currentDate = new Date(formatDate(listDate));
@@ -22,32 +29,144 @@ $(document).ready(function() {
             
             var cssClass = '';
              if(currentDate >= startDate && currentDate <= endDate)
-                cssClass = 'ui-datepicker-current-day';
+                cssClass = 'custom-ui-datepicker-current-day';
             return [true, cssClass];
         },
     });
-    $(document).on('click', '.button-search-books', function() {
-        let phone = $.trim($('.input-search-books').val());
 
-        $.ajax({
-            type : "GET", 
-            dataType: 'html',
-            url : "./wp-admin/admin-ajax.php",
-            data : {
-                action: "search_phone_books",
-                phone: phone,
-            },
-            beforeSend: function(){
-               $(".list-data-books").remove();
-            },
-            success: function(response) {
-                // console.log(response);
-                $(".ajax-books").append(response);
-                $('.input-search-books').val("");
-            },
-            error: function( jqXHR, textStatus, errorThrown ){
-            }
-        });
+    $('.option-select').click(function(){
+        $(".option-select").removeClass("option-active");
+        $(this).addClass("option-active");
+        option = $(this).data("option");
+
+        date = new Date();
+        
+        if(option == 7)
+        {
+            begin = getMonday(date);
+            end = getSunday(date);
+
+            $('#datepicker').datepicker('option', {
+                beforeShowDay: function(listDate) {
+                    let currentDate = new Date(formatDate(listDate));
+                    let startDate = new Date(formatDate(begin));
+                    let endDate = new Date(formatDate(end));
+                    var cssClass = '';
+                    if(currentDate >= startDate && currentDate <= endDate)
+                       cssClass = 'custom-ui-datepicker-current-day';
+                   return [true, cssClass];
+                },
+            });
+        } else {
+            begin = getCalculator(date, 0);
+            end = getCalculator(date, 0);
+
+            $('#datepicker').datepicker('option', {
+                beforeShowDay: function(listDate) {
+                    let currentDate = new Date(formatDate(listDate));
+                    let startDate = new Date(formatDate(begin));
+                    let endDate = new Date(formatDate(end));
+                    var cssClass = '';
+                    if(currentDate >= startDate && currentDate <= endDate)
+                       cssClass = 'custom-ui-datepicker-current-day';
+                   return [true, cssClass];
+                },
+            });
+        }
+        $('#datepicker').datepicker(
+            'setDate', date
+        );
+        loadBooks(formatDate(begin), formatDate(end), option);
+    });
+
+    $(document).on('click', '.previous-books', function() {
+        let currentDate = $(this).data('date');
+        date = new Date(currentDate);
+
+        if(option == 7)
+        {
+            begin = getCalculator(date, -7);
+            end = getCalculator(date, -1);
+
+            $('#datepicker').datepicker('option', {
+                beforeShowDay: function(listDate) {
+                    let currentDate = new Date(formatDate(listDate));
+                    let startDate = new Date(formatDate(begin));
+                    let endDate = new Date(formatDate(end));
+                    var cssClass = '';
+                    if(currentDate >= startDate && currentDate <= endDate)
+                       cssClass = 'custom-ui-datepicker-current-day';
+                   return [true, cssClass];
+                },
+            });
+        } else {
+            begin = getCalculator(date, -1);
+            end = getCalculator(date, -1);
+
+            $('#datepicker').datepicker('option', {
+                beforeShowDay: function(listDate) {
+                    let currentDate = new Date(formatDate(listDate));
+                    let startDate = new Date(formatDate(begin));
+                    let endDate = new Date(formatDate(end));
+                    var cssClass = '';
+                    if(currentDate >= startDate && currentDate <= endDate)
+                       cssClass = 'custom-ui-datepicker-current-day';
+                   return [true, cssClass];
+                },
+            });
+        }
+        $('#datepicker').datepicker(
+            'setDate', begin
+        );
+        loadBooks(formatDate(begin), formatDate(end), option);
+    });
+
+    $(document).on('click', '.next-books', function() {
+        let currentDate = $(this).data('date');
+        date = new Date(currentDate);
+        
+        if(option == 7)
+        {
+            begin = getCalculator(date, 1);
+            end = getCalculator(date, 7);
+
+            $('#datepicker').datepicker('option', {
+                beforeShowDay: function(listDate) {
+                    let currentDate = new Date(formatDate(listDate));
+                    let startDate = new Date(formatDate(begin));
+                    let endDate = new Date(formatDate(end));
+                    var cssClass = '';
+                    if(currentDate >= startDate && currentDate <= endDate)
+                       cssClass = 'custom-ui-datepicker-current-day';
+                   return [true, cssClass];
+                },
+            });
+        } else {
+            begin = getCalculator(date, 1);
+            end = getCalculator(date, 1);
+
+            $('#datepicker').datepicker('option', {
+                beforeShowDay: function(listDate) {
+                    let currentDate = new Date(formatDate(listDate));
+                    let startDate = new Date(formatDate(begin));
+                    let endDate = new Date(formatDate(end));
+                    var cssClass = '';
+                    if(currentDate >= startDate && currentDate <= endDate)
+                       cssClass = 'custom-ui-datepicker-current-day';
+                   return [true, cssClass];
+                },
+            });
+        }
+        $('#datepicker').datepicker(
+            'setDate', end
+        );
+        loadBooks(formatDate(begin), formatDate(end), option);
+    });
+
+    
+    $(document).on('click', '.close ', function() { 
+        $('.modal-input-phone').val(" ");
+        $('.not-data-books').css("opacity", 0);
     });
 
     $('#modal-button-phone').click(function(){
@@ -62,6 +181,7 @@ $(document).ready(function() {
             $('.not-data-books').text('Please enter your phone number');
             return false;
         }
+        $('#modalPhone').modal('toggle');
         searchLoadBooks(phoneNumber, 0);
     });
 
@@ -79,6 +199,9 @@ $(document).ready(function() {
         changeStatusBooks(id, status);
         
     });
+
+  
+   
 
     $(document).on('click', '.yes-cancel-books', function() {
         let id = $('#idBooks').val();
@@ -141,10 +264,15 @@ function searchLoadBooks(phone, flag = 1)
             {
                 $('.not-data-books').css("opacity", 1);
                 $('.not-data-books').text('There is no appointment with this phone number');
+
+                $('.wrap-book-title').css("display","none");
+                let html = "<div>No Appointment</div>";
+                $("#ajax-searchbooks").append(html);
                 return false;
             }
 
             $('.not-data-books').css("opacity", 0);
+            $('.wrap-book-title').css("display","flex");
 
             if(flag == 0)
             {
@@ -187,8 +315,7 @@ function searchLoadBooks(phone, flag = 1)
                     html = html + "<div class='wrap-book-item'><div class='book-name'>"+title+"</div><div class='book-date'>"+date+"</div><div class='book-time'>"+time+"</div><div class='book-serivces'>"+name+"</div><div class='book-control'  data-id="+id+"><button class='button-confirm-books' disabled>Confirmed</button><button class='button-cancel-books button-status-booking' data-status='0'>Cancel</button></div></div>";
                 }
             }
-            $('#modalPhone').modal('toggle');
-            $("#ajax-books").append(html);
+            $("#ajax-searchbooks").append(html);
         },
         error: function( jqXHR, textStatus, errorThrown ){
 
@@ -232,7 +359,7 @@ function getCalculator(date, numberDay)
     return currentDate;
 }
 
-function loadBooks(startDate, endDate)
+function loadBooks(startDate, endDate, amount)
 {
     $.ajax({
         type : "GET", 
@@ -241,7 +368,8 @@ function loadBooks(startDate, endDate)
         data : {
             action: "get_data_books_date",
             startDate: startDate,
-            endDate: endDate
+            endDate: endDate,
+            amount: amount
            
         },
         beforeSend: function(){
