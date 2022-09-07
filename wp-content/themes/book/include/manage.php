@@ -12,24 +12,28 @@ function get_data_books_date_function() {
     {
         $amount = $_GET["amount"];
         $countDatePoint = count(books_get_count_book_date($_GET["startDate"], $_GET["endDate"]));
+        $start = date('Y-m-d', strtotime("0 day", strtotime($_GET["startDate"])));
+        $end = date('Y-m-d', strtotime("0 day", strtotime($_GET["endDate"])));
+        
+        $monday = date('F j', strtotime("0 day", strtotime($start)));
+        $sunday = date('F j', strtotime("0 day", strtotime($end)));
         ?>
             <div class="list-data-books">
-                <div class="calendar-books">
-                    <?php
-                        $start = date('Y-m-d', strtotime("0 day", strtotime($_GET["startDate"])));
-                        $end = date('Y-m-d', strtotime("0 day", strtotime($_GET["endDate"])));
-                        
-                        $monday = date('F j', strtotime("0 day", strtotime($start)));
-                        $sunday = date('F j', strtotime("0 day", strtotime($end)));
-                        
-                        if($amount == 1)
-                        {
-                            echo $monday;
-                        } else {
-                            echo $monday . " - " .$sunday;
-                        }
-                    ?>
+                <div class="group-calendar">
+                    <span><button class="previous-books" data-date="<?php echo  $start?>"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/white-left-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
+                    <div class="calendar-books">
+                        <?php
+                            if($amount == 1)
+                            {
+                                echo $monday;
+                            } else {
+                                echo $monday . " - " .$sunday;
+                            }
+                        ?>
+                    </div>
+                    <span><button class="next-books" data-date="<?php echo  $end?>"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/white-right-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
                 </div>
+               
                 <div class="count-books" style="text-align: center;" ><?php echo $countDatePoint?> Appointments</div>
                 <div class="list-calendar">
                     <table class="table-data-books">

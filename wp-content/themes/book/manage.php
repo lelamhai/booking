@@ -86,6 +86,12 @@
         text-decoration: none;
     }
 
+    .group-calendar {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
     .ui-datepicker-inline {
         width: 100%;
         background-color: transparent;
@@ -157,10 +163,6 @@
         border-collapse: separate;
         border-spacing: 0 10px;
         width: 100%;
-    }
-
-    .calendar-books {
-        text-align: center;
     }
 
     .table-data-books tbody tr:nth-child(odd) {background: #CCC}

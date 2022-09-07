@@ -40,6 +40,7 @@ $(document).ready(function() {
         option = $(this).data("option");
 
         date = new Date();
+        
         if(option == 7)
         {
             begin = getMonday(date);
@@ -72,8 +73,96 @@ $(document).ready(function() {
                 },
             });
         }
+        $('#datepicker').datepicker(
+            'setDate', date
+        );
         loadBooks(formatDate(begin), formatDate(end), option);
     });
+
+    $(document).on('click', '.previous-books', function() {
+        let currentDate = $(this).data('date');
+        date = new Date(currentDate);
+
+        if(option == 7)
+        {
+            begin = getCalculator(date, -7);
+            end = getCalculator(date, -1);
+
+            $('#datepicker').datepicker('option', {
+                beforeShowDay: function(listDate) {
+                    let currentDate = new Date(formatDate(listDate));
+                    let startDate = new Date(formatDate(begin));
+                    let endDate = new Date(formatDate(end));
+                    var cssClass = '';
+                    if(currentDate >= startDate && currentDate <= endDate)
+                       cssClass = 'custom-ui-datepicker-current-day';
+                   return [true, cssClass];
+                },
+            });
+        } else {
+            begin = getCalculator(date, -1);
+            end = getCalculator(date, -1);
+
+            $('#datepicker').datepicker('option', {
+                beforeShowDay: function(listDate) {
+                    let currentDate = new Date(formatDate(listDate));
+                    let startDate = new Date(formatDate(begin));
+                    let endDate = new Date(formatDate(end));
+                    var cssClass = '';
+                    if(currentDate >= startDate && currentDate <= endDate)
+                       cssClass = 'custom-ui-datepicker-current-day';
+                   return [true, cssClass];
+                },
+            });
+        }
+        $('#datepicker').datepicker(
+            'setDate', begin
+        );
+        loadBooks(formatDate(begin), formatDate(end), option);
+    });
+
+    $(document).on('click', '.next-books', function() {
+        let currentDate = $(this).data('date');
+        date = new Date(currentDate);
+        
+        if(option == 7)
+        {
+            begin = getCalculator(date, 1);
+            end = getCalculator(date, 7);
+
+            $('#datepicker').datepicker('option', {
+                beforeShowDay: function(listDate) {
+                    let currentDate = new Date(formatDate(listDate));
+                    let startDate = new Date(formatDate(begin));
+                    let endDate = new Date(formatDate(end));
+                    var cssClass = '';
+                    if(currentDate >= startDate && currentDate <= endDate)
+                       cssClass = 'custom-ui-datepicker-current-day';
+                   return [true, cssClass];
+                },
+            });
+        } else {
+            begin = getCalculator(date, 1);
+            end = getCalculator(date, 1);
+
+            $('#datepicker').datepicker('option', {
+                beforeShowDay: function(listDate) {
+                    let currentDate = new Date(formatDate(listDate));
+                    let startDate = new Date(formatDate(begin));
+                    let endDate = new Date(formatDate(end));
+                    var cssClass = '';
+                    if(currentDate >= startDate && currentDate <= endDate)
+                       cssClass = 'custom-ui-datepicker-current-day';
+                   return [true, cssClass];
+                },
+            });
+        }
+        $('#datepicker').datepicker(
+            'setDate', end
+        );
+        loadBooks(formatDate(begin), formatDate(end), option);
+    });
+
     
     $(document).on('click', '.close ', function() { 
         $('.modal-input-phone').val(" ");
