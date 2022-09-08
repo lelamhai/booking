@@ -68,11 +68,82 @@ function get_data_books_date_function() {
                                                                 <?php
                                                                     foreach($books as $book)
                                                                     {
+                                                                        $phoneBook = get_post_meta( $book->ID, 'booking_phone', true );
+                                                                        $statusBook = get_post_meta( $book->ID, 'booking_status', true );
+                                                                        $servicesBook = get_post_meta( $book->ID, 'booking_services', true );
+                                                                        $locationBook = get_post_meta( $book->ID, 'booking_location', true );
+                                                                        $jsonData = json_decode($servicesBook);
+                                                                        
+                                                                        $color = "#ccccfe";
+                                                                        if($statusBook == 0)
+                                                                        {
+                                                                            $color = "#e0e0e0";
+                                                                        } else if($statusBook == 2) {
+                                                                            $color = "#66cc9a";
+                                                                        }
                                                                         ?>
-                                                                            <div><?php echo $book->post_title?></div>
+                                                                            <div class="item-boook" style="background-color: <?php echo  $color?>">
+                                                                              
+                                                                                <div>
+                                                                                    <?php echo $book->post_title?>
+                                                                                </div>
+                                                                                <div>
+                                                                                    tel: <?php echo $phoneBook?>
+                                                                                </div>
+
+                                                                                <div class="wrap-content-books">
+                                                                                    <div class="services">
+
+                                                                                        <?php
+                                                                                            for($j=0 ; $j<count($jsonData); $j++) {
+                                                                                                $data = $jsonData[$j]->children;
+                                                                                                $guest = $j +1;
+                                                                                                echo "Guest ". $guest . ": ";
+
+                                                                                                for($k=0; $k< count($data); $k++)
+                                                                                                {
+                                                                                                    $arr = explode('-', $data[$k]);
+                                                                                                    $parent = get_term($arr[0])->name;
+                                                                                                    $child = get_term($arr[1])->name;
+                                                                                                    
+                                                                                                    $parentPrice = get_term_meta($arr[0], 'services-price', true );
+                                                                                                    $childrentPrice = get_term_meta($arr[1], 'services-price', true );
+                                                                                                    
+                                                                                                    $price = 0;
+                                                                                                    $name = "";
+                                                                                                    if($child == 0)
+                                                                                                    {
+                                                                                                        $name = $parent;
+                                                                                                        $price = $parentPrice;
+                                                                                                    } else {
+                                                                                                        $name = $child;
+                                                                                                        $price = $childrentPrice;
+                                                                                                    }
+                                                                                                    echo $name." $". $price. ", ";
+                                                                                                }
+                                                                                                echo "<br>";
+                                                                                            }
+                                                                                        ?>
+                                                                                    </div>
+                                                                                    <div class="services">
+                                                                                        Location: <?php echo $locationBook?>
+                                                                                    </div>
+                                                                                    <div class="message">
+                                                                                        Message: <?php echo $book->post_excerpt?>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="">
+                                                                                    <button>Edit</button>
+                                                                                    <button>Delete</button>
+                                                                                </div>
+                                                                            </div>
                                                                         <?php
                                                                     }
+
                                                                 ?>
+
+
                                                             </td>
                                                         <?php
                                                     } else {
@@ -90,98 +161,6 @@ function get_data_books_date_function() {
                 </div>
             </div>
             
-        <?php
-    }
-    wp_die(); 
-}
-
-add_action('wp_ajax_search_phone_books', 'search_phone_books_function');
-add_action('wp_ajax_nopriv_search_phone_books', 'search_phone_books_function');
-function search_phone_books_function() {
-    if($_GET["phone"] != "")
-    {
-        $args = array(  
-            'post_type'		    => 'books',
-            'posts_per_page'    => -1,
-            'meta_key'          => 'booking_date', // Grab the "start date" field created via "More Fields" plugin (stored in YYYY-MM-DD format)
-            'orderby'           => 'meta_value', // We want to organize the events by date    
-            'order'             => 'ASC',
-            'meta_query'	    => array(
-                array(
-                    'key' => 'booking_phone',
-                    'value' => $_GET["phone"],
-                    'type' => 'numeric',
-                    'compare' => '=',
-                )
-            )
-        );
-        $books = get_posts($args);
-        $countBooks = count($books);
-    
-        ?>
-             <div class="list-data-books">
-                <div class="calendar-books">
-                   Tìm thấy <?php echo $countBooks?> kết quả với số điện thoại <?php echo $_GET["phone"] ?>
-                </div>
-                <div class="list-calendar">
-                    <?php
-                        if($countBooks > 0)
-                        {
-                            ?>
-                                <table class="table-data-books">
-                                    <thead>
-                                            <th></th>
-                                            <?php 
-                                                foreach($books as $book)
-                                                {
-                                                    $id = $book->ID;
-                                                    $dateData = get_post_meta( $id, 'booking_date', true );
-                                                    $date = date('D M j', strtotime($dateData));
-                                                    ?>
-                                                        <th><?php echo $date?></th>
-                                                    <?php
-                                                }
-                                            ?>
-                                    </thead>
-                                    <tbody>
-                                    <?php
-                                        foreach(get_data_times() as $time )
-                                        { 
-                                                ?>
-                                                    <tr class="item-time">
-                                                        <td><?php echo $time->name?></td>
-                                                        <?php 
-                                                            foreach($books as $book)
-                                                            {
-                                                                $termTimeBooks = get_the_terms($book->ID, 'times')[0];
-                                                                if($time->term_id == $termTimeBooks->term_id)
-                                                                {
-                                                                    ?>
-                                                                        <td><?php echo $book->post_title?></td>
-                                                                    <?php
-                                                                } else {
-                                                                    ?>
-                                                                        <td></td>
-                                                                    <?php
-                                                                }
-                                                            }
-                                                        ?>
-                                                    </tr>
-                                                <?php
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table> 
-                            <?php
-                        } else {
-                            ?>
-                                <div style="text-align: center;">Không tìm thấy kết quả</div>
-                            <?php
-                        }
-                    ?>
-                    
-                </div>
-            </div>
         <?php
     }
     wp_die(); 
