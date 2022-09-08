@@ -2,6 +2,7 @@ $(document).ready(function() {
     $("#wp-admin-bar-my-account li:eq(1)").before($("#wp-admin-bar-my-account li:eq(3)"));
     $("#wp-admin-bar-my-account li:eq(2)").before($("#wp-admin-bar-my-account li:eq(4)"));
 
+
     let option = 7;
     let date = new Date();
     let begin = getMonday(date);
@@ -200,16 +201,17 @@ $(document).ready(function() {
         
     });
 
-  
-   
-
     $(document).on('click', '.yes-cancel-books', function() {
         let id = $('#idBooks').val();
         let status = $('#statusBooks').val();
         changeStatusBooks(id, status);
     });
 
-
+    $(".control-collapse").click(function(){
+        $( this ).toggleClass( "collapse180" );
+        $("#manage-menu-wrap").toggleClass("sidebar-menu");
+        $("#manage-content-wrap").toggleClass("margin-content");
+    });
 });
 
 function changeStatusBooks(id, status)
