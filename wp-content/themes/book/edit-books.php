@@ -98,6 +98,7 @@
                                     <!-- <div class="title-menu">Your Business Info</div> -->
                                 </div>
 
+                                <button class="save save-business">Save changes</button>
                                 <div class="body-business">
                                     <div class="col">
                                         <div class="wrap-business">
@@ -204,6 +205,7 @@
                                     <div class="title-menu">Your Services</div>
                                 </div>
 
+                                <button class="save save-services">Save changes</button>
                                 <div class="body-menu">
                                     <?php
                                         if(count(get_data_taxonomy(0)) == 0)
@@ -297,6 +299,7 @@
                                     <div class="title-menu">Your Opening Hours</div>
                                 </div>
 
+                                <button class="save save-hours">Save changes</button>
                                 <div class="body-hours">
                                     <?php
                                         for($i=0; $i<7; $i++)
@@ -485,7 +488,8 @@
                                 <div class="head-menu">
                                     <div class="title-menu">Time & Seat Available for Online Appointments</div>
                                 </div>
-                                
+
+                                <button class="save save-time">Save changes</button>
                                 <div class="body-menu">
                                     <div class="time-excerpt">Enter 0 (zero) in the box below to turn off online appointments</div>
                                     
@@ -591,6 +595,8 @@
                                         <div class="title-menu">Header</div>
                                     </div>
 
+                                <button class="save save-header">Save changes</button>
+
                                     <div class="body-menu">
                                             <div class="wrap-header-edit">
                                                 <div class="group-color">
@@ -692,7 +698,7 @@
                                             </div>
                                     </div>
                                     
-                                    <button class="save save-header">Save changes</button>
+                                <button class="save save-header">Save changes</button>
                             </div>
                         </section>
                         
@@ -704,6 +710,7 @@
                                     <div class="title-menu">Body</div>
                                 </div>
 
+                                <button class="save save-body">Save changes</button>
                                 <div class="body-menu">
                                     <div class="group-color">
                                         <div class="wrap-body-text-color">
@@ -922,7 +929,6 @@
 
                                         </div>
                                 </div>
-                                <button class="save save-body">Save changes</button>
                             </div>
                         </section>
                         
@@ -1068,7 +1074,7 @@
 
                                     </div>
                                 </div>
-                                <button class="save save-reviews">Save changes</button>
+<!--                                <button class="save save-reviews">Save changes</button>-->
                             </div>
                         </section>
                         
@@ -1121,7 +1127,7 @@
                                                 <input type="file" class="file-input" id="fileinputGift" accept="image/*" data-key="<?php echo $businessImageGift?>">
                                         </div>
 
-                                        <button class="save save-gift">Save changes</button>
+<!--                                        <button class="save save-gift">Save changes</button>-->
                                     </div>
                                 </div>
                             </div>
@@ -1146,7 +1152,9 @@
                                         <textarea name="" class="map-iframe" data-key="<?php echo $businessMapIframe?>" id="" cols="30" rows="10"><?php echo $text?></textarea>
                                     </div>
                                 </div>
-                                <button class="save save-map">Save changes</button>
+<!--                                <button class="save save-map">Save changes</button>-->
+
+                                <button class="save save-body">Save changes</button>
                             </div>
                         </section>
 
@@ -1155,7 +1163,7 @@
                                 <div class="head-menu">
                                     <div class="title-menu">Footer</div>
                                 </div>
-
+                                <button class="save save-footer">Save changes</button>
                                 <div class="body-menu">
                                     <div class="group-color">
                                         <div class="wrap-footer-color">

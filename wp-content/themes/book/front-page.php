@@ -84,6 +84,10 @@
         color: <?php echo $TextColorBody?> !important;
     }
 
+    .wrap-input-message .label-card {
+        color: <?php echo $TextColorBody?> !important;
+    }
+
     .BackgroundButtonBody {
         background: <?php echo $BackgroundButtonBody?> !important;
     }

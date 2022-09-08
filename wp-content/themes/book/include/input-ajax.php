@@ -333,11 +333,88 @@ function body_function() {
 		add_option( $option_name, $new_value, $deprecated, $autoload );
 	}
 
+    $option_name = $_POST['keyMap'] ;
+    $new_value = $_POST['map'] ;
+    if ( get_option( $option_name ) != $new_value ) {
+        update_option( $option_name, $new_value );
+    } else {
+        $deprecated = ' ';
+        $autoload = 'no';
+        add_option( $option_name, $new_value, $deprecated, $autoload );
+    }
+
+    $option_name = $_POST['keyTitleGift'] ;
+    $new_value = $_POST['titleGift'] ;
+    if ( get_option( $option_name ) != $new_value ) {
+        update_option( $option_name, $new_value );
+    } else {
+        $deprecated = ' ';
+        $autoload = 'no';
+        add_option( $option_name, $new_value, $deprecated, $autoload );
+    }
+
+    $option_name = $_POST['keyContentGift'] ;
+    $new_value = $_POST['contentGift'] ;
+    if ( get_option( $option_name ) != $new_value ) {
+        update_option( $option_name, $new_value );
+    } else {
+        $deprecated = ' ';
+        $autoload = 'no';
+        add_option( $option_name, $new_value, $deprecated, $autoload );
+    }
+
+    $option_name = $_POST['keyBackgroundColorReviews'] ;
+    $new_value = $_POST['backgroundColorReviews'] ;
+    if ( get_option( $option_name ) != $new_value ) {
+        update_option( $option_name, $new_value );
+    } else {
+        $deprecated = ' ';
+        $autoload = 'no';
+        add_option( $option_name, $new_value, $deprecated, $autoload );
+    }
+
+    $option_name = $_POST['keyTextColorReviews'] ;
+    $new_value = $_POST['textColorReviews'] ;
+    if ( get_option( $option_name ) != $new_value ) {
+        update_option( $option_name, $new_value );
+    } else {
+        $deprecated = ' ';
+        $autoload = 'no';
+        add_option( $option_name, $new_value, $deprecated, $autoload );
+    }
+
+    $option_name = $_POST['keyTitleReviews'] ;
+    $new_value = $_POST['titleReviews'] ;
+    if ( get_option( $option_name ) != $new_value ) {
+        update_option( $option_name, $new_value );
+    } else {
+        $deprecated = ' ';
+        $autoload = 'no';
+        add_option( $option_name, $new_value, $deprecated, $autoload );
+    }
+
+    for($i=1; $i<=3; $i++)
+    {
+        $key = "keyTextBodyReviews".$i;
+        $value = "textBodyReviews".$i;
+
+        $option_name = $_POST[$key] ;
+        $new_value = $_POST[$value] ;
+
+        if ( get_option( $option_name ) != $new_value ) {
+            update_option( $option_name, $new_value );
+        } else {
+            $deprecated = ' ';
+            $autoload = 'no';
+            add_option( $option_name, $new_value, $deprecated, $autoload );
+        }
+    }
+
     if(! function_exists('wp_handle_upload')){
         require_once(ABSPATH.'wp-admin/includes/file.php');
     }
 
-    for($i=1; $i<=5; $i++)
+    for($i=1; $i<=6; $i++)
     {
         $file = "file".$i;
         $key = "keyFile".$i;
@@ -389,152 +466,200 @@ function body_function() {
             }
         }
     }
-    wp_die(); 
-}
 
-add_action("wp_ajax_reviews", "reviews_function");
-add_action("wp_ajax_nopriv_reviews", "reviews_function");
-function reviews_function() {
-    $option_name = $_POST['keyBackgroundColorReviews'] ;
-	$new_value = $_POST['backgroundColorReviews'] ;
-	if ( get_option( $option_name ) != $new_value ) {
-		update_option( $option_name, $new_value );
-	} else {
-		$deprecated = ' ';
-		$autoload = 'no';
-		add_option( $option_name, $new_value, $deprecated, $autoload );
-	}
 
-    $option_name = $_POST['keyTextColorReviews'] ;
-	$new_value = $_POST['textColorReviews'] ;
-	if ( get_option( $option_name ) != $new_value ) {
-		update_option( $option_name, $new_value );
-	} else {
-		$deprecated = ' ';
-		$autoload = 'no';
-		add_option( $option_name, $new_value, $deprecated, $autoload );
-	}
-
-    $option_name = $_POST['keyTitleReviews'] ;
-	$new_value = $_POST['titleReviews'] ;
-	if ( get_option( $option_name ) != $new_value ) {
-		update_option( $option_name, $new_value );
-	} else {
-		$deprecated = ' ';
-		$autoload = 'no';
-		add_option( $option_name, $new_value, $deprecated, $autoload );
-	}
-
-    for($i=1; $i<=3; $i++)
-    {
-        $key = "keyTextBodyReviews".$i;
-        $value = "textBodyReviews".$i;
-
-        $option_name = $_POST[$key] ;
-        $new_value = $_POST[$value] ;
-
-        if ( get_option( $option_name ) != $new_value ) {
-            update_option( $option_name, $new_value );
-        } else {
-            $deprecated = ' ';
-            $autoload = 'no';
-            add_option( $option_name, $new_value, $deprecated, $autoload );
-        }
-    }
+//    // Gift card
+//    if (isset($_FILES['file']['name'])) {
+//        $uploadedfile1 = $_FILES['file'];
+//        $upload_overrides1 = array('test_form' => false);
+//        $movefile1 = wp_handle_upload($uploadedfile1, $upload_overrides1);
+//
+//        $wp_upload_dir    = wp_upload_dir();
+//        $file_name        = basename( $_FILES['file']['name'] );
+//        $file = $wp_upload_dir['path'] . '/' . $file_name;
+//        $attachment = array (
+//            'guid'           => $wp_upload_dir['url'] . '/' . $file_name,
+//            'post_mime_type' => $movefile1[ 'type' ],
+//            'post_title'     => $_FILES['file']['name'] ,
+//            'post_content'   => '',
+//            'post_type' => 'listing_type',
+//            'post_status'    => 'inherit',
+//        );
+//        $attach_id = wp_insert_attachment($attachment, $file);
+//        $attach_data = wp_generate_attachment_metadata($attach_id, $file);
+//
+//        if($movefile1 && !isset($movefile1['error']))
+//        {
+//            $option_name = $_POST['keyFile'] ;
+//            $new_value = $movefile1['url'];
+//            if ( get_option( $option_name ) != $new_value ) {
+//                update_option( $option_name, $new_value );
+//            } else {
+//                $deprecated = ' ';
+//                $autoload = 'no';
+//                add_option( $option_name, $new_value, $deprecated, $autoload );
+//            }
+//        } else {
+//            echo $movefile1['error'];
+//        }
+//    } else if($_POST['file'] == "") {
+//        $option_name = $_POST['keyFile'];
+//        $new_value = "";
+//        if ( get_option( $option_name ) != $new_value ) {
+//            update_option( $option_name, $new_value );
+//        } else {
+//            $deprecated = ' ';
+//            $autoload = 'no';
+//            add_option( $option_name, $new_value, $deprecated, $autoload );
+//        }
+//    }
 
     wp_die(); 
 }
 
-add_action("wp_ajax_gift", "gift_function");
-add_action("wp_ajax_nopriv_gift", "gift_function");
-function gift_function() {
+//add_action("wp_ajax_reviews", "reviews_function");
+//add_action("wp_ajax_nopriv_reviews", "reviews_function");
+//function reviews_function() {
+//    $option_name = $_POST['keyBackgroundColorReviews'] ;
+//	$new_value = $_POST['backgroundColorReviews'] ;
+//	if ( get_option( $option_name ) != $new_value ) {
+//		update_option( $option_name, $new_value );
+//	} else {
+//		$deprecated = ' ';
+//		$autoload = 'no';
+//		add_option( $option_name, $new_value, $deprecated, $autoload );
+//	}
+//
+//    $option_name = $_POST['keyTextColorReviews'] ;
+//	$new_value = $_POST['textColorReviews'] ;
+//	if ( get_option( $option_name ) != $new_value ) {
+//		update_option( $option_name, $new_value );
+//	} else {
+//		$deprecated = ' ';
+//		$autoload = 'no';
+//		add_option( $option_name, $new_value, $deprecated, $autoload );
+//	}
+//
+//    $option_name = $_POST['keyTitleReviews'] ;
+//	$new_value = $_POST['titleReviews'] ;
+//	if ( get_option( $option_name ) != $new_value ) {
+//		update_option( $option_name, $new_value );
+//	} else {
+//		$deprecated = ' ';
+//		$autoload = 'no';
+//		add_option( $option_name, $new_value, $deprecated, $autoload );
+//	}
+//
+//    for($i=1; $i<=3; $i++)
+//    {
+//        $key = "keyTextBodyReviews".$i;
+//        $value = "textBodyReviews".$i;
+//
+//        $option_name = $_POST[$key] ;
+//        $new_value = $_POST[$value] ;
+//
+//        if ( get_option( $option_name ) != $new_value ) {
+//            update_option( $option_name, $new_value );
+//        } else {
+//            $deprecated = ' ';
+//            $autoload = 'no';
+//            add_option( $option_name, $new_value, $deprecated, $autoload );
+//        }
+//    }
+//
+//    wp_die();
+//}
 
-    $option_name = $_POST['keyTitleGift'] ;
-	$new_value = $_POST['titleGift'] ;
-	if ( get_option( $option_name ) != $new_value ) {
-		update_option( $option_name, $new_value );
-	} else {
-		$deprecated = ' ';
-		$autoload = 'no';
-		add_option( $option_name, $new_value, $deprecated, $autoload );
-	}
+//add_action("wp_ajax_gift", "gift_function");
+//add_action("wp_ajax_nopriv_gift", "gift_function");
+//function gift_function() {
+//
+//    $option_name = $_POST['keyTitleGift'] ;
+//	$new_value = $_POST['titleGift'] ;
+//	if ( get_option( $option_name ) != $new_value ) {
+//		update_option( $option_name, $new_value );
+//	} else {
+//		$deprecated = ' ';
+//		$autoload = 'no';
+//		add_option( $option_name, $new_value, $deprecated, $autoload );
+//	}
+//
+//    $option_name = $_POST['keyContentGift'] ;
+//	$new_value = $_POST['contentGift'] ;
+//	if ( get_option( $option_name ) != $new_value ) {
+//		update_option( $option_name, $new_value );
+//	} else {
+//		$deprecated = ' ';
+//		$autoload = 'no';
+//		add_option( $option_name, $new_value, $deprecated, $autoload );
+//	}
+//
+//    if(! function_exists('wp_handle_upload')){
+//        require_once(ABSPATH.'wp-admin/includes/file.php');
+//    }
+//
+//    if (isset($_FILES['file']['name'])) {
+//        $uploadedfile = $_FILES['file'];
+//        $upload_overrides = array('test_form' => false);
+//        $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
+//
+//        $wp_upload_dir    = wp_upload_dir();
+//	    $file_name        = basename( $_FILES['file']['name'] );
+//        $file = $wp_upload_dir['path'] . '/' . $file_name;
+//        $attachment = array (
+//            'guid'           => $wp_upload_dir['url'] . '/' . $file_name,
+//            'post_mime_type' => $movefile[ 'type' ],
+//            'post_title'     => $_FILES['file']['name'] ,
+//            'post_content'   => '',
+//            'post_type' => 'listing_type',
+//            'post_status'    => 'inherit',
+//        );
+//        $attach_id = wp_insert_attachment($attachment, $file);
+//        $attach_data = wp_generate_attachment_metadata($attach_id, $file);
+//
+//        if($movefile && !isset($movefile['error']))
+//        {
+//            $option_name = $_POST['keyFile'] ;
+//            $new_value = $movefile['url'];
+//            if ( get_option( $option_name ) != $new_value ) {
+//                update_option( $option_name, $new_value );
+//            } else {
+//                $deprecated = ' ';
+//                $autoload = 'no';
+//                add_option( $option_name, $new_value, $deprecated, $autoload );
+//            }
+//        } else {
+//            echo $movefile['error'];
+//        }
+//    } else if($_POST['file'] == "") {
+//        $option_name = $_POST['keyFile'];
+//        $new_value = "";
+//        if ( get_option( $option_name ) != $new_value ) {
+//            update_option( $option_name, $new_value );
+//        } else {
+//            $deprecated = ' ';
+//            $autoload = 'no';
+//            add_option( $option_name, $new_value, $deprecated, $autoload );
+//        }
+//    }
+//
+//    wp_die();
+//}
 
-    $option_name = $_POST['keyContentGift'] ;
-	$new_value = $_POST['contentGift'] ;
-	if ( get_option( $option_name ) != $new_value ) {
-		update_option( $option_name, $new_value );
-	} else {
-		$deprecated = ' ';
-		$autoload = 'no';
-		add_option( $option_name, $new_value, $deprecated, $autoload );
-	}
-
-    if(! function_exists('wp_handle_upload')){
-        require_once(ABSPATH.'wp-admin/includes/file.php');
-    }
-
-    if (isset($_FILES['file']['name'])) { 
-        $uploadedfile = $_FILES['file'];
-        $upload_overrides = array('test_form' => false);
-        $movefile = wp_handle_upload($uploadedfile, $upload_overrides);
-
-        $wp_upload_dir    = wp_upload_dir();
-	    $file_name        = basename( $_FILES['file']['name'] );
-        $file = $wp_upload_dir['path'] . '/' . $file_name;
-        $attachment = array (
-            'guid'           => $wp_upload_dir['url'] . '/' . $file_name,
-            'post_mime_type' => $movefile[ 'type' ],
-            'post_title'     => $_FILES['file']['name'] ,
-            'post_content'   => '',
-            'post_type' => 'listing_type',
-            'post_status'    => 'inherit',
-        );
-        $attach_id = wp_insert_attachment($attachment, $file);
-        $attach_data = wp_generate_attachment_metadata($attach_id, $file);
-
-        if($movefile && !isset($movefile['error']))
-        {
-            $option_name = $_POST['keyFile'] ;
-            $new_value = $movefile['url'];
-            if ( get_option( $option_name ) != $new_value ) {
-                update_option( $option_name, $new_value );
-            } else {
-                $deprecated = ' ';
-                $autoload = 'no';
-                add_option( $option_name, $new_value, $deprecated, $autoload );
-            }
-        } else {
-            echo $movefile['error'];
-        }
-    } else if($_POST['file'] == "") {
-        $option_name = $_POST['keyFile'];
-        $new_value = "";
-        if ( get_option( $option_name ) != $new_value ) {
-            update_option( $option_name, $new_value );
-        } else {
-            $deprecated = ' ';
-            $autoload = 'no';
-            add_option( $option_name, $new_value, $deprecated, $autoload );
-        }
-    }
-
-    wp_die(); 
-}
-
-add_action("wp_ajax_map", "map_function");
-add_action("wp_ajax_nopriv_map", "map_function");
-function map_function() {
-    $option_name = $_POST['keyMap'] ;
-	$new_value = $_POST['map'] ;
-	if ( get_option( $option_name ) != $new_value ) {
-		update_option( $option_name, $new_value );
-	} else {
-		$deprecated = ' ';
-		$autoload = 'no';
-		add_option( $option_name, $new_value, $deprecated, $autoload );
-	}
-    wp_die(); 
-}
+//add_action("wp_ajax_map", "map_function");
+//add_action("wp_ajax_nopriv_map", "map_function");
+//function map_function() {
+//    $option_name = $_POST['keyMap'] ;
+//	$new_value = $_POST['map'] ;
+//	if ( get_option( $option_name ) != $new_value ) {
+//		update_option( $option_name, $new_value );
+//	} else {
+//		$deprecated = ' ';
+//		$autoload = 'no';
+//		add_option( $option_name, $new_value, $deprecated, $autoload );
+//	}
+//    wp_die();
+//}
 
 
 add_action("wp_ajax_footer", "footer_function");

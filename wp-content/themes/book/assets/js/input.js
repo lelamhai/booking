@@ -601,6 +601,20 @@ $(document).ready(function() {
 		$('#textColorButtonBody').val(this.value);
 	});
 
+	$('#backgroundColorReviews').on('input', function() {
+		$('#hexBackgroundColorReviews').val(this.value);
+	});
+	$('#hexBackgroundColorReviews').on('input', function() {
+		$('#backgroundColorReviews').val(this.value);
+	});
+
+	$('#textColorReivews').on('input', function() {
+		$('#hexTextColorReviews').val(this.value);
+	});
+	$('#hexTextColorReviews').on('input', function() {
+		$('#textColorReivews').val(this.value);
+	});
+
 	$(document).on('click', '.save-body', function() {
 		$('#loading').modal('toggle');
 	
@@ -622,6 +636,24 @@ $(document).ready(function() {
 		let key = $('.textBodyContent').data("key");
 		let value = tinyMCE.get(key).getContent();
 
+		let valueBackgroundColorReviews = $("#backgroundColorReviews").val();
+		let keyBackgroundColorReviewss = $("#backgroundColorReviews").data("key");
+
+		let valueTextColorReivews = $("#textColorReivews").val();
+		let keyTextColorReivews = $("#textColorReivews").data("key");
+
+		let valueTitleReviews = $(".title-reviews").val();
+		let keyTitleReviews = $(".title-reviews").data("key");
+
+		let keyTitleGift = $('.title-gift').data("key");
+		let titleGift = $('.title-gift').val();
+
+		let keyContentGift = $('.content-gift').data("key");
+		let contentGift = $('.content-gift').val();
+
+		let valueMap = $(".map-iframe").val();
+		let keyMap = $(".map-iframe").data("key");
+
 		var data_form = new FormData();
 		data_form.append('backgroundColor', backgroundColor);
 		data_form.append('keyBackgroundColor', keyBackgroundColor);
@@ -640,6 +672,46 @@ $(document).ready(function() {
 
 		data_form.append('keyTextBodyContent', key);
 		data_form.append('textBodyContent', value);
+
+		data_form.append('keyBackgroundColorReviews', keyBackgroundColorReviewss);
+		data_form.append('backgroundColorReviews', valueBackgroundColorReviews);
+
+		data_form.append('keyTextColorReviews', keyTextColorReivews);
+		data_form.append('textColorReviews', valueTextColorReivews);
+
+		data_form.append('keyTitleReviews', keyTitleReviews);
+		data_form.append('titleReviews', valueTitleReviews);
+
+		data_form.append('keyTitleGift', keyTitleGift);
+		data_form.append('titleGift', titleGift);
+
+		data_form.append('keyContentGift', keyContentGift);
+		data_form.append('contentGift', contentGift);
+
+		data_form.append('keyMap', keyMap);
+		data_form.append('map', valueMap);
+
+		for (let i = 1; i <= 3; i++) {
+			let classReviews = ".textBodyReviews" + i;
+
+			let key = $(classReviews).data("key");
+			let value = tinyMCE.get(key).getContent();
+
+			data_form.append('keyTextBodyReviews' + i, key);
+			data_form.append('textBodyReviews' + i, value);
+		}
+
+		let keyFile = $("#fileinputGift").data("key");
+
+		if ($("#outputGift").attr('src') == '') {
+			data_form.append('keyFile', keyFile);
+			data_form.append('file', '');
+		} else {
+			let file = $("#fileinputGift").prop('files')[0];
+
+			data_form.append('keyFile', keyFile);
+			data_form.append('file', file);
+		}
 	
 		for (let i = 1; i <= 5; i++) {
 			let url = "#output" + i;
@@ -680,162 +752,162 @@ $(document).ready(function() {
 });
 
 // Client's Reviews or Your Notifications
-$(document).ready(function() {
-	$('#backgroundColorReviews').on('input', function() {
-		$('#hexBackgroundColorReviews').val(this.value);
-	});
-	$('#hexBackgroundColorReviews').on('input', function() {
-		$('#backgroundColorReviews').val(this.value);
-	});
-	
-	$('#textColorReivews').on('input', function() {
-		$('#hexTextColorReviews').val(this.value);
-	});
-	$('#hexTextColorReviews').on('input', function() {
-		$('#textColorReivews').val(this.value);
-	});
-
-	$(document).on('click', '.save-reviews', function() {
-		$('#loading').modal('toggle');
-	
-		let valueBackgroundColorReviews = $("#backgroundColorReviews").val();
-		let keyBackgroundColorReviewss = $("#backgroundColorReviews").data("key");
-	
-		let valueTextColorReivews = $("#textColorReivews").val();
-		let keyTextColorReivews = $("#textColorReivews").data("key");
-	
-		let valueTitleReviews = $(".title-reviews").val();
-		let keyTitleReviews = $(".title-reviews").data("key");
-		console.log(valueTitleReviews);
-	
-		var data_form = new FormData();
-		data_form.append('keyBackgroundColorReviews', keyBackgroundColorReviewss);
-		data_form.append('backgroundColorReviews', valueBackgroundColorReviews);
-	
-		data_form.append('keyTextColorReviews', keyTextColorReivews);
-		data_form.append('textColorReviews', valueTextColorReivews);
-	
-		data_form.append('keyTitleReviews', keyTitleReviews);
-		data_form.append('titleReviews', valueTitleReviews);
-	
-
-		for (let i = 1; i <= 3; i++) {
-			let classReviews = ".textBodyReviews" + i;
-	
-			let key = $(classReviews).data("key");
-			let value = tinyMCE.get(key).getContent();
-	
-			data_form.append('keyTextBodyReviews' + i, key);
-			data_form.append('textBodyReviews' + i, value);
-		}
-	
-		data_form.append('action', 'reviews')
-	
-		jQuery.ajax({
-			type: "post",
-			url: "./wp-admin/admin-ajax.php",
-			processData: false,
-			contentType: false,
-			data: data_form,
-			beforeSend: function() {
-	
-			},
-			success: function(response) {
-				localStorage.setItem("isFinish", 1);
-				location.reload();
-			},
-			error: function(request, status, error) {
-				console.log(error);
-			},
-		});
-	});
-});
+// $(document).ready(function() {
+// 	$('#backgroundColorReviews').on('input', function() {
+// 		$('#hexBackgroundColorReviews').val(this.value);
+// 	});
+// 	$('#hexBackgroundColorReviews').on('input', function() {
+// 		$('#backgroundColorReviews').val(this.value);
+// 	});
+//
+// 	$('#textColorReivews').on('input', function() {
+// 		$('#hexTextColorReviews').val(this.value);
+// 	});
+// 	$('#hexTextColorReviews').on('input', function() {
+// 		$('#textColorReivews').val(this.value);
+// 	});
+//
+// 	$(document).on('click', '.save-reviews', function() {
+// 		$('#loading').modal('toggle');
+//
+// 		let valueBackgroundColorReviews = $("#backgroundColorReviews").val();
+// 		let keyBackgroundColorReviewss = $("#backgroundColorReviews").data("key");
+//
+// 		let valueTextColorReivews = $("#textColorReivews").val();
+// 		let keyTextColorReivews = $("#textColorReivews").data("key");
+//
+// 		let valueTitleReviews = $(".title-reviews").val();
+// 		let keyTitleReviews = $(".title-reviews").data("key");
+// 		console.log(valueTitleReviews);
+//
+// 		var data_form = new FormData();
+// 		data_form.append('keyBackgroundColorReviews', keyBackgroundColorReviewss);
+// 		data_form.append('backgroundColorReviews', valueBackgroundColorReviews);
+//
+// 		data_form.append('keyTextColorReviews', keyTextColorReivews);
+// 		data_form.append('textColorReviews', valueTextColorReivews);
+//
+// 		data_form.append('keyTitleReviews', keyTitleReviews);
+// 		data_form.append('titleReviews', valueTitleReviews);
+//
+//
+// 		for (let i = 1; i <= 3; i++) {
+// 			let classReviews = ".textBodyReviews" + i;
+//
+// 			let key = $(classReviews).data("key");
+// 			let value = tinyMCE.get(key).getContent();
+//
+// 			data_form.append('keyTextBodyReviews' + i, key);
+// 			data_form.append('textBodyReviews' + i, value);
+// 		}
+//
+// 		data_form.append('action', 'reviews')
+//
+// 		jQuery.ajax({
+// 			type: "post",
+// 			url: "./wp-admin/admin-ajax.php",
+// 			processData: false,
+// 			contentType: false,
+// 			data: data_form,
+// 			beforeSend: function() {
+//
+// 			},
+// 			success: function(response) {
+// 				localStorage.setItem("isFinish", 1);
+// 				location.reload();
+// 			},
+// 			error: function(request, status, error) {
+// 				console.log(error);
+// 			},
+// 		});
+// 	});
+// });
 
 // Gift Cards
-$(document).ready(function() {
-	$(document).on('click', '.save-gift', function() {
-		$('#loading').modal('toggle');
-	
-		let keyTitleGift = $('.title-gift').data("key");
-		let titleGift = $('.title-gift').val();
-	
-		let keyContentGift = $('.content-gift').data("key");
-		let contentGift = $('.content-gift').val();
-	
-	
-		var data_form = new FormData();
-		data_form.append('keyTitleGift', keyTitleGift);
-		data_form.append('titleGift', titleGift);
-	
-		data_form.append('keyContentGift', keyContentGift);
-		data_form.append('contentGift', contentGift);
-	
-	
-	
-		let keyFile = $("#fileinputGift").data("key");
-	
-		if ($("#outputGift").attr('src') == '') {
-			data_form.append('keyFile', keyFile);
-			data_form.append('file', '');
-		} else {
-			let file = $("#fileinputGift").prop('files')[0];
-	
-			data_form.append('keyFile', keyFile);
-			data_form.append('file', file);
-		}
-	
-		data_form.append('action', 'gift');
-	
-	
-		jQuery.ajax({
-			type: "post",
-			url: "./wp-admin/admin-ajax.php",
-			processData: false,
-			contentType: false,
-			data: data_form,
-			beforeSend: function() {
-	
-			},
-			success: function(response) {
-				localStorage.setItem("isFinish", 1);
-				location.reload();
-			},
-			error: function(request, status, error) {
-				console.log(error);
-			},
-		});
-	});
-});
+// $(document).ready(function() {
+// 	$(document).on('click', '.save-gift', function() {
+// 		$('#loading').modal('toggle');
+//
+// 		let keyTitleGift = $('.title-gift').data("key");
+// 		let titleGift = $('.title-gift').val();
+//
+// 		let keyContentGift = $('.content-gift').data("key");
+// 		let contentGift = $('.content-gift').val();
+//
+//
+// 		var data_form = new FormData();
+// 		data_form.append('keyTitleGift', keyTitleGift);
+// 		data_form.append('titleGift', titleGift);
+//
+// 		data_form.append('keyContentGift', keyContentGift);
+// 		data_form.append('contentGift', contentGift);
+//
+//
+//
+// 		let keyFile = $("#fileinputGift").data("key");
+//
+// 		if ($("#outputGift").attr('src') == '') {
+// 			data_form.append('keyFile', keyFile);
+// 			data_form.append('file', '');
+// 		} else {
+// 			let file = $("#fileinputGift").prop('files')[0];
+//
+// 			data_form.append('keyFile', keyFile);
+// 			data_form.append('file', file);
+// 		}
+//
+// 		data_form.append('action', 'gift');
+//
+//
+// 		jQuery.ajax({
+// 			type: "post",
+// 			url: "./wp-admin/admin-ajax.php",
+// 			processData: false,
+// 			contentType: false,
+// 			data: data_form,
+// 			beforeSend: function() {
+//
+// 			},
+// 			success: function(response) {
+// 				localStorage.setItem("isFinish", 1);
+// 				location.reload();
+// 			},
+// 			error: function(request, status, error) {
+// 				console.log(error);
+// 			},
+// 		});
+// 	});
+// });
 
-$(document).ready(function() {
-	$(document).on('click', '.save-map', function() {
-		$('#loading').modal('toggle');
-		let value = $(".map-iframe").val();
-		let key = $(".map-iframe").data("key");
-		var data_form = new FormData();
-		data_form.append('keyMap', key);
-		data_form.append('map', value);
-		data_form.append('action', 'map');
-
-		jQuery.ajax({
-			type: "post",
-			url: "./wp-admin/admin-ajax.php",
-			processData: false,
-			contentType: false,
-			data: data_form,
-			beforeSend: function() {
-
-			},
-			success: function(response) {
-				localStorage.setItem("isFinish", 1);
-				location.reload();
-			},
-			error: function(request, status, error) {
-				console.log(error);
-			},
-		});
-	});
-});
+// $(document).ready(function() {
+// 	$(document).on('click', '.save-map', function() {
+// 		$('#loading').modal('toggle');
+// 		let value = $(".map-iframe").val();
+// 		let key = $(".map-iframe").data("key");
+// 		var data_form = new FormData();
+// 		data_form.append('keyMap', key);
+// 		data_form.append('map', value);
+// 		data_form.append('action', 'map');
+//
+// 		jQuery.ajax({
+// 			type: "post",
+// 			url: "./wp-admin/admin-ajax.php",
+// 			processData: false,
+// 			contentType: false,
+// 			data: data_form,
+// 			beforeSend: function() {
+//
+// 			},
+// 			success: function(response) {
+// 				localStorage.setItem("isFinish", 1);
+// 				location.reload();
+// 			},
+// 			error: function(request, status, error) {
+// 				console.log(error);
+// 			},
+// 		});
+// 	});
+// });
 
 // Footer
 $(document).ready(function() {
