@@ -414,7 +414,7 @@ function body_function() {
         require_once(ABSPATH.'wp-admin/includes/file.php');
     }
 
-    for($i=1; $i<=6; $i++)
+    for($i=1; $i<=5; $i++)
     {
         $file = "file".$i;
         $key = "keyFile".$i;
@@ -468,51 +468,51 @@ function body_function() {
     }
 
 
-//    // Gift card
-//    if (isset($_FILES['file']['name'])) {
-//        $uploadedfile1 = $_FILES['file'];
-//        $upload_overrides1 = array('test_form' => false);
-//        $movefile1 = wp_handle_upload($uploadedfile1, $upload_overrides1);
-//
-//        $wp_upload_dir    = wp_upload_dir();
-//        $file_name        = basename( $_FILES['file']['name'] );
-//        $file = $wp_upload_dir['path'] . '/' . $file_name;
-//        $attachment = array (
-//            'guid'           => $wp_upload_dir['url'] . '/' . $file_name,
-//            'post_mime_type' => $movefile1[ 'type' ],
-//            'post_title'     => $_FILES['file']['name'] ,
-//            'post_content'   => '',
-//            'post_type' => 'listing_type',
-//            'post_status'    => 'inherit',
-//        );
-//        $attach_id = wp_insert_attachment($attachment, $file);
-//        $attach_data = wp_generate_attachment_metadata($attach_id, $file);
-//
-//        if($movefile1 && !isset($movefile1['error']))
-//        {
-//            $option_name = $_POST['keyFile'] ;
-//            $new_value = $movefile1['url'];
-//            if ( get_option( $option_name ) != $new_value ) {
-//                update_option( $option_name, $new_value );
-//            } else {
-//                $deprecated = ' ';
-//                $autoload = 'no';
-//                add_option( $option_name, $new_value, $deprecated, $autoload );
-//            }
-//        } else {
-//            echo $movefile1['error'];
-//        }
-//    } else if($_POST['file'] == "") {
-//        $option_name = $_POST['keyFile'];
-//        $new_value = "";
-//        if ( get_option( $option_name ) != $new_value ) {
-//            update_option( $option_name, $new_value );
-//        } else {
-//            $deprecated = ' ';
-//            $autoload = 'no';
-//            add_option( $option_name, $new_value, $deprecated, $autoload );
-//        }
-//    }
+    // Gift card
+    if (isset($_FILES['file']['name'])) {
+        $uploadedfile1 = $_FILES['file'];
+        $upload_overrides1 = array('test_form' => false);
+        $movefile1 = wp_handle_upload($uploadedfile1, $upload_overrides1);
+
+        $wp_upload_dir    = wp_upload_dir();
+        $file_name        = basename( $_FILES['file']['name'] );
+        $file = $wp_upload_dir['path'] . '/' . $file_name;
+        $attachment = array (
+            'guid'           => $wp_upload_dir['url'] . '/' . $file_name,
+            'post_mime_type' => $movefile1[ 'type' ],
+            'post_title'     => $_FILES['file']['name'] ,
+            'post_content'   => '',
+            'post_type' => 'listing_type',
+            'post_status'    => 'inherit',
+        );
+        $attach_id = wp_insert_attachment($attachment, $file);
+        $attach_data = wp_generate_attachment_metadata($attach_id, $file);
+
+        if($movefile1 && !isset($movefile1['error']))
+        {
+            $option_name = $_POST['keyFile'] ;
+            $new_value = $movefile1['url'];
+            if ( get_option( $option_name ) != $new_value ) {
+                update_option( $option_name, $new_value );
+            } else {
+                $deprecated = ' ';
+                $autoload = 'no';
+                add_option( $option_name, $new_value, $deprecated, $autoload );
+            }
+        } else {
+            echo $movefile1['error'];
+        }
+    } else if($_POST['file'] == "") {
+        $option_name = $_POST['keyFile'];
+        $new_value = "";
+        if ( get_option( $option_name ) != $new_value ) {
+            update_option( $option_name, $new_value );
+        } else {
+            $deprecated = ' ';
+            $autoload = 'no';
+            add_option( $option_name, $new_value, $deprecated, $autoload );
+        }
+    }
 
     wp_die(); 
 }
