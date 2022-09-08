@@ -4,6 +4,10 @@ function get_list_books($date, $id)
     return books_get_data($date, $id);
 }
 
+function get_data_manage_times() 
+{
+    return times_get_data_manage();
+}
 
 add_action('wp_ajax_get_data_books_date', 'get_data_books_date_function');
 add_action('wp_ajax_nopriv_get_data_books_date', 'get_data_books_date_function');
@@ -37,15 +41,18 @@ function get_data_books_date_function() {
                 <style>
                     .item-book-header {
                         display: inline-flex;
+                        transform: rotateX(180deg);
+                        background-color: #00ff85;
                     }
 
                     .item-book-body {
                         display: inline-flex;
+                        transform: rotateX(180deg);
                     }
 
                     .cell-book {
                         margin: 5px;
-                        width: 200px;
+                        width: 250px;
                     }
 
                     .item-book-header .cell-book:nth-child(1) {
@@ -55,25 +62,18 @@ function get_data_books_date_function() {
                     .item-book-body .cell-book:nth-child(1) {
                         width: 100px;
                     }
+
+                    .group-button {
+                        text-align: center;
+                    }
                 </style>
                
                 <div class="count-books" style="text-align: center;" ><?php echo $countDatePoint?> Appointments</div>
                 <div class="list-calendar">
-                    <div class="item-book-header">
-                        <div class="cell-book"></div>
-                        <?php
-                            for($i=0; $i<$amount; $i++)
-                            {
-                                $date = date('D M j', strtotime($i." day", strtotime($monday)));
-                                ?>
-                                    <div class="cell-book"><?php echo $date?></div>
-                                <?php
-                            }
-                        ?>
-                    </div>
+                    
                     
                         <?php
-                            foreach(get_data_times() as $time )
+                            foreach(get_data_manage_times() as $time )
                             { 
                                 ?>
                                     <div class="item-book-body">
@@ -85,15 +85,85 @@ function get_data_books_date_function() {
                                                 if(count($books)>0) {
                                                     ?>
                                                         <div class="cell-book">
-                                                            <?php
-                                                                foreach($books as $book) {
-                                                                    ?>
-                                                                        <div>
-                                                                            <?php echo $book->post_title?>
-                                                                        </div>
-                                                                    <?php
-                                                                }
-                                                            ?>
+                                                        <?php
+                                                                    foreach($books as $book)
+                                                                    {
+                                                                        $phoneBook = get_post_meta( $book->ID, 'booking_phone', true );
+                                                                        $statusBook = get_post_meta( $book->ID, 'booking_status', true );
+                                                                        $servicesBook = get_post_meta( $book->ID, 'booking_services', true );
+                                                                        $locationBook = get_post_meta( $book->ID, 'booking_location', true );
+                                                                        $jsonData = json_decode($servicesBook);
+                                                                        
+                                                                        $color = "#ccccfe";
+                                                                        if($statusBook == 0)
+                                                                        {
+                                                                            $color = "#e0e0e0";
+                                                                        } else if($statusBook == 2) {
+                                                                            $color = "#66cc9a";
+                                                                        }
+                                                                        ?>
+                                                                            <div class="item-boook" style="background-color: <?php echo  $color?>">
+                                                                              
+                                                                                <div>
+                                                                                    <?php echo $book->post_title?>
+                                                                                </div>
+                                                                                <div>
+                                                                                    tel: <?php echo $phoneBook?>
+                                                                                </div>
+
+                                                                                <div class="wrap-content-books">
+                                                                                    <div class="services">
+
+                                                                                        <?php
+                                                                                            for($j=0 ; $j<count($jsonData); $j++) {
+                                                                                                $data = $jsonData[$j]->children;
+                                                                                                $guest = $j +1;
+                                                                                                echo "Guest ". $guest . ": ";
+
+                                                                                                for($k=0; $k< count($data); $k++)
+                                                                                                {
+                                                                                                    $arr = explode('-', $data[$k]);
+                                                                                                    $parent = get_term($arr[0])->name;
+                                                                                                    $child = get_term($arr[1])->name;
+                                                                                                    
+                                                                                                    $parentPrice = get_term_meta($arr[0], 'services-price', true );
+                                                                                                    $childrentPrice = get_term_meta($arr[1], 'services-price', true );
+                                                                                                    
+                                                                                                    $price = 0;
+                                                                                                    $name = "";
+                                                                                                    if($child == 0)
+                                                                                                    {
+                                                                                                        $name = $parent;
+                                                                                                        $price = $parentPrice;
+                                                                                                    } else {
+                                                                                                        $name = $child;
+                                                                                                        $price = $childrentPrice;
+                                                                                                    }
+                                                                                                    echo $name." $". $price. ", ";
+                                                                                                }
+                                                                                                echo "<br>";
+                                                                                            }
+                                                                                        ?>
+                                                                                    </div>
+                                                                                    <div class="services">
+                                                                                        Location: <?php echo $locationBook?>
+                                                                                    </div>
+                                                                                    <div class="message">
+                                                                                        Message: <?php echo $book->post_excerpt?>
+                                                                                    </div>
+
+                                                                                    <div class="group-button">
+                                                                                        <button>Edit</button>
+                                                                                        <button>Delete</button>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                               
+                                                                            </div>
+                                                                        <?php
+                                                                    }
+
+                                                                ?>
                                                         </div>
                                                     <?php
                                                 } else {
@@ -108,7 +178,19 @@ function get_data_books_date_function() {
                                     </div>
                                 <?php
                             }
-                        ?>  
+                        ?>
+                    <div class="item-book-header">
+                        <div class="cell-book"></div>
+                        <?php
+                            for($i=0; $i<$amount; $i++)
+                            {
+                                $date = date('D M j', strtotime($i." day", strtotime($monday)));
+                                ?>
+                                    <div class="cell-book"><?php echo $date?></div>
+                                <?php
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
             

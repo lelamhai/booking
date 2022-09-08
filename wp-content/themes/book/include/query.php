@@ -124,6 +124,22 @@ function times_get_data_taxonomy()
     return $taxonomies;
 }
 
+function times_get_data_manage()
+{
+    $args = array(  
+        'taxonomy' => 'times',
+        'parent'   => 0,
+        'hide_empty' => false,
+        'meta_key' => 'times-index',
+        'orderby' => 'meta_value',
+        'order' => 'DESC'
+    );
+
+    $taxonomies = get_terms($args);
+    return $taxonomies;
+}
+
+
 function books_get_data($date, $termId)
 {
     $args = array(  

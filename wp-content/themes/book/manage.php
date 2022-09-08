@@ -52,12 +52,17 @@
     #manage-content-wrap {
         width: 100%;
         height: calc(100vh - 32px);
-        transition: margin 500ms ease-in-out 25ms;
+        transition: padding 500ms ease-in-out 25ms;
     }
 
     .first-menu-manage {
         position: relative;
         padding: 0 15px;
+    }
+
+    .first-menu-manage .nav-pills {
+        display: flex;
+        flex-direction: column;
     }
 
     .last-menu-manage {
@@ -160,9 +165,11 @@
         margin: 5px;
         padding: 5px;
     }
-
+    
     .list-calendar {
         overflow: scroll;
+        scroll-behavior: smooth;
+        transform: rotateX(180deg);
     }
 
     .not-data-books {
