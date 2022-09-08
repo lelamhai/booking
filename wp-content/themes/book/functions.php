@@ -30,6 +30,7 @@ $businessBackgroundButtonBody = "business-backgroundbutton-body";
 $businessTextColorButtonBody = "business-text-colorbutton-body";
 
 $businessTitleWelcome = "business-title-welcome";
+$businessSubTitleWelcome = "business-sub-title-welcome";
 $businessContentWelcome = "business-content-welcome";
 $businessSlider1Welcome = "business-slider1-welcome";
 $businessSlider2Welcome = "business-slider2-welcome";
@@ -40,6 +41,7 @@ $businessSlider5Welcome = "business-slider5-welcome";
 $businessBackgroundColorReviews = "business-backgroundcolor-reviews";
 $businessTextColorReviews = "business-textcolor-reviews";
 $businessTitleReviews = "business-title-reviews";
+$businessSubTitleReviews = "business-subtitle-reviews";
 $businessContent1Reviews = "business-content1-reviews";
 $businessContent2Reviews = "business-content2-reviews";
 $businessContent3Reviews = "business-content3-reviews";

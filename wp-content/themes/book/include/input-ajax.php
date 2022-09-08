@@ -323,6 +323,16 @@ function body_function() {
 		add_option( $option_name, $new_value, $deprecated, $autoload );
 	}
 
+    $option_name = $_POST['subKeyTitleWelcome'] ;
+    $new_value = $_POST['subTitleWelcome'] ;
+    if ( get_option( $option_name ) != $new_value ) {
+        update_option( $option_name, $new_value );
+    } else {
+        $deprecated = ' ';
+        $autoload = 'no';
+        add_option( $option_name, $new_value, $deprecated, $autoload );
+    }
+
     $option_name = $_POST['keyTextBodyContent'] ;
 	$new_value = $_POST['textBodyContent'] ;
 	if ( get_option( $option_name ) != $new_value ) {
@@ -385,6 +395,16 @@ function body_function() {
 
     $option_name = $_POST['keyTitleReviews'] ;
     $new_value = $_POST['titleReviews'] ;
+    if ( get_option( $option_name ) != $new_value ) {
+        update_option( $option_name, $new_value );
+    } else {
+        $deprecated = ' ';
+        $autoload = 'no';
+        add_option( $option_name, $new_value, $deprecated, $autoload );
+    }
+
+    $option_name = $_POST['keySubTitleReviews'] ;
+    $new_value = $_POST['valueSubTitleReviews'] ;
     if ( get_option( $option_name ) != $new_value ) {
         update_option( $option_name, $new_value );
     } else {

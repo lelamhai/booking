@@ -790,6 +790,17 @@
                                             ?>
                                             <input type="text" class="title-welcome" data-key="<?php echo $businessTitleWelcome ?>" value="<?php echo $text?>">
                                         </div>
+                                        <div class="wrap-title-welcome-word">
+                                            <div class="title-body">Sub Title</div>
+                                            <?php
+                                            $text = "";
+                                            if(get_option($businessSubTitleWelcome))
+                                            {
+                                                $text = get_option($businessSubTitleWelcome);
+                                            }
+                                            ?>
+                                            <input type="text" class="subtitle-welcome" data-key="<?php echo $businessSubTitleWelcome ?>" value="<?php echo $text?>">
+                                        </div>
                                         <div class="wrap-content-welcome-word">
                                             <div class="title-body">Body text</div>
                                             <input type="hidden" class="textBodyContent" data-key="<?php echo $businessContentWelcome?>">
@@ -981,6 +992,17 @@
                                                     }
                                             ?>
                                             <input type="text" class="title-welcome title-reviews" data-key="<?php echo $businessTitleReviews?>" value="<?php echo $text?>">
+                                        </div>
+                                        <div class="wrap-title-welcome-word">
+                                            <div class="title-body">Sub Title</div>
+                                            <?php
+                                            $text = "";
+                                            if(get_option($businessSubTitleReviews))
+                                            {
+                                                $text = stripslashes(get_option($businessSubTitleReviews));
+                                            }
+                                            ?>
+                                            <input type="text" class="title-welcome subtitle-reviews" data-key="<?php echo $businessSubTitleReviews?>" value="<?php echo $text?>">
                                         </div>
                                         <div class="wrap-content-reviews-word">
                                             <div class="title-body">Body text 1</div>

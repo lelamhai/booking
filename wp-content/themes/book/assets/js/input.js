@@ -633,6 +633,9 @@ $(document).ready(function() {
 		let titleWelcome = $(".title-welcome").val();
 		let keyTitleWelcome = $(".title-welcome").data("key");
 
+		let subTitleWelcome = $(".subtitle-welcome").val();
+		let subKeyTitleWelcome = $(".subtitle-welcome").data("key");
+
 		let key = $('.textBodyContent').data("key");
 		let value = tinyMCE.get(key).getContent();
 
@@ -644,6 +647,9 @@ $(document).ready(function() {
 
 		let valueTitleReviews = $(".title-reviews").val();
 		let keyTitleReviews = $(".title-reviews").data("key");
+
+		let valueSubTitleReviews = $(".subtitle-reviews").val();
+		let keySubTitleReviews = $(".subtitle-reviews").data("key");
 
 		let keyTitleGift = $('.title-gift').data("key");
 		let titleGift = $('.title-gift').val();
@@ -670,6 +676,9 @@ $(document).ready(function() {
 		data_form.append('titleWelcome', titleWelcome);
 		data_form.append('keyTitleWelcome', keyTitleWelcome);
 
+		data_form.append('subTitleWelcome', subTitleWelcome);
+		data_form.append('subKeyTitleWelcome', subKeyTitleWelcome);
+
 		data_form.append('keyTextBodyContent', key);
 		data_form.append('textBodyContent', value);
 
@@ -681,6 +690,9 @@ $(document).ready(function() {
 
 		data_form.append('keyTitleReviews', keyTitleReviews);
 		data_form.append('titleReviews', valueTitleReviews);
+
+		data_form.append('keySubTitleReviews', keySubTitleReviews);
+		data_form.append('valueSubTitleReviews', valueSubTitleReviews);
 
 		data_form.append('keyTitleGift', keyTitleGift);
 		data_form.append('titleGift', titleGift);

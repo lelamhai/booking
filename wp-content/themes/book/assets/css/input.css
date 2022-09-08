@@ -306,7 +306,8 @@ main {
 .wrap-title-welcome-word {
     margin-bottom: 30px;
 }
-.title-welcome {
+.title-welcome,
+.subtitle-welcome{
     width: 100%;
 }
 .content-welcome {
