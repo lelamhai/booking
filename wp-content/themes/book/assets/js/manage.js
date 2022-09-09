@@ -2,7 +2,6 @@ $(document).ready(function() {
     $("#wp-admin-bar-my-account li:eq(1)").before($("#wp-admin-bar-my-account li:eq(3)"));
     $("#wp-admin-bar-my-account li:eq(2)").before($("#wp-admin-bar-my-account li:eq(4)"));
 
-
     let option = 7;
     let date = new Date();
     let begin = getMonday(date);
@@ -35,13 +34,12 @@ $(document).ready(function() {
         },
     });
 
-    $('.option-select').click(function(){
+    $(document).on('click', '.option-select', function() {
         $(".option-select").removeClass("option-active");
         $(this).addClass("option-active");
         option = $(this).data("option");
 
         date = new Date();
-        
         if(option == 7)
         {
             begin = getMonday(date);
@@ -379,6 +377,10 @@ function loadBooks(startDate, endDate, amount)
         },
         success: function(response) {
             $(".ajax-books").append(response);
+            if(amount == 1)
+            {
+                $('.list-calendar').addClass( "today" );
+            } 
         },
         error: function( jqXHR, textStatus, errorThrown ){
         }

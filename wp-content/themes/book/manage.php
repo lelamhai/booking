@@ -70,9 +70,9 @@
     }
 
     .wrap-container {
+        height: calc(100vh - 32px);
         padding: 0 30px;
     }
-
 
     .site-title {
         text-align: center;
@@ -167,9 +167,40 @@
     }
     
     .list-calendar {
+        height: 600px;
         overflow: scroll;
         scroll-behavior: smooth;
-        transform: rotateX(180deg);
+    }
+
+    .today {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .item-book-header {
+        display: inline-flex;
+        background-color: #00ff85;
+    }
+
+    .item-book-body {
+        display: inline-flex;
+    }
+
+    .cell-book {
+        margin: 5px;
+        width: 250px;
+    }
+
+    .item-book-header .cell-book:nth-child(1) {
+        width: 100px;
+    }
+
+    .item-book-body .cell-book:nth-child(1) {
+        width: 100px;
+    }
+
+    .group-button {
+        text-align: center;
     }
 
     .not-data-books {
@@ -388,7 +419,7 @@
     <div id="manage-content-wrap" class="margin-content">
         <div class="wrap-container">
            
-            <div class="tab-content clearfix">
+            <div class="tab-content">
                 <div class="tab-pane active" id="appointments">
                     <div class="header-bar">
                         <div class="filter-control">

@@ -6,7 +6,7 @@ function get_list_books($date, $id)
 
 function get_data_manage_times() 
 {
-    return times_get_data_manage();
+    return times_get_data_taxonomy();
 }
 
 add_action('wp_ajax_get_data_books_date', 'get_data_books_date_function');
@@ -38,39 +38,20 @@ function get_data_books_date_function() {
                     <span><button class="next-books" data-date="<?php echo  $end?>"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/white-right-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
                 </div>
 
-                <style>
-                    .item-book-header {
-                        display: inline-flex;
-                        transform: rotateX(180deg);
-                        background-color: #00ff85;
-                    }
-
-                    .item-book-body {
-                        display: inline-flex;
-                        transform: rotateX(180deg);
-                    }
-
-                    .cell-book {
-                        margin: 5px;
-                        width: 250px;
-                    }
-
-                    .item-book-header .cell-book:nth-child(1) {
-                        width: 100px;
-                    }
-
-                    .item-book-body .cell-book:nth-child(1) {
-                        width: 100px;
-                    }
-
-                    .group-button {
-                        text-align: center;
-                    }
-                </style>
-               
                 <div class="count-books" style="text-align: center;" ><?php echo $countDatePoint?> Appointments</div>
                 <div class="list-calendar">
-                    
+                    <div class="item-book-header">
+                        <div class="cell-book"></div>
+                        <?php
+                            for($i=0; $i<$amount; $i++)
+                            {
+                                $date = date('D M j', strtotime($i." day", strtotime($monday)));
+                                ?>
+                                    <div class="cell-book"><?php echo $date?></div>
+                                <?php
+                            }
+                        ?>
+                    </div>
                     
                         <?php
                             foreach(get_data_manage_times() as $time )
@@ -179,18 +160,7 @@ function get_data_books_date_function() {
                                 <?php
                             }
                         ?>
-                    <div class="item-book-header">
-                        <div class="cell-book"></div>
-                        <?php
-                            for($i=0; $i<$amount; $i++)
-                            {
-                                $date = date('D M j', strtotime($i." day", strtotime($monday)));
-                                ?>
-                                    <div class="cell-book"><?php echo $date?></div>
-                                <?php
-                            }
-                        ?>
-                    </div>
+                   
                 </div>
             </div>
             
