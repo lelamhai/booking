@@ -34,13 +34,12 @@ $(document).ready(function() {
         },
     });
 
-    $('.option-select').click(function(){
+    $(document).on('click', '.option-select', function() {
         $(".option-select").removeClass("option-active");
         $(this).addClass("option-active");
         option = $(this).data("option");
 
         date = new Date();
-        
         if(option == 7)
         {
             begin = getMonday(date);
@@ -200,16 +199,17 @@ $(document).ready(function() {
         
     });
 
-  
-   
-
     $(document).on('click', '.yes-cancel-books', function() {
         let id = $('#idBooks').val();
         let status = $('#statusBooks').val();
         changeStatusBooks(id, status);
     });
 
-
+    $(".control-collapse").click(function(){
+        $( this ).toggleClass( "collapse180" );
+        $("#manage-menu-wrap").toggleClass("sidebar-menu");
+        $("#manage-content-wrap").toggleClass("margin-content");
+    });
 });
 
 function changeStatusBooks(id, status)
@@ -377,6 +377,10 @@ function loadBooks(startDate, endDate, amount)
         },
         success: function(response) {
             $(".ajax-books").append(response);
+            if(amount == 1)
+            {
+                $('.list-calendar').addClass( "today" );
+            } 
         },
         error: function( jqXHR, textStatus, errorThrown ){
         }

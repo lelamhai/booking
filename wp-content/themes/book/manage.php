@@ -28,7 +28,7 @@
     }
 
     .margin-content {
-        margin-left: 240px;
+        padding-left: 20%;
     }
 
     #manage {
@@ -38,8 +38,7 @@
 
     #manage-menu-wrap {
         position: fixed;
-        width: 240px;
-        height: 100%;
+        width: 20%;
         height: calc(100vh - 32px);
         background-color: #1d5f9b;
         display: flex;
@@ -53,8 +52,7 @@
     #manage-content-wrap {
         width: 100%;
         height: calc(100vh - 32px);
-        /* transition: transform 500ms ease-in-out 25ms; */
-        transition: margin 500ms ease-in-out 25ms;
+        transition: padding 500ms ease-in-out 25ms;
     }
 
     .first-menu-manage {
@@ -62,14 +60,19 @@
         padding: 0 15px;
     }
 
-    .last-menu-manage {
+    .first-menu-manage .nav-pills {
+        display: flex;
+        flex-direction: column;
+    }
 
+    .last-menu-manage {
+        width: 100%;
     }
 
     .wrap-container {
+        height: calc(100vh - 32px);
         padding: 0 30px;
     }
-
 
     .site-title {
         text-align: center;
@@ -162,29 +165,48 @@
         margin: 5px;
         padding: 5px;
     }
-
+    
     .list-calendar {
-       
+        height: 600px;
+        overflow: scroll;
+        scroll-behavior: smooth;
     }
 
-    .table-data-books {
-        border-collapse: separate;
-        border-spacing: 0 10px;
-        width: 100%;
+    .today {
+        display: flex;
+        flex-direction: column;
     }
 
-    /* .table-data-books tr td {
-        width: 500px;
-    } */
+    .item-book-header {
+        display: inline-flex;
+        background-color: #00ff85;
+    }
 
-    .table-data-books tbody tr:nth-child(odd) {background: #CCC}
-    .table-data-books tbody tr:nth-child(even) {background: #FFF}
+    .item-book-body {
+        display: inline-flex;
+    }
+
+    .cell-book {
+        margin: 5px;
+        width: 250px;
+    }
+
+    .item-book-header .cell-book:nth-child(1) {
+        width: 100px;
+    }
+
+    .item-book-body .cell-book:nth-child(1) {
+        width: 100px;
+    }
+
+    .group-button {
+        text-align: center;
+    }
 
     .not-data-books {
         color: red;
         opacity: 0;
     }
-
 
     .wrap-book-title {
         display: flex;
@@ -261,8 +283,6 @@
         border-top: 0;
         text-align: center;
     }
-
-
 </style>
 
 
@@ -399,7 +419,7 @@
     <div id="manage-content-wrap" class="margin-content">
         <div class="wrap-container">
            
-            <div class="tab-content clearfix">
+            <div class="tab-content">
                 <div class="tab-pane active" id="appointments">
                     <div class="header-bar">
                         <div class="filter-control">

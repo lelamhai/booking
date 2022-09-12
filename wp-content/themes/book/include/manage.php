@@ -4,6 +4,10 @@ function get_list_books($date, $id)
     return books_get_data($date, $id);
 }
 
+function get_data_manage_times() 
+{
+    return times_get_data_taxonomy();
+}
 
 add_action('wp_ajax_get_data_books_date', 'get_data_books_date_function');
 add_action('wp_ajax_nopriv_get_data_books_date', 'get_data_books_date_function');
@@ -33,39 +37,36 @@ function get_data_books_date_function() {
                     </div>
                     <span><button class="next-books" data-date="<?php echo  $end?>"><img src="<?php echo get_template_directory_uri()?>/assets/img/icon/white-right-arrow.png" alt="" style="width: 20px; height: auto"></button></span>
                 </div>
-               
+
                 <div class="count-books" style="text-align: center;" ><?php echo $countDatePoint?> Appointments</div>
                 <div class="list-calendar">
-                    <table class="table-data-books">
-                        <thead>
-                                        <th></th>
+                    <div class="item-book-header">
+                        <div class="cell-book"></div>
+                        <?php
+                            for($i=0; $i<$amount; $i++)
+                            {
+                                $date = date('D M j', strtotime($i." day", strtotime($monday)));
+                                ?>
+                                    <div class="cell-book"><?php echo $date?></div>
+                                <?php
+                            }
+                        ?>
+                    </div>
+                    
+                        <?php
+                            foreach(get_data_manage_times() as $time )
+                            { 
+                                ?>
+                                    <div class="item-book-body">
+                                        <div class="cell-book"><?php echo $time->name?></div>
                                         <?php
-                                            for($i=0; $i<$amount; $i++)
-                                            {
-                                                $date = date('D M j', strtotime($i." day", strtotime($monday)));
-                                                ?>
-                                                    <th><?php echo $date?></th>
-                                                <?php
-                                            }
-                                        ?>
-                        </thead>
-                        <tbody>
-                            <?php
-                                foreach(get_data_times() as $time )
-                                { 
-                                    ?>
-                                        <tr class="item-time">
-                                            <td><?php echo $time->name?></td>
-                                            <?php
-                                                for($i=0; $i<$amount; $i++)
-                                                {
-                                                    $date = date('Y-m-d', strtotime($i." day", strtotime($monday)));
-                                                    $books = get_list_books($date,$time->term_id );
-                                                    if(count($books)>0)
-                                                    {
-                                                        ?>
-                                                            <td>
-                                                                <?php
+                                            for($i=0; $i<$amount; $i++){
+                                                $date = date('Y-m-d', strtotime($i." day", strtotime($monday)));
+                                                $books = get_list_books($date,$time->term_id );
+                                                if(count($books)>0) {
+                                                    ?>
+                                                        <div class="cell-book">
+                                                        <?php
                                                                     foreach($books as $book)
                                                                     {
                                                                         $phoneBook = get_post_meta( $book->ID, 'booking_phone', true );
@@ -131,33 +132,35 @@ function get_data_books_date_function() {
                                                                                     <div class="message">
                                                                                         Message: <?php echo $book->post_excerpt?>
                                                                                     </div>
+
+                                                                                    <div class="group-button">
+                                                                                        <button>Edit</button>
+                                                                                        <button>Delete</button>
+                                                                                    </div>
                                                                                 </div>
 
-                                                                                <div class="">
-                                                                                    <button>Edit</button>
-                                                                                    <button>Delete</button>
-                                                                                </div>
+                                                                               
                                                                             </div>
                                                                         <?php
                                                                     }
 
                                                                 ?>
-
-
-                                                            </td>
-                                                        <?php
-                                                    } else {
-                                                        ?><td><?php echo ""?></td><?php
-                                                    }
-                                                                
+                                                        </div>
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                        <div class="cell-book"></div>
+                                                    <?php
                                                 }
-                                            ?>
-                                        </tr>
-                                    <?php
-                                }
-                            ?>
-                        </tbody>
-                    </table> 
+
+                                                
+                                            }
+                                        ?>
+                                    </div>
+                                <?php
+                            }
+                        ?>
+                   
                 </div>
             </div>
             
