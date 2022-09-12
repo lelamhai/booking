@@ -210,6 +210,300 @@ $(document).ready(function() {
         $("#manage-menu-wrap").toggleClass("sidebar-menu");
         $("#manage-content-wrap").toggleClass("margin-content");
     });
+
+    $(document).on('click', '.icon-collapse', function() { 
+        $(this).parents(".item-boook").children(".wrap-content-books").toggle( "hide-card" );
+        $(this).children(".first-minus").toggle( "first-minus" );
+    });
+
+    $(document).on('click', '.delete', function() { 
+        let id = $(this).parents(".group-button").data("id");
+        $('#modalDeleteBook').modal('toggle');
+        $("#idDeleteBooks").val(id);
+    });
+
+    $(document).on('click', '.yes-delete-books', function() { 
+        let id =  $("#idDeleteBooks").val();
+        $.ajax({
+            type : "GET", 
+            dataType: 'html',
+            url : "./wp-admin/admin-ajax.php",
+            data : {
+                action: "delete_data_books",
+                id: id
+            },
+            beforeSend: function(){
+
+            },
+            success: function(response) {
+                $('#modalDeleteBook').modal('toggle');
+                $('.item-boook[data-id="'+id+'"]').remove();
+            },
+            error: function( jqXHR, textStatus, errorThrown ){
+    
+            }
+        });
+    });
+
+    
+});
+
+$(document).ready(function() {
+    $( "#datepickerCalendar" ).datepicker({
+        minDate: new Date()
+    }).datepicker("setDate",'now');
+
+    $("#single-main").select2({
+        placeholder: "Select a time",
+        allowClear: true
+    });
+    let date = $('#datepickerCalendar').val();
+    let time_id = $('#single-main').val();
+    loadData(date,time_id);
+
+     // select time
+     $('#single-main').on("change", function (e) { 
+        let time_id = $(this).find(':selected').val();
+        let date = $('#datepickerCalendar').val();
+        console.log(time_id);
+        loadData(date,time_id);
+    });
+
+    // select date
+    $('#datepickerCalendar').change(function(e){
+        let time_id = $('#single-main').val();
+        console.log(time_id);
+        let date = $(this).val();
+        loadData(date,time_id);
+    });
+
+    $(document).on('click', '.checkbox-budget', function() {
+        let slots = $(this).val();
+        if(slots > 0)
+        {
+            $(".wrap-service-parent").css("display","none");
+            for(let i=1; i<=slots; i++)
+            {
+                $(".wrap-service-parent-"+i).css("display","block");
+            }
+        }
+    });
+
+    $(document).on('click', '.checkbox-menu', function() {
+        let index = $(this).val();
+        if(this.checked)
+        {
+            $(this).parent().parent().parent().children(".wrap-service-child").children(".wrap-service-item-"+index).removeClass("hidden");
+        } else {
+            $(this).parent().parent().parent().children(".wrap-service-child").children(".wrap-service-item-"+index).addClass("hidden");
+        }
+    });
+
+    $('.submit').click(function(){
+        let isFullname = false;
+        let isPhoneNumber = false;
+        let isEmail = false;
+        let isLocation = false;
+        let isDatepicker = false;
+        let isSelect2 = false;
+
+        let fullname = $('.full-name').val();
+        let phoneNumber = $('.phone-number').val();
+        let email = $('.email').val();
+        let location = $('.location').val();
+        let datepicker = $('#datepickerCalendar').val();
+        let select2 = $('.single-main').val();
+
+
+
+        if(fullname.length == 0)
+        {
+            $('.wrap-input-full .error').css("opacity", 1);
+            $('.wrap-input-full .error').text('Field with * is required.');
+            isFullname = false;
+        } else {
+            $('.wrap-input-full .error').css("opacity", 0);
+            $('.wrap-input-full .error').text('');
+            isFullname = true;
+        }
+
+        if(phoneNumber.length == 0)
+        {
+            $('.wrap-input-phone-number .error').css("opacity", 1);
+            $('.wrap-input-phone-number .error').text('Field with * is required.');
+            isPhoneNumber = false;
+        } else {
+            if(isVietnamesePhoneNumber(phoneNumber)) {
+                $('.wrap-input-phone-number .error').css("opacity", 0);
+                $('.wrap-input-phone-number .error').text('Error');
+                isPhoneNumber = true;
+            } else {
+                $('.wrap-input-phone-number .error').css("opacity", 1);
+                $('.wrap-input-phone-number .error').text('Please enter your phone number');
+                isPhone = false;
+            }
+        }
+
+        if(email.length == 0)
+        {
+            isEmail = true;
+        } else {
+            if(validateEmail(email)) { 
+                $('.wrap-input-email .error').css("opacity", 0);
+                $('.wrap-input-email .error').text('Error');
+                isEmail = true;
+            } else {
+                $('.wrap-input-email .error').css("opacity", 1);
+                $('.wrap-input-email .error').text('Please enter your email');
+                isEmail = false;
+            }
+        }
+
+        // if(location.length == 0)
+        // {
+        //     isLocation = true;
+        // } else {
+        //     if(validateLocation(location)) {
+        //         $('.wrap-input-location .error').css("opacity", 0);
+        //         $('.wrap-input-location .error').text('Error');
+        //         isLocation = true;
+        //     } else {
+        //         $('.wrap-input-location .error').css("opacity", 1);
+        //         $('.wrap-input-location .error').text('Please enter your location');
+        //         isLocation = false;
+        //     }
+        // }
+
+        if(datepicker.length == 0)
+        {
+            $('.wrap-input-datepicker .error').css("opacity", 1);
+            $('.wrap-input-datepicker .error').text('Field with * is required.');
+            isDatepicker = false;
+        } else {
+            $('.wrap-input-datepicker .error').css("opacity", 0);
+            $('.wrap-input-datepicker .error').text('Error');
+            isDatepicker = true;
+        }
+
+        if(select2.length == 0)
+        {
+            $('.wrap-input-single-main .error').css("opacity", 1);
+            $('.wrap-input-single-main .error').text('Field with * is required.');
+            isSelect2 = false;
+        } else {
+            $('.wrap-input-single-main .error').css("opacity", 0);
+            $('.wrap-input-single-main .error').text('Error');
+            isSelect2 = true;
+        }
+
+
+        let slots = 0;
+        $('input:radio.checkbox-budget').each(function () {
+            if(this.checked)
+            {
+                slots = $(this).val();
+            } 
+        });
+
+        
+        let totalSlots = 0;
+        
+        let json = Array();
+        for(let k=1; k<=slots; k++)
+        {   
+            let service = new Object();
+
+            let checked = 0;
+            let countChecked = 0;
+
+            let serviceParent = Array();
+            // parent
+            $(".wrap-service-parent-"+k+">.wrap-button-number>.number>.checkbox-menu").each(function (index, obj) {
+                if (this.checked) {
+                    let id = $(this).data("id");
+                    
+                    serviceParent.push(id);
+                    checked = 1;
+                    countChecked ++;
+                } 
+            });
+            console.log(countChecked);
+
+            let serviceChild = Array();
+            // children
+            $(".wrap-service-parent-"+k+">.wrap-service-child>.wrap-service-item").each(function (index, obj) {
+                if(!$(this).hasClass('hidden'))
+                {
+                    let child = $(this).children(".service-content").children(".basic-single").find(':selected').val();
+                    let parent = $(this).children(".service-content").children(".basic-single").find(':selected').data("parent");
+                    
+                    let services = parent+"-"+child; 
+                    serviceChild.push(services);
+                }
+            });
+
+            // service.parent = serviceParent;
+            service.children = serviceChild;
+
+            json.push(service);
+            if(checked > 0)
+            {
+                totalSlots ++;
+            }
+
+            if(countChecked == 0)
+            {
+                $(".wrap-service-parent-"+k+">.wrap-service-child>.error-checkbox").css({"display": "block", "opacity": 1});
+            } else {
+                $(".wrap-service-parent-"+k+">.wrap-service-child>.error-checkbox").css({"display": "none", "opacity": 0});
+            }
+        }
+       
+        var services = JSON.stringify(json);
+        // console.log(services);
+        // return false;
+
+        if(isFullname && isPhoneNumber &&  isEmail && isDatepicker && isSelect2 && totalSlots==slots && slots!=0)
+        {
+            let fullName = $(".full-name").val();
+            let phoneNumber = $(".phone-number").val();
+            let email = $(".email").val();
+            let location = $(".location").val();
+            let datepicker = $( "#datepicker" ).datepicker({dateFormat: 'DD-MM-YYYY HH:mm:ss' }).val();
+            let message = $(".message").val();
+            let time_id = $("#single-main").find(':selected').val();
+
+            var services = JSON.stringify(json);
+            console.log(services);
+            $.ajax({
+                type : "GET", 
+                dataType: 'html',
+                url : "./wp-admin/admin-ajax.php",
+                data : {
+                    action: "insert",
+                    fullName: fullName,
+                    phoneNumber: phoneNumber,
+                    datepicker: datepicker,
+                    email: email,
+                    location: location,
+                    message: message,
+                    slots: slots,
+                    services: services,
+                    time_id: time_id
+                },
+                beforeSend: function(){
+                   
+                },
+                success: function(response) {
+                    console.log(response);
+                    alert("Booking finish");
+                    window.location.reload(true)
+                },
+                error: function( jqXHR, textStatus, errorThrown ){
+                }
+            });
+        }
+    });
 });
 
 function changeStatusBooks(id, status)
@@ -385,4 +679,52 @@ function loadBooks(startDate, endDate, amount)
         error: function( jqXHR, textStatus, errorThrown ){
         }
     });
+}
+
+
+function loadData(date,time_id)
+{
+    $.ajax({
+        type : "GET", 
+        dataType: 'html',
+        contentType: "application/json; charset=utf-8",
+        url : "./wp-admin/admin-ajax.php",
+        data : {
+            action: "getSlots",
+            date: date,
+            time_id: time_id
+
+        },
+        beforeSend: function(){
+            $(".wrap-guest").remove();
+        },
+        success: function(response) {
+            $('.wrap-data-ajax').append(response);
+            $(".basic-single").select2({
+                placeholder: "Select ...",
+                allowClear: true
+            });
+        },
+        error: function( jqXHR, textStatus, errorThrown ){
+
+        }
+    });
+}
+
+function validateEmail(email) {
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    return emailReg.test( email );
+}
+
+function isVietnamesePhoneNumber(number) {
+    if(number.length >= 10 && $.isNumeric(number))
+    {
+        return true;
+    }
+    return false;
+}
+
+function validateLocation(location) {
+    var locationReg = /\d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*\$/;
+    return locationReg.test( location );
 }

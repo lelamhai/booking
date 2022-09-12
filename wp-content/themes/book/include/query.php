@@ -273,4 +273,9 @@ function change_status_booking($id, $status)
     update_post_meta( $id, 'booking_status', $status );
 }
 
+function delete_by_id_books($id)
+{
+    wp_delete_post($id);
+}
+
 ?>

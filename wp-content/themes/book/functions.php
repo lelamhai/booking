@@ -60,7 +60,7 @@ $policyId = 184;
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
 {
-    $version = "381";
+    $version = "375";
     
     wp_enqueue_style('book-fonts',   get_template_directory_uri() ."/assets/css/font.css", array(), $version);
     wp_enqueue_style('book-base',   get_template_directory_uri() ."/assets/css/base.css", array(), $version);
@@ -82,6 +82,9 @@ function regsiter_styles()
         if(is_page_template("manage.php"))
         {
             wp_enqueue_style('book-manage',   get_template_directory_uri() ."/assets/css/manage.css", array(), $version);
+            wp_enqueue_style('book-select2.min',   get_template_directory_uri() ."/assets/css/select2.min.css", array(), $version);
+            
+            wp_enqueue_script('book-select2.min', get_template_directory_uri() . "/assets/js/select2.min.js", array(), $version, true);
             wp_enqueue_script('boook-manage', get_template_directory_uri() . "/assets/js/manage.js", array(), $version, true);
         } else {
             wp_enqueue_style('book-style',   get_template_directory_uri() ."/assets/css/style.css", array(), $version);
