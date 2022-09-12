@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arizonia&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
     <title><?php echo get_bloginfo()?></title>
     <?php
@@ -30,7 +32,7 @@
                         {
                             ?>
                             <img src="<?php echo get_option("business-logo-header")?>" alt="">
-<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/name.png" ?><!--" alt="">-->
+<!--                            <img src="--><?php //echo get_template_directory_uri()."/assets/img/icon-theme/topRated-1.png" ?><!--" alt="">-->
                             <?php
                         } else if(get_option("business-name")){
                             $name = "Softkeymarketing";
@@ -38,7 +40,9 @@
                             {
                                 $name = get_option("business-name");
                             }
-                            echo $name;
+//                            echo $name;
+                            ?>
+                        <img src="<?php echo get_template_directory_uri()."/assets/img/icon-theme/topRated-1.png" ?>" alt=""> <?php
                         }
                         ?>
                     </a>
@@ -67,13 +71,11 @@
                         <li>
                             <a href="#Gift" class="TextColorHeader">Buy gift cards</a>
                         </li>
-
-                        <li class="header-login">
-                            <a href="./wp-admin" class="TextColorHeader">Login</a>
-                        </li>
                     </ul>
                 </section>
             </div>
+
+            <a class="header-login TextColorHeader" href="./wp-admin"><i class="fas fa-user"></i>Login</a>
 
             <div class="menu-mobile mobile BackgroundColorHeader">
                 <div class="logo-mobile anim left-right js-anim">

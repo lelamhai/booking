@@ -84,7 +84,7 @@
                                 $parents = services_get_taxonomy();
                                 ?>
                                <div class="wrap-service-parent wrap-service-parent-<?php echo $i?>" style="display: block">
-                                    <div class="guest-item-title TextColorBody">GUEST <span class="guest-item-number"><?php echo $i?></span><span class="red">*</span></div>
+                                    <div class="guest-item-title TextColorBody">Guest <?php echo $i?><span class="red">*</span></div>
                                     <div class="wrap-button-number">
                                         <?php
                                             $index = 1;
@@ -154,7 +154,7 @@
                             } else {
                                 ?>
                                 <div class="wrap-service-parent wrap-service-parent-<?php echo $i?>">
-                                        <div class="guest-item-title TextColorBody">GUEST <span class="guest-item-number"><?php echo $i?></span><span class="red">*</span></div>
+                                        <div class="guest-item-title TextColorBody">Guest <?php echo $i?><span class="red">*</span></div>
                                         <div class="wrap-button-number">
                                             <?php
                                                 $index = 1;
@@ -230,7 +230,7 @@
                             ?>
                                 <div class="wrap-input-form wrap-input-message choose-person">
                                     <div class="label-card">Your message</div>
-                                    <textarea class="message" name="message" rows="6" cols="50" placeholder="Message"></textarea>
+                                    <textarea class="message" name="message" rows="6" cols="50" placeholder="Message..."></textarea>
                                 </div>
                             <?php
                         }

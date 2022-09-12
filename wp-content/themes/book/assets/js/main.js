@@ -3,14 +3,12 @@ $(document).ready(function() {
     $("#wp-admin-bar-my-account li:eq(2)").before($("#wp-admin-bar-my-account li:eq(4)"));
 
     $(".slider-reviews").slick({
-        vertical: true,
-        verticalSwiping: true,
         draggable: false,
         swipe: false,
         speed: 1300,
         infinite:true,
         slidesToShow: 1,
-        autoplay: true,
+        autoplay: false,
         prevArrow:"<button type='button' class='slick-prev pull-left'></button>",
         nextArrow:"<button type='button' class='slick-next pull-right'></button>"
     });
@@ -18,7 +16,7 @@ $(document).ready(function() {
     $(".slider").slick({
         dots: true,
         arrows: false,
-        autoplay: true,
+        autoplay: false,
         slidesToShow: 1
     });
 
@@ -138,27 +136,27 @@ $(document).ready(function() {
 
         if(fullname.length == 0)
         {
-            $('.wrap-input-full .error').css("opacity", 1);
+            $('.wrap-input-full .error').css({"opacity": 1, "display": "block"});
             $('.wrap-input-full .error').text('Field with * is required.');
             isFullname = false;
         } else {
-            $('.wrap-input-full .error').css("opacity", 0);
+            $('.wrap-input-full .error').css({"opacity": 0, "display": "none"});
             $('.wrap-input-full .error').text('');
             isFullname = true;
         }
 
         if(phoneNumber.length == 0)
         {
-            $('.wrap-input-phone-number .error').css("opacity", 1);
+            $('.wrap-input-phone-number .error').css({"opacity": 1, "display": "block"});
             $('.wrap-input-phone-number .error').text('Field with * is required.');
             isPhoneNumber = false;
         } else {
             if(isVietnamesePhoneNumber(phoneNumber)) {
-                $('.wrap-input-phone-number .error').css("opacity", 0);
+                $('.wrap-input-phone-number .error').css({"opacity": 0, "display": "none"});
                 $('.wrap-input-phone-number .error').text('Error');
                 isPhoneNumber = true;
             } else {
-                $('.wrap-input-phone-number .error').css("opacity", 1);
+                $('.wrap-input-phone-number .error').css({"opacity": 1, "display": "block"});
                 $('.wrap-input-phone-number .error').text('Please enter your phone number');
                 isPhone = false;
             }
@@ -168,12 +166,12 @@ $(document).ready(function() {
         {
             isEmail = true;
         } else {
-            if(validateEmail(email)) { 
-                $('.wrap-input-email .error').css("opacity", 0);
+            if(validateEmail(email)) {
+                $('.wrap-input-email .error').css({"opacity": 0, "display": "none"});
                 $('.wrap-input-email .error').text('Error');
                 isEmail = true;
             } else {
-                $('.wrap-input-email .error').css("opacity", 1);
+                $('.wrap-input-email .error').css({"opacity": 1, "display": "block"});
                 $('.wrap-input-email .error').text('Please enter your email');
                 isEmail = false;
             }
@@ -184,11 +182,11 @@ $(document).ready(function() {
             isLocation = true;
         } else {
             if(validateLocation(location)) {
-                $('.wrap-input-location .error').css("opacity", 0);
+                $('.wrap-input-location .error').css({"opacity": 0, "display": "none"});
                 $('.wrap-input-location .error').text('Error');
                 isLocation = true;
             } else {
-                $('.wrap-input-location .error').css("opacity", 1);
+                $('.wrap-input-location .error').css({"opacity": 1, "display": "block"});
                 $('.wrap-input-location .error').text('Please enter your location');
                 isLocation = false;
             }
@@ -196,22 +194,22 @@ $(document).ready(function() {
 
         if(datepicker.length == 0)
         {
-            $('.wrap-input-datepicker .error').css("opacity", 1);
+            $('.wrap-input-datepicker .error').css({"opacity": 1, "display": "block"});
             $('.wrap-input-datepicker .error').text('Field with * is required.');
             isDatepicker = false;
         } else {
-            $('.wrap-input-datepicker .error').css("opacity", 0);
+            $('.wrap-input-datepicker .error').css({"opacity": 0, "display": "none"});
             $('.wrap-input-datepicker .error').text('Error');
             isDatepicker = true;
         }
 
         if(select2.length == 0)
         {
-            $('.wrap-input-single-main .error').css("opacity", 1);
+            $('.wrap-input-single-main .error').css({"opacity": 1, "display": "block"});
             $('.wrap-input-single-main .error').text('Field with * is required.');
             isSelect2 = false;
         } else {
-            $('.wrap-input-single-main .error').css("opacity", 0);
+            $('.wrap-input-single-main .error').css({"opacity": 0, "display": "none"});
             $('.wrap-input-single-main .error').text('Error');
             isSelect2 = true;
         }
