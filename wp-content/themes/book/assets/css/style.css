@@ -898,7 +898,7 @@ input:focus-visible,
 .info-menu-app {
   position: fixed;
   bottom: 32px;
-  right: 95px;
+  right: 10px;
   z-index: 999;
   text-align: center;
 }
