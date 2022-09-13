@@ -180,7 +180,8 @@ a {
 }
 
 .nail-call a svg {
-  font-size: 34px;
+  font-size: 30px;
+  font-weight: 500;
 }
 
 .social-network {
