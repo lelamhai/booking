@@ -609,7 +609,7 @@ a {
 }
 
 .wrap-menu-parent .menu-label-left .menu-description-parent {
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 15px;
   margin-left: 50px;
 }
@@ -652,7 +652,7 @@ a {
 .menu-main-desc:before {
   position: absolute;
   content: '';
-  top: 50%;
+  top: 10px;
   left: -10px;
   width: 6px;
   height: 1px;
