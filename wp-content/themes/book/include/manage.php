@@ -75,16 +75,25 @@ function get_data_books_date_function() {
                                                                         $locationBook = get_post_meta( $book->ID, 'booking_location', true );
                                                                         $jsonData = json_decode($servicesBook);
                                                                         
-                                                                        $color = "#ccccfe";
+                                                                        $color = "#00ff85";//"#ccccfe";
+                                                                        $status ="";
                                                                         if($statusBook == 0)
                                                                         {
                                                                             $color = "#e0e0e0";
+                                                                            $status = "Cancel";
                                                                         } else if($statusBook == 2) {
-                                                                            $color = "#66cc9a";
+                                                                            $color = "#ccccfe";//"#66cc9a";
+                                                                            $status = "Comfirm";
                                                                         }
                                                                         ?>
-                                                                            <div class="item-boook" style="background-color: <?php echo  $color?>">
-                                                                              
+                                                                            <div class="item-boook" data-id="<?php echo $book->ID?>" style="background-color: <?php echo  $color?>">
+                                                                                <div class="icon-collapse">
+                                                                                    <span class="dashicons dashicons-minus first-minus"></span>
+                                                                                    <span class="dashicons dashicons-minus"></span>
+                                                                                </div>
+                                                                                <div class="status-books">
+                                                                                    <?php echo $status?>
+                                                                                </div>
                                                                                 <div>
                                                                                     <?php echo $book->post_title?>
                                                                                 </div>
@@ -92,7 +101,7 @@ function get_data_books_date_function() {
                                                                                     tel: <?php echo $phoneBook?>
                                                                                 </div>
 
-                                                                                <div class="wrap-content-books">
+                                                                                <div class="wrap-content-books hide-card">
                                                                                     <div class="services">
 
                                                                                         <?php
@@ -133,9 +142,9 @@ function get_data_books_date_function() {
                                                                                         Message: <?php echo $book->post_excerpt?>
                                                                                     </div>
 
-                                                                                    <div class="group-button">
-                                                                                        <button>Edit</button>
-                                                                                        <button>Delete</button>
+                                                                                    <div class="group-button" data-id="<?php echo $book->ID?>">
+                                                                                        <button class="edit">Edit</button>
+                                                                                        <button class="delete">Delete</button>
                                                                                     </div>
                                                                                 </div>
 
@@ -165,6 +174,16 @@ function get_data_books_date_function() {
             </div>
             
         <?php
+    }
+    wp_die(); 
+}
+
+add_action('wp_ajax_delete_data_books', 'delete_data_books_function');
+add_action('wp_ajax_nopriv_delete_data_books', 'delete_data_books_function');
+function delete_data_books_function() {
+    if($_GET["id"] != "")
+    {
+        delete_by_id_books($_GET["id"]);
     }
     wp_die(); 
 }
