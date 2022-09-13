@@ -8,7 +8,7 @@ $(document).ready(function() {
         speed: 1300,
         infinite:true,
         slidesToShow: 1,
-        autoplay: false,
+        autoplay: true,
         prevArrow:"<button type='button' class='slick-prev pull-left'></button>",
         nextArrow:"<button type='button' class='slick-next pull-right'></button>"
     });
@@ -16,7 +16,7 @@ $(document).ready(function() {
     $(".slider").slick({
         dots: true,
         arrows: false,
-        autoplay: false,
+        autoplay: true,
         slidesToShow: 1
     });
 
