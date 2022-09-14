@@ -178,12 +178,18 @@ a {
 
 .nail-call {
   text-align: center;
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   a {
     font-size: 23px;
     text-decoration: none;
     margin: 0 56px;
-
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     &.opening {
       display: inline-block;
     }
@@ -191,6 +197,7 @@ a {
     svg {
       font-size: 30px;
       font-weight: 500;
+      margin-right: 10px;
     }
   }
 }
