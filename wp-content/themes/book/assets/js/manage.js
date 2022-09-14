@@ -222,6 +222,29 @@ $(document).ready(function() {
         $("#idDeleteBooks").val(id);
     });
 
+    $(document).on('click', '.edit', function() { 
+        let id = $(this).parents(".group-button").data("id");
+        $.ajax({
+            type : "GET", 
+            dataType: 'html',
+            url : "./wp-admin/admin-ajax.php",
+            data : {
+                action: "edit_data_books",
+                id: id
+            },
+            beforeSend: function(){
+
+            },
+            success: function(response) {
+                $( "body" ).append( response );
+                // console.log(response);
+            },
+            error: function( jqXHR, textStatus, errorThrown ){
+    
+            }
+        });
+    });
+
     $(document).on('click', '.yes-delete-books', function() { 
         let id =  $("#idDeleteBooks").val();
         $.ajax({
@@ -252,6 +275,9 @@ $(document).ready(function() {
     $( "#datepickerCalendar" ).datepicker({
         minDate: new Date()
     }).datepicker("setDate",'now');
+
+    $( "#datepickerCalendarEdit" ).datepicker({
+    });
 
     $("#single-main").select2({
         placeholder: "Select a time",
@@ -358,21 +384,6 @@ $(document).ready(function() {
                 isEmail = false;
             }
         }
-
-        // if(location.length == 0)
-        // {
-        //     isLocation = true;
-        // } else {
-        //     if(validateLocation(location)) {
-        //         $('.wrap-input-location .error').css("opacity", 0);
-        //         $('.wrap-input-location .error').text('Error');
-        //         isLocation = true;
-        //     } else {
-        //         $('.wrap-input-location .error').css("opacity", 1);
-        //         $('.wrap-input-location .error').text('Please enter your location');
-        //         isLocation = false;
-        //     }
-        // }
 
         if(datepicker.length == 0)
         {

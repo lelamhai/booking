@@ -278,4 +278,14 @@ function delete_by_id_books($id)
     wp_delete_post($id);
 }
 
+function get_data_by_id_books($id)
+{
+    $args = array(  
+        'post_type'		=> 'books',
+        'p'             => $id
+    );
+
+    return get_posts($args);
+}
+
 ?>
