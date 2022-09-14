@@ -12,3 +12,12 @@ wp-config.php
 
 #Idea file (phpstorm)
 .idea/
+
+# Node module
+node_modules/
+
+# Config laravel mix
+package-lock.json
+package.json
+webpack.mix.js
+mix-manifest.json

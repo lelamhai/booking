@@ -44,16 +44,6 @@
         $TextColorReviews = get_option($businessTextColorReviews);
     }
 
-    // footer
-    if(get_option($businessBackgroundColorFooter))
-    {
-        $BackgroundColorFooter = get_option($businessBackgroundColorFooter);
-    }
-
-    if(get_option($businessTextColorFooter ))
-    {
-        $TextColorFooter = get_option($businessTextColorFooter );
-    }
 ?>
 
 <style>
@@ -131,9 +121,14 @@
         border: 1px solid <?php echo $BackgroundButtonBody?>;
     }
 
-    .number input:checked ~ .checkmark,
+
     .number:hover input ~ .checkmark {
         background: <?php echo $BackgroundButtonBody?>
+    }
+
+    .number input:checked ~ .checkmark:after{
+        color: <?php echo $BackgroundButtonBody?>;
+        display: block;
     }
 
     .select2-container--default .select2-results__option--highlighted[aria-selected] {
@@ -151,17 +146,11 @@
     .TextColorReviews {
         color: <?php echo $TextColorReviews?> !important;
     }
-    /* footer */
-    .BackgroundColorFooter {
-        background-color: <?php echo $BackgroundColorFooter?> !important;
-    }
 
-    .TextColorFooter {
-        color: <?php echo $TextColorFooter?> !important;
-    }
+
 
     .mobile-container {
-        background: <?php echo $BackgroundColorHeader?>;
+        /*background: */<?php //echo $BackgroundColorHeader?>/*;*/
     }
 
     body { padding-right: 0 !important }
@@ -599,7 +588,6 @@
                         </h3>
                         <div class="slider-reviews">
                             <div class="item-slider-reviews">
-                                <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                                 <?php
                                 $content = "";
                                 if(get_option($businessContent1Reviews))
@@ -608,10 +596,8 @@
                                 }
                                 echo $content;
                                 ?>
-                                <svg class="icon-client-2" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                             </div>
                             <div class="item-slider-reviews">
-                                <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                                 <?php
                                 $content = "";
                                 if(get_option($businessContent2Reviews))
@@ -620,10 +606,8 @@
                                 }
                                 echo $content;
                                 ?>
-                                <svg class="icon-client-2" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                             </div>
                             <div class="item-slider-reviews">
-                                <svg class="icon-client-1" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                                 <?php
                                 $content = "";
                                 if(get_option($businessContent3Reviews))
@@ -632,7 +616,6 @@
                                 }
                                 echo $content;
                                 ?>
-                                <svg class="icon-client-2" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"/></svg>
                             </div>
                         </div>
                     </div>
@@ -877,214 +860,6 @@
            ?>
         </section>
 
-        <section class="contact BackgroundColorFooter" id="Opening">
-            <div class="container wrap-contact">
-                <div class="row">
-                    <div class="col-md-4 contact-about">
-                        <div class="title-contact TextColorFooter">About Us</div>
-                        <div class="content-contact TextColorFooter">
-                            <?php
-                            if(get_option($businessAboutUsFooter ))
-                            {
-                                echo get_option($businessAboutUsFooter );
-                            }
-                            ?>
-                        </div>
-                        <div class="nail-address TextColorBody">
-                            <?php
-                            if(get_option($businessAddress))
-                            {
-                                if (get_option($businessGoogleMap)) {
-                                    $google_map_link = get_option($businessGoogleMap);
-                                } else {
-                                    $google_map_link = '#';
-                                }
-                                echo '<a class="TextColorBody" href="'.$google_map_link.'" target="_blank"><i class="fas fa-map-marker-alt"></i> Address: '.get_option($businessAddress).'</a>';
-                            }
-                            ?>
-                        </div>
-                        <div class="footer-phone">
-                            <?php
-                            $phone = "";
-                            if(get_option($businessPhoneNumber))
-                            {
-                                $phone = get_option($businessPhoneNumber);
-                                ?>
-                                <a class ="TextColorFooter" href="tel:<?php echo $phone ?>"><i class="fas fa-phone-alt"></i> Tel: <?php echo $phone ?></a>
-                                <?php
-                            }
-                            ?>
-                        </div>
-                        <div class="social-network">
-                            <div class="item-social-network">
-                                <?php
-                                $url = "#";
-                                if(get_option($businessYoutube))
-                                {
-                                    $url = get_option($businessYoutube);
-                                }
-                                ?>
-                                <a href="<?php echo $url?>"><svg width="2rem" height="2rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M186.8 202.1l95.2 54.1-95.2 54.1V202.1zM448 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48zm-42 176.3s0-59.6-7.6-88.2c-4.2-15.8-16.5-28.2-32.2-32.4C337.9 128 224 128 224 128s-113.9 0-142.2 7.7c-15.7 4.2-28 16.6-32.2 32.4-7.6 28.5-7.6 88.2-7.6 88.2s0 59.6 7.6 88.2c4.2 15.8 16.5 27.7 32.2 31.9C110.1 384 224 384 224 384s113.9 0 142.2-7.7c15.7-4.2 28-16.1 32.2-31.9 7.6-28.5 7.6-88.1 7.6-88.1z"/></svg></a>
-                            </div>
-                            <div class="item-social-network">
-                                <?php
-                                $url = "#";
-                                if(get_option($businessFacebook))
-                                {
-                                    $url = get_option($businessFacebook);
-                                }
-                                ?>
-                                <a href="<?php echo $url?>"><svg width="2rem" height="2rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg></a>
-                            </div>
-                            <div class="item-social-network">
-                                <?php
-                                $url = "#";
-                                if(get_option($businessInstagram))
-                                {
-                                    $url = get_option($businessInstagram);
-                                }
-                                ?>
-                                <a href="<?php echo $url?>"><svg width="2rem" height="2rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 footer-menu">
-                        <div class="title-menu-footer TextColorFooter">Explore</div>
-                        <div class="content-menu-footer">
-                            <ul>
-                                <li><a class="TextColorFooter" href="<?php echo get_home_url() ?>/#OurMenu">OUR MENU</a></li>
-                                <?php
-                                if(get_option("business-addmenu-header") && get_option("business-linkmenu-header"))
-                                {
-                                    ?>
-                                    <li>
-                                        <a  class="TextColorFooter" href="<?php echo get_option("business-linkmenu-header")?>"><?php echo get_option("business-addmenu-header")?></a>
-                                    </li>
-                                    <?php
-                                }
-                                ?>
-                                <li><a class="TextColorFooter" href="#BookOnline">BOOK ONLINE</a></li>
-                                <li><a class="TextColorFooter" href="#Gift">BUY GIFT CARDS</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-4 contact-hours">
-                        <div class="wrap-contact-time">
-                            <div class="contact-time" >
-                                <b class="TextColorFooter">Opening Hours</b>
-                                <div class="list-time">
-                                    <?php
-                                    for($i=0; $i<7; $i++)
-                                    {
-                                        $key = "week".($i+2);
-                                        $value = "";
-                                        if(get_option($key))
-                                        {
-                                            $value = get_option($key);
-                                            $arr = explode('-', $value);
-                                        }
-                                        $list = array("AM", "PM");
-                                        if($i == 0)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                            <p class="TextColorFooter">Mon:<span> <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-
-                                        if($i == 1)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                            <p class="TextColorFooter">Tue:<span> <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-
-                                        if($i == 2)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                            <p class="TextColorFooter">Wed:<span> <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-
-                                        if($i == 3)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                            <p class="TextColorFooter">Thu:<span> <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-
-                                        if($i == 4)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                            <p class="TextColorFooter">Fri:<span> <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-
-                                        if($i == 5)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                            <p class="TextColorFooter">Sat:<span> <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-
-                                        if($i == 6)
-                                        {
-                                            $time = "Closed";
-                                            if($arr[4] != 0)
-                                            {
-                                                $time = $arr[0]." ".$list[$arr[1]]." - ".$arr[2]." ".$list[$arr[3]];
-                                            }
-                                            ?>
-                                            <p class="TextColorFooter">Sun:<span> <?php echo $time; ?></span></p>
-                                            <?php
-                                        }
-                                    }
-
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                </div>
-            </div>
-            <div class="container footer-bottom">
-                <div class="row">
-                    <div class="col-md-12 footer-row-2">
-                        <div class="footer-service"><a class="TextColorFooter" href="<?php echo esc_url( get_page_link( $policyId ) ); ?>" style="<?php echo $colorFooter?>">Privacy Policy</a></div>
-                        <div class="footer-service"><a class="TextColorFooter" href="<?php echo esc_url( get_page_link( $termsId ) ); ?>" style="<?php echo $colorFooter?>"><?php  echo get_the_title( $termsId ) ?></a></div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
 <?php
 get_footer();

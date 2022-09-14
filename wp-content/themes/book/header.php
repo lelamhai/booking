@@ -18,7 +18,7 @@
 
 <body class="BackgroundColorBody">
    <header>
-        <div id="header" class="header BackgroundColorHeader">
+        <div id="header" class="header BackgroundColorHeader" style="background: url('<?php echo get_template_directory_uri(); ?>/assets/img/header-bg.jpg')">
             <div class="mobile-container not-showmenu">
                 <div class="close-menu mobile">
                     <button class="menu-close">
