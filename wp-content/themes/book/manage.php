@@ -648,6 +648,7 @@
         </div>
 
         <style>
+            #modalEditBook .modal-body .wrap-modal-books,
             #createBook .modal-body .wrap-modal-books {
                 overflow-y: auto;
                 height: 500px;
@@ -730,9 +731,6 @@
                 </div>
             </div>
         </div>
-
-
-        
 
 <style>
     #manage {

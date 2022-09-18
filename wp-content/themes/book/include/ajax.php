@@ -29,7 +29,7 @@
         if($_GET["date"] != null && $_GET["time_id"] != null)
         {
 
-            $date=date_create($_GET["date"]);
+            $date = date_create($_GET["date"]);
             $dateNew = date_format($date,"Y/m/d");
             
             $slots= booking_get_slots($dateNew, $_GET["time_id"]);
@@ -83,73 +83,73 @@
                             {
                                 $parents = services_get_taxonomy();
                                 ?>
-                               <div class="wrap-service-parent wrap-service-parent-<?php echo $i?>" style="display: block">
-                                    <div class="guest-item-title TextColorBody">Guest <?php echo $i?><span class="red">*</span></div>
-                                    <div class="wrap-button-number">
-                                        <?php
-                                            $index = 1;
-                                            foreach($parents as $parent)
-                                            {
-                                                ?>
-                                                    <label class="number TextColorBody"><?php  echo $parent->name?>
-                                                        <input type="checkbox" class="checkbox-menu" data-id="<?php echo $parent->term_id?>" data-name="<?php echo $parent->name?>" value="<?php echo $index?>">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                <?php
-                                                $index ++;
-                                            }
-                                        ?>
-                                    </div>
-                                    <div class="wrap-service-child">
-                                        <?php
-                                            $index=1;
-                                            foreach($parents as $parent)
-                                            {
-                                                $children = services_get_taxonomy($parent->term_id);
-                                                ?>
-                                                        <?php
-                                                            if(count($children ) > 0)
-                                                            {
-                                                               ?>
-                                                                <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
-
-                                                                    <div class="service-title TextColorBody" data=""><?php echo $parent->name?></div>
-                                                                    <div class="service-content">
-                                                                        <select class="basic-single" style="width: 100%">
-                                                                            <?php 
-                                                                                foreach($children as $child)
-                                                                                {
-                                                                                    ?>
-                                                                                        <option data-parent="<?php echo $parent->term_id?>" value="<?php echo $child->term_id?>"><?php echo $child->name;?></option>
-                                                                                    <?php
-                                                                                }
-                                                                            ?>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                               <?php
-                                                            } else {
+                                    <div class="wrap-service-parent wrap-service-parent-<?php echo $i?>" style="display: block">
+                                        <div class="guest-item-title TextColorBody">Guest <?php echo $i?><span class="red">*</span></div>
+                                        <div class="wrap-button-number">
+                                            <?php
+                                                $index = 1;
+                                                foreach($parents as $parent)
+                                                {
+                                                    ?>
+                                                        <label class="number TextColorBody"><?php  echo $parent->name?>
+                                                            <input type="checkbox" class="checkbox-menu" data-id="<?php echo $parent->term_id?>" data-name="<?php echo $parent->name?>" value="<?php echo $index?>">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    <?php
+                                                    $index ++;
+                                                }
+                                            ?>
+                                        </div>
+                                        <div class="wrap-service-child">
+                                            <?php
+                                                $index=1;
+                                                foreach($parents as $parent)
+                                                {
+                                                    $children = services_get_taxonomy($parent->term_id);
+                                                    ?>
+                                                            <?php
+                                                                if(count($children ) > 0)
+                                                                {
                                                                 ?>
-                                                                    <div class="wrap-service-item hidden hidden-child wrap-service-item-<?php echo $index?>">
+                                                                    <div class="wrap-service-item hidden wrap-service-item-<?php echo $index?>">
+
                                                                         <div class="service-title TextColorBody" data=""><?php echo $parent->name?></div>
                                                                         <div class="service-content">
                                                                             <select class="basic-single" style="width: 100%">
-                                                                                <option data-parent="<?php echo $parent->term_id?>" value="0">NULL</option>
+                                                                                <?php 
+                                                                                    foreach($children as $child)
+                                                                                    {
+                                                                                        ?>
+                                                                                            <option data-parent="<?php echo $parent->term_id?>" value="<?php echo $child->term_id?>"><?php echo $child->name;?></option>
+                                                                                        <?php
+                                                                                    }
+                                                                                ?>
                                                                             </select>
                                                                         </div>
                                                                     </div>
                                                                 <?php
-                                                            }
-                                                        ?>
-                                                <?php
-                                                $index ++;
-                                            }
-                                        ?>
-                                        <div class="error-checkbox red">Field with * is required.</div>
-                                   
+                                                                } else {
+                                                                    ?>
+                                                                        <div class="wrap-service-item hidden hidden-child wrap-service-item-<?php echo $index?>">
+                                                                            <div class="service-title TextColorBody" data=""><?php echo $parent->name?></div>
+                                                                            <div class="service-content">
+                                                                                <select class="basic-single" style="width: 100%">
+                                                                                    <option data-parent="<?php echo $parent->term_id?>" value="0">NULL</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    <?php
+                                                                }
+                                                            ?>
+                                                    <?php
+                                                    $index ++;
+                                                }
+                                            ?>
+                                            <div class="error-checkbox red">Field with * is required.</div>
+                                    
+                                        </div>
                                     </div>
-                                </div>
-                            <?php
+                                <?php
 
                             } else {
                                 ?>
