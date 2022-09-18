@@ -15,9 +15,3 @@ wp-config.php
 
 # Node module
 node_modules/
-
-# Config laravel mix
-package-lock.json
-package.json
-webpack.mix.js
-mix-manifest.json
