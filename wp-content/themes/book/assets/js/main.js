@@ -23,10 +23,16 @@ $(document).ready(function() {
     // Menu mobile
     $(".menu-open").click(function(){
         $(".mobile-container").removeClass( "not-showmenu" );
+        $(this).addClass('hidden');
+        $('.menu-close').removeClass('hidden');
+        $("body").addClass('overlay');
     });
 
     $(".menu-close").click(function(){
         $(".mobile-container").addClass("not-showmenu");
+        $(this).addClass('hidden');
+        $('.menu-open').removeClass('hidden');
+        $("body").removeClass('overlay');
     });
 
     $(".header-list-menu li").click(function(){

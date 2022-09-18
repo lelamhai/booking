@@ -20,11 +20,6 @@
    <header>
         <div id="header" class="header BackgroundColorHeader" style="background: url('<?php echo get_template_directory_uri(); ?>/assets/img/header-bg.jpg')">
             <div class="mobile-container not-showmenu">
-                <div class="close-menu mobile">
-                    <button class="menu-close">
-                        <i class="fas fa-times"></i>
-                    </button>
-                 </div>
                 <div class="header-logo">
                     <a href="./" class="TextColorHeader">
                         <?php
@@ -77,32 +72,33 @@
 
             <a class="header-login TextColorHeader" href="./wp-admin"><i class="fas fa-user"></i>Login</a>
 
-            <div class="menu-mobile mobile BackgroundColorHeader">
+            <div class="menu-mobile mobile">
                 <div class="logo-mobile anim left-right js-anim">
-                   <div class="logo">
+                    <div class="logo">
                         <a href="./" class="TextColorHeader">
                             <?php
-                            if(get_option("business-logo-header"))
-                            {
+                            if (get_option("business-logo-header")) {
                                 ?>
-                                <img src="<?php echo get_option("business-logo-header")?>" alt="">
+                                <img src="<?php echo get_option("business-logo-header") ?>" alt="">
                                 <?php
-                            } else if(get_option("business-name")){
+                            } else if (get_option("business-name")) {
                                 $name = "Softkeymarketing";
-                                if(get_option("business-name"))
-                                {
+                                if (get_option("business-name")) {
                                     $name = get_option("business-name");
                                 }
                                 echo $name;
                             }
                             ?>
                         </a>
-                   </div>
+                    </div>
                 </div>
                 <button class="menu-open anim right-left js-anim">
                     <i class="fas fa-bars"></i>
                 </button>
-             </div>
+                <button class="menu-close hidden">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
 
     </header>

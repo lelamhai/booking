@@ -33,7 +33,8 @@
 
     .wrap-header a,
     .header-list-menu li a {
-        font-size: 18px;
+        font-size: 14px;
+        font-weight: 400;
     }
 
     #video-youtube {
@@ -73,6 +74,12 @@
   Responsive CSS Mobile
   ========================================================================== */
   @media only screen and (min-width: 100px) and (max-width: 767px) {
+      .button-welcome{
+          margin-bottom: 30px;
+      }
+      .wrap-gift .image-gift{
+          padding: 0;
+      }
       html #wpadminbar {
           position: fixed;
       }
@@ -80,7 +87,7 @@
           padding: 75px 0 12px;
       }
       .header-list-menu li a {
-          font-weight: 900;
+          font-weight: 400;
       }
     .mobile {
         display: block;
@@ -91,15 +98,15 @@
     }
 
     .main {
-        padding-top: 81px;
+        padding-top: 76px;
     }
 
     .mobile-container {
         position: fixed;
-        width: 100%;
+        width: 60%;
         height: 100vh;
         z-index: 9999;
-        background-color: #991113;
+        background-color: #fff;
         transition: transform 500ms ease-in-out 25ms;
     }
     
@@ -111,7 +118,9 @@
         position: fixed;
         z-index: 1;
         width: 100%;
-        background-color: #991113;
+        background: url("../img/header-bg.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .menu-mobile img {
@@ -132,17 +141,23 @@
     .wrap-header {
         flex-direction: column;
         align-items: flex-start;
-        padding: 15px;
+        padding: 35px;
     }
 
     .header-list-menu{
         display: flex;
         flex-direction: column;
         width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        border-top: 1px solid #bfbfbf;
     }
     .header-list-menu li {
         padding: 15px 0;
-        text-align: center;
+        text-align: justify;
+        border-bottom: 1px solid #bfbfbf;
+        width: 100%;
     }
 
     .header-login {

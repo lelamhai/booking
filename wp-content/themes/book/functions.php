@@ -94,10 +94,12 @@ function regsiter_styles()
             wp_enqueue_style('book-slick',   get_template_directory_uri() ."/assets/slick/slick.css", array(), $version);
             wp_enqueue_style('book-slick-theme',   get_template_directory_uri() ."/assets/slick/slick-theme.css", array(), $version);
             wp_enqueue_style('book-select2.min',   get_template_directory_uri() ."/assets/css/select2.min.css", array(), $version);
-            
+            wp_enqueue_style('popup',   get_template_directory_uri() ."/assets/css/popup.css", array(), $version);
+
             wp_enqueue_script('book-select2.min', get_template_directory_uri() . "/assets/js/select2.min.js", array(), $version, true);
             wp_enqueue_script('boook-slick', get_template_directory_uri() . "/assets/slick/slick.js", array(), $version, true);
             wp_enqueue_script('boook-main', get_template_directory_uri() . "/assets/js/main.js", array(), $version, true);
+            wp_enqueue_script('popup', get_template_directory_uri() . "/assets/js/popup.js", array(), $version, true);
         }
        
     }

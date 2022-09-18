@@ -158,9 +158,14 @@
     .modal-open {overflow-y: scroll !important;}
 </style>
 
-        <div class="modal fade" id="listIcon">
+        <div class="modal" id="listIcon">
             <div class="modal-dialog">
                 <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                     <div class="modal-body">
                         <div class="box-title">How satisfied were you with the service overall?</div>
                         <div class="box-list-icon">
@@ -195,9 +200,14 @@
             </div>
         </div>
 
-        <div class="modal fade" id="reviewsGood">
+        <div class="modal" id="reviewsGood">
             <div class="modal-dialog">
                 <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                     <div class="modal-body">
                         <div class="wrap-box">
                             <div class="box-title">Thank you! Leave us a review on Google</div>
@@ -208,7 +218,7 @@
                                     $url = get_option($businessGoogleReview);
                                 }
                             ?>
-                            <div class="submit-good"><button><a href="<?php echo $url ?>" target="_blank">Review now</a></button></div>
+                            <div class="submit-good"><button><a href="<?php echo $url ?>" target="_blank">Review Now</a></button></div>
                         </div>
                     </div>
                 </div>
@@ -218,6 +228,11 @@
         <div class="modal fade" id="reviewsBad">
             <div class="modal-dialog">
                 <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                     <div class="modal-body">
                         <div class="wrap-box">
                             <div class="box-title">We're sorry. We'd love your feedback!</div>
@@ -403,6 +418,78 @@
                 </div>
             </div>
         </div>
+
+        <!--Modal BuyNow-->
+        <div class="modal fade" id="modalBuynow">
+            <div class="modal-dialog" style="width: auto;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="popup--text">E-Gift card-Delivered via email and is also printable. The e-gift card code will be emailed to the recipient email below.</p>
+                        <p class="popup--text">If you don’t see the email in your inbox, please check your spam/junk folder</p>
+                        <form action="#" class="wrap-box" style="padding: 0 50px">
+                            <label for="from">From *</label>
+                            <div class="box-content">
+                                <input type="text" name="from">
+                            </div>
+
+                            <label for="to">To *</label>
+                            <div class="box-content"><input type="text" name="from"></div>
+                            <label for="to">Amount *</label>
+                                <div class="box-content"><input type="text" name="amount" placeholder="$"></div>
+                            <label for="re-email">Recipient email *</label>
+                                    <div class="box-content"><input type="email" name="re-email"></div>
+                            <label for="comfirm-email">Confirm email *</label>
+                                        <div class="box-content"><input type="email" name="comfirm-email"></div>
+                            <button type="submit" class="submit">
+                                <a href="#">Payment</a>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--Modal BuyNow2-->
+    <div class="modal fade" id="modalCheckbalance">
+        <div class="modal-dialog" style="width: auto;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="popup--text">E-Gift card-Delivered via email and is also printable. The e-gift card code will be emailed to the recipient email below.</p>
+                    <p class="popup--text">If you don’t see the email in your inbox, please check your spam/junk folder</p>
+                    <form action="#" class="wrap-box" style="padding: 0 50px">
+                        <label for="from">From *</label>
+                        <div class="box-content">
+                            <input type="text" name="from">
+                        </div>
+
+                        <label for="to">To *</label>
+                        <div class="box-content"><input type="text" name="from"></div>
+                        <label for="to">Amount *</label>
+                        <div class="box-content"><input type="text" name="amount" placeholder="$"></div>
+                        <label for="re-email">Recipient email *</label>
+                        <div class="box-content"><input type="email" name="re-email"></div>
+                        <label for="comfirm-email">Confirm email *</label>
+                        <div class="box-content"><input type="email" name="comfirm-email"></div>
+                        <button type="submit" class="submit">
+                            <a href="#">Payment</a>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <div class="main">
         <section class="video">

@@ -61,10 +61,10 @@
 
     .mobile-container {
         position: fixed;
-        width: 100%;
+        width: 245px;
         height: 100vh;
         z-index: 2;
-        background-color: #991113;
+        background-color: #fff;
         transition: transform 500ms ease-in-out 25ms;
     }
     

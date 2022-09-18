@@ -9,7 +9,9 @@
 
 $(function () {
   $(document).ready(function () {
-    console.log("ready!");
+    $('.buy-gift').click(function () {
+      $('#modalBuynow').modal('toggle');
+    });
   });
 });
 

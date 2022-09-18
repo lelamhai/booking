@@ -1152,13 +1152,16 @@ input:focus-visible, .wrap-input-message textarea:focus-visible {
   justify-content: center;
 }
 .wrap-box label {
-  margin-left: 15px;
+  margin-left: 20px;
+  font-size: 16px;
+  font-weight: 400;
 }
 
-.modal {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -45%);
+.modal .modal-dialog {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-footer, .modal-header {
@@ -1181,21 +1184,47 @@ input:focus-visible, .wrap-input-message textarea:focus-visible {
 
 .box-title {
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 20px;
+  color: #1a1a1a;
+  line-height: 1.4em;
+  font-weight: 400;
   padding-bottom: 30px;
-  padding-left: 15px;
-  padding-right: 15px;
+}
+
+button.close {
+  border: 1px solid #aaaaff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  opacity: 1;
+}
+button.close svg {
+  color: #fcbaf8;
+  font-size: 18px;
 }
 
 .box-content {
-  padding: 0 15px;
+  padding: 0 20px;
+}
+.box-content input {
+  margin-bottom: 20px;
 }
 .box-content input, .box-content textarea {
   width: 100%;
-  border: 1px solid #991113;
+  border: 1px solid #aaaaff;
+  border-radius: 5px;
   padding: 5px;
-  margin-bottom: 30px;
+}
+
+.popup--text {
+  text-align: center;
+  font-size: 14px;
 }
 
 .box-submit {
@@ -1203,10 +1232,13 @@ input:focus-visible, .wrap-input-message textarea:focus-visible {
   padding-top: 5px;
 }
 .box-submit input {
-  background-color: #991113;
+  background-color: #b0abfe;
   color: #fff;
-  padding: 10px;
-  border-radius: 10px;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  display: inline-block;
+  border: 0;
 }
 
 .box-good {
@@ -1219,10 +1251,24 @@ input:focus-visible, .wrap-input-message textarea:focus-visible {
   padding-bottom: 15px;
 }
 .submit-good button a {
-  background-color: #39a766;
+  background-color: #b0abfe;
   color: #fff;
-  padding: 10px;
-  border-radius: 10px;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  display: inline-block;
+}
+
+button.submit {
+  background: transparent;
+}
+button.submit a {
+  display: inline-block;
+  background-color: #b0abfe;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
 }
 
 /* The container */
@@ -1251,6 +1297,19 @@ input:focus-visible, .wrap-input-message textarea:focus-visible {
 
 .wrap-slots {
   display: flex;
+}
+
+.overlay {
+  position: relative;
+}
+.overlay:after {
+  content: "";
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .select2-selection__clear, .wrap-service-parent, .hidden {
