@@ -18,7 +18,8 @@
 
 <body class="BackgroundColorBody">
    <header>
-        <div id="header" class="header BackgroundColorHeader" style="background: url('<?php echo get_template_directory_uri(); ?>/assets/img/header-bg.jpg')">
+<!--       style="background: url('--><?php //echo get_template_directory_uri(); ?><!--/assets/img/header-bg.jpg')"-->
+        <div id="header" class="header BackgroundColorHeader">
             <div class="mobile-container not-showmenu">
                 <div class="header-logo">
                     <a href="./" class="TextColorHeader">
