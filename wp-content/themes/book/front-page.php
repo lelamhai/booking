@@ -648,6 +648,14 @@
             </div>
         </section>
 
+        <div class="info-menu-app">
+            <a href="#BookOnline" class="wrap-menu-column2 BackgroundButtonBody TextColorButtonBody">Book Online</a>
+            <div class="wrap-menu-column3 BackgroundButtonBody TextColorButtonBody"  data-toggle="modal" data-target="#modalPhone" data-backdrop="static" data-keyboard="false">
+                Confirm/ Cancel
+            </div>
+            <a href="#header" class="scrollToTop"><i class="fas fa-arrow-circle-up"></i></a>
+        </div>
+
         <section class="list-reviews BackgroundColorReviews">
             <div class="container wrap-list-reviews TextColorReviews">
                 <div class="row">
@@ -710,6 +718,7 @@
             </div>
         </section>
 
+
         <section class="container gift anim move js-anim" id="Gift">
             <div class="row wrap-gift">
                 <div class="col-md-8">
@@ -756,14 +765,6 @@
                 </div>
             </div>
         </section>
-
-        <div class="info-menu-app">
-            <a href="#BookOnline" class="wrap-menu-column2 BackgroundButtonBody TextColorButtonBody">Book Online</a>
-            <div class="wrap-menu-column3 BackgroundButtonBody TextColorButtonBody"  data-toggle="modal" data-target="#modalPhone" data-backdrop="static" data-keyboard="false">
-                Confirm/ Cancel
-            </div>
-            <a href="#header" class="scrollToTop"><i class="fas fa-arrow-circle-up"></i></a>
-        </div>
 
         <section class="menu-main anim move js-anim" id="OurMenu">
             <div class="container">
