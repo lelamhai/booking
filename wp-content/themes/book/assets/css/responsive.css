@@ -74,6 +74,80 @@
   Responsive CSS Mobile
   ========================================================================== */
   @media only screen and (min-width: 100px) and (max-width: 767px) {
+      .content-welcome-nail p{
+          font-size: 14px;
+      }
+      .menu-main-title,
+      .menu-main-desc{
+          font-size: 14px;
+      }
+      .label-card, .service-title{
+          font-size: 14px;
+      }
+      .title-contact, .title-menu-footer, .contact-time b:first-child{
+          font-size: 16px;
+          text-align: center;
+      }
+      .content-contact,
+      .nail-address a,
+      .footer-phone a svg,
+      .nail-address a svg{
+          font-size: 14px;
+      }
+      .list-time p, .contact-time .list-time p span, .content-menu-footer a{
+          font-size: 14px;
+      }
+      .slider .slick-dots{
+          bottom: auto !important;
+      }
+      .guest-item-title{
+          font-size: 14px;
+      }
+      .wrap-button button{
+          font-size: 14px;
+      }
+      .wrap-input-form.wrap-input-message .label-card{
+          font-size: 14px;
+      }
+      .buy-gift, .check-gift, .wrap-review{
+          font-size: 14px;
+      }
+      .number{
+          font-size: 14px;
+      }
+      .wrap-form-card .wrap-form-card-box{
+          display: flex;
+          flex-direction: column;
+      }
+      .wrap-number-of-guest .guest-title{
+          font-size: 14px;
+      }
+      .form-content{
+          display: none;
+      }
+      .wrap-menu-parent .menu-label-left .menu-title-parent{
+          font-size: 14px;
+      }
+      .gift{
+          padding-bottom: 0;
+      }
+      .menu-label-right{
+          font-size: 12px !important;
+          text-transform: uppercase;
+      }
+      .slider-reviews:before,
+      .slider-reviews:after {
+          display: none;
+      }
+      .main-title{
+          font-size: 20px;
+      }
+      .nail-call a{
+          font-size: 14px;
+      }
+      .nail-call a svg{
+          font-size: 14px;
+      }
       .button-welcome{
           margin-bottom: 30px;
       }
