@@ -220,11 +220,11 @@ if (get_option('business-textcolor-footer')) {
             <div class="row">
                 <div class="col-md-12 footer-row-2">
                     <div class="footer-service"><a class="TextColorFooter"
-                                                   href="<?php echo esc_url(get_page_link($policyId)); ?>"
-                                                   style="<?php echo $colorFooter ?>">Privacy Policy</a></div>
+                                                   href="<?php echo get_page_link(3); ?>"
+                                                   style="<?php echo $colorFooter ?>"><?php echo get_the_title(3) ?></a></div>
                     <div class="footer-service"><a class="TextColorFooter"
-                                                   href="<?php echo esc_url(get_page_link($termsId)); ?>"
-                                                   style="<?php echo $colorFooter ?>"><?php echo get_the_title($termsId) ?></a>
+                                                   href="<?php echo get_page_link(72); ?>"
+                                                   style="<?php echo $colorFooter ?>"><?php echo get_the_title(72) ?></a>
                     </div>
                 </div>
             </div>

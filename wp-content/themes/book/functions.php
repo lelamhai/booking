@@ -55,9 +55,6 @@ $businessMapIframe = "business-map-iframe";
 $businessBackgroundColorFooter = "business-backgroundcolor-footer";
 $businessTextColorFooter = "business-textcolor-footer";
 $businessAboutUsFooter = "business-aboutus-footer";
-    
-$termsId = 72;
-$policyId = 184;
 
 add_action('wp_enqueue_scripts', 'regsiter_styles');
 function regsiter_styles()
