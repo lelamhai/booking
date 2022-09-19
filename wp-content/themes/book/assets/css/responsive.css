@@ -19,23 +19,6 @@
     .container {
         width: 100%;
     }
-    
-    /*.info-menu-app,*/
-    /*        .menu,*/
-    /*        .menu-main,*/
-    /*        .form,*/
-    /*        .wrap-contact,*/
-    /*        .welcome,*/
-    /*        .gift {*/
-    /*            margin-left: 15px;*/
-    /*            margin-right: 15px;*/
-    /*        }*/
-
-    .wrap-header a,
-    .header-list-menu li a {
-        font-size: 14px;
-        font-weight: 400;
-    }
 
     #video-youtube {
         height: 480px;
@@ -44,15 +27,6 @@
     #google-map {
         height: 350px;
     }
-
-    /*.slick-next {*/
-    /*    right: 0 !important;*/
-    /*}*/
-
-    /*.slick-prev {*/
-    /*    left: 0 !important;*/
-    /*}*/
-
 
   }
     

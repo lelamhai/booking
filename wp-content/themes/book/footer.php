@@ -218,6 +218,72 @@ if (get_option('business-textcolor-footer')) {
         </div>
         <div class="container footer-bottom">
             <div class="row">
+                <div class="col-md-12 contact-info-mobile">
+                    <div class="nail-address TextColorBody">
+                        <?php
+                        if (get_option($businessAddress)) {
+                            if (get_option($businessGoogleMap)) {
+                                $google_map_link = get_option($businessGoogleMap);
+                            } else {
+                                $google_map_link = '#';
+                            }
+                            echo '<a class="TextColorBody" href="' . $google_map_link . '" target="_blank"><i class="fas fa-map-marker-alt"></i> Address: ' . get_option($businessAddress) . '</a>';
+                        }
+                        ?>
+                    </div>
+                    <div class="footer-phone">
+                        <?php
+                        $phone = "";
+                        if (get_option($businessPhoneNumber)) {
+                            $phone = get_option($businessPhoneNumber);
+                            ?>
+                            <a class="TextColorFooter" href="tel:<?php echo $phone ?>"><i class="fas fa-phone-alt"></i>
+                                Tel: <?php echo $phone ?></a>
+                            <?php
+                        }
+                        ?>
+                    </div>
+                    <div class="social-network">
+                        <div class="item-social-network">
+                            <?php
+                            $url = "#";
+                            if (get_option($businessYoutube)) {
+                                $url = get_option($businessYoutube);
+                            }
+                            ?>
+                            <a href="<?php echo $url ?>">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-theme/youtube.png"
+                                     width="" height="" alt=""/>
+                            </a>
+                        </div>
+                        <div class="item-social-network">
+                            <?php
+                            $url = "#";
+                            if (get_option($businessFacebook)) {
+                                $url = get_option($businessFacebook);
+                            }
+                            ?>
+                            <a href="<?php echo $url ?>">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-theme/facebook.png"
+                                     width="" height="" alt=""/>
+                            </a>
+                        </div>
+                        <div class="item-social-network">
+                            <?php
+                            $url = "#";
+                            if (get_option($businessInstagram)) {
+                                $url = get_option($businessInstagram);
+                            }
+                            ?>
+                            <a href="<?php echo $url ?>">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-theme/instagram.png"
+                                     width="" height="" alt=""/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12 footer-row-2">
                     <div class="footer-service"><a class="TextColorFooter"
                                                    href="<?php echo get_page_link(3); ?>"
